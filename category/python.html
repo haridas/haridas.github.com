@@ -33,11 +33,11 @@
                 
                 
                 
+                    <li><a href=".././pages/about-me.html">About Me</a></li>
+                
                 
                 
                     <li ><a href=".././category/django.html">django</a></li>
-                
-                    <li ><a href=".././category/misc.html">misc</a></li>
                 
                     <li ><a href=".././category/programming.html">programming</a></li>
                 
@@ -77,10 +77,9 @@ Timezone conversion.</p>
 <p>I have been used timezone with django application, but the concept is
 same for all languages.So here I will explain things using python
 timezone module &quot;pytz&quot;. You have to install this module first into your
-system by using &quot;easy_install&quot;:</p>
-<pre class="literal-block">
-#easy_install pytz #Install python timezone module.
-</pre>
+system by using &quot;easy_install&quot;</p>
+<div class="highlight"><pre><span class="gp">#</span>easy_install pytz <span class="c">#Install python timezone module.</span>
+</pre></div>
 <p>This python module support all major timezones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
 human readable tiemzone names in pytz module to represent the local
@@ -113,44 +112,40 @@ In django/Rails or other Framworks we have an option to set Projects
 default tiemzone as UTC. So in our database the time and date are always
 in UTC. If above methods are not working for your application you
 manually need to convert the local system time into UTC format and then
-save it. Below code sample explain things more clearly,:</p>
-<pre class="literal-block">
-haridas&#64;haridas-debian:~$ python
-Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)
-[GCC 4.4.5] on linux2
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt;
-&gt;&gt;&gt; import pytz
-&gt;&gt;&gt; import datetime
-&gt;&gt;&gt; local_system = datetime.datetime.now() #Get local system time and
-    date.
-&gt;&gt;&gt; local_system
-datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)
-&gt;&gt;&gt;
-&gt;&gt;&gt; local_system_utc = datetime.datetime.utcnow() # utcnow() function
+save it. Below code sample explain things more clearly,</p>
+<div class="highlight"><pre><span class="go">haridas@haridas-debian:~$ python</span>
+<span class="go">Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)</span>
+<span class="go">[GCC 4.4.5] on linux2</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c">#Get local system time and</span>
+<span class="go">    date.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span>
+<span class="go">datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c"># utcnow() function</span>
+<span class="go">     give the UTC time of current local time.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c"># But this date tupple doesn&#39;t have the timezone</span>
+<span class="go">      information.</span>
+<span class="go">      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive</span>
+<span class="go">     representation(Date object without Timezone information.)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span><span class="o">.</span><span class="n">tzinfo</span> <span class="c">#This output None value or nothing.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local_system_utc</span><span class="p">)</span> <span class="c">#Adding</span>
+<span class="go">     timezone information to &quot;local_system_utc&quot;</span>
 
-   give the UTC time of current local time.
-
-&gt;&gt;&gt; local_system_utc # But this date tupple doesn't have the timezone
-    information.
-
-    datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive
-   representation(Date object without Timezone information.)
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_system\_utc.tzinfo #This output None value or nothing.
-&gt;&gt;&gt;
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_system\_utc = pytz.utc.localize(local\_system\_utc) #Adding
-   timezone information to &quot;local\_system\_utc&quot;
-
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_system\_utc
-datetime.datetime(2011, 5, 7, 5, 42, 49, 253618, tzinfo=&lt;UTC&gt;) #you can
-   see the tzinfo variable included with the datetime tuple.
-    #But when saving UTC time inside DB you can use naive representation of
-   datetime object in UTC.
-#You can do the tzinfo addition when retrieving the time from DB.
-</pre>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span>
+<span class="go">     datetime.datetime(2011, 5, 7, 5, 42, 49, 253618, tzinfo=&lt;UTC&gt;) #you can</span>
+<span class="go">     see the tzinfo variable included with the datetime tuple.</span>
+<span class="go">     #But when saving UTC time inside DB you can use naive representation of</span>
+<span class="go">     datetime object in UTC.</span>
+<span class="go">     #You can do the tzinfo addition when retrieving the time from DB.</span>
+</pre></div>
 <p>By this way we can save time and date in Database even-though users are
 from different timezone. We need to consider them only when retrieving
 the time object from database, ie; we need to convert our UTC time to
@@ -159,35 +154,34 @@ user specific timezone. So this conversion is only for view purpose.</p>
 <div class="section" id="converstion-from-utc-to-localtime">
 <h2><strong>2. Converstion from UTC to localtime</strong></h2>
 <p>We need to convert UTC times to corresponding user timezone, follow the
-bellow method,:</p>
-<pre class="literal-block">
-&gt;&gt;&gt; import pytz
-&gt;&gt;&gt; import datetime
-&gt;&gt;&gt;
-&gt;&gt;&gt; now\_utc = datetime.datetime.utcnow() #Our UTC naive time from DB,
-   for the time being here I'm taking it as current system UTC time..
-&gt;&gt;&gt; now\_utc
-    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive
-   form.
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_tz = pytz.timezone('Europe/Paris') #Our Local timezone, to
-   which we want to convert the UTC time.
-&gt;&gt;&gt;
-&gt;&gt;&gt; now\_utc = pytz.utc.localize(now\_utc) #Add Timezone information to
-   UTC time.
-&gt;&gt;&gt;
-&gt;&gt;&gt; now\_utc
-datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&lt;UTC&gt;) # The
-   full datetime tuple
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_time = now\_utc.astimezone(local\_tz) # Convert to local
-   time.
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_time #Current local time in Paris
-datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&lt;DstTzInfo
-   'Europe/Paris' CEST+2:00:00 DST&gt;)
-&gt;&gt;&gt;
-</pre>
+bellow method,</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c">#Our UTC naive time from DB,</span>
+<span class="go">   for the time being here I&#39;m taking it as current system UTC time..</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
+<span class="go">    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive</span>
+<span class="go">   form.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s">&#39;Europe/Paris&#39;</span><span class="p">)</span> <span class="c">#Our Local timezone, to</span>
+<span class="go">   which we want to convert the UTC time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">now_utc</span><span class="p">)</span> <span class="c">#Add Timezone information to</span>
+<span class="go">   UTC time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
+<span class="go">datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&lt;UTC&gt;) # The</span>
+<span class="go">   full datetime tuple</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">now_utc</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">local</span>\<span class="n">_tz</span><span class="p">)</span> <span class="c"># Convert to local</span>
+<span class="go">   time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="c">#Current local time in Paris</span>
+<span class="go">datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&lt;DstTzInfo</span>
+<span class="go">   &#39;Europe/Paris&#39; CEST+2:00:00 DST&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
 </div>
 <div class="section" id="manage-browser-local-time-at-server">
 <h2><strong>3. Manage Browser Local Time at Server</strong></h2>
@@ -204,35 +198,34 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S</li>
 <li>Then search the Database.</li>
 </ol>
 <p>You can reconstruct the javascrpt string format of the date in to
-python date object by,:</p>
-<pre class="literal-block">
-&gt;&gt;&gt; import datetime
-&gt;&gt;&gt; import pytz
-&gt;&gt;&gt;
-&gt;&gt;&gt;
-   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)
-    datetime.datetime(2011, 6, 7, 10, 26, 45)
-&gt;&gt;&gt; local\_date =
-   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)
-&gt;&gt;&gt;
-&gt;&gt;&gt;
-#From DB we will get the corresponding users timezone information , for
-   eg; we can take 'America/Chicago' as our local timezone.
-&gt;&gt;&gt; timezone = pytz.timezone('America/Chicago')
-&gt;&gt;&gt; local\_std\_date = timezone.localize(local\_date,is\_dst=True)
-&gt;&gt;&gt;
-&gt;&gt;&gt; local\_std\_date
-datetime.datetime(2011, 6, 7, 10, 26, 45, tzinfo=&lt;DstTzInfo
-   'America/Chicago' CDT-1 day, 19:00:00 DST&gt;)
-&gt;&gt;&gt;
-&gt;&gt;&gt;
-#Now you have standard localtime and it can be easily converted to the
-   UTC and then do the Database search and other things.
-&gt;&gt;&gt; local\_utc = local\_std\_date.astimezone(pytz.utc)
-&gt;&gt;&gt; local\_utc
-datetime.datetime(2011, 6, 7, 15, 26, 45, tzinfo=&lt;UTC&gt;)
-&gt;&gt;&gt;
-</pre>
+python date object by,</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)</span>
+<span class="go">    datetime.datetime(2011, 6, 7, 10, 26, 45)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_date</span> <span class="o">=</span>
+<span class="go">   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">#From DB we will get the corresponding users timezone information , for</span>
+<span class="go">   eg; we can take &#39;America/Chicago&#39; as our local timezone.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timezone</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s">&#39;America/Chicago&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local</span>\<span class="n">_date</span><span class="p">,</span><span class="ow">is</span>\<span class="n">_dst</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span>
+<span class="go">datetime.datetime(2011, 6, 7, 10, 26, 45, tzinfo=&lt;DstTzInfo</span>
+<span class="go">   &#39;America/Chicago&#39; CDT-1 day, 19:00:00 DST&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">#Now you have standard localtime and it can be easily converted to the</span>
+<span class="go">   UTC and then do the Database search and other things.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_utc</span> <span class="o">=</span> <span class="n">local_std</span>\<span class="n">_date</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_utc</span>
+<span class="go">datetime.datetime(2011, 6, 7, 15, 26, 45, tzinfo=&lt;UTC&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
 </div>
 <p>There are <a href=".././playing-with-timezone-using-pytz.html#disqus_thread">comments</a>.</p>
                 </article>
@@ -279,7 +272,7 @@ datetime.datetime(2011, 6, 7, 15, 26, 45, tzinfo=&lt;UTC&gt;)
                         
                             <li><a href="http://github.com/haridas">github</a></li>
                         
-                            <li><a href="http://linkedin.com/haridas.nss">linkedin</a></li>
+                            <li><a href="http://in.linkedin.com/pub/haridas-n/19/95/825">linkedin</a></li>
                         
                         </ul>
                 </div><!-- /.social -->

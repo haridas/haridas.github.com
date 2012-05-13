@@ -33,11 +33,11 @@
                 
                 
                 
+                    <li><a href=".././pages/about-me.html">About Me</a></li>
+                
                 
                 
                     <li ><a href=".././category/django.html">django</a></li>
-                
-                    <li ><a href=".././category/misc.html">misc</a></li>
                 
                     <li ><a href=".././category/programming.html">programming</a></li>
                 
@@ -81,60 +81,55 @@ application along with your django project, you need to do very simple
 changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
 the project.</p>
-<p>First of all install the south application to your system.:</p>
-<pre class="literal-block">
-easy_install south
-</pre>
+<p>First of all install the south application to your system.</p>
+<div class="highlight"><pre><span class="gp">#</span>easy_install south
+</pre></div>
 <p>then you have to add your south app to django settings.py file under</p>
-<p>INSTALLED_APPS veriable, ie;:</p>
-<pre class="literal-block">
-INSTALLED\_APPS = (
-'django.contrib.auth',
-'django.contrib.contenttypes',
-'django.contrib.sessions',
-'django.contrib.sites',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-# Uncomment the next line to enable the admin:
-'django.contrib.admin',
-# Uncomment the next line to enable admin documentation:
-# 'django.contrib.admindocs',
-'south', # &lt;---HERE
-)
-</pre>
+<p>INSTALLED_APPS veriable, ie;</p>
+<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+<span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+<span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+<span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+<span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+<span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+<span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+<span class="c"># Uncomment the next line to enable the admin:</span>
+<span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+<span class="c"># Uncomment the next line to enable admin documentation:</span>
+<span class="c"># &#39;django.contrib.admindocs&#39;,</span>
+<span class="s">&#39;south&#39;</span><span class="p">,</span> <span class="c"># &lt;---HERE</span>
+<span class="p">)</span>
+</pre></div>
 <p>Now we added the south app to our django project, the commands
 associated with this app is comes under the manage.py.</p>
 <p>Next step is to sync all models to the backend database, for that you
-have to use the usual method , ie;:</p>
-<pre class="literal-block">
-#Migrate all tables to backend database,
-#it includes our south apps tables.
-python manage.py syncdb
-</pre>
+have to use the usual method , ie;</p>
+<div class="highlight"><pre><span class="gp">#</span>Migrate all tables to backend database,
+<span class="gp">#</span>it includes our south apps tables.
+<span class="gp">$</span>python manage.py syncdb
+</pre></div>
 <p>That's it !. we are now ready to use south app for our apps model
 management.</p>
 <p>Currently we added tables of default django apps and south app to
 backend. Now we are ready to add our applications to django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
-commands:</p>
-<pre class="literal-block">
-#Initially you have to add new app under south , for that,
-python manage.py schemamigration your\_app --initial
-#This will setup your app under south, need to run only once,
-#Then migrate models to backend database,
-python manage.py migrate your\_app
-</pre>
+commands,</p>
+<div class="highlight"><pre><span class="gp">#</span>Initially you have to add new app under south , <span class="k">for </span>that,
+<span class="gp">#</span>python manage.py schemamigration your_app --initial
+<span class="gp">#</span>This will setup your app under south, need to run only once,
+<span class="gp">#</span>Then migrate models to backend database,
+<span class="gp">$</span>python manage.py migrate your_app
+</pre></div>
 <p>After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
-steps,:</p>
-<pre class="literal-block">
-#After any changes to your model,
-#First detect those changes ,
-python manage.py schemamigration your\_app --auto
-#Then Migrate to backend,
-python manage.py migrate your\_app
-</pre>
+steps,</p>
+<div class="highlight"><pre><span class="gp">#</span>After any changes to your model,
+<span class="gp">#</span>First detect those changes ,
+<span class="go">python manage.py schemamigration your_app --auto</span>
+<span class="gp">#</span>Then Migrate to backend,
+<span class="gp">$</span>python manage.py migrate your_app
+</pre></div>
 <p>So using south app you are now manged model changes without touching
 backend database. In this manner we can manage all django applications
 under your project.</p>
@@ -150,40 +145,6 @@ under your project.</p>
                         <ol id="posts-list" class="hfeed">
             
         
-        
-        
-        
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././haridasin.html" rel="bookmark" title="Permalink to haridas.in">haridas.in</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-05-13T23:12:59.011150">
-                Sun 13 May 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
-        </address>
-        
-<p>In <a href=".././category/misc.html">misc</a>. </p>
-
-
-
-</footer><!-- /.post-info -->
-                <p>My pelican based blog. It was migrated from wordpress.</p>
-
-                <a class="readmore" href=".././haridasin.html">read more</a>
-                <p>There are <a href=".././haridasin.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
         
         
         
@@ -303,7 +264,7 @@ Perl ...</p>
                         
                             <li><a href="http://github.com/haridas">github</a></li>
                         
-                            <li><a href="http://linkedin.com/haridas.nss">linkedin</a></li>
+                            <li><a href="http://in.linkedin.com/pub/haridas-n/19/95/825">linkedin</a></li>
                         
                         </ul>
                 </div><!-- /.social -->
