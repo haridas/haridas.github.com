@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Myblog</title><link href="/" rel="alternate"></link><link href="//feeds/programming.atom.xml" rel="self"></link><id>/</id><updated>2010-09-28T09:21:00+05:30</updated><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;p&gt;&lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;`|image0|`_&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When I was started to learn C programming language, I only know the term
+Programming. After some time I learned about the Javascript and perl for
+some internal projects, from there onwards I started to use the two
+terms Scripting and Programming. I found some books of Javascript and
+Perl describing about this at the beginning itself. But most of them are
+not clearly specifying the difference correctly.&lt;/p&gt;
+&lt;p&gt;I think these terms were came  due to the difference of how these codes
+are being running under the machine, ie; codes running under Interpreter
+were normally called as Scripts and in Compilers were called as
+Programs.The codes written in scripting languages are very simple to
+understand when compared with compiled languages like C/C++ or Java. But
+Java and other dynamic languages like Python have both interpretor and
+compilers to run its codes, even though we call Python as Scripting
+language. From this we can say that the naming hasn't any importance.&lt;/p&gt;
+&lt;p&gt;We are using these languages to solve or implement all types of logics.Here we
+need to give importance to the problems and how well we can solve it
+based on, which algorithm is being used, speed of the language, memory
+usage, etc...The important thing is the &lt;cite&gt;Algorithm&lt;/cite&gt;, if it is optimal
+then you can select any language that you like. Currently all major
+Scripting languages like &lt;cite&gt;Python, Perl ,Ruby&lt;/cite&gt; and &lt;cite&gt;Tcl/Tk&lt;/cite&gt; are being
+used for general purposes along with famous programming languages like
+&lt;cite&gt;C/C++&lt;/cite&gt; and &lt;cite&gt;Java&lt;/cite&gt;.Other scripting languages are &lt;cite&gt;Php&lt;/cite&gt; (Web
+based applications ), &lt;cite&gt;Lua Script&lt;/cite&gt; (Embedded language , very fast,low
+memory foot print and also used for Game developments).&lt;/p&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You can call the Computer Languages as Scripting language or
+Programming language, but remember the Scripting languages can do any
+thing and we should not consider it as a secondary one.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="system-messages section"&gt;
+&lt;h2&gt;Docutils System Messages&lt;/h2&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;/mnt/data/projects/workspace/myblog/pelican/pelican-blog/src/programming-vs-scripting.rst&lt;/tt&gt;, line 6); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown target name: &amp;quot;|image0|&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry></feed>
