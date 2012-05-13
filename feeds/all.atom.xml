@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2011-06-17T10:41:00+05:30</updated><entry><title>Change and Migrate Django Models using South</title><link href="//change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>//change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-05-13T23:12:59+05:30</updated><entry><title>haridas.in</title><link href="//haridasin.html" rel="alternate"></link><updated>2012-05-13T23:12:59+05:30</updated><author><name>haridas</name></author><id>//haridasin.html</id><summary type="html">&lt;p&gt;My pelican based blog. It was migrated from wordpress.&lt;/p&gt;
+</summary></entry><entry><title>Change and Migrate Django Models using South</title><link href="//change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>//change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -70,7 +71,173 @@ python manage.py migrate your\_app
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="/images/scrpt_vs_pgrms2-300x165.jpg" /&gt;
+</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="//playing-with-timezone-using-pytz.html" rel="alternate"></link><updated>2011-05-11T04:15:00+05:30</updated><author><name>haridas</name></author><id>//playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+&lt;img alt="/images/world_time2-300x172.gif" src="/images/world_time2-300x172.gif" /&gt;
+&lt;p&gt;When we develop web applications some times we need multiple timezone
+support. If we don’t have any previous experience then it might be a
+tough and confusing job. Here I will help you to get some basics of
+Timezone conversion.&lt;/p&gt;
+&lt;p&gt;I have been used timezone with django application, but the concept is
+same for all languages.So here I will explain things using python
+timezone module &amp;quot;pytz&amp;quot;. You have to install this module first into your
+system by using &amp;quot;easy_install&amp;quot;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#easy_install pytz #Install python timezone module.
+&lt;/pre&gt;
+&lt;p&gt;This python module support all major timezones and it helps to convert
+date and time in one timezone to any other timezones.You can use the
+human readable tiemzone names in pytz module to represent the local
+timezones.( like Asia/Kolkata, Europe/Paris, EST etc. ).&lt;/p&gt;
+&lt;p&gt;When we deal with multiple timezone in our application, we might have
+backend database where we store these date and time informations. Most
+databases are support UTC as it's the common timezone format. And it's
+better to keep a unique timezone information when saving the date and
+time in database and database engines not going to support all timezone
+formats directly. So we need to stick with commonly used &lt;strong&gt;UTC/GMT&lt;/strong&gt;
+(Coordinated Universal Time) timezone format , it also helps to remove
+the daylight saving issues.&lt;/p&gt;
+&lt;p&gt;Here is the strategies used in web applications with multiple timezone
+support :-&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Save Date and Time information’s in database as UTC format.&lt;/li&gt;
+&lt;li&gt;Convert the UTC time to corresponding local timezones, based on the
+user request and location.&lt;/li&gt;
+&lt;li&gt;We take local timezone information from browser or user select a
+timezone form the list of timezones that supported by our
+application. We can collect this information easily with the help of
+Javascript.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Bellow I'm explaining some real scenarios where we need to change time
+zone information's from UTC to local and vice versa,&lt;/p&gt;
+&lt;div class="section" id="saving-date-and-time-in-database"&gt;
+&lt;h2&gt;&lt;strong&gt;1. Saving Date and Time in Database :-&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;We always save date and time information in database as UTC standard.
+In django/Rails or other Framworks we have an option to set Projects
+default tiemzone as UTC. So in our database the time and date are always
+in UTC. If above methods are not working for your application you
+manually need to convert the local system time into UTC format and then
+save it. Below code sample explain things more clearly,:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+haridas&amp;#64;haridas-debian:~$ python
+Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)
+[GCC 4.4.5] on linux2
+Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; import pytz
+&amp;gt;&amp;gt;&amp;gt; import datetime
+&amp;gt;&amp;gt;&amp;gt; local_system = datetime.datetime.now() #Get local system time and
+    date.
+&amp;gt;&amp;gt;&amp;gt; local_system
+datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local_system_utc = datetime.datetime.utcnow() # utcnow() function
+
+   give the UTC time of current local time.
+
+&amp;gt;&amp;gt;&amp;gt; local_system_utc # But this date tupple doesn't have the timezone
+    information.
+
+    datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive
+   representation(Date object without Timezone information.)
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_system\_utc.tzinfo #This output None value or nothing.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_system\_utc = pytz.utc.localize(local\_system\_utc) #Adding
+   timezone information to &amp;quot;local\_system\_utc&amp;quot;
+
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_system\_utc
+datetime.datetime(2011, 5, 7, 5, 42, 49, 253618, tzinfo=&amp;lt;UTC&amp;gt;) #you can
+   see the tzinfo variable included with the datetime tuple.
+    #But when saving UTC time inside DB you can use naive representation of
+   datetime object in UTC.
+#You can do the tzinfo addition when retrieving the time from DB.
+&lt;/pre&gt;
+&lt;p&gt;By this way we can save time and date in Database even-though users are
+from different timezone. We need to consider them only when retrieving
+the time object from database, ie; we need to convert our UTC time to
+user specific timezone. So this conversion is only for view purpose.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="converstion-from-utc-to-localtime"&gt;
+&lt;h2&gt;&lt;strong&gt;2. Converstion from UTC to localtime&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;We need to convert UTC times to corresponding user timezone, follow the
+bellow method,:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; import pytz
+&amp;gt;&amp;gt;&amp;gt; import datetime
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; now\_utc = datetime.datetime.utcnow() #Our UTC naive time from DB,
+   for the time being here I'm taking it as current system UTC time..
+&amp;gt;&amp;gt;&amp;gt; now\_utc
+    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive
+   form.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_tz = pytz.timezone('Europe/Paris') #Our Local timezone, to
+   which we want to convert the UTC time.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; now\_utc = pytz.utc.localize(now\_utc) #Add Timezone information to
+   UTC time.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; now\_utc
+datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&amp;lt;UTC&amp;gt;) # The
+   full datetime tuple
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_time = now\_utc.astimezone(local\_tz) # Convert to local
+   time.
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_time #Current local time in Paris
+datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&amp;lt;DstTzInfo
+   'Europe/Paris' CEST+2:00:00 DST&amp;gt;)
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="manage-browser-local-time-at-server"&gt;
+&lt;h2&gt;&lt;strong&gt;3. Manage Browser Local Time at Server&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Rather than just conversion of UTC time, some times we need to fetch
+records from the Database in between particular interval of local time
+time, for eg; From 07:00 Morning to 22:30 Evening of local time. Here
+our data is in UTC format, so we need to get the corresponding UTC time
+of these local time interval and then search the DB, you can follow
+bellow method,&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;From browser you will get time in epoch format (A unique number to
+represent a particular time) or in string format ie; Y-M-D-H-M-S&lt;/li&gt;
+&lt;li&gt;Convert this epoch time to python UTC time.&lt;/li&gt;
+&lt;li&gt;Then search the Database.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can reconstruct the javascrpt string format of the date in to
+python date object by,:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; import datetime
+&amp;gt;&amp;gt;&amp;gt; import pytz
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;
+   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)
+    datetime.datetime(2011, 6, 7, 10, 26, 45)
+&amp;gt;&amp;gt;&amp;gt; local\_date =
+   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;
+#From DB we will get the corresponding users timezone information , for
+   eg; we can take 'America/Chicago' as our local timezone.
+&amp;gt;&amp;gt;&amp;gt; timezone = pytz.timezone('America/Chicago')
+&amp;gt;&amp;gt;&amp;gt; local\_std\_date = timezone.localize(local\_date,is\_dst=True)
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; local\_std\_date
+datetime.datetime(2011, 6, 7, 10, 26, 45, tzinfo=&amp;lt;DstTzInfo
+   'America/Chicago' CDT-1 day, 19:00:00 DST&amp;gt;)
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;
+#Now you have standard localtime and it can be easily converted to the
+   UTC and then do the Database search and other things.
+&amp;gt;&amp;gt;&amp;gt; local\_utc = local\_std\_date.astimezone(pytz.utc)
+&amp;gt;&amp;gt;&amp;gt; local\_utc
+datetime.datetime(2011, 6, 7, 15, 26, 45, tzinfo=&amp;lt;UTC&amp;gt;)
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="/images/scrpt_vs_pgrms2-300x165.jpg" /&gt;
 &lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned about the Javascript and perl for
 some internal projects, from there onwards I started to use the two

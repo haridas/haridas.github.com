@@ -37,7 +37,11 @@
                 
                     <li ><a href="./category/django.html">django</a></li>
                 
+                    <li ><a href="./category/misc.html">misc</a></li>
+                
                     <li ><a href="./category/programming.html">programming</a></li>
+                
+                    <li ><a href="./category/python.html">python</a></li>
                 
                 </ul></nav>
         </header><!-- /#banner -->
@@ -49,8 +53,47 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./change-and-migrate-django-models-using-south.html">Change and Migrate Django Models using South</a></h1> 
+                    <h1 class="entry-title"><a href="./haridasin.html">haridas.in</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-05-13T23:12:59.011150">
+                Sun 13 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href="./category/misc.html">misc</a>. </p>
+
+
+
+</footer><!-- /.post-info --><p>My pelican based blog. It was migrated from wordpress.</p>
+<p>There are <a href="./haridasin.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                        <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./change-and-migrate-django-models-using-south.html" rel="bookmark" title="Permalink to Change and Migrate Django Models using South">Change and Migrate Django Models using South</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2011-06-17T10:41:00">
                 Fri 17 June 2011
         </abbr>
@@ -64,88 +107,56 @@
 <p>tags: <a href="./tag/python.html">python</a><a href="./tag/django.html">django</a><a href="./tag/south.html">south</a></p>
 
 
-</footer><!-- /.post-info --><img alt="/images/south.png" src="static/images/south.png" />
+</footer><!-- /.post-info -->
+                <img alt="/images/south.png" src="static/images/south.png" />
 <p>South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
-appropriately. This is very frustrating if we have to do it several
-times.</p>
-<p>The South application makes it very easy to handle the model changes
-and fill the initial data's into the database tables. To setup the South
-application along with your django project, you need to do very simple
-changes to the settings.py file of your django project. To make it
-simple you have to do this step before adding any of your django apps to
-the project.</p>
-<p>First of all install the south application to your system.:</p>
-<pre class="literal-block">
-easy_install south
-</pre>
-<p>then you have to add your south app to django settings.py file under</p>
-<p>INSTALLED_APPS veriable, ie;:</p>
-<pre class="literal-block">
-INSTALLED\_APPS = (
-'django.contrib.auth',
-'django.contrib.contenttypes',
-'django.contrib.sessions',
-'django.contrib.sites',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-# Uncomment the next line to enable the admin:
-'django.contrib.admin',
-# Uncomment the next line to enable admin documentation:
-# 'django.contrib.admindocs',
-'south', # &lt;---HERE
-)
-</pre>
-<p>Now we added the south app to our django project, the commands
-associated with this app is comes under the manage.py.</p>
-<p>Next step is to sync all models to the backend database, for that you
-have to use the usual method , ie;:</p>
-<pre class="literal-block">
-#Migrate all tables to backend database,
-#it includes our south apps tables.
-python manage.py syncdb
-</pre>
-<p>That's it !. we are now ready to use south app for our apps model
-management.</p>
-<p>Currently we added tables of default django apps and south app to
-backend. Now we are ready to add our applications to django project.
-After adding new django application to the sttings.py INSTALLED_APPS
-variable, we need to migrate it's models using south management
-commands:</p>
-<pre class="literal-block">
-#Initially you have to add new app under south , for that,
-python manage.py schemamigration your\_app --initial
-#This will setup your app under south, need to run only once,
-#Then migrate models to backend database,
-python manage.py migrate your\_app
-</pre>
-<p>After the initial addition of your django app under south, to migrate
-the future model changes under the same app, you have to do the bellow
-steps,:</p>
-<pre class="literal-block">
-#After any changes to your model,
-#First detect those changes ,
-python manage.py schemamigration your\_app --auto
-#Then Migrate to backend,
-python manage.py migrate your\_app
-</pre>
-<p>So using south app you are now manged model changes without touching
-backend database. In this manner we can manage all django applications
-under your project.</p>
-<p>Try this out ! and save your time.</p>
-<p>There are <a href="./change-and-migrate-django-models-using-south.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
+appropriately. This is very ...</p>
+                <a class="readmore" href="./change-and-migrate-django-models-using-south.html">read more</a>
+                <p>There are <a href="./change-and-migrate-django-models-using-south.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./playing-with-timezone-using-pytz.html" rel="bookmark" title="Permalink to playing with timezone using pytz">playing with timezone using pytz</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-05-11T04:15:00">
+                Wed 11 May 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href="./category/python.html">python</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <p>World Timezone Image from www.physicalgeography.net</p>
+<img alt="/images/world_time2-300x172.gif" src="static/images/world_time2-300x172.gif" />
+<p>When we develop web applications some times we need multiple timezone
+support. If we don’t have any previous experience then it might be a
+tough and confusing job. Here I will help you to get some basics of
+Timezone conversion.</p>
+<p>I have ...</p>
+                <a class="readmore" href="./playing-with-timezone-using-pytz.html">read more</a>
+                <p>There are <a href="./playing-with-timezone-using-pytz.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
