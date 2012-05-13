@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/django.atom.xml" rel="self"></link><id>/</id><updated>2011-06-17T10:41:00+05:30</updated><entry><title>Change and Migrate Django Models using South</title><link href="//change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>//change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
+&lt;p&gt;South is very handy django application to manage the django models. If
+we are developing web projects using django we need to change the Django
+model several times , In normal case we have to do these changes
+manually by editing both django model and backend database
+appropriately. This is very frustrating if we have to do it several
+times.&lt;/p&gt;
+&lt;p&gt;The South application makes it very easy to handle the model changes
+and fill the initial data's into the database tables. To setup the South
+application along with your django project, you need to do very simple
+changes to the settings.py file of your django project. To make it
+simple you have to do this step before adding any of your django apps to
+the project.&lt;/p&gt;
+&lt;p&gt;First of all install the south application to your system.:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+easy_install south
+&lt;/pre&gt;
+&lt;p&gt;then you have to add your south app to django settings.py file under&lt;/p&gt;
+&lt;p&gt;INSTALLED_APPS veriable, ie;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+INSTALLED\_APPS = (
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.sites',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+# Uncomment the next line to enable the admin:
+'django.contrib.admin',
+# Uncomment the next line to enable admin documentation:
+# 'django.contrib.admindocs',
+'south', # &amp;lt;---HERE
+)
+&lt;/pre&gt;
+&lt;p&gt;Now we added the south app to our django project, the commands
+associated with this app is comes under the manage.py.&lt;/p&gt;
+&lt;p&gt;Next step is to sync all models to the backend database, for that you
+have to use the usual method , ie;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#Migrate all tables to backend database,
+#it includes our south apps tables.
+python manage.py syncdb
+&lt;/pre&gt;
+&lt;p&gt;That's it !. we are now ready to use south app for our apps model
+management.&lt;/p&gt;
+&lt;p&gt;Currently we added tables of default django apps and south app to
+backend. Now we are ready to add our applications to django project.
+After adding new django application to the sttings.py INSTALLED_APPS
+variable, we need to migrate it's models using south management
+commands:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#Initially you have to add new app under south , for that,
+python manage.py schemamigration your\_app --initial
+#This will setup your app under south, need to run only once,
+#Then migrate models to backend database,
+python manage.py migrate your\_app
+&lt;/pre&gt;
+&lt;p&gt;After the initial addition of your django app under south, to migrate
+the future model changes under the same app, you have to do the bellow
+steps,:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#After any changes to your model,
+#First detect those changes ,
+python manage.py schemamigration your\_app --auto
+#Then Migrate to backend,
+python manage.py migrate your\_app
+&lt;/pre&gt;
+&lt;p&gt;So using south app you are now manged model changes without touching
+backend database. In this manner we can manage all django applications
+under your project.&lt;/p&gt;
+&lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
+</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry></feed>
