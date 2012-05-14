@@ -1,5 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2011-06-17T10:41:00+05:30</updated><entry><title>Change and Migrate Django Models using South</title><link href="//change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>//change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2011-11-19T06:01:00+05:30</updated><entry><title>Find the Absolute path in Shell Script</title><link href="//find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>haridas</name></author><id>//find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+that file while running it in a shell environment.&lt;/p&gt;
+&lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
+when you are looking for a stable deployment of a multi-file project in
+a Unix based systems. For these type of deployments you have to deal
+with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
+properly by including relative files correctly from the system path.
+Commonly what we do is, we hard code the SYSTEM PATH information to a
+Global variable so that would be resolve every relative path
+resolutions. So how it would be, if we don't need to hard code the
+Project Bases paths, instead the project configurations detect it
+automatically :). So you could get this by using this shell script
+snippet.&lt;/p&gt;
+&lt;p&gt;Here we can test how a shell script identify itself where it's located
+or its absolute path information.Please create a shell script with
+following content and run it from different locations.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Add this content in a shell.sh,&lt;/span&gt;
+&lt;span class="c"&gt;#and then run it from different directory level, you can see the&lt;/span&gt;
+&lt;span class="c"&gt;#difference.&lt;/span&gt;
+
+&lt;span class="nv"&gt;curr_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;dirname &lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Absolute PATH : `cd $dir; pwd` &amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
+its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /
+&lt;span class="gp"&gt;#&lt;/span&gt;sh /usr/local/shell.sh
+&lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr
+&lt;span class="gp"&gt;#&lt;/span&gt; sh &lt;span class="nb"&gt;local&lt;/span&gt;/shell.sh
+&lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd local&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt;sh shell.sh
+&lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I hope the output of the script explained every thing. So you can use
+it in your projects to detect the current path automatically. Hope you
+enjoyed this hack.&lt;/p&gt;
+&lt;p&gt;See you next time.&lt;/p&gt;
+</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="//how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>haridas</name></author><id>//how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+instead only describing how to install and use them.&lt;/p&gt;
+&lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
+system default Python or Ruby installation. We use Virtualenv for Python
+and RVM(Ruby Version Manager) for Ruby.&lt;/p&gt;
+&lt;p&gt;Let's consider, our server has slightly old version of packages but we
+are currently working with latest version of Python or Ruby packages for
+our project, then most probably our project package dependency might be
+conflict with corresponding packages installed in the system default
+path. To get this work, updating the system packages might not be a good
+method, because it may broke our existing projects that depends up on
+the system packages and it's very dangerous...!. This problem is common
+now because of rapid development and feature updation of packages. To
+solve this issues and use the packaging system more flexibly both Python
+and Ruby providing their own tools.&lt;/p&gt;
+&lt;p&gt;We can first checkout the Python Virtualenv tool for python projects.&lt;/p&gt;
+&lt;div class="section" id="virtualenv"&gt;
+&lt;h2&gt;&lt;strong&gt;Virtualenv&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Virtualenv package isolate python package system and corresponding
+binaries in to a user defined folder.&lt;/p&gt;
+&lt;p&gt;First install &lt;cite&gt;virtualenv&lt;/cite&gt; package by using default pythons package
+installation tool or you can use &lt;cite&gt;pip&lt;/cite&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To create new virtual environment,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;virtualenv python_project
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command will create new folder 'python_project', inside this
+folder we have three other folders 'bin' for python and other binaries ,
+'include' for python header files and finally 'lib' folder holds all
+python standard packages. When we will install new python packages under
+this virtual environment those files also been comes under this lib
+folder.&lt;/p&gt;
+&lt;p&gt;To activate and use this virtual environment,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;python_project
+&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ./bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above command will change the current shell session by updating the
+system PATH and it also change the shell prompt, to get a notion of we
+are in the virtual environment.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; which python
+&lt;span class="go"&gt;PATH-to-DIR/python_project/bin/python&lt;/span&gt;
+&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; which easy_install
+&lt;span class="go"&gt;PATH-to-DIR/python_project/bin/easy_install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you can see that &lt;cite&gt;python&lt;/cite&gt; and &lt;cite&gt;easy_install&lt;/cite&gt; commands were from
+our virtual environment. When creating a virtual environment the basic
+python interpreter and package installation tools (&lt;cite&gt;easy_install&lt;/cite&gt;
+and &lt;cite&gt;pip&lt;/cite&gt;) were created under the bin directory so you can directly
+use them to install new packages under virtual environment easily that
+never going to affect the python packages installed in the default
+system path(/usr/lib/python-2.x/).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; deactivate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will deactivate our virtual environment and the control will be
+return to system shell prompt, after removing all changes in the system
+PATH variable.&lt;/p&gt;
+&lt;p&gt;So like this you can create any number of virtual environments with
+different package installed in it depending on your project
+requirements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h2&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;There is another package 'virtualenvwrapper' to organize and use the
+multiple virtual environments by single set of shell commands. Here is
+the brief description about virtualenvwrapper.&lt;/p&gt;
+&lt;p&gt;To install virtualenvwrapper, as usual you can use easy_install or pip&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;pip install virtualenvwrapper
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After the installation append the following two lines to .bashrc or
+.profile file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;export WORKON_HOME=&amp;quot;~/.virtualenvs&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;source /usr/local/bin/virtualenvwrapper.sh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now from next shell session onwards following commands would be
+available to us, which helps to manage the multiple virtual
+environments.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Create a new virtual environment and enter into it.&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt;mkvirtualenv test_proj
+
+&lt;span class="go"&gt;To deactiave&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;deactivate
+
+&lt;span class="go"&gt;If we created multiple virtual environments, to list it by using,&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;workon
+
+&lt;span class="go"&gt;To Activate particular virtual environment from above list.&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;workon
+
+&lt;span class="go"&gt;To remove the virtual environment&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;rmvirtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This package also provide PRE and POST hooks for all of its commands ,
+we can use those hooks to inject our codes while running the
+virtualenvwrapper commands.&lt;/p&gt;
+&lt;p&gt;This viritualenvwrapper is an additional package that really help both
+administrators and programmers to manage multiple project environments
+with different versions of python packages were installed.&lt;/p&gt;
+&lt;p&gt;Now take a look at how we can do the similar thing in Ruby ,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ruby-version-manager-rvm"&gt;
+&lt;h2&gt;&lt;strong&gt;Ruby Version Manager - RVM&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;RVM tool handle multiple ruby versions (ruby-1.8.2, ruby-1.9.1,
+ruby-1.9.2 etc..) in our system and help us change the version of ruby
+in our system without affecting the ruby installed in our system default
+path. for eg; by default our system have ruby-1.8.2 installed, but we
+want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
+using &lt;cite&gt;rvm&lt;/cite&gt; we can change system default ruby version to ruby-1.9.2,
+we can revert this back to system ruby when we requires.&lt;/p&gt;
+&lt;p&gt;So in this manner we can install multiple ruby versions and switch
+between them, once we switch to a particular version of ruby then that
+ruby is available for that system user. This is the brief description
+how RVM works in our system. Lets move to setup part.&lt;/p&gt;
+&lt;p&gt;You can install RVM from &lt;cite&gt;root&lt;/cite&gt; (Multi user mode)user privilege or
+from a &lt;cite&gt;user&lt;/cite&gt; privilege(Single user mode). The single user mode were
+recommended, because the RVM only avaiable to that user only, but in
+Multi-user mode of RVM installation make it available to all users in
+the system.Here we will install RVM in single user mode.&lt;/p&gt;
+&lt;p&gt;To install RVM you can use git if it available in your system,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class="o"&gt;(&lt;/span&gt;curl -s https://rvm.beginrescueend.com/install/rvm&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OR (If we dont have git installed )&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Fetch installer script and run it ourself.&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
+
+&lt;span class="gp"&gt;$&lt;/span&gt;chmod +x rvm-installer
+&lt;span class="gp"&gt;$&lt;/span&gt;./rvm-installer --version latest
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After installation you can see that a folder (&lt;cite&gt;.rvm&lt;/cite&gt;) were created
+in your home directory. This folder holds all RVM related files. Then to
+activate &lt;cite&gt;rvm&lt;/cite&gt; command for this user you have do one more step.&lt;/p&gt;
+&lt;p&gt;Add following line to your &lt;cite&gt;.bashrc&lt;/cite&gt; file, so new shell session
+onwards the &lt;cite&gt;rvm&lt;/cite&gt; commands were available to this user. OR you can
+just run bellow code in your current shell to activate it for this user
+session only.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;[[ -s &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; ]] &amp;amp;&amp;amp; source &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; #&lt;/span&gt;
+&lt;span class="go"&gt;   This loads RVM into a shell session&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Open a new shell session,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
+&lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
+
+&lt;span class="go"&gt;Current system ruby version&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm install 1.9.2
+
+&lt;span class="go"&gt;This will install new ruby-1.9.2&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm install 1.9.1
+
+&lt;span class="go"&gt;This will install new ruby-1.9.1&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm list
+&lt;span class="go"&gt;rvm rubies&lt;/span&gt;
+&lt;span class="go"&gt;ruby-1.9.1-p431 [ i386 ]&lt;/span&gt;
+&lt;span class="go"&gt;ruby-1.9.2-p290 [ i386 ]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you can see that we have three versions of ruby in our system,
+ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
+system. To switch between these versions,&lt;/p&gt;
+&lt;p&gt;To use ruby-1.9.1 in one shell session only, try bellow commands.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use 1.9.1
+&lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
+&lt;span class="go"&gt;ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]&lt;/span&gt;
+&lt;span class="go"&gt;[/shell]&lt;/span&gt;
+&lt;span class="go"&gt;To make this version change permanent for all user shell sessions use,&lt;/span&gt;
+&lt;span class="go"&gt;[shell]&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;rvm --default use 1.9.1
+&lt;span class="gp"&gt;$&lt;/span&gt;rvm default list
+&lt;span class="go"&gt;rvm rubies&lt;/span&gt;
+&lt;span class="go"&gt;=&amp;gt; ruby-1.9.1-p431 [ i386 ]&lt;/span&gt;
+&lt;span class="go"&gt;ruby-1.9.2-p290 [ i386 ]&lt;/span&gt;
+
+&lt;span class="go"&gt;This change will available to current and all new current user&lt;/span&gt;
+&lt;span class="go"&gt;   sessions.&lt;/span&gt;
+&lt;span class="go"&gt;To get back to system ruby version&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;rvm reset
+
+&lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
+&lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Using RVM we can now set your suitable version of ruby, after that you
+can install ruby gem packages using &lt;cite&gt;gem&lt;/cite&gt; command of current ruby
+version.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
+&lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; gem --version
+&lt;span class="go"&gt;1.3.7&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm --default use 1.9.2
+&lt;span class="go"&gt;Using /home/haridas/.rvm/gems/ruby-1.9.2-p290&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; gem --version
+&lt;span class="go"&gt;1.8.6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check the gem versions while we switching between different version of
+ruby.&lt;/p&gt;
+&lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="//rabbitchat-web-based-chat-system.html" rel="alternate"></link><updated>2011-07-28T12:10:00+05:30</updated><author><name>haridas</name></author><id>//rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+Hight speed Python web framework. It uses Websoket for Full-duplex
+communication over http and RabbitMQ Broker for message transaction
+between server and connected clients.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="/images/RabbitChat-Arch.png" src="/images/RabbitChat-Arch.png" /&gt;
+&lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
+github url &lt;cite&gt;git&amp;#64;github.com:haridas/RabbitChat.git&lt;/cite&gt;. Or download it
+directly from &lt;a class="reference external" href="https://github.com/haridas/RabbitChat"&gt;https://github.com/haridas/RabbitChat&lt;/a&gt;. Please check
+the README file for instructions about how to setup and run the
+application. It has one branch also, I explained the difference in
+README.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I tired to develop this same scenario in the gevent/twisted python
+frameworks, but it lacks the support for good RabbitMQ clients. So after
+long search I got an idea about how to implement this web based chat
+system using Tornado Web Framework. I chose this because the python
+RabbitMQ client Pika has good support for the tornado IOLoop, so that we
+can integrate the RabbitMQ client with our web application and include
+the WebSocket support easily.&lt;/p&gt;
+&lt;p&gt;I found few other web based Chat implementations on Gevent, but they
+are not using the RabbitMQ for the message passing instead they relay up
+on simple data structures. But I want this should be a RabbitMQ. Another
+important thing was I want to use Websocket, all frameworks like Gevent
+or Twisted or Tornado has support for websocket. But in this case we
+need RabbitMQ client support also. Pika is the good python RabbitMQ
+client, it has different adapters to integrate it with RabbitMQ and
+other frameworks. Adapter for Tornado is already there, so that makes
+this implementation possible. The Pika adapters for other frameworks
+will come soon.&lt;/p&gt;
+&lt;p&gt;You may ask another question, why using RabbitMQ instead of a simple
+Message passing data structures, Actually this application is a demo app
+and I want to test the use of Websoxket with RabbitMQ. I'm looking
+forward to develop a Realtime API's using this architectures. Google app
+engine or other similar platforms( &lt;a class="reference external" href="http://code.google.com/p/typhoonae/"&gt;Typhoonae&lt;/a&gt;) using Websocket server
+similar to this way. So you can also develop a good implementations
+using this demo application.&lt;/p&gt;
+&lt;p&gt;I hope this demo application helps you to get an idea about Real Time
+Web application development.&lt;/p&gt;
+</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="//change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>//change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -35,8 +309,9 @@ the project.&lt;/p&gt;
 associated with this app is comes under the manage.py.&lt;/p&gt;
 &lt;p&gt;Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;Migrate all tables to backend database,
-&lt;span class="gp"&gt;#&lt;/span&gt;it includes our south apps tables.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Migrate all tables to backend database,&lt;/span&gt;
+&lt;span class="go"&gt;it includes our south apps tables.&lt;/span&gt;
+
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py syncdb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That's it !. we are now ready to use south app for our apps model
@@ -46,19 +321,23 @@ backend. Now we are ready to add our applications to django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;Initially you have to add new app under south , &lt;span class="k"&gt;for &lt;/span&gt;that,
-&lt;span class="gp"&gt;#&lt;/span&gt;python manage.py schemamigration your_app --initial
-&lt;span class="gp"&gt;#&lt;/span&gt;This will setup your app under south, need to run only once,
-&lt;span class="gp"&gt;#&lt;/span&gt;Then migrate models to backend database,
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Initially you have to add new app under south , for that,&lt;/span&gt;
+&lt;span class="go"&gt;python manage.py schemamigration your_app --initial&lt;/span&gt;
+&lt;span class="go"&gt;This will setup your app under south, need to run only once,&lt;/span&gt;
+&lt;span class="go"&gt;Then migrate models to backend database,&lt;/span&gt;
+
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py migrate your_app
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
 steps,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;After any changes to your model,
-&lt;span class="gp"&gt;#&lt;/span&gt;First detect those changes ,
-&lt;span class="go"&gt;python manage.py schemamigration your_app --auto&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt;Then Migrate to backend,
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;After any changes to your model,&lt;/span&gt;
+&lt;span class="go"&gt;First detect those changes ,&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt;python manage.py schemamigration your_app --auto
+
+&lt;span class="go"&gt;Then Migrate to backend,&lt;/span&gt;
+
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py migrate your_app
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So using south app you are now manged model changes without touching
@@ -75,7 +354,8 @@ Timezone conversion.&lt;/p&gt;
 same for all languages.So here I will explain things using python
 timezone module &amp;quot;pytz&amp;quot;. You have to install this module first into your
 system by using &amp;quot;easy_install&amp;quot;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz &lt;span class="c"&gt;#Install python timezone module.&lt;/span&gt;
+&lt;p&gt;Install python timezone module.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This python module support all major timezones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
@@ -224,7 +504,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="/images/scrpt_vs_pgrms2-300x165.jpg" /&gt;
+</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="/images/scrpt_vs_pgrms2-300x165.jpg" /&gt;
 &lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned about the Javascript and perl for
 some internal projects, from there onwards I started to use the two
@@ -255,4 +535,4 @@ memory foot print and also used for Game developments).&lt;/p&gt;
 Programming language, but remember the Scripting languages can do any
 thing and we should not consider it as a secondary one.&lt;/p&gt;
 &lt;/div&gt;
-</summary></entry></feed>
+</summary><category term="programming"></category><category term="scripting"></category></entry></feed>

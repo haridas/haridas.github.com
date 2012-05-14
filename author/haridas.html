@@ -37,11 +37,7 @@
                 
                 
                 
-                    <li ><a href=".././category/django.html">django</a></li>
-                
-                    <li ><a href=".././category/programming.html">programming</a></li>
-                
-                    <li ><a href=".././category/python.html">python</a></li>
+                    <li ><a href=".././category/blog.html">blog</a></li>
                 
                 </ul></nav>
         </header><!-- /#banner -->
@@ -64,7 +60,7 @@
                 By <a class="url fn" href=".././author/haridas.html">haridas</a>
         </address>
         
-<p>In <a href=".././category/django.html">django</a>. </p>
+<p>In <a href=".././category/blog.html">blog</a>. </p>
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/django.html">django</a><a href=".././tag/south.html">south</a></p>
 
 
@@ -104,8 +100,9 @@ the project.</p>
 associated with this app is comes under the manage.py.</p>
 <p>Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;</p>
-<div class="highlight"><pre><span class="gp">#</span>Migrate all tables to backend database,
-<span class="gp">#</span>it includes our south apps tables.
+<div class="highlight"><pre><span class="go">Migrate all tables to backend database,</span>
+<span class="go">it includes our south apps tables.</span>
+
 <span class="gp">$</span>python manage.py syncdb
 </pre></div>
 <p>That's it !. we are now ready to use south app for our apps model
@@ -115,19 +112,23 @@ backend. Now we are ready to add our applications to django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,</p>
-<div class="highlight"><pre><span class="gp">#</span>Initially you have to add new app under south , <span class="k">for </span>that,
-<span class="gp">#</span>python manage.py schemamigration your_app --initial
-<span class="gp">#</span>This will setup your app under south, need to run only once,
-<span class="gp">#</span>Then migrate models to backend database,
+<div class="highlight"><pre><span class="go">Initially you have to add new app under south , for that,</span>
+<span class="go">python manage.py schemamigration your_app --initial</span>
+<span class="go">This will setup your app under south, need to run only once,</span>
+<span class="go">Then migrate models to backend database,</span>
+
 <span class="gp">$</span>python manage.py migrate your_app
 </pre></div>
 <p>After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
 steps,</p>
-<div class="highlight"><pre><span class="gp">#</span>After any changes to your model,
-<span class="gp">#</span>First detect those changes ,
-<span class="go">python manage.py schemamigration your_app --auto</span>
-<span class="gp">#</span>Then Migrate to backend,
+<div class="highlight"><pre><span class="go">After any changes to your model,</span>
+<span class="go">First detect those changes ,</span>
+
+<span class="gp">$</span>python manage.py schemamigration your_app --auto
+
+<span class="go">Then Migrate to backend,</span>
+
 <span class="gp">$</span>python manage.py migrate your_app
 </pre></div>
 <p>So using south app you are now manged model changes without touching
@@ -154,6 +155,80 @@ under your project.</p>
             
             <li><article class="hentry">    
                 <header>
+                        <h1><a href=".././find-the-absolute-path-in-shell-script.html" rel="bookmark" title="Permalink to Find the Absolute path in Shell Script">Find the Absolute path in Shell Script</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-11-19T06:01:00">
+                Sat 19 November 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/server admin.html">server admin</a><a href=".././tag/shell.html">shell</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>This is a simple shell script snippet to get the full absolute path of
+that file while running it in a shell environment.</p>
+<p>What is the use of this script -- Yeah, this script is really helpful
+when you are looking for a stable deployment of a multi-file project in
+a ...</p>
+                <a class="readmore" href=".././find-the-absolute-path-in-shell-script.html">read more</a>
+                <p>There are <a href=".././find-the-absolute-path-in-shell-script.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="bookmark" title="Permalink to How to use Python Virtualenv and Ruby Version Manager">How to use Python Virtualenv and Ruby Version Manager</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-08-31T06:20:00">
+                Wed 31 August 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/ruby.html">ruby</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>First thing I want tell you that here I'm not comparing these two tools
+instead only describing how to install and use them.</p>
+<p>We use these tools to isolate the multiple Python or Ruby versions from
+system default Python or Ruby installation. We use Virtualenv for Python
+and RVM ...</p>
+                <a class="readmore" href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html">read more</a>
+                <p>There are <a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
                         <h1><a href=".././playing-with-timezone-using-pytz.html" rel="bookmark" title="Permalink to playing with timezone using pytz">playing with timezone using pytz</a></h1>
                 </header>
                 
@@ -168,8 +243,8 @@ under your project.</p>
                 By <a class="url fn" href=".././author/haridas.html">haridas</a>
         </address>
         
-<p>In <a href=".././category/python.html">python</a>. </p>
-
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pytz.html">pytz</a><a href=".././tag/timezone.html">timezone</a></p>
 
 
 </footer><!-- /.post-info -->
@@ -207,8 +282,8 @@ Timezone conversion.</p>
                 By <a class="url fn" href=".././author/haridas.html">haridas</a>
         </address>
         
-<p>In <a href=".././category/programming.html">programming</a>. </p>
-
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/programming.html">programming</a><a href=".././tag/scripting.html">scripting</a></p>
 
 
 </footer><!-- /.post-info -->
@@ -220,6 +295,46 @@ terms Scripting and Programming. I found some books of Javascript and
 Perl ...</p>
                 <a class="readmore" href=".././programming-vs-scripting.html">read more</a>
                 <p>There are <a href=".././programming-vs-scripting.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././rabbitchat-web-based-chat-system.html" rel="bookmark" title="Permalink to RabbitChat - Web based chat system">RabbitChat - Web based chat system</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-07-28T12:10:00">
+                Thu 28 July 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/programming.html">programming</a><a href=".././tag/python.html">python</a><a href=".././tag/Server Architecture.html">Server Architecture</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p><strong>RabbitChat</strong> is a simple Web based chat system developed in Tornado
+Hight speed Python web framework. It uses Websoket for Full-duplex
+communication over http and RabbitMQ Broker for message transaction
+between server and connected clients.</p>
+<div class="figure">
+<img alt="/images/RabbitChat-Arch.png" src="../static/images/RabbitChat-Arch.png" />
+<p class="caption">If you want to try this now, checkout a copy of project from this
+github ...</p></div>
+                <a class="readmore" href=".././rabbitchat-web-based-chat-system.html">read more</a>
+                <p>There are <a href=".././rabbitchat-web-based-chat-system.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         

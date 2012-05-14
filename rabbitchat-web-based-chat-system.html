@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Programming Vs. Scripting.</title>
+        <title>RabbitChat - Web based chat system</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
         <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="haridas.in ATOM Feed" />
@@ -45,13 +45,13 @@
 <section id="content" class="body">    
 <article>
         <header> <h1 class="entry-title"><a href=""
-        rel="bookmark" title="Permalink to Programming Vs. Scripting.">Programming Vs. Scripting.</a></h1> 
+        rel="bookmark" title="Permalink to RabbitChat - Web based chat system">RabbitChat - Web based chat system</a></h1> 
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
  </header>
         <div class="entry-content">
         <footer class="post-info">
-        <abbr class="published" title="2010-09-28T09:21:00">
-                Tue 28 September 2010
+        <abbr class="published" title="2011-07-28T12:10:00">
+                Thu 28 July 2011
         </abbr>
 
         
@@ -60,41 +60,49 @@
         </address>
         
 <p>In <a href="./category/blog.html">blog</a>. </p>
-<p>tags: <a href="./tag/programming.html">programming</a><a href="./tag/scripting.html">scripting</a></p>
+<p>tags: <a href="./tag/programming.html">programming</a><a href="./tag/python.html">python</a><a href="./tag/Server Architecture.html">Server Architecture</a></p>
 
 
 </footer><!-- /.post-info -->
-        <img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="static/images/scrpt_vs_pgrms2-300x165.jpg" />
-<p>When I was started to learn C programming language, I only know the term
-Programming. After some time I learned about the Javascript and perl for
-some internal projects, from there onwards I started to use the two
-terms Scripting and Programming. I found some books of Javascript and
-Perl describing about this at the beginning itself. But most of them are
-not clearly specifying the difference correctly.</p>
-<p>I think these terms were came  due to the difference of how these codes
-are being running under the machine, ie; codes running under Interpreter
-were normally called as Scripts and in Compilers were called as
-Programs.The codes written in scripting languages are very simple to
-understand when compared with compiled languages like C/C++ or Java. But
-Java and other dynamic languages like Python have both interpretor and
-compilers to run its codes, even though we call Python as Scripting
-language. From this we can say that the naming hasn't any importance.</p>
-<p>We are using these languages to solve or implement all types of logics.Here we
-need to give importance to the problems and how well we can solve it
-based on, which algorithm is being used, speed of the language, memory
-usage, etc...The important thing is the <cite>Algorithm</cite>, if it is optimal
-then you can select any language that you like. Currently all major
-Scripting languages like <cite>Python, Perl ,Ruby</cite> and <cite>Tcl/Tk</cite> are being
-used for general purposes along with famous programming languages like
-<cite>C/C++</cite> and <cite>Java</cite>.Other scripting languages are <cite>Php</cite> (Web
-based applications ), <cite>Lua Script</cite> (Embedded language , very fast,low
-memory foot print and also used for Game developments).</p>
-<div class="section" id="conclusion">
-<h2>Conclusion</h2>
-<p>You can call the Computer Languages as Scripting language or
-Programming language, but remember the Scripting languages can do any
-thing and we should not consider it as a secondary one.</p>
+        <p><strong>RabbitChat</strong> is a simple Web based chat system developed in Tornado
+Hight speed Python web framework. It uses Websoket for Full-duplex
+communication over http and RabbitMQ Broker for message transaction
+between server and connected clients.</p>
+<div class="figure">
+<img alt="/images/RabbitChat-Arch.png" src="static/images/RabbitChat-Arch.png" />
+<p class="caption">If you want to try this now, checkout a copy of project from this
+github url <cite>git&#64;github.com:haridas/RabbitChat.git</cite>. Or download it
+directly from <a class="reference external" href="https://github.com/haridas/RabbitChat">https://github.com/haridas/RabbitChat</a>. Please check
+the README file for instructions about how to setup and run the
+application. It has one branch also, I explained the difference in
+README.</p>
 </div>
+<p>I tired to develop this same scenario in the gevent/twisted python
+frameworks, but it lacks the support for good RabbitMQ clients. So after
+long search I got an idea about how to implement this web based chat
+system using Tornado Web Framework. I chose this because the python
+RabbitMQ client Pika has good support for the tornado IOLoop, so that we
+can integrate the RabbitMQ client with our web application and include
+the WebSocket support easily.</p>
+<p>I found few other web based Chat implementations on Gevent, but they
+are not using the RabbitMQ for the message passing instead they relay up
+on simple data structures. But I want this should be a RabbitMQ. Another
+important thing was I want to use Websocket, all frameworks like Gevent
+or Twisted or Tornado has support for websocket. But in this case we
+need RabbitMQ client support also. Pika is the good python RabbitMQ
+client, it has different adapters to integrate it with RabbitMQ and
+other frameworks. Adapter for Tornado is already there, so that makes
+this implementation possible. The Pika adapters for other frameworks
+will come soon.</p>
+<p>You may ask another question, why using RabbitMQ instead of a simple
+Message passing data structures, Actually this application is a demo app
+and I want to test the use of Websoxket with RabbitMQ. I'm looking
+forward to develop a Realtime API's using this architectures. Google app
+engine or other similar platforms( <a class="reference external" href="http://code.google.com/p/typhoonae/">Typhoonae</a>) using Websocket server
+similar to this way. So you can also develop a good implementations
+using this demo application.</p>
+<p>I hope this demo application helps you to get an idea about Real Time
+Web application development.</p>
 
         </div><!-- /.entry-content -->
         
@@ -102,7 +110,7 @@ thing and we should not consider it as a secondary one.</p>
         <h2>Comments !</h2>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
-               var disqus_identifier = "programming-vs-scripting.html";
+               var disqus_identifier = "rabbitchat-web-based-chat-system.html";
                (function() {
                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                dsq.src = 'http://haridas.disqus.com/embed.js';

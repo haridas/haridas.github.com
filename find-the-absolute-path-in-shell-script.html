@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Programming Vs. Scripting.</title>
+        <title>Find the Absolute path in Shell Script</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
         <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="haridas.in ATOM Feed" />
@@ -45,13 +45,13 @@
 <section id="content" class="body">    
 <article>
         <header> <h1 class="entry-title"><a href=""
-        rel="bookmark" title="Permalink to Programming Vs. Scripting.">Programming Vs. Scripting.</a></h1> 
+        rel="bookmark" title="Permalink to Find the Absolute path in Shell Script">Find the Absolute path in Shell Script</a></h1> 
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
  </header>
         <div class="entry-content">
         <footer class="post-info">
-        <abbr class="published" title="2010-09-28T09:21:00">
-                Tue 28 September 2010
+        <abbr class="published" title="2011-11-19T06:01:00">
+                Sat 19 November 2011
         </abbr>
 
         
@@ -60,41 +60,50 @@
         </address>
         
 <p>In <a href="./category/blog.html">blog</a>. </p>
-<p>tags: <a href="./tag/programming.html">programming</a><a href="./tag/scripting.html">scripting</a></p>
+<p>tags: <a href="./tag/server admin.html">server admin</a><a href="./tag/shell.html">shell</a></p>
 
 
 </footer><!-- /.post-info -->
-        <img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="static/images/scrpt_vs_pgrms2-300x165.jpg" />
-<p>When I was started to learn C programming language, I only know the term
-Programming. After some time I learned about the Javascript and perl for
-some internal projects, from there onwards I started to use the two
-terms Scripting and Programming. I found some books of Javascript and
-Perl describing about this at the beginning itself. But most of them are
-not clearly specifying the difference correctly.</p>
-<p>I think these terms were came  due to the difference of how these codes
-are being running under the machine, ie; codes running under Interpreter
-were normally called as Scripts and in Compilers were called as
-Programs.The codes written in scripting languages are very simple to
-understand when compared with compiled languages like C/C++ or Java. But
-Java and other dynamic languages like Python have both interpretor and
-compilers to run its codes, even though we call Python as Scripting
-language. From this we can say that the naming hasn't any importance.</p>
-<p>We are using these languages to solve or implement all types of logics.Here we
-need to give importance to the problems and how well we can solve it
-based on, which algorithm is being used, speed of the language, memory
-usage, etc...The important thing is the <cite>Algorithm</cite>, if it is optimal
-then you can select any language that you like. Currently all major
-Scripting languages like <cite>Python, Perl ,Ruby</cite> and <cite>Tcl/Tk</cite> are being
-used for general purposes along with famous programming languages like
-<cite>C/C++</cite> and <cite>Java</cite>.Other scripting languages are <cite>Php</cite> (Web
-based applications ), <cite>Lua Script</cite> (Embedded language , very fast,low
-memory foot print and also used for Game developments).</p>
-<div class="section" id="conclusion">
-<h2>Conclusion</h2>
-<p>You can call the Computer Languages as Scripting language or
-Programming language, but remember the Scripting languages can do any
-thing and we should not consider it as a secondary one.</p>
-</div>
+        <p>This is a simple shell script snippet to get the full absolute path of
+that file while running it in a shell environment.</p>
+<p>What is the use of this script -- Yeah, this script is really helpful
+when you are looking for a stable deployment of a multi-file project in
+a Unix based systems. For these type of deployments you have to deal
+with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
+properly by including relative files correctly from the system path.
+Commonly what we do is, we hard code the SYSTEM PATH information to a
+Global variable so that would be resolve every relative path
+resolutions. So how it would be, if we don't need to hard code the
+Project Bases paths, instead the project configurations detect it
+automatically :). So you could get this by using this shell script
+snippet.</p>
+<p>Here we can test how a shell script identify itself where it's located
+or its absolute path information.Please create a shell script with
+following content and run it from different locations.</p>
+<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
+<span class="c">#and then run it from different directory level, you can see the</span>
+<span class="c">#difference.</span>
+
+<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">&quot;Absolute PATH : `cd $dir; pwd` &quot;</span>
+</pre></div>
+<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
+its current locations is <strong>/usr/local/</strong>)</p>
+<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
+<span class="gp">#</span>sh /usr/local/shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+<span class="gp">#</span><span class="nb">cd</span> /usr
+<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+<span class="gp">#</span><span class="nb">cd local</span>
+<span class="gp">#</span>sh shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+</pre></div>
+<p>I hope the output of the script explained every thing. So you can use
+it in your projects to detect the current path automatically. Hope you
+enjoyed this hack.</p>
+<p>See you next time.</p>
 
         </div><!-- /.entry-content -->
         
@@ -102,7 +111,7 @@ thing and we should not consider it as a secondary one.</p>
         <h2>Comments !</h2>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
-               var disqus_identifier = "programming-vs-scripting.html";
+               var disqus_identifier = "find-the-absolute-path-in-shell-script.html";
                (function() {
                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                dsq.src = 'http://haridas.disqus.com/embed.js';

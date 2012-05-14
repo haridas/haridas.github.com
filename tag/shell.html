@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>About Me</title>
+        <title>haridas.in - shell</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
         <link href=".././feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="haridas.in ATOM Feed" />
@@ -42,28 +42,87 @@
                 </ul></nav>
         </header><!-- /#banner -->
                 
-<section id="content" class="body">    
-    <h1 class="entry-title">About Me</h1>
-    
-    <p>This is my personal Blog, where I will share my thoughts related to the
-technical and non-technical fields, I hope it would be helpful to me at
-least ...:). From the college life itself I’m a Free Software Enthusiast
-and Promoter.</p>
-<p>My working domains are Web programming, Email Marketing , Cloud Computing,
-Server Administration. I would like to work as Programmer
-and Administrator at same time ..:)</p>
-<div class="section" id="contact-information-s">
-<h2>Contact Information's -</h2>
-<blockquote>
-<ol class="arabic simple">
-<li><strong>Email</strong> - <cite>haridas.nss[:)]gmail.com</cite> and <cite>haridas [:)]haridas.in</cite></li>
-<li><a class="reference external" href="http://in.linkedin.com/pub/haridas-n/19/95/825">LinkedIn</a></li>
-<li><a class="reference external" href="http://twitter.com/#!/haridas_n">Twitter</a></li>
-</ol>
-</blockquote>
-</div>
 
-</section>
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href=".././find-the-absolute-path-in-shell-script.html">Find the Absolute path in Shell Script</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2011-11-19T06:01:00">
+                Sat 19 November 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/server admin.html">server admin</a><a href=".././tag/shell.html">shell</a></p>
+
+
+</footer><!-- /.post-info --><p>This is a simple shell script snippet to get the full absolute path of
+that file while running it in a shell environment.</p>
+<p>What is the use of this script -- Yeah, this script is really helpful
+when you are looking for a stable deployment of a multi-file project in
+a Unix based systems. For these type of deployments you have to deal
+with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
+properly by including relative files correctly from the system path.
+Commonly what we do is, we hard code the SYSTEM PATH information to a
+Global variable so that would be resolve every relative path
+resolutions. So how it would be, if we don't need to hard code the
+Project Bases paths, instead the project configurations detect it
+automatically :). So you could get this by using this shell script
+snippet.</p>
+<p>Here we can test how a shell script identify itself where it's located
+or its absolute path information.Please create a shell script with
+following content and run it from different locations.</p>
+<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
+<span class="c">#and then run it from different directory level, you can see the</span>
+<span class="c">#difference.</span>
+
+<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">&quot;Absolute PATH : `cd $dir; pwd` &quot;</span>
+</pre></div>
+<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
+its current locations is <strong>/usr/local/</strong>)</p>
+<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
+<span class="gp">#</span>sh /usr/local/shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+<span class="gp">#</span><span class="nb">cd</span> /usr
+<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+<span class="gp">#</span><span class="nb">cd local</span>
+<span class="gp">#</span>sh shell.sh
+<span class="go">Absolute PATH : /usr/local</span>
+</pre></div>
+<p>I hope the output of the script explained every thing. So you can use
+it in your projects to detect the current path automatically. Hope you
+enjoyed this hack.</p>
+<p>See you next time.</p>
+<p>There are <a href=".././find-the-absolute-path-in-shell-script.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+                    
+<p class="paginator">
+    
+    Page 1 / 1
+    
+</p>
+
+                
+            </aside><!-- /#featured -->
+            
+        
+        
+        
+
+    
+
 
         <section id="extras" class="body">
         
