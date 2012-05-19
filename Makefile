@@ -36,7 +36,7 @@ $(OUTPUTDIR)/%.html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE)
 
 clean:
-	find $(OUTPUTDIR) -iname "*.html" -exec rm -rf {}\;
+	find $(OUTPUTDIR) -iname "*.html" -exec rm -rf {} \;
 
 dropbox_upload: $(OUTPUTDIR)/index.html
 	cp -r $(OUTPUTDIR)/* $(DROPBOX_DIR)
