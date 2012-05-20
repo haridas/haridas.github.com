@@ -12,8 +12,7 @@ Please send me a mail for any other information.
 
 About this blog
 ---------------
-Please read this entry for more details of this blog.
-
+To know more about this blog read this blog `entry`_.
 
 Contact Information's -
 ----------------------- 
@@ -26,3 +25,4 @@ Contact Information's -
 
 .. _LinkedIn: http://in.linkedin.com/pub/haridas-n/19/95/825
 .. _Twitter: http://twitter.com/#!/haridas_n
+.. _entry: http://haridas.in/wordpress-blog-migrated-to-pelican.html

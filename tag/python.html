@@ -31,6 +31,8 @@
                 <h1><a href="../.">haridas.in </a></h1>
                 <nav><ul>
                 
+                    <li><a href="/archives.html">Archives</a></li>
+                
                 
                 
                     <li><a href=".././pages/about-me.html">About Me</a></li>
@@ -49,8 +51,113 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html">How to use Python Virtualenv and Ruby Version Manager</a></h1> 
+                    <h1 class="entry-title"><a href=".././wordpress-blog-migrated-to-pelican.html">Wordpress blog migrated to Pelican</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-05-20T12:53:06.952252">
+                Sun 20 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/wordpress.html">wordpress</a><a href=".././tag/pelican.html">pelican</a><a href=".././tag/python.html">python</a></p>
+
+
+</footer><!-- /.post-info --><p>Initially this blog was a wordpress blog. As you know the reasons for
+that. Wordpress is the most successful and feature rich blogging engine. So
+I chose it without any doubt. I didn't even search for a python alternative blog
+engine at that time. But after a while I felt the dificulties while adding some
+changes to the wordpress code, bugs with the wordpress plugins and more
+importantly the Web UI is very annoying while typing new contents.</p>
+<p>If we are considering the technical points, wordpress is a dynamic blog engine,
+it is an over killing for blogs and other wiki based sites. Main issue is with speed of
+page rendering.The static pages are way faster compared to the dynamic contents. I know
+wordpress has caching plugins to make the static pages out of dynamic one but
+that are not a very reliable solution.</p>
+<p>Actually above points are all come to my mind after seeing the static site
+generators and their awesome features and flexibility.</p>
+<div class="section" id="advantages-of-static-site-generators-over-dynamic-blog-engines">
+<h2>Advantages of static site generators over Dynamic blog engines</h2>
+<ol class="arabic simple">
+<li>Serve html directly, so very fast.</li>
+<li>Easy maintenance of the site, very less pain with server setup.</li>
+<li>Use your favourite Text editors for blog posting. I use VIM :).</li>
+<li>It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type
+the post in normal text with simple formating. So don't worry about the
+html formatting while typing the content.</li>
+<li>Host it on Github,  and very easy version control and site backup.</li>
+<li>Very easy to customize the Themes  or other internals if you want.</li>
+</ol>
+<p>Next step was which static site generator I will choose for my site. There are
+a lot of them were implemented in Python and Ruby. I went through some of them
+and finally chose <a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a> a Python based static site generator.</p>
+</div>
+<div class="section" id="jekyll">
+<h2><a class="reference external" href="http://jekyllrb.com/">Jekyll</a></h2>
+<p>Jekyll is a Ruby based system developed at github.com and it is very commonly
+used in the Ruby world. I tried to use it because of its native github
+support, but finally realized that we can do the same thing with other site
+generators. And other problems I found with Jekyll was,</p>
+<ul class="simple">
+<li>Its structure is difficult  compared to other site generators.</li>
+<li>It's a Ruby based one, I'm more comfortable with Python.</li>
+</ul>
+</div>
+<div class="section" id="hyde">
+<h2><a class="reference external" href="http://hyde.github.com">Hyde</a></h2>
+<p>Hyde is a  Python based static site generator like Jekyll and it removes some
+of the difficulties with Jekyll. But it lacks good documentation, and mainly
+a way to migrate from other blog engines like wordpress. I can see
+that the project is evolving lately and got github site for documentation. But
+it only covers the basics right now. I hope it will get good documentation very
+soon.</p>
+</div>
+<div class="section" id="pelican">
+<h2><a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a></h2>
+<p>When I was very confused with different choices of static site generators, I came across
+Pelican (Another Python based static site generator.). It attracted me quickly
+because of its,</p>
+<ul class="simple">
+<li>Simplicity</li>
+<li>Good Documentation</li>
+<li>Flexibility</li>
+<li>Very easy way to use the Markdown texts.</li>
+</ul>
+<p>The documentation has everything required to migrate your blog from other blog
+engines.And I liked the way it structured the blog posts and its contents.It
+got clear upper hand over other site generators, I don't need to think twice to
+select it.</p>
+<p>Currently I hosted this site under Github, you can <a class="reference external" href="https://github.com/haridas/haridas.github.com">fork</a> the project and give
+a fresh try to see how quickly you can setup a blog.</p>
+</div>
+<p>There are <a href=".././wordpress-blog-migrated-to-pelican.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                        <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="bookmark" title="Permalink to How to use Python Virtualenv and Ruby Version Manager">How to use Python Virtualenv and Ruby Version Manager</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2011-08-31T06:20:00">
                 Wed 31 August 2011
         </abbr>
@@ -64,212 +171,16 @@
 <p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/ruby.html">ruby</a></p>
 
 
-</footer><!-- /.post-info --><p>First thing I want tell you that here I'm not comparing these two tools
+</footer><!-- /.post-info -->
+                <p>First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.</p>
 <p>We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
-and RVM(Ruby Version Manager) for Ruby.</p>
-<p>Let's consider, our server has slightly old version of packages but we
-are currently working with latest version of Python or Ruby packages for
-our project, then most probably our project package dependency might be
-conflict with corresponding packages installed in the system default
-path. To get this work, updating the system packages might not be a good
-method, because it may broke our existing projects that depends up on
-the system packages and it's very dangerous...!. This problem is common
-now because of rapid development and feature updation of packages. To
-solve this issues and use the packaging system more flexibly both Python
-and Ruby providing their own tools.</p>
-<p>We can first checkout the Python Virtualenv tool for python projects.</p>
-<div class="section" id="virtualenv">
-<h2><strong>Virtualenv</strong></h2>
-<p>Virtualenv package isolate python package system and corresponding
-binaries in to a user defined folder.</p>
-<p>First install <cite>virtualenv</cite> package by using default pythons package
-installation tool or you can use <cite>pip</cite>.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install virtualenv
-</pre></div>
-<p>To create new virtual environment,</p>
-<div class="highlight"><pre><span class="gp">$</span>virtualenv python_project
-</pre></div>
-<p>This command will create new folder 'python_project', inside this
-folder we have three other folders 'bin' for python and other binaries ,
-'include' for python header files and finally 'lib' folder holds all
-python standard packages. When we will install new python packages under
-this virtual environment those files also been comes under this lib
-folder.</p>
-<p>To activate and use this virtual environment,</p>
-<div class="highlight"><pre><span class="gp">$</span><span class="nb">cd </span>python_project
-<span class="gp">$</span><span class="nb">source</span> ./bin/activate
-</pre></div>
-<p>Above command will change the current shell session by updating the
-system PATH and it also change the shell prompt, to get a notion of we
-are in the virtual environment.</p>
-<div class="highlight"><pre><span class="gp">(virtual)host@name$</span> which python
-<span class="go">PATH-to-DIR/python_project/bin/python</span>
-<span class="gp">(virtual)host@name$</span> which easy_install
-<span class="go">PATH-to-DIR/python_project/bin/easy_install</span>
-</pre></div>
-<p>Now you can see that <cite>python</cite> and <cite>easy_install</cite> commands were from
-our virtual environment. When creating a virtual environment the basic
-python interpreter and package installation tools (<cite>easy_install</cite>
-and <cite>pip</cite>) were created under the bin directory so you can directly
-use them to install new packages under virtual environment easily that
-never going to affect the python packages installed in the default
-system path(/usr/lib/python-2.x/).</p>
-<div class="highlight"><pre><span class="gp">(virtual)host@name$</span> deactivate
-</pre></div>
-<p>This will deactivate our virtual environment and the control will be
-return to system shell prompt, after removing all changes in the system
-PATH variable.</p>
-<p>So like this you can create any number of virtual environments with
-different package installed in it depending on your project
-requirements.</p>
-</div>
-<div class="section" id="update">
-<h2><strong>UPDATE</strong></h2>
-<p>There is another package 'virtualenvwrapper' to organize and use the
-multiple virtual environments by single set of shell commands. Here is
-the brief description about virtualenvwrapper.</p>
-<p>To install virtualenvwrapper, as usual you can use easy_install or pip</p>
-<div class="highlight"><pre><span class="gp">#</span>pip install virtualenvwrapper
-</pre></div>
-<p>After the installation append the following two lines to .bashrc or
-.profile file.</p>
-<div class="highlight"><pre><span class="go">export WORKON_HOME=&quot;~/.virtualenvs&quot;</span>
-<span class="go">source /usr/local/bin/virtualenvwrapper.sh</span>
-</pre></div>
-<p>Now from next shell session onwards following commands would be
-available to us, which helps to manage the multiple virtual
-environments.</p>
-<div class="highlight"><pre><span class="go">Create a new virtual environment and enter into it.</span>
-
-<span class="gp">$</span>mkvirtualenv test_proj
-
-<span class="go">To deactiave</span>
-<span class="gp">$</span>deactivate
-
-<span class="go">If we created multiple virtual environments, to list it by using,</span>
-<span class="gp">$</span>workon
-
-<span class="go">To Activate particular virtual environment from above list.</span>
-<span class="gp">$</span>workon
-
-<span class="go">To remove the virtual environment</span>
-<span class="gp">$</span>rmvirtualenv
-</pre></div>
-<p>This package also provide PRE and POST hooks for all of its commands ,
-we can use those hooks to inject our codes while running the
-virtualenvwrapper commands.</p>
-<p>This viritualenvwrapper is an additional package that really help both
-administrators and programmers to manage multiple project environments
-with different versions of python packages were installed.</p>
-<p>Now take a look at how we can do the similar thing in Ruby ,</p>
-</div>
-<div class="section" id="ruby-version-manager-rvm">
-<h2><strong>Ruby Version Manager - RVM</strong></h2>
-<p>RVM tool handle multiple ruby versions (ruby-1.8.2, ruby-1.9.1,
-ruby-1.9.2 etc..) in our system and help us change the version of ruby
-in our system without affecting the ruby installed in our system default
-path. for eg; by default our system have ruby-1.8.2 installed, but we
-want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
-using <cite>rvm</cite> we can change system default ruby version to ruby-1.9.2,
-we can revert this back to system ruby when we requires.</p>
-<p>So in this manner we can install multiple ruby versions and switch
-between them, once we switch to a particular version of ruby then that
-ruby is available for that system user. This is the brief description
-how RVM works in our system. Lets move to setup part.</p>
-<p>You can install RVM from <cite>root</cite> (Multi user mode)user privilege or
-from a <cite>user</cite> privilege(Single user mode). The single user mode were
-recommended, because the RVM only avaiable to that user only, but in
-Multi-user mode of RVM installation make it available to all users in
-the system.Here we will install RVM in single user mode.</p>
-<p>To install RVM you can use git if it available in your system,</p>
-<div class="highlight"><pre><span class="gp">$</span>bash &lt; &lt;<span class="o">(</span>curl -s https://rvm.beginrescueend.com/install/rvm<span class="o">)</span>
-</pre></div>
-<p>OR (If we dont have git installed )</p>
-<div class="highlight"><pre><span class="go">Fetch installer script and run it ourself.</span>
-<span class="gp">$</span> curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
-
-<span class="gp">$</span>chmod +x rvm-installer
-<span class="gp">$</span>./rvm-installer --version latest
-</pre></div>
-<p>After installation you can see that a folder (<cite>.rvm</cite>) were created
-in your home directory. This folder holds all RVM related files. Then to
-activate <cite>rvm</cite> command for this user you have do one more step.</p>
-<p>Add following line to your <cite>.bashrc</cite> file, so new shell session
-onwards the <cite>rvm</cite> commands were available to this user. OR you can
-just run bellow code in your current shell to activate it for this user
-session only.</p>
-<div class="highlight"><pre><span class="go">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; #</span>
-<span class="go">   This loads RVM into a shell session</span>
-</pre></div>
-<p>Open a new shell session,</p>
-<div class="highlight"><pre><span class="gp">$</span> ruby --version
-<span class="go">ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]</span>
-
-<span class="go">Current system ruby version</span>
-<span class="gp">$</span> rvm install 1.9.2
-
-<span class="go">This will install new ruby-1.9.2</span>
-<span class="gp">$</span> rvm install 1.9.1
-
-<span class="go">This will install new ruby-1.9.1</span>
-<span class="gp">$</span> rvm list
-<span class="go">rvm rubies</span>
-<span class="go">ruby-1.9.1-p431 [ i386 ]</span>
-<span class="go">ruby-1.9.2-p290 [ i386 ]</span>
-</pre></div>
-<p>Now you can see that we have three versions of ruby in our system,
-ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
-system. To switch between these versions,</p>
-<p>To use ruby-1.9.1 in one shell session only, try bellow commands.</p>
-<div class="highlight"><pre><span class="gp">$</span>rvm use 1.9.1
-<span class="gp">$</span>ruby --version
-<span class="go">ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]</span>
-<span class="go">[/shell]</span>
-<span class="go">To make this version change permanent for all user shell sessions use,</span>
-<span class="go">[shell]</span>
-<span class="gp">$</span>rvm --default use 1.9.1
-<span class="gp">$</span>rvm default list
-<span class="go">rvm rubies</span>
-<span class="go">=&gt; ruby-1.9.1-p431 [ i386 ]</span>
-<span class="go">ruby-1.9.2-p290 [ i386 ]</span>
-
-<span class="go">This change will available to current and all new current user</span>
-<span class="go">   sessions.</span>
-<span class="go">To get back to system ruby version</span>
-<span class="gp">$</span>rvm reset
-
-<span class="gp">$</span>ruby --version
-<span class="go">ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]</span>
-</pre></div>
-<p>Using RVM we can now set your suitable version of ruby, after that you
-can install ruby gem packages using <cite>gem</cite> command of current ruby
-version.</p>
-<div class="highlight"><pre><span class="gp">$</span> ruby --version
-<span class="go">ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]</span>
-<span class="gp">$</span> gem --version
-<span class="go">1.3.7</span>
-<span class="gp">$</span> rvm --default use 1.9.2
-<span class="go">Using /home/haridas/.rvm/gems/ruby-1.9.2-p290</span>
-<span class="gp">$</span> gem --version
-<span class="go">1.8.6</span>
-</pre></div>
-<p>Check the gem versions while we switching between different version of
-ruby.</p>
-<p>Ok, thats it. Try out these tools.... have a happy hacking....:)</p>
-</div>
-<p>There are <a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
-        
+and RVM ...</p>
+                <a class="readmore" href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html">read more</a>
+                <p>There are <a href=".././how-to-use-python-virtualenv-and-ruby-version-manager.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
@@ -444,6 +355,16 @@ Timezone conversion.</p>
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-23592173-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
 
 
 

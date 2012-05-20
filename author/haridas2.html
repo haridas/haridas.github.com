@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>haridas.in - programming</title>
+        <title>haridas.in - haridas</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
         <link href=".././feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="haridas.in ATOM Feed" />
@@ -48,80 +48,10 @@
             
 
         
-        
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href=".././rabbitchat-web-based-chat-system.html">RabbitChat - Web based chat system</a></h1> 
-                    <footer class="post-info">
-        <abbr class="published" title="2011-07-28T12:10:00">
-                Thu 28 July 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/programming.html">programming</a><a href=".././tag/python.html">python</a><a href=".././tag/Server Architecture.html">Server Architecture</a></p>
-
-
-</footer><!-- /.post-info --><p><strong>RabbitChat</strong> is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
-communication over http and RabbitMQ Broker for message transaction
-between server and connected clients.</p>
-<div class="figure">
-<img alt="/images/RabbitChat-Arch.png" src="../static/images/RabbitChat-Arch.png" />
-<p class="caption">If you want to try this now, checkout a copy of project from this
-github url <cite>git&#64;github.com:haridas/RabbitChat.git</cite>. Or download it
-directly from <a class="reference external" href="https://github.com/haridas/RabbitChat">https://github.com/haridas/RabbitChat</a>. Please check
-the README file for instructions about how to setup and run the
-application. It has one branch also, I explained the difference in
-README.</p>
-</div>
-<p>I tired to develop this same scenario in the gevent/twisted python
-frameworks, but it lacks the support for good RabbitMQ clients. So after
-long search I got an idea about how to implement this web based chat
-system using Tornado Web Framework. I chose this because the python
-RabbitMQ client Pika has good support for the tornado IOLoop, so that we
-can integrate the RabbitMQ client with our web application and include
-the WebSocket support easily.</p>
-<p>I found few other web based Chat implementations on Gevent, but they
-are not using the RabbitMQ for the message passing instead they relay up
-on simple data structures. But I want this should be a RabbitMQ. Another
-important thing was I want to use Websocket, all frameworks like Gevent
-or Twisted or Tornado has support for websocket. But in this case we
-need RabbitMQ client support also. Pika is the good python RabbitMQ
-client, it has different adapters to integrate it with RabbitMQ and
-other frameworks. Adapter for Tornado is already there, so that makes
-this implementation possible. The Pika adapters for other frameworks
-will come soon.</p>
-<p>You may ask another question, why using RabbitMQ instead of a simple
-Message passing data structures, Actually this application is a demo app
-and I want to test the use of Websoxket with RabbitMQ. I'm looking
-forward to develop a Realtime API's using this architectures. Google app
-engine or other similar platforms( <a class="reference external" href="http://code.google.com/p/typhoonae/">Typhoonae</a>) using Websocket server
-similar to this way. So you can also develop a good implementations
-using this demo application.</p>
-<p>I hope this demo application helps you to get an idea about Real Time
-Web application development.</p>
-<p>There are <a href=".././rabbitchat-web-based-chat-system.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
+         
             
                 <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
-        
-        
-        
-        
-
-        
-         
+                    <ol id="posts-list" class="hfeed" start="3">
             
             <li><article class="hentry">    
                 <header>
@@ -156,10 +86,90 @@ Perl ...</p>
             </article></li>
         
         
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././rabbitchat-web-based-chat-system.html" rel="bookmark" title="Permalink to RabbitChat - Web based chat system">RabbitChat - Web based chat system</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-07-28T12:10:00">
+                Thu 28 July 2011
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/programming.html">programming</a><a href=".././tag/python.html">python</a><a href=".././tag/Server Architecture.html">Server Architecture</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p><strong>RabbitChat</strong> is a simple Web based chat system developed in Tornado
+Hight speed Python web framework. It uses Websoket for Full-duplex
+communication over http and RabbitMQ Broker for message transaction
+between server and connected clients.</p>
+<div class="figure">
+<img alt="/images/RabbitChat-Arch.png" src="../static/images/RabbitChat-Arch.png" />
+<p class="caption">If you want to try this now, checkout a copy of project from this
+github ...</p></div>
+                <a class="readmore" href=".././rabbitchat-web-based-chat-system.html">read more</a>
+                <p>There are <a href=".././rabbitchat-web-based-chat-system.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././wordpress-blog-migrated-to-pelican.html" rel="bookmark" title="Permalink to Wordpress blog migrated to Pelican">Wordpress blog migrated to Pelican</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-05-20T12:53:06.952252">
+                Sun 20 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/wordpress.html">wordpress</a><a href=".././tag/pelican.html">pelican</a><a href=".././tag/python.html">python</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>Initially this blog was a wordpress blog. As you know the reasons for
+that. Wordpress is the most successful and feature rich blogging engine. So
+I chose it without any doubt. I didn't even search for a python alternative blog
+engine at that time. But after a while I ...</p>
+                <a class="readmore" href=".././wordpress-blog-migrated-to-pelican.html">read more</a>
+                <p>There are <a href=".././wordpress-blog-migrated-to-pelican.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
             
 <p class="paginator">
     
-    Page 1 / 1
+        
+            <a href=".././author/haridas.html">&laquo;</a>
+        
+    
+    Page 2 / 2
     
 </p>
 

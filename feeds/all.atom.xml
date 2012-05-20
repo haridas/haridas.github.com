@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2011-11-19T06:01:00+05:30</updated><entry><title>Find the Absolute path in Shell Script</title><link href="//find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>haridas</name></author><id>//find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-05-20T12:53:06+05:30</updated><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-20T12:53:06+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
+that. Wordpress is the most successful and feature rich blogging engine. So
+I chose it without any doubt. I didn't even search for a python alternative blog
+engine at that time. But after a while I felt the dificulties while adding some
+changes to the wordpress code, bugs with the wordpress plugins and more
+importantly the Web UI is very annoying while typing new contents.&lt;/p&gt;
+&lt;p&gt;If we are considering the technical points, wordpress is a dynamic blog engine,
+it is an over killing for blogs and other wiki based sites. Main issue is with speed of
+page rendering.The static pages are way faster compared to the dynamic contents. I know
+wordpress has caching plugins to make the static pages out of dynamic one but
+that are not a very reliable solution.&lt;/p&gt;
+&lt;p&gt;Actually above points are all come to my mind after seeing the static site
+generators and their awesome features and flexibility.&lt;/p&gt;
+&lt;div class="section" id="advantages-of-static-site-generators-over-dynamic-blog-engines"&gt;
+&lt;h2&gt;Advantages of static site generators over Dynamic blog engines&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Serve html directly, so very fast.&lt;/li&gt;
+&lt;li&gt;Easy maintenance of the site, very less pain with server setup.&lt;/li&gt;
+&lt;li&gt;Use your favourite Text editors for blog posting. I use VIM :).&lt;/li&gt;
+&lt;li&gt;It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type
+the post in normal text with simple formating. So don't worry about the
+html formatting while typing the content.&lt;/li&gt;
+&lt;li&gt;Host it on Github,  and very easy version control and site backup.&lt;/li&gt;
+&lt;li&gt;Very easy to customize the Themes  or other internals if you want.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Next step was which static site generator I will choose for my site. There are
+a lot of them were implemented in Python and Ruby. I went through some of them
+and finally chose &lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; a Python based static site generator.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="jekyll"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Jekyll is a Ruby based system developed at github.com and it is very commonly
+used in the Ruby world. I tried to use it because of its native github
+support, but finally realized that we can do the same thing with other site
+generators. And other problems I found with Jekyll was,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Its structure is difficult  compared to other site generators.&lt;/li&gt;
+&lt;li&gt;It's a Ruby based one, I'm more comfortable with Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hyde"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="http://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hyde is a  Python based static site generator like Jekyll and it removes some
+of the difficulties with Jekyll. But it lacks good documentation, and mainly
+a way to migrate from other blog engines like wordpress. I can see
+that the project is evolving lately and got github site for documentation. But
+it only covers the basics right now. I hope it will get good documentation very
+soon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pelican"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;When I was very confused with different choices of static site generators, I came across
+Pelican (Another Python based static site generator.). It attracted me quickly
+because of its,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Simplicity&lt;/li&gt;
+&lt;li&gt;Good Documentation&lt;/li&gt;
+&lt;li&gt;Flexibility&lt;/li&gt;
+&lt;li&gt;Very easy way to use the Markdown texts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The documentation has everything required to migrate your blog from other blog
+engines.And I liked the way it structured the blog posts and its contents.It
+got clear upper hand over other site generators, I don't need to think twice to
+select it.&lt;/p&gt;
+&lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; the project and give
+a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="//find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>haridas</name></author><id>//find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in

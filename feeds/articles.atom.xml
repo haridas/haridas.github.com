@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2012-05-20T00:54:27+05:30</updated><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-20T00:54:27+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;This blog was initialy developed on the wordpress. As you know the reasons for
+that. Wordpress is the most successful and feature rich blogging engine. So
+I chose it without any doubt. I didn't even search for python related blog
+engine at that time. But after a while I felt the dificulty of adding some
+changes to the wordpress code, bugs with the wordpress plugins and more
+importantly the Web UI to type the blog bost very annoying.&lt;/p&gt;
+&lt;p&gt;If we are thinking the technical points, wordpress is a dynamic engine, it is
+over killing for blogs and other wiki based sites. Main issue is the response.
+The static pages are way faster compared to the dynamic contents. I know
+wordpress has caching plugins to make the static pages out of dynamic one but
+that is not a very relaiable solution.&lt;/p&gt;
+&lt;p&gt;Actually above points are all come to my mind after seeing the static site
+generators and their awesome featues and flexibility.&lt;/p&gt;
+&lt;div class="section" id="advantages-of-static-site-generators-are"&gt;
+&lt;h2&gt;Advantages of static site generators are&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;We are serving html directly so very fast.&lt;/li&gt;
+&lt;li&gt;Easy maintanence of the site, very less pain with setup DB and other things.&lt;/li&gt;
+&lt;li&gt;Use your faviourae text editors for blog posting.&lt;/li&gt;
+&lt;li&gt;It support markdown syntax (Markdown,ResT) - so we just need to type
+the blogs in normal text with simple formating.&lt;/li&gt;
+&lt;li&gt;Host it on Github,  and very easy version control and site backup.&lt;/li&gt;
+&lt;li&gt;Very easy to customize the Themes  or other internals if you want.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry></feed>

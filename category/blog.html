@@ -31,6 +31,8 @@
                 <h1><a href="../.">haridas.in </a></h1>
                 <nav><ul>
                 
+                    <li><a href="/archives.html">Archives</a></li>
+                
                 
                 
                     <li><a href=".././pages/about-me.html">About Me</a></li>
@@ -49,8 +51,113 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././find-the-absolute-path-in-shell-script.html">Find the Absolute path in Shell Script</a></h1> 
+                    <h1 class="entry-title"><a href=".././wordpress-blog-migrated-to-pelican.html">Wordpress blog migrated to Pelican</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2012-05-20T12:53:06.952252">
+                Sun 20 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+        </address>
+        
+<p>In <a href=".././category/blog.html">blog</a>. </p>
+<p>tags: <a href=".././tag/wordpress.html">wordpress</a><a href=".././tag/pelican.html">pelican</a><a href=".././tag/python.html">python</a></p>
+
+
+</footer><!-- /.post-info --><p>Initially this blog was a wordpress blog. As you know the reasons for
+that. Wordpress is the most successful and feature rich blogging engine. So
+I chose it without any doubt. I didn't even search for a python alternative blog
+engine at that time. But after a while I felt the dificulties while adding some
+changes to the wordpress code, bugs with the wordpress plugins and more
+importantly the Web UI is very annoying while typing new contents.</p>
+<p>If we are considering the technical points, wordpress is a dynamic blog engine,
+it is an over killing for blogs and other wiki based sites. Main issue is with speed of
+page rendering.The static pages are way faster compared to the dynamic contents. I know
+wordpress has caching plugins to make the static pages out of dynamic one but
+that are not a very reliable solution.</p>
+<p>Actually above points are all come to my mind after seeing the static site
+generators and their awesome features and flexibility.</p>
+<div class="section" id="advantages-of-static-site-generators-over-dynamic-blog-engines">
+<h2>Advantages of static site generators over Dynamic blog engines</h2>
+<ol class="arabic simple">
+<li>Serve html directly, so very fast.</li>
+<li>Easy maintenance of the site, very less pain with server setup.</li>
+<li>Use your favourite Text editors for blog posting. I use VIM :).</li>
+<li>It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type
+the post in normal text with simple formating. So don't worry about the
+html formatting while typing the content.</li>
+<li>Host it on Github,  and very easy version control and site backup.</li>
+<li>Very easy to customize the Themes  or other internals if you want.</li>
+</ol>
+<p>Next step was which static site generator I will choose for my site. There are
+a lot of them were implemented in Python and Ruby. I went through some of them
+and finally chose <a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a> a Python based static site generator.</p>
+</div>
+<div class="section" id="jekyll">
+<h2><a class="reference external" href="http://jekyllrb.com/">Jekyll</a></h2>
+<p>Jekyll is a Ruby based system developed at github.com and it is very commonly
+used in the Ruby world. I tried to use it because of its native github
+support, but finally realized that we can do the same thing with other site
+generators. And other problems I found with Jekyll was,</p>
+<ul class="simple">
+<li>Its structure is difficult  compared to other site generators.</li>
+<li>It's a Ruby based one, I'm more comfortable with Python.</li>
+</ul>
+</div>
+<div class="section" id="hyde">
+<h2><a class="reference external" href="http://hyde.github.com">Hyde</a></h2>
+<p>Hyde is a  Python based static site generator like Jekyll and it removes some
+of the difficulties with Jekyll. But it lacks good documentation, and mainly
+a way to migrate from other blog engines like wordpress. I can see
+that the project is evolving lately and got github site for documentation. But
+it only covers the basics right now. I hope it will get good documentation very
+soon.</p>
+</div>
+<div class="section" id="pelican">
+<h2><a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a></h2>
+<p>When I was very confused with different choices of static site generators, I came across
+Pelican (Another Python based static site generator.). It attracted me quickly
+because of its,</p>
+<ul class="simple">
+<li>Simplicity</li>
+<li>Good Documentation</li>
+<li>Flexibility</li>
+<li>Very easy way to use the Markdown texts.</li>
+</ul>
+<p>The documentation has everything required to migrate your blog from other blog
+engines.And I liked the way it structured the blog posts and its contents.It
+got clear upper hand over other site generators, I don't need to think twice to
+select it.</p>
+<p>Currently I hosted this site under Github, you can <a class="reference external" href="https://github.com/haridas/haridas.github.com">fork</a> the project and give
+a fresh try to see how quickly you can setup a blog.</p>
+</div>
+<p>There are <a href=".././wordpress-blog-migrated-to-pelican.html#disqus_thread">comments</a>.</p>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                        <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+        
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././find-the-absolute-path-in-shell-script.html" rel="bookmark" title="Permalink to Find the Absolute path in Shell Script">Find the Absolute path in Shell Script</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2011-11-19T06:01:00">
                 Sat 19 November 2011
         </abbr>
@@ -64,57 +171,16 @@
 <p>tags: <a href=".././tag/server admin.html">server admin</a><a href=".././tag/shell.html">shell</a></p>
 
 
-</footer><!-- /.post-info --><p>This is a simple shell script snippet to get the full absolute path of
+</footer><!-- /.post-info -->
+                <p>This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.</p>
 <p>What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
-properly by including relative files correctly from the system path.
-Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would be resolve every relative path
-resolutions. So how it would be, if we don't need to hard code the
-Project Bases paths, instead the project configurations detect it
-automatically :). So you could get this by using this shell script
-snippet.</p>
-<p>Here we can test how a shell script identify itself where it's located
-or its absolute path information.Please create a shell script with
-following content and run it from different locations.</p>
-<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
-<span class="c">#and then run it from different directory level, you can see the</span>
-<span class="c">#difference.</span>
-
-<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
-<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nb">echo</span> <span class="s2">&quot;Absolute PATH : `cd $dir; pwd` &quot;</span>
-</pre></div>
-<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
-its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
-<span class="gp">#</span>sh /usr/local/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd local</span>
-<span class="gp">#</span>sh shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-</pre></div>
-<p>I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.</p>
-<p>See you next time.</p>
-<p>There are <a href=".././find-the-absolute-path-in-shell-script.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                        <ol id="posts-list" class="hfeed">
-            
-        
+a ...</p>
+                <a class="readmore" href=".././find-the-absolute-path-in-shell-script.html">read more</a>
+                <p>There are <a href=".././find-the-absolute-path-in-shell-script.html#disqus_thread">comments</a>.</p>
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
@@ -194,125 +260,12 @@ github ...</p></div>
             </article></li>
         
         
-        
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././change-and-migrate-django-models-using-south.html" rel="bookmark" title="Permalink to Change and Migrate Django Models using South">Change and Migrate Django Models using South</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2011-06-17T10:41:00">
-                Fri 17 June 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/django.html">django</a><a href=".././tag/south.html">south</a></p>
-
-
-</footer><!-- /.post-info -->
-                <img alt="/images/south.png" src="../static/images/south.png" />
-<p>South is very handy django application to manage the django models. If
-we are developing web projects using django we need to change the Django
-model several times , In normal case we have to do these changes
-manually by editing both django model and backend database
-appropriately. This is very ...</p>
-                <a class="readmore" href=".././change-and-migrate-django-models-using-south.html">read more</a>
-                <p>There are <a href=".././change-and-migrate-django-models-using-south.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-        
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././playing-with-timezone-using-pytz.html" rel="bookmark" title="Permalink to playing with timezone using pytz">playing with timezone using pytz</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2011-05-11T04:15:00">
-                Wed 11 May 2011
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/pytz.html">pytz</a><a href=".././tag/timezone.html">timezone</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>World Timezone Image from www.physicalgeography.net</p>
-<img alt="/images/world_time2-300x172.gif" src="../static/images/world_time2-300x172.gif" />
-<p>When we develop web applications some times we need multiple timezone
-support. If we don’t have any previous experience then it might be a
-tough and confusing job. Here I will help you to get some basics of
-Timezone conversion.</p>
-<p>I have ...</p>
-                <a class="readmore" href=".././playing-with-timezone-using-pytz.html">read more</a>
-                <p>There are <a href=".././playing-with-timezone-using-pytz.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-        
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href=".././programming-vs-scripting.html" rel="bookmark" title="Permalink to Programming Vs. Scripting.">Programming Vs. Scripting.</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2010-09-28T09:21:00">
-                Tue 28 September 2010
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
-        </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/programming.html">programming</a><a href=".././tag/scripting.html">scripting</a></p>
-
-
-</footer><!-- /.post-info -->
-                <img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="../static/images/scrpt_vs_pgrms2-300x165.jpg" />
-<p>When I was started to learn C programming language, I only know the term
-Programming. After some time I learned about the Javascript and perl for
-some internal projects, from there onwards I started to use the two
-terms Scripting and Programming. I found some books of Javascript and
-Perl ...</p>
-                <a class="readmore" href=".././programming-vs-scripting.html">read more</a>
-                <p>There are <a href=".././programming-vs-scripting.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
             
 <p class="paginator">
     
-    Page 1 / 1
+    Page 1 / 2
+    
+        <a href=".././category/blog2.html">&raquo;</a>
     
 </p>
 
@@ -364,6 +317,16 @@ Perl ...</p>
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-23592173-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
 
 
 

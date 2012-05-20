@@ -18,12 +18,17 @@ THEME = '/usr/local/lib/python2.7/dist-packages/pelican/themes/notmyidea'
 THEME_STATIC_PATHS = ['static']
 #CSS_FILE = 'main.css'
 
+# Ordering of content.
+REVERSE_ARCHIVE_ORDER = True
+
+# Other menu items
+MENUITEMS = [('Archives','/archives.html')]
 
 ## External services and Social medias.
 
 DISQUS_SITENAME = 'haridas'
 GITHUB_URL = 'http://github.com/haridas'
-GOOGLE_ANALYTICS = ''
+GOOGLE_ANALYTICS = 'UA-23592173-1'
 TWITTER_USERNAME = 'haridas_n'
 
 # Blogroll
@@ -39,7 +44,7 @@ SOCIAL = (
         ('linkedin', 'http://in.linkedin.com/pub/haridas-n/19/95/825'),
          )
 
-PAGE_EXCLUDES = ['articles','drafts',]
+PAGE_EXCLUDES = ['articles','drafts','pages']
 
 
     
