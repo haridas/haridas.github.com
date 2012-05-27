@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-05-20T12:53:06+05:30</updated><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-20T12:53:06+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-05-27T14:11:10+05:30</updated><entry><title>My Vim Story - 1</title><link href="//my-vim-story-1.html" rel="alternate"></link><updated>2012-05-27T14:11:10+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-1.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
+has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
+a long time I was just used it whenever there is no  other option available, and
+I did't realized the importance of Vim editor.&lt;/p&gt;
+&lt;p&gt;After I started my Job as Server Administrator, I have to use Vim regularly to
+work with servers and other configuration files. But I used it because there is
+no other thing available at remote severs :). And some times when I watching
+hackers video, most of them are using Vim editor to show their works,
+I always wonder why they are using it instead of common IDE's. In the same time
+I have an interest in Programming, so I tried to  automate my  works using
+different Scripting and Programming languages, that eventually turned me to a Programmer.&lt;/p&gt;
+&lt;p&gt;When I was started to working as a Django developer I used to work with Eclipse with
+python binding. At these times I very rarely used the Vim editor, most of time
+I was engaged in Eclipse editor. Then I moved to another company as
+a Python and Django backend developer, there I met &lt;a class="reference external" href="http://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; My Team
+Lead and a Big fan of Vim, He already using Vim as his main editor and he encouraged me and others to use
+the Vim editor. But for few weeks I didn't mind it, and was worked with eclipse
+itself.&lt;/p&gt;
+&lt;p&gt;Finally one day evening I realized the fact that why the Vim gets this much interest
+among programmers and other hackers. That was a sudden move, with in that day
+Itself I learned the basic navigation key bindings and &lt;a class="reference external" href="http://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
+me to setup the Vim as a general IDE for all my works. After that we together
+working and learning to improve the Vim skills every day and I'm enjoying the
+facts that I'm using it for my project works right after the first day of my
+basic learning. When I look back I can see that I missed the Vim editor
+for long time. Any way right now I became a big fan of Vim :).&lt;/p&gt;
+&lt;p&gt;The main facts that I liked with the Vim editors while comparing with other
+editors are,&lt;/p&gt;
+&lt;div class="section" id="basic-navigation"&gt;
+&lt;h2&gt;Basic Navigation&lt;/h2&gt;
+&lt;p&gt;Actually this feature is the one which brought me to Vim. There is no need to
+use Mouse, We can do every thing using key board. The mouse usage is far less
+productive and more stressful if we compare the same operation with keyboard.
+Mouse has an importance when user has no or very less idea about the GUI, then
+He/She can do better with mouse. But that case is valid for short term usage
+only.&lt;/p&gt;
+&lt;p&gt;If you are comfortable with touch typing then it's very easy to catch the Vim commands.
+This includes, navigating through,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Files&lt;/li&gt;
+&lt;li&gt;Pages&lt;/li&gt;
+&lt;li&gt;Lines&lt;/li&gt;
+&lt;li&gt;Words&lt;/li&gt;
+&lt;li&gt;Characters&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And do all &lt;strong&gt;CRUD&lt;/strong&gt; operations very quickly by using simple keystroke.&lt;/p&gt;
+&lt;p&gt;You might think that, we can do that with the keyboard arrow keys, that is
+possible, but vim has its own way to do it. It got different modes of
+working, &lt;strong&gt;Insert Mode&lt;/strong&gt; - For typing contents, &lt;strong&gt;Command mode&lt;/strong&gt; - In this mode we use
+different shortcuts to do lot of operations, &lt;strong&gt;Search Mode&lt;/strong&gt;, etc.&lt;/p&gt;
+&lt;p&gt;Using Vim is far faster and easy to work with any text editing
+operations.Programmers are always doing it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="availability"&gt;
+&lt;h2&gt;Availability&lt;/h2&gt;
+&lt;p&gt;By default all Gnu/Linux ship with the Vim editor. So we don't need to move to
+other editors when you are working with Gnu/Linux. Mac and Windows also got Vim
+editors so just download it and give a try.
+Also you can integrate the Vim key bindings with all major IDE's like
+&lt;a class="reference external" href="http://www.viplugin.com/viplugin/"&gt;Eclipse&lt;/a&gt;, &lt;a class="reference external" href="http://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329"&gt;Visual Studio&lt;/a&gt;, etc..&lt;/p&gt;
+&lt;p&gt;Also the vim keyboard bindings for navigation are also being used with web
+browsers(&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb"&gt;Chrome&lt;/a&gt;, &lt;a class="reference external" href="http://www.vimperator.org/vimperator"&gt;Firefox&lt;/a&gt;), and even you can use this key bindings with
+OS command prompt.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="light-weight-fast-and-highly-configurable"&gt;
+&lt;h2&gt;Light weight, Fast and highly configurable&lt;/h2&gt;
+&lt;p&gt;Even after adding lot of extensions with default Vim to make it general IDE
+like look and feel, its size would be very less compared to other IDE's.And we
+can customize the Vim editor very easily using its configuration file &lt;strong&gt;.vimrc&lt;/strong&gt;
+under the user home directory. And of course Vim is very fast.&lt;/p&gt;
+&lt;p&gt;One problem with Vim is, the learning curve. It has got lot of very advanced shortcuts
+and key bindings that can  be understood after using it for a while,But the
+basic shortcuts required to get start with Vim is very simple.
+We will learn new and new keyboard bindings through out the life span :).&lt;/p&gt;
+&lt;p&gt;You can have a look at this &lt;a class="reference external" href="http://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/"&gt;Article&lt;/a&gt; which describes how the Vim key bindings
+became integral part of our life ;).&lt;/p&gt;
+&lt;p&gt;My Vim Story-2 blog entry will come soon which describe the details how to
+setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
+&lt;p&gt;Till then... Bye :)&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-20T13:58:31+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
 that. Wordpress is the most successful and feature rich blogging engine. So
 I chose it without any doubt. I didn't even search for a python alternative blog
 engine at that time. But after a while I felt the dificulties while adding some
@@ -71,11 +153,11 @@ that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
 a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
+with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
 properly by including relative files correctly from the system path.
 Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would be resolve every relative path
-resolutions. So how it would be, if we don't need to hard code the
+Global variable so that would resolve every relative path
+properly. So how it would be, if we don't need to hard code the
 Project Bases paths, instead the project configurations detect it
 automatically :). So you could get this by using this shell script
 snippet.&lt;/p&gt;

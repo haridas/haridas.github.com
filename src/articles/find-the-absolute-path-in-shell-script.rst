@@ -10,11 +10,11 @@ that file while running it in a shell environment.
 What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
 a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM PATH and PROJECT HOME DIR etc, to make our project run
+with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
 properly by including relative files correctly from the system path.
 Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would be resolve every relative path
-resolutions. So how it would be, if we don't need to hard code the
+Global variable so that would resolve every relative path
+properly. So how it would be, if we don't need to hard code the
 Project Bases paths, instead the project configurations detect it
 automatically :). So you could get this by using this shell script
 snippet.
