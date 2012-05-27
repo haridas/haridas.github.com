@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2012-05-27T14:11:10+05:30</updated><entry><title>My Vim Story - 1</title><link href="//my-vim-story-1.html" rel="alternate"></link><updated>2012-05-27T14:11:10+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-1.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2012-05-27T14:28:05+05:30</updated><entry><title>My Vim Story - 1</title><link href="//my-vim-story-1.html" rel="alternate"></link><updated>2012-05-27T14:28:05+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-1.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -26,7 +26,8 @@ me to setup the Vim as a general IDE for all my works. After that we together
 working and learning to improve the Vim skills every day and I'm enjoying the
 facts that I'm using it for my project works right after the first day of my
 basic learning. When I look back I can see that I missed the Vim editor
-for long time. Any way right now I became a big fan of Vim :).&lt;/p&gt;
+for long time. Any way right now I became a big fan of Vim :). I used Vim to
+type this blog entry.&lt;/p&gt;
 &lt;p&gt;The main facts that I liked with the Vim editors while comparing with other
 editors are,&lt;/p&gt;
 &lt;div class="section" id="basic-navigation"&gt;

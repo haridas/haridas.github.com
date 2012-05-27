@@ -35,7 +35,8 @@ me to setup the Vim as a general IDE for all my works. After that we together
 working and learning to improve the Vim skills every day and I'm enjoying the
 facts that I'm using it for my project works right after the first day of my
 basic learning. When I look back I can see that I missed the Vim editor
-for long time. Any way right now I became a big fan of Vim :).
+for long time. Any way right now I became a big fan of Vim :). I used Vim to
+type this blog entry.
 
 
 The main facts that I liked with the Vim editors while comparing with other
