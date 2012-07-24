@@ -4,7 +4,6 @@ Programming Vs. Scripting.
 :category: blog
 :tags: programming,scripting
 
-.. image:: /images/scrpt_vs_pgrms2-300x165.jpg
 
 When I was started to learn C programming language, I only know the term
 Programming. After some time I learned about the Javascript and perl for

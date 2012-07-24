@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2012-05-27T14:28:05+05:30</updated><entry><title>My Vim Story - 1</title><link href="//my-vim-story-1.html" rel="alternate"></link><updated>2012-05-27T14:28:05+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-1.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2012-07-24T23:35:07+05:30</updated><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-24T23:35:07+05:30</updated><author><name>haridas</name></author><id>//how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a pleanty of cloud storage services out there for free.
+It's very convinient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There is a chance for
+those contents will get read by others.&lt;/p&gt;
+&lt;p&gt;I use Dropbox with my Debian machine to sync my local documents.
+But I'm worried about putting some of my documents on the cloud after
+knowing that there is a chance of breach. Because of that I avoided putting
+those contents on my cloud storage. Later I figured out that we can
+put an encrypted contents. I tried to use GPG and other methods to encrypt
+the contents and putting them on cloud. But those are all requries lot of work to
+push contents each time. GPG mainly used for transfering encrypted contents
+between sender and receiver, so that is not the good solution. We required
+a method to add the encrypted documents only to our cloud storage and the same
+time we want to access the actual copy of the document on our machine.&lt;/p&gt;
+&lt;p&gt;Then I saw options for the ecrypted filesystems like &lt;strong&gt;ecryptfs&lt;/strong&gt;,
+&lt;strong&gt;encfs&lt;/strong&gt; are available under Linux filesystems. Which provide
+good flexibility that I required, and it only required pain of one time setup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;encfs&lt;/em&gt; is a User space filesystem, but the &lt;em&gt;ecryptfs&lt;/em&gt; is working in the kernel space,
+because of that ecryptfs is little difficult to setup. But ecryptfs is faster
+and more secure than the encfs. Both of them using a passphrase as the inital
+key to do all the encryption and decryption, we can keep this
+passphrase with other filesysm or even in external storage device, This is like
+normal password required to initiate the ecryption or decryption.&lt;/p&gt;
+&lt;p&gt;Here I'm explaing how to use the ecryptfs,&lt;/p&gt;
+&lt;p&gt;First install the packages required,&lt;/p&gt;
+&lt;p&gt;From root user follow these commands.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
+&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
+one folder named Encrypted.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
+&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
+ecryptfs will generate the corresponding encrypted files on the
+~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.&lt;/p&gt;
+&lt;p&gt;Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
+filesystem partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
+point where we can see the actual content of the files, we require the proper
+passphrase to mount the encrypted file system to local folder.This mounting and
+creaton of the encrypted filesystem is explained bellow.&lt;/p&gt;
+&lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
+with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
+mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check this console page to see the complete list of commands required to finish
+the mounting operation.&lt;/p&gt;
+&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
+&lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
+to the mount point, use df command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So if there is no error, you can now check for the file encryption by directly
+adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;. Imediately you can see
+the encrypted file with the same name under &lt;cite&gt;/home/haridas/Dropbox/Encrypted&lt;/cite&gt;.
+Try out this.&lt;/p&gt;
+&lt;p&gt;So we are done with the keeping only the encrypted files under Dropbox folder.
+So don't need to worry about the sensitive documents. But one thing is that in
+order to decrypt the files from other machines, you required the passphrase and
+other machines should support the ecryptfs. You can't us mobile
+devices to view the encrypted content.&lt;/p&gt;
+&lt;p&gt;We need to mount the ecryptefs filesystem in the boot time to avoid that step
+every time. That requires passphrase, and set of other configurations, that was
+done while mouting the filesystem initialy. We can pass this automatically by
+putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
+we can see system can read it.&lt;/p&gt;
+&lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the follwoing lines&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+ecryptfs_sig=b2f118ee01beb78b
+ecryptfs_cipher=aes
+ecryptfs_key_bytes=32
+ecryptfs_passthrough=n
+ecryptfs_enable_filename_crypto=n
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
+to automount at boot time.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
+defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
+with external disk. Make sure that the passphrase is available to the system
+when you are trying to mount it in the booting time itself.&lt;/p&gt;
+&lt;p&gt;Keep the passphrase safe !. Which determinse the strength of your encryption.&lt;/p&gt;
+&lt;p&gt;Enjoy.&lt;/p&gt;
+</summary><category term="security"></category><category term="server"></category></entry><entry><title>My Vim Story - 1</title><link href="//my-vim-story-1.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-1.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -82,7 +169,7 @@ became integral part of our life ;).&lt;/p&gt;
 setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;Till then... Bye :)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-20T13:58:31+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
 that. Wordpress is the most successful and feature rich blogging engine. So
 I chose it without any doubt. I didn't even search for a python alternative blog
 engine at that time. But after a while I felt the dificulties while adding some
@@ -170,8 +257,11 @@ following content and run it from different locations.&lt;/p&gt;
 &lt;span class="c"&gt;#difference.&lt;/span&gt;
 
 &lt;span class="nv"&gt;curr_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+
 &lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;dirname &lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Absolute PATH : `cd $dir; pwd` &amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;FILE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;  &lt;span class="nv"&gt;$dir&lt;/span&gt;;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Path to this file : $FILE_PATH&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
 its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
@@ -654,8 +744,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;img alt="/images/scrpt_vs_pgrms2-300x165.jpg" src="/images/scrpt_vs_pgrms2-300x165.jpg" /&gt;
-&lt;p&gt;When I was started to learn C programming language, I only know the term
+</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned about the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and

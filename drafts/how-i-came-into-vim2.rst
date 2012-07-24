@@ -21,11 +21,36 @@ colours. So you have to using GTK version of them Vim. Gvim. Gvim give you all
 the super looking features to your vim with all Vim features. Just take a look
 at my Console based Vim and Gvim screen shots.
 
-Vim from KDE Konsole
+Vim on KDE Konsole
 --------------------
 .. image:: /images/vim-console.jpg
+        :alt: vim-on-console
+        :height: 400px
+        :width: 768px
+        :align: left
 
 
 Gvim
 ----
 .. image:: /images/gvim.jpg
+    :alt: Gvim image
+    :height: 400px 
+    :width: 768px
+    :align: left
+
+So the things we need to modify with the default Vim to get the above look and
+feel, you have to change and update following things,
+
+1. Fonts and Syntax Coloring theme.
+2. Setup plugin environment.
+3. Add required plugins.
+
+
+I configured my Vim with following Plugins
+
+Plugins
+-------
+
+1. MinbufferExplorar
+2. 
+

@@ -87,8 +87,11 @@ following content and run it from different locations.</p>
 <span class="c">#difference.</span>
 
 <span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
 <span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nb">echo</span> <span class="s2">&quot;Absolute PATH : `cd $dir; pwd` &quot;</span>
+<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span>  <span class="nv">$dir</span>;<span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Path to this file : $FILE_PATH&quot;</span>
 </pre></div>
 <p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
 its current locations is <strong>/usr/local/</strong>)</p>

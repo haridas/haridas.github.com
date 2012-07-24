@@ -1,0 +1,5 @@
+22-07-2012
+----------
+1. Remove the First blog post.
+2. Add the Encryption blog after getting better idea about the topic.
+3. complete the Vim blog.

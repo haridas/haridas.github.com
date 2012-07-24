@@ -2,6 +2,7 @@ Wordpress blog migrated to Pelican
 ==================================
 :tags: wordpress,pelican,python
 :category: blog
+:date: 2012-05-07 13:33
 
 Initially this blog was a wordpress blog. As you know the reasons for
 that. Wordpress is the most successful and feature rich blogging engine. So

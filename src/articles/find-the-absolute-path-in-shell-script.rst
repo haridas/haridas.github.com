@@ -30,8 +30,11 @@ following content and run it from different locations.
  #difference.
 
  curr_dir=`pwd`
+
  dir=`dirname $0`
- echo "Absolute PATH : `cd $dir; pwd` "
+ FILE_PATH=`cd  $dir;pwd`
+
+ echo "Path to this file : $FILE_PATH"
 
 Add this script to **/usr/local/** and run it ( We know that
 its current locations is **/usr/local/**)
