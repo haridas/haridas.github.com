@@ -113,6 +113,7 @@ The `/root/.ecryptfsrc` file should have the follwoing lines
 After creating /root/.ecryptfsrc file, add the following line to `/etc/fstab`
 to automount at boot time.
 
+
 .. code-block:: vim
 
     /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox  ecryptfs
