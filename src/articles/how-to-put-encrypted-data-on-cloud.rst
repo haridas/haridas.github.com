@@ -3,8 +3,8 @@ How to put Encrypted Contents on Cloud Storages
 :category: blog
 :tags: security,server
 
-There is a pleanty of cloud storage services out there for free.
-It's very convinient and flexible that we can sync our local files with 
+There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with 
 remote storage. For simple and non-sensitive contents this  is very useful. 
 But we know that the contents on the net are being open. There is a chance for 
 those contents will get read by others. 
@@ -14,24 +14,24 @@ But I'm worried about putting some of my documents on the cloud after
 knowing that there is a chance of breach. Because of that I avoided putting
 those contents on my cloud storage. Later I figured out that we can
 put an encrypted contents. I tried to use GPG and other methods to encrypt
-the contents and putting them on cloud. But those are all requries lot of work to
-push contents each time. GPG mainly used for transfering encrypted contents
+the contents and putting them on cloud. But those are all requires lot of work to
+push contents each time. GPG mainly used for transferring encrypted contents
 between sender and receiver, so that is not the good solution. We required
 a method to add the encrypted documents only to our cloud storage and the same
 time we want to access the actual copy of the document on our machine.
 
-Then I saw options for the ecrypted filesystems like **ecryptfs**,
-**encfs** are available under Linux filesystems. Which provide 
+Then I saw options for the ecrypted file systems like **ecryptfs**,
+**encfs** are available under Linux file systems. Which provide 
 good flexibility that I required, and it only required pain of one time setup. 
 
 *encfs* is a User space filesystem, but the *ecryptfs* is working in the kernel space,
 because of that ecryptfs is little difficult to setup. But ecryptfs is faster
-and more secure than the encfs. Both of them using a passphrase as the inital
+and more secure than the encfs. Both of them using a passphrase as the initial
 key to do all the encryption and decryption, we can keep this
-passphrase with other filesysm or even in external storage device, This is like
-normal password required to initiate the ecryption or decryption. 
+passphrase with other file systems or even in external storage device, This is like
+normal password required to initiate the encryption or decryption. 
 
-Here I'm explaing how to use the ecryptfs,
+Here I'm explaining how to use the ecryptfs,
 
 First install the packages required,
 
@@ -55,10 +55,10 @@ ecryptfs will generate the corresponding encrypted files on the
 ~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.
 
 Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
-filesystem partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
+file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
 point where we can see the actual content of the files, we require the proper
 passphrase to mount the encrypted file system to local folder.This mounting and
-creaton of the encrypted filesystem is explained bellow.
+creation of the encrypted file system is explained bellow.
 
 To mount the encrypted device to the mount point, use the normal mount command
 with ecryptfs as its filesystem. This step ask for set of questions.
@@ -82,7 +82,7 @@ to the mount point, use df command.
     # df -h
 
 So if there is no error, you can now check for the file encryption by directly
-adding one text file in to `/home/haridas/SecureDropbox`. Imediately you can see
+adding one text file in to `/home/haridas/SecureDropbox`, immediately you can see
 the encrypted file with the same name under `/home/haridas/Dropbox/Encrypted`.
 Try out this.
 
@@ -94,12 +94,12 @@ devices to view the encrypted content.
 
 We need to mount the ecryptefs filesystem in the boot time to avoid that step
 every time. That requires passphrase, and set of other configurations, that was
-done while mouting the filesystem initialy. We can pass this automatically by
+done while mounting the file system initially. We can pass this automatically by
 putting it in a `.ecryptfsrc` file under root home directory. So at boot time
 we can see system can read it.
 
 
-The `/root/.ecryptfsrc` file should have the follwoing lines
+The `/root/.ecryptfsrc` file should have the following lines
 
 .. code-block:: text
 
@@ -123,9 +123,6 @@ The passphrase is the important thing that you have to keep in your machine or
 with external disk. Make sure that the passphrase is available to the system
 when you are trying to mount it in the booting time itself. 
 
-Keep the passphrase safe !. Which determinse the strength of your encryption.
+Keep the passphrase safe !. Which determines the strength of your encryption.
 
 Enjoy.
-
-
-
