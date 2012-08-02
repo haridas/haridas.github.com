@@ -3,6 +3,7 @@ My Vim Story - 1
 :category: blog
 :tags: linux,vim,editor
 :date: 2012-05-27 16:30
+:title: How I came in to Vim
 
 I know most of them in the programming world are very fascinated to Vim editor 
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
