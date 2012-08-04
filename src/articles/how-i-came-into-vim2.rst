@@ -5,6 +5,9 @@ My Vim Story 2
 :title: Vim as your IDE
 
 
+To follow this article you required basic idea of how to use Vim and its command
+based editing.
+
 In the first article_ I was describing how I came in to Vim editor and its
 fundamental difference with other type of editors.
 So on this article I'm explaining how to setup Vim as a common IDE for 
@@ -86,6 +89,12 @@ But most of the time we only required one vim tab and set of opened
 buffers(fiels.). Minibuffer Explorar help you to see those opened buffers as
 a virutal tabs. See the bellow screen. 
 
+.. image:: /images/minibufexplorer.jpg
+    :height: 356px
+    :width: 90%
+
+You can use `CTRL + h/j/k/l` or `CTRL + w` to navigate around the different split windows and
+the mini bufer Explorer. Try out that right away.
 
 .. _Command-t:
 
@@ -93,40 +102,63 @@ a virutal tabs. See the bellow screen.
 ------------
 
 Very awesome plugin for vim. Which help us to search the files very quickly.
-Actually to get better speed it was implemented in C.
+Actually to get better speed it was implemented in C. To install this plugin
+you need one extra compailation of this plugin because of C code. Don't warry
+I explained this in the last section.
 
-Screen shot.
+.. image:: images/command-t.jpg
+    :width: 100%
+
+Once we enabled this plugin you can see the search list using your 
+`<leader> + t`. I'm using my leader key as **,**, so for me it looks like `,t`
+(comma + t). Normally the leader key is '\'. 
+
+Actually the leader key providers a extension to use all the keys in the 
+keyboard as your own shortcuts. This leader key is activated in the normal mode of the
+vim. 
+
+Command-t also list the all opened buffers by `,b`, and it also list the vim
+jumplist
+
 
 .. _Syntastic:
 
 3. Syntastic
 ------------
 
-Another very useful pluging for all types of programming. This pluging helps to
-keep the syntax of the program correct, like auto correct in other programming
-language. This package is general one, and we can expand very easily. By
-default it support lot of programming languages. So this plugin is a must one
-for Vim.
+Another very useful plugin for all types of programming languages. 
+This plugin helps to keep the syntax of the program correct, 
+like auto correct in other IDE's. This package is general one, 
+and we can expand very easily. By default it support lot of programming 
+languages. So this plugin is a must one for Vim.
 
-Screen shot.
+For example, if your are editing an RST file (All my blog posts are in
+reStructured Text format), if we maid some syntax errors and when we 
+trying to save, the syntastic plugin show you the
+location of the error and its reason very neatly. 
+
+Take a look at the rst format of this blog post. I maid a syntax error 
+with image tag, 
+
+.. image:: /images/syntastic.jpg
+    :width: 100%
+
+Similary synstastic help you to follow a standard coding methods defined by the
+programming comunities. for eg; Python code has PEP8 standard, so while
+writing python code, if you are not following it, synstastic will show you the
+problem. After a while you will learn the PEP8 without an extra work :).
+
 
 .. _Snipmate:
 
 4. Snipmate
 -----------
 
-Helps to write a our own code macros, and can be used with any programming
+and can be used with any programming
 language. We can define a code block that need to prefilled when we type
 a keyword and tab. For example, in python to do a pdb,
 
-import pdb
-pdb.set_trace() - required. 
 
-To make a snipmate 
-
-pdb<tab> -- expands to import pdb; pdb.set_trace()
-
-Some samples.
 
 .. _Fugitive:
 
@@ -148,7 +180,7 @@ Screen shots.
 Tree like display of all the files under your project. Very easy way to
 navigate through all our directry structure, like other IDE's.
 
-Screen shot.
+.. image:: /images/nerdtree.jpg
 
 .. _NerdCommenter:
 
@@ -167,6 +199,7 @@ shorcuts. Other wise we have to do it manually. for eg;
 Rope is specially for python code jumping. For other programming languages have
 their cross file code navigation using similar tools. for eg;
 
+
 .. _Tagbar:
 
 9. Tagbar
@@ -175,7 +208,7 @@ This pluging is similar to the NerdTree, but instead of listing project
 diretory structure it list the objects and functions inside a file. Like Class
 browser in other IDE's.
 
-Scree Shots.
+.. image:: /images/tagbar.jpg
 
 .. _SimplePairs:
 
@@ -243,3 +276,32 @@ the does ruby support avilable with your vim, open your vim and type,
 If there is no error, then you have ruby support with your vim. The latest
 versions of vim has support with major dynamic languages like Python, Ruby and
 others. So that won't give you any head ache.
+
+
+
+SOME Vim short cuts
+-------------------
+
+CTRL-O CTRL-I -- Jump list back and forward, very useful.
+
+:23,30m200  -- move section of code to another line.
+
+df, (reverse dF,)     -- delete all characters till , one the current line.
+
+SHIFT + I  -- go your cursor to begining of the line as insert mode.
+
+$       -- in command mode, go to 
+
+gg  -- go to begining of the file
+
+G  -- go to end of the file.
+
+
+CTRL + F -- page down scroll.
+
+CTRL + B -- page back scroll.
+
+
+CTRL + h/j/k/l -- move the control to different split windows.
+
+
