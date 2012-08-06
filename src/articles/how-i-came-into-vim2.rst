@@ -6,7 +6,8 @@ My Vim Story 2
 
 
 To follow this article you required basic idea of how to use Vim and its command
-based editing.
+based basic editing.
+
 
 In the first article_ I was describing how I came in to Vim editor and its
 fundamental difference with other type of editors.
@@ -154,10 +155,32 @@ problem. After a while you will learn the PEP8 without an extra work :).
 4. Snipmate
 -----------
 
-and can be used with any programming
-language. We can define a code block that need to prefilled when we type
-a keyword and tab. For example, in python to do a pdb,
+A simple way to avoid typing some repetative sequence of words. For example, in
+python, we initilize a class by passing `class` keyword, name, etc... Instead
+of doing all those drama, we can just populate the default set of class
+structure from snipmate, by typing **cls** <tab>. Try out.
 
+The snimpate plugin provide lot of such shortcuts for different programming
+languages. We can also define our own snippets. For web developers this is very
+usefull to create <table>, <div> tag completion. etc.
+
+.. code-block:: bash
+
+    vim test.py
+    
+.. code-block:: python
+
+    #!/bin/python
+
+    cl
+
+After tying `cl` press tab and see the magic of full class template expansion.
+similarly you can define you can define your own snipmate. for eg;
+`for` <tab> to expand the `for` statement completely for you language.
+
+You can see all the snipmate files inside this plugin folder, like
+python.snipmate, ruby.snipmate etc.. The syntax of defining new snipmate for
+your language is pretty interesting.
 
 
 .. _Fugitive:
@@ -170,7 +193,10 @@ commands, that we can driectly typed in the vim command mode to see and do the
 git related operations. We don't need to go outside the editiing environment to
 manage those stuffs. 
 
-Screen shots.
+Also it have very nice git diff view inside vim itself, good looking and nice
+to use.
+
+
 
 .. _NerdTree:
 
@@ -196,9 +222,32 @@ shorcuts. Other wise we have to do it manually. for eg;
 
 8. Rope
 -------
-Rope is specially for python code jumping. For other programming languages have
-their cross file code navigation using similar tools. for eg;
 
+Rope is specially for python project navigation. Most of the IDE's have this
+support to see the defenition of a function or class by clicking on it(or
+via shortcut key).
+
+By default, if we open a python project it won't have support for this
+feature. When we trying to use this feature first time, the Rope prompt use to
+create a ropeproject under our directory. This is just a simple settings file
+under our project folder to specify different settings and path information.
+
+The Plugin help us to create it easily, after that we can use this plugin to
+view definition of all function or classes come under the rope project path.
+
+In my Vim I mapped the **<leader>j** to :RopeGotoDefinition. For eg.
+
+.. code-block:: python
+    
+    import os
+    import sys
+
+Keep your cursor on top of the `os` and press the <leader>j or
+:RopeGotoDefinition, Vim will open the os file from the system path and open it
+for you in the current Vim session as another buffer. Similarly we can go to
+definition of any python entity definied under the Rope path. 
+
+This also required one to meet the modern IDE feature list. :)
 
 .. _Tagbar:
 
@@ -209,6 +258,7 @@ diretory structure it list the objects and functions inside a file. Like Class
 browser in other IDE's.
 
 .. image:: /images/tagbar.jpg
+    :width: 100%
 
 .. _SimplePairs:
 
@@ -220,9 +270,13 @@ parantheses, etc..
 
 
 
-
 Fecthing from my git repo
 -------------------------
+
+Now lets see how we can setup vim to attain all the above fetures we discussed.
+These Vim pluins and all are there in my Vim github_ project.
+
+.. _github: https://github.com/haridas/Dotfiles/tree/master/vim-files
 
 My git has already every vim related files. Only thing required is just clone
 it and use it and do some steps to go ahead with all the features that
@@ -282,26 +336,30 @@ others. So that won't give you any head ache.
 SOME Vim short cuts
 -------------------
 
-CTRL-O CTRL-I -- Jump list back and forward, very useful.
+.. code-block:: text
 
-:23,30m200  -- move section of code to another line.
-
-df, (reverse dF,)     -- delete all characters till , one the current line.
-
-SHIFT + I  -- go your cursor to begining of the line as insert mode.
-
-$       -- in command mode, go to 
-
-gg  -- go to begining of the file
-
-G  -- go to end of the file.
+    In normal mode 
+    ==============
 
 
-CTRL + F -- page down scroll.
+    :23,30m200  -- move section of code to another line.
 
-CTRL + B -- page back scroll.
+    df, (reverse dF,)     -- delete all characters till , one the current line.
 
+    I  -- go your cursor to begining of the line as insert mode.
 
-CTRL + h/j/k/l -- move the control to different split windows.
+    $       -- in command mode, go to 
+
+    gg  -- go to begining of the file
+
+    G  -- go to end of the file.
+    
+    CTRL-O CTRL-I -- Jump list back and forward, very useful.
+
+    CTRL + h/j/k/l -- move the control to different split windows.
+
+    CTRL + F -- page down scroll.
+
+    CTRL + B -- page back scroll.
 
 
