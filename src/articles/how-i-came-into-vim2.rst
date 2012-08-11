@@ -407,9 +407,9 @@ it and do some steps to go ahead with all the features that I discussed above.
 
 .. code-block:: console
 
-    git clone git://github.com/haridas/Dotfiles.git
+    $git clone git://github.com/haridas/Dotfiles.git
 
-    cd Dotfiles
+    $cd Dotfiles
 
 
 I kept all the required plugins as git submodules. So we will get the new
@@ -422,11 +422,10 @@ folder.
 
 .. code-block:: console
 
-    pwd
-
+    $pwd
     <path to gitproject>/Dotfiles
 
-    git submodules update
+    $git submodules update
 
 
 Now you have all the files required to get start with vim, one more step left
@@ -452,7 +451,7 @@ implemented in C to improve the speed. The compilation step is very simple.
 The make will succeed only when you have gcc and ruby support with vim. To check
 the vim has ruby support, open your vim and type,
 
-.. code-block:: console
+.. code-block:: vim
     
     :ruby 1
 
@@ -468,8 +467,8 @@ platforms has also the same option using their package manager tool.
 
 .. code-block:: console
     
-    apt-cache search python | grep vim 
-    apt-cache search ruby | grep vim
+    $apt-cache search python | grep vim 
+    $apt-cache search ruby | grep vim
 
 
 From the list install any of the GUI based package.
@@ -514,7 +513,7 @@ All these features and hard work to setup Vim is useful to you only when you
 realize the fact that the Vim basic editing features will save lot of your time
 and increase the productivity. For that you don't required above discussed 
 plugin features. The plugins will only reduce some 
-keystrokes, But it won't turn you from other editor to Vim.Vim default features 
+keystrokes, But it won't turn you from other editors to Vim. Vim default features 
 are more than enough to attract you from other editors. 
 I hope you understood that feeling. :)
 
