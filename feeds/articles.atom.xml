@@ -1,40 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2012-07-24T23:36:44+05:30</updated><entry><title>My Vim Story 2</title><link href="//my-vim-story-2.html" rel="alternate"></link><updated>2012-07-24T23:36:44+05:30</updated><author><name>haridas</name></author><id>//my-vim-story-2.html</id><summary type="html">&lt;div class="section" id="how-to-setup-vim-as-an-ide"&gt;
-&lt;h2&gt;How to setup VIM as an IDE.&lt;/h2&gt;
-&lt;p&gt;In the last article I described what thing made me to use VIM as my main
-Editor. So on this article I'm trying to explaing how to setup Vim with
-required plugins for different programming languages. I'm basically a Python
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2012-08-11T15:12:16+05:30</updated><entry><title></title><link href="//.html" rel="alternate"></link><updated>2012-08-11T15:12:16+05:30</updated><author><name>haridas</name></author><id>//.html</id><summary type="html">&lt;div class="section" id="my-vim-story-2"&gt;
+&lt;h2&gt;My Vim Story 2&lt;/h2&gt;
+&lt;table class="docutils field-list" frame="void" rules="none"&gt;
+&lt;col class="field-name" /&gt;
+&lt;col class="field-body" /&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;category:&lt;/th&gt;&lt;td class="field-body"&gt;blog&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;date:&lt;/th&gt;&lt;td class="field-body"&gt;11-08-2012&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="field"&gt;&lt;th class="field-name"&gt;title:&lt;/th&gt;&lt;td class="field-body"&gt;Vim as your IDE&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
+based basic editing. And it focused on how to make it like an IDE.&lt;/p&gt;
+&lt;p&gt;Are you are very eager to see how to &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt; ?&lt;/p&gt;
+&lt;p&gt;In the first &lt;a class="reference external" href="http://haridas.in/my-vim-story-1.html"&gt;article&lt;/a&gt; I was describing how I came in to Vim editor and its
+fundamental difference with other type of editors.
+So on this article I'm explaining how to setup Vim as a common IDE for
+different programming languages. I'm basically a Python
 guy, so I'm concentrate on Python side. But most of them are applicable to
-other programming langauages. You can find out more some of specific plugins
-that helps to do more effective work with your favorite programming language.&lt;/p&gt;
-&lt;p&gt;The default Vim installed with most of the Gnu/Linux destros are more than
-enough to do our work. But if you wan't more eye catch look and feel and some
+other programming languages also. Vim has bunch of plugins and other supports
+available for all programming langauges. So no warry regarding that.&lt;/p&gt;
+&lt;p&gt;Lets start to change the Vim as a simple editor to an IDE with Vim special
+capability.The default Vim installed on most of the Gnu/Linux destros are more than
+enough to do our works. But if you want more eye catchy look and feel and some
 handy tools to do your work more quickly you need to install some Vim plugins,
-font's, color thems etc.&lt;/p&gt;
+good looking font's, color themes etc.&lt;/p&gt;
 &lt;p&gt;The Gnu/Linux Console based Vim has some limitation to show good font's and
-colours. So you have to using GTK version of them Vim. Gvim. Gvim give you all
-the super looking features to your vim with all Vim features. Just take a look
-at my Console based Vim and Gvim screen shots.&lt;/p&gt;
-&lt;/div&gt;
+colors. So you have to using GTK version of the Vim(Gvim). Gvim gives you all
+the super looking features to your Vim. Just take a look
+at my konsole based Vim and Gvim screen shots.&lt;/p&gt;
 &lt;div class="section" id="vim-on-kde-konsole"&gt;
-&lt;h2&gt;Vim on KDE Konsole&lt;/h2&gt;
+&lt;h3&gt;Vim on KDE Konsole&lt;/h3&gt;
 &lt;img alt="vim-on-console" class="align-left" src="/images/vim-console.jpg" style="width: 768px; height: 400px;" /&gt;
 &lt;/div&gt;
 &lt;div class="section" id="gvim"&gt;
-&lt;h2&gt;Gvim&lt;/h2&gt;
+&lt;h3&gt;Gvim&lt;/h3&gt;
 &lt;img alt="Gvim image" class="align-left" src="/images/gvim.jpg" style="width: 768px; height: 400px;" /&gt;
-&lt;p&gt;So the things we need to modify with the default Vim to get the above look and
-feel, you have to change and update following things,&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;Fonts and Syntax Coloring theme.&lt;/li&gt;
-&lt;li&gt;Setup plugin environment.&lt;/li&gt;
-&lt;li&gt;Add required plugins.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I configured my Vim with following Plugins&lt;/p&gt;
+&lt;p&gt;I configured my Vim with set of Vim plugins to make it more productive.Bellow
+I'm explaining all of them, and how to use my github vim settings available to
+all of you, so that finally you will get all of theses extra addition to your
+vim and some nice scripts to handle them together.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="plugins"&gt;
-&lt;h2&gt;Plugins&lt;/h2&gt;
-&lt;p&gt;1. MinbufferExplorar
-2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="topics"&gt;
+&lt;h2&gt;Topics&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Plugins&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="first last arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#minibuferexplorer"&gt;MinibuferExplorer&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#command-t"&gt;Command-t&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#syntastic"&gt;Syntastic&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#snipmate"&gt;Snipmate&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#fugitive"&gt;Fugitive&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#nerdtree"&gt;NerdTree&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#nerdcommenter"&gt;Nerdcommenter&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#rope"&gt;Rope&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#tagbar"&gt;Tagbar&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#simplepairs"&gt;SimplePairs&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#others"&gt;Others&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#some-vim-shortcuts"&gt;Some Vim Shortcuts&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#summary"&gt;Summary&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Above listed plugins are the main components of common IDE's.&lt;/p&gt;
+&lt;div class="section" id="minibuferexplorer-file-tabs"&gt;
+&lt;span id="minibuferexplorer"&gt;&lt;/span&gt;&lt;h3&gt;1. MinibuferExplorer (File Tabs)&lt;/h3&gt;
+&lt;p&gt;This is like Tabs in other IDE's. We can see the opened files in vim using this
+plugin. By default, we have to use &lt;cite&gt;:ls&lt;/cite&gt; to see opened buffers. So this
+plugin makes very convenient to see the opened files as tabs.&lt;/p&gt;
+&lt;p&gt;Vim has slightly concept regarding the Tabs, compared to other IDE's. Vim has
+support for tabs by default. That tab is different from the one we are
+considered with the normal IDE's. Actually the difference is the vim tabs are
+a collection of open buffers(or files.). So we can consider it as grouping of
+tabs in other IDE context.&lt;/p&gt;
+&lt;p&gt;But most of the time we only required one vim tab and set of opened
+buffers(fiels.). MinibuferExplorar help you to see those opened buffers as
+a virtual tabs. See the bellow screen.&lt;/p&gt;
+&lt;img alt="/images/minibufexplorer.jpg" src="/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" /&gt;
+&lt;p&gt;You can use &lt;cite&gt;CTRL + h/j/k/l&lt;/cite&gt; or &lt;cite&gt;CTRL + w&lt;/cite&gt; to navigate around the different split windows and
+the mini buffer Explorer. Try out that right away.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="command-t-file-search"&gt;
+&lt;span id="command-t"&gt;&lt;/span&gt;&lt;h3&gt;2. Command-t (File Search)&lt;/h3&gt;
+&lt;p&gt;Very awesome plugin for vim. Which help us to search the files very quickly.
+Actually to get better speed it was implemented in C. To install this plugin
+you need one extra compilation of this plugin because of C code. Don't wary
+I explained this in the last section.&lt;/p&gt;
+&lt;img alt="images/command-t.jpg" src="images/command-t.jpg" style="width: 100%;" /&gt;
+&lt;p&gt;Once we enabled this plugin you can see the search list using your
+&lt;cite&gt;&amp;lt;leader&amp;gt; + t&lt;/cite&gt;. I'm using my leader key as &lt;strong&gt;,&lt;/strong&gt;, so for me it looks like &lt;cite&gt;,t&lt;/cite&gt;
+(comma + t). Normally the leader key is ''.&lt;/p&gt;
+&lt;p&gt;Actually the leader key providers a extension to use all the keys in the
+keyboard as your own shortcuts. This leader key is activated in the normal mode of the
+vim.&lt;/p&gt;
+&lt;p&gt;Command-t also list the all opened buffers by &lt;cite&gt;,b&lt;/cite&gt;, and it also list the vim
+jumplist&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="syntastic-syntax-checker"&gt;
+&lt;span id="syntastic"&gt;&lt;/span&gt;&lt;h3&gt;3. Syntastic (Syntax Checker)&lt;/h3&gt;
+&lt;p&gt;Another very useful plugin for all types of programming languages.
+This plugin helps to keep the syntax of the program correct,
+like auto correct in other IDE's. This package is general one,
+and we can expand very easily. By default it support lot of programming
+languages. So this plugin is a must one for Vim.&lt;/p&gt;
+&lt;p&gt;For example, if your are editing an RST file (All my blog posts are in
+reStructured Text format), if we maid some syntax errors and when we
+trying to save, the syntastic plugin show you the
+location of the error and its reason very neatly.&lt;/p&gt;
+&lt;p&gt;Take a look at the rst format of this blog post. I maid a syntax error
+with image tag,&lt;/p&gt;
+&lt;img alt="/images/syntastic.jpg" src="/images/syntastic.jpg" style="width: 100%;" /&gt;
+&lt;p&gt;Similarly synstastic help you to follow a standard coding methods defined by the
+programming communities. for eg; Python code has PEP8 standard, so while
+writing python code, if you are not following it, synstastic will show you the
+problem. After a while you will learn the PEP8 without an extra work :).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="snipmate-code-templates"&gt;
+&lt;span id="snipmate"&gt;&lt;/span&gt;&lt;h3&gt;4. Snipmate (Code Templates)&lt;/h3&gt;
+&lt;p&gt;A simple way to avoid typing some repetitive sequence of words. For example, in
+python, we initialize a class by passing &lt;cite&gt;class&lt;/cite&gt; keyword, name, etc... Instead
+of doing all those drama, we can just populate the default set of class
+structure from snipmate, by typing &lt;strong&gt;cls&lt;/strong&gt; &amp;lt;tab&amp;gt;. Try out.&lt;/p&gt;
+&lt;p&gt;The snimpate plugin provide lot of such shortcuts for different programming
+languages. We can also define our own snippets. For web developers this is very
+useful to create &amp;lt;table&amp;gt;, &amp;lt;div&amp;gt; tag completion.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vim test.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/python&lt;/span&gt;
+&lt;span class="n"&gt;cl&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After tying &lt;cite&gt;cl&lt;/cite&gt; press tab and see the magic of full class template expansion.
+similarly you can define you can define your own snipmate. for eg;
+&lt;cite&gt;for&lt;/cite&gt; &amp;lt;tab&amp;gt; to expand the &lt;cite&gt;for&lt;/cite&gt; statement completely for you language.&lt;/p&gt;
+&lt;p&gt;You can see all the snipmate files inside this plugin folder, like
+python.snipmate, ruby.snipmate etc.. The syntax of defining new snipmate for
+your language is pretty interesting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fugitive-git"&gt;
+&lt;span id="fugitive"&gt;&lt;/span&gt;&lt;h3&gt;5. Fugitive (Git)&lt;/h3&gt;
+&lt;p&gt;This is for git repo management inside vim itself. It provide set of short
+commands, that we can directly typed in the vim command mode to see and do the
+git related operations. We don't need to go outside the editing environment to
+manage those stuffs.&lt;/p&gt;
+&lt;p&gt;Also it have very nice git diff view inside vim itself, good looking and nice
+to use.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="nerdtree-file-browser"&gt;
+&lt;span id="nerdtree"&gt;&lt;/span&gt;&lt;h3&gt;6. NerdTree (File Browser)&lt;/h3&gt;
+&lt;p&gt;This will display your project directory structure in tree format.It provides
+lot of shortcuts to navigate through the source tree easily.This is another
+common thing required for an IDE. Check the bellow image to see how it looks
+like.&lt;/p&gt;
+&lt;p&gt;Shortcuts - I mapped the following keys to show and hide the nerdtree when ever
+required. My .vimrc file has this settings. You can map this to your own
+choice.&lt;/p&gt;
+&lt;img alt="/images/nerd_tree.jpg" src="/images/nerd_tree.jpg" /&gt;
+&lt;p&gt;To open and close the nerdtree press &lt;em&gt;CTRL + n&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Also you can see other available commands for this plugin by typing,&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;ESC + :NERD &amp;lt;tab&amp;gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="nerdcommenter-commenting"&gt;
+&lt;span id="nerdcommenter"&gt;&lt;/span&gt;&lt;h3&gt;7. NerdCommenter (Commenting)&lt;/h3&gt;
+&lt;p&gt;This plugin is only to comment the multi line code blocks together. In normal
+vim there is no such thing(Not sure), so if we want to comment multiple lines
+we have to go through each lines.&lt;/p&gt;
+&lt;p&gt;This plugin make it handy, so you only need to select the code block using
+mouse or keyboard ( Vim visual mode) and type the following command to comment
+it out.&lt;/p&gt;
+&lt;p&gt;Comment entire selected code block : &lt;tt class="docutils literal"&gt;&amp;lt;leader&amp;gt;cc,&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Toggle the commented state : &lt;tt class="docutils literal"&gt;&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;span id="rope"&gt;&lt;/span&gt;&lt;h3&gt;8. Rope&lt;/h3&gt;
+&lt;p&gt;Rope is specially for python project navigation. Most of the IDE's have this
+support to see the definition of a function or class by clicking on it(or
+via shortcut key).&lt;/p&gt;
+&lt;p&gt;By default, if we open a python project it won't have support for this
+feature. When we trying to use this feature first time, the Rope prompt use to
+create a ropeproject under our directory. This is just a simple settings file
+under our project folder to specify different settings and path information.&lt;/p&gt;
+&lt;p&gt;The Plugin help us to create it easily, after that we can use this plugin to
+view definition of all function or classes comes under the rope project path.&lt;/p&gt;
+&lt;p&gt;In my Vim I mapped the &lt;strong&gt;&amp;lt;leader&amp;gt;j&lt;/strong&gt; to :RopeGotoDefinition. For eg.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Keep your cursor on top of the &lt;cite&gt;os&lt;/cite&gt; and press the &amp;lt;leader&amp;gt;j or
+:RopeGotoDefinition, Vim will open the os file from the system path and open it
+for you in the current Vim session as another buffer. Similarly we can go to
+definition of any python entity defined under the Rope path.&lt;/p&gt;
+&lt;p&gt;This also required one to meet the modern IDE feature list. :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tagbar-class-browser"&gt;
+&lt;span id="tagbar"&gt;&lt;/span&gt;&lt;h3&gt;9. Tagbar (Class Browser)&lt;/h3&gt;
+&lt;p&gt;This plugin is similar to the NerdTree, but instead of listing project
+directory structure it list the objects and functions inside a file. Like Class
+browser in other IDE's.&lt;/p&gt;
+&lt;img alt="/images/tagbar.jpg" src="/images/tagbar.jpg" style="width: 100%;" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="simple-pairs"&gt;
+&lt;span id="simplepairs"&gt;&lt;/span&gt;&lt;h3&gt;10. Simple Pairs.&lt;/h3&gt;
+&lt;p&gt;This is a simple plugin to auto complete single quote, double quote,
+parentheses. This is very handy to save some key press.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;span id="others"&gt;&lt;/span&gt;&lt;h3&gt;Others&lt;/h3&gt;
+&lt;p&gt;This is not the plugins, but exploring already available features in build with
+the Vim.You can consider me as beginner in the area :). If you are looking for
+learning the more details of the Vim editor, you don't need to search in
+google, you can find it out under its documentation itself.&lt;/p&gt;
+&lt;p&gt;To see the all documentation type &lt;cite&gt;ESC + :help&lt;/cite&gt;. The documentation is very
+huge, so Vim provides search option across all its documentation. To see
+a documentation about a topic, type &lt;cite&gt;ESC + :help &amp;lt;topic&amp;gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;For eg;&lt;/p&gt;
+&lt;p&gt;To see about the documentation about &lt;em&gt;jumplist&lt;/em&gt; , type : &lt;cite&gt;ESC + :help jumplist&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;I wrote above example, because it is an another interesting feature required
+for modern IDE. The thing is that it was there in build with Vim.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Jumplist&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I found this feature accidently. This is to jump across different files and
+same time we can jump back through all the files we came across.&lt;/p&gt;
+&lt;p&gt;To understand this feature - If we used Rope plugin to see definition of
+a function outside the current file, it will open new buffer in Vim and
+direct us to that file. What if we want to come back to the same location of
+previous file ?. This requires jumpback operation. Press &lt;cite&gt;CTRL + o&lt;/cite&gt;, you can
+see the magic. Press &lt;cite&gt;CTRL + &amp;lt;tab&amp;gt;&lt;/cite&gt; to go forward again.&lt;/p&gt;
+&lt;p&gt;There is much more things are there about jumplist, Vim internally keeps the
+list of our locations across different files. you can see that by
+&lt;cite&gt;:jumps&lt;/cite&gt; command and this list is available different instance of the Vim
+editor.&lt;/p&gt;
+&lt;p&gt;Similar to this, lot of things are out there to learn. This Others section
+is not going to end here :). But for now I'm stopping here.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So the explanation of Vim feature is over for now, lets look at how to setup
+the Vim to get all those above feature, make Vim ready to extend with new
+plugins.&lt;/p&gt;
+&lt;div class="section" id="setup-vim-from-scratch"&gt;
+&lt;h4&gt;Setup Vim from Scratch&lt;/h4&gt;
+&lt;p&gt;These Vim pluins and all are there in my Vim &lt;a class="reference external" href="https://github.com/haridas/Dotfiles/tree/master/vim-files"&gt;github&lt;/a&gt; project. I put all those
+settings and plugins in standard way. So you can extend or remove them when
+ever required.&lt;/p&gt;
+&lt;p&gt;Before doing this, please backup your current Vim settings from your home
+directory.&lt;/p&gt;
+&lt;p&gt;My git has already every vim related files. Only thing required is just clone
+it and do some steps to go ahead with all the features that I discussed above.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;git clone git://github.com/haridas/Dotfiles.git&lt;/span&gt;
+
+&lt;span class="go"&gt;cd Dotfiles&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I kept all the required plugins as git submodules. So we will get the new
+changes from the plugin projects by updating the submodule project.
+While cloning my main repo won't retrieve the submodules or external plugin git
+projects. But we have all the settings and paths in my git projects,
+so we can easily fetch the current stable code from
+all the external projects. To do that, type bellow command,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;git submodules update&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you have all the files required to get start with vim, one more step left
+is link my git files as your vim settings files. To do that just soft link
+the files to git repo files. Here is the steps.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt;ln -s &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim .vim
+&lt;span class="gp"&gt;$&lt;/span&gt;ln -s &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim/vimrc .vimrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thats it, now open your vim, you can see all the features described above are
+available, except command-t. Because it required a compilation. It has been
+implemented in C to improve the speed. The compilation step is very simple.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
+&lt;span class="gp"&gt;$&lt;/span&gt; ruby extconf.rb
+&lt;span class="gp"&gt;$&lt;/span&gt; make
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The make will succeed only when you have gcc and ruby support with vim. To check
+the does ruby support with your vim, open your vim and type,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;:ruby 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If there is no error or Argument Required warning, then you have ruby
+support with your vim. The latest versions of vim has support with major
+dynamic languages like Python, Ruby and others. So that won't give you any head ache.&lt;/p&gt;
+&lt;p&gt;If the dynamic language support is not there with your Vim, then you have to
+install it from your package manager. Just search like this, and install the
+complete Vim package, so that includes support for all dynamic languages).&lt;/p&gt;
+&lt;p&gt;If you are using Debian based system you can follow this command. Other
+platforms has also the same option using their package manager tool.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;apt-cache search python | grep vim&lt;/span&gt;
+&lt;span class="go"&gt;apt-cache search ruby | grep vim&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;From the list install any of the GUI based package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="some-vim-shortcuts"&gt;
+&lt;h4&gt;Some Vim shortcuts&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;In normal mode
+==============
+
+:23,30m200  -- move section of code to another line.
+
+df, (reverse dF,)   -- delete all characters till , one the current line.
+
+I  -- go your cursor to beginning of the line as insert mode.
+
+$   -- in command mode, go to
+
+gg  -- go to beginning of the file
+
+G  -- go to end of the file.
+
+CTRL + o, CTRL + i  -- Jump list back and forward, very useful.
+
+CTRL + h/j/k/l  -- move the control to different split windows and
+MinibuferExplorer.
+
+CTRL + F    -- page down scroll.
+
+CTRL + B    -- page back scroll.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="summary"&gt;
+&lt;h4&gt;Summary&lt;/h4&gt;
+&lt;p&gt;Lastly, I want to say one thing that, all these features and hard work is
+useful to you only when you realize the fact that the Vim basic editing features
+will save lot of your time and increase the productivity. For that you don't
+required above discussed plugin features. The plugins will only reduce some
+keystroke, But it won't turn you to other editor to Vim. Vim default features is
+more than enough to attract you. I hope you understood that feeling.&lt;/p&gt;
+&lt;p&gt;Enjoy the Vim.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </summary></entry></feed>
