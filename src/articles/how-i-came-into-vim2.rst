@@ -425,7 +425,8 @@ folder.
     $pwd
     <path to gitproject>/Dotfiles
 
-    $git submodules update
+    $git submodule init
+    $git submodule update
 
 
 Now you have all the files required to get start with vim, one more step left
