@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2012-08-11T00:00:00+05:30</updated><entry><title>Vim as your IDE</title><link href="//vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>//vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
 based editing. And it focused on how to make it an IDE.&lt;/p&gt;
 &lt;p&gt;Are you very eager to see how to &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt; ?&lt;/p&gt;
-&lt;p&gt;In the first &lt;a class="reference external" href="http://haridas.in/my-vim-story-1.html"&gt;article&lt;/a&gt; I was describing how I came in to Vim editor and its
+&lt;p&gt;In the first &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;article&lt;/a&gt; I was describing how I came in to Vim editor and its
 fundamental difference with other type of editors.
 So on this article I'm trying to explain how to setup Vim as a common IDE for
 different programming languages. I'm basically a Python

@@ -19,7 +19,7 @@ are applicable to other programming languages also. Vim has bunch of plugins
 and other supports available for all programming languages. 
 So no wary regarding that.
 
-.. _article: http://haridas.in/my-vim-story-1.html 
+.. _article: http://haridas.in/how-i-came-in-to-vim.html
 
 Lets change the Vim as a simple powerful editor to an IDE with Vim special
 capabilities.The default Vim installed on most of the Gnu/Linux destros are more than
