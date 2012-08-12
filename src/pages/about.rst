@@ -2,10 +2,13 @@ About Me
 ########
 :date: 2010-09-22 12:17
 
-I'm **Haridas N** form India *(Kerala)*. I'm a Programmer, Ployglot and hacker.
+I'm **Haridas N** from India_ (Kerala_). I'm a Programmer, Polyglot and hacker.
 I love to learn new things related to computer, Science, Business etc.
 This is my personal blog to keep track of my work.
 I hope some of this would be helpful to you.
+
+.. _India: http://en.wikipedia.org/wiki/India
+.. _Kerala: http://en.wikipedia.org/wiki/Kerala
 
 Please send me a mail for any other information.
 
