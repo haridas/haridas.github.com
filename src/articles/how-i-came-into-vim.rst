@@ -113,6 +113,10 @@ setup the Vim to make it suitable for all type of programmers.
 
 Till then... Bye :)
 
+EDIT:
+
+Finished the second part of my Vim blog - `How to setup Vim as your IDE 
+<http://haridas.in/vim-as-your-ide.html>`_
 
 .. _@Satyajit Ranjeev: http://twitter.com/satyajitranjeev
 .. _Eclipse: http://www.viplugin.com/viplugin/
