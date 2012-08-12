@@ -143,7 +143,7 @@ I explained this in the setup section.
 
 Once we enabled this plugin you can see the search list using your 
 `<leader> + t`. I'm using my leader key as **,**, so for me it looks like `,t`
-(comma + t). Normally the leader key is '\'. You can change this in .vimrc
+(comma + t). Normally the leader key is "\\". You can change this in .vimrc
 file.
 
 Actually the leader key provides a extension to use all the keys in the 

@@ -106,7 +106,7 @@ I explained this in the setup section.&lt;/p&gt;
 &lt;img alt="images/command-t.jpg" src="images/command-t.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Once we enabled this plugin you can see the search list using your
 &lt;cite&gt;&amp;lt;leader&amp;gt; + t&lt;/cite&gt;. I'm using my leader key as &lt;strong&gt;,&lt;/strong&gt;, so for me it looks like &lt;cite&gt;,t&lt;/cite&gt;
-(comma + t). Normally the leader key is ''. You can change this in .vimrc
+(comma + t). Normally the leader key is &amp;quot;\&amp;quot;. You can change this in .vimrc
 file.&lt;/p&gt;
 &lt;p&gt;Actually the leader key provides a extension to use all the keys in the
 keyboard as your own shortcuts. This leader key is activated in the normal mode of the
