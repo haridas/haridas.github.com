@@ -28,7 +28,7 @@ handy tools to do your work more quickly then you need to install some Vim plugi
 good looking font's, color themes etc.
 
 The Gnu/Linux Console based Vim has some limitation to show good font's and
-colors. So you have to using GTK version of the Vim(Gvim). Gvim gives you all
+colors. So you have to use GTK version of the Vim(Gvim). Gvim gives you all
 the super looking features to your Vim. Just take a look
 at my konsole based Vim and Gvim screen shots.
 
