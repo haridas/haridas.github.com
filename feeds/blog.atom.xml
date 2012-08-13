@@ -9,7 +9,7 @@ different programming languages. I'm basically a Python
 guy because of that this article is a little Python oriented. But most of them
 are applicable to other programming languages also. Vim has bunch of plugins
 and other supports available for all programming languages.
-So no wary regarding that.&lt;/p&gt;
+So no worry regarding that.&lt;/p&gt;
 &lt;p&gt;Lets change the Vim as a simple powerful editor to an IDE with Vim special
 capabilities.The default Vim installed on most of the Gnu/Linux destros are more than
 enough to do our work. But if you want more eye catchy look and feel and some
@@ -101,7 +101,7 @@ window. Press &lt;cite&gt;s&lt;/cite&gt; to show this in horizontal split window
 &lt;span id="command-t"&gt;&lt;/span&gt;&lt;h2&gt;2. Command-t (File Search)&lt;/h2&gt;
 &lt;p&gt;Very awesome plugin for vim. Which help us to search the files very quickly.
 Actually to get better speed it was implemented in C. To install this plugin
-you need one extra compilation of this plugin because of C code. Don't wary
+you need one extra compilation of this plugin because of C code. Don't worry
 I explained this in the setup section.&lt;/p&gt;
 &lt;img alt="images/command-t.jpg" src="images/command-t.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Once we enabled this plugin you can see the search list using your

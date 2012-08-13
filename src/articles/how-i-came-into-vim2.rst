@@ -17,7 +17,7 @@ different programming languages. I'm basically a Python
 guy because of that this article is a little Python oriented. But most of them 
 are applicable to other programming languages also. Vim has bunch of plugins 
 and other supports available for all programming languages. 
-So no wary regarding that.
+So no worry regarding that.
 
 .. _article: http://haridas.in/how-i-came-in-to-vim.html
 
@@ -135,7 +135,7 @@ Back to `Topics`_
 
 Very awesome plugin for vim. Which help us to search the files very quickly.
 Actually to get better speed it was implemented in C. To install this plugin
-you need one extra compilation of this plugin because of C code. Don't wary
+you need one extra compilation of this plugin because of C code. Don't worry 
 I explained this in the setup section. 
 
 .. image:: images/command-t.jpg
