@@ -4,16 +4,17 @@ Wordpress blog migrated to Pelican
 :category: blog
 :date: 2012-05-07 13:33
 
-Initially this blog was a wordpress blog. As you know the reasons for
-that. Wordpress is the most successful and feature rich blogging engine. So
-I chose it without any doubt. I didn't even search for a python alternative blog
+
+Initially this blog was a wordpress blog. And you know the reasons for
+that. Wordpress is the most successful and feature rich blog engine. So
+I chose it without thinking twice, I didn't even search for a python alternative blog
 engine at that time. But after a while I felt the dificulties while adding some
 changes to the wordpress code, bugs with the wordpress plugins and more
 importantly the Web UI is very annoying while typing new contents.
 
 
 If we are considering the technical points, wordpress is a dynamic blog engine,
-it is an over killing for blogs and other wiki based sites. Main issue is with speed of 
+it is an overkil for blogs and other wiki based sites. Main issue is the speed of 
 page rendering.The static pages are way faster compared to the dynamic contents. I know
 wordpress has caching plugins to make the static pages out of dynamic one but
 that are not a very reliable solution.
@@ -30,8 +31,8 @@ Advantages of static site generators over Dynamic blog engines
 
 3. Use your favourite Text editors for blog posting. I use VIM :).
 
-4. It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type 
-   the post in normal text with simple formating. So don't worry about the
+4. It uses Markdown and Restructured Text Syntaxes for blog entry. So we just need to type 
+   the post in normal text with simple formating. So don't need to worry about the
    html formatting while typing the content.
 
 5. Host it on Github,  and very easy version control and site backup.
@@ -48,11 +49,11 @@ and finally chose `Pelican`_ a Python based static site generator.
 ---------
 
 Jekyll is a Ruby based system developed at github.com and it is very commonly
-used in the Ruby world. I tried to use it because of its native github
+used in Ruby world. I tried to use it because of its native github
 support, but finally realized that we can do the same thing with other site
 generators. And other problems I found with Jekyll was, 
 
-- Its structure is difficult  compared to other site generators.
+- Its structure is difficult compared to other site generators.
 - It's a Ruby based one, I'm more comfortable with Python.
 
 
