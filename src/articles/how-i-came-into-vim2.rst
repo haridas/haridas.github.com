@@ -52,7 +52,7 @@ Gvim
 
 
 I configured my Vim with set of Vim plugins,color schemes and other settings 
-to make it more productive. Bellow I'm explaining all of them, and how to use 
+to make it more productive. below I'm explaining all of them, and how to use 
 my github vim settings available to all of you, so that finally you will get 
 all of theses extra addition to your vim.
 
@@ -86,7 +86,7 @@ A Side Note
     in it. Now I don't required key board arrow keys any more even in Vim 
     editing mode.
 
-    If you want to change this behaviour, just remove bellow sections from my
+    If you want to change this behaviour, just remove below sections from my
     .vimrc file.
 
     .. image:: /images/vimrc1.jpg
@@ -113,7 +113,7 @@ tabs in other IDE context.
 
 But most of the time we only required one vim tab and set of opened
 buffers(files.). MinibuferExplorar help you to see those opened buffers as
-a virtual tabs. See the bellow screen. 
+a virtual tabs. See the below screen. 
 
 .. image:: /images/minibufexplorer.jpg
     :height: 356px
@@ -246,7 +246,7 @@ Back to `Topics`_
 
 This will display your project directory structure in tree format.It provides
 lot of shortcuts to navigate through the source tree easily.This is another
-common thing required for an IDE. Check the bellow image to see how it looks
+common thing required for an IDE. Check the below image to see how it looks
 like.
 
 Shortcuts - I mapped the following keys in .vimrc file to show and hide the 
@@ -417,7 +417,7 @@ changes from the plugin projects by updating the submodule project.
 While cloning my main repo won't retrieve the submodules or external plugin git 
 projects. But we have all the settings and paths in my git projects,
 so we can easily fetch the current stable code from
-all the external projects. To do that, type bellow command inside Dotfiles
+all the external projects. To do that, type below command inside Dotfiles
 folder.
 
 .. code-block:: console
