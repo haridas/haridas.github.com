@@ -51,10 +51,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././how-to-put-encrypted-contents-on-cloud-storages.html">How to put Encrypted Contents on Cloud Storages</a></h1> 
+                    <h1 class="entry-title"><a href=".././vim-as-your-ide.html">Vim as your IDE</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-08-16T22:18:51.669456">
-                Thu 16 August 2012
+        <abbr class="published" title="2012-08-11T00:00:00">
+                Sat 11 August 2012
         </abbr>
 
         
@@ -63,97 +63,378 @@
         </address>
         
 <p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/security.html">security</a><a href=".././tag/server.html">server</a></p>
 
 
-</footer><!-- /.post-info --><p>There is a plenty of cloud storage services out there for free.
-It's very convenient and flexible that we can sync our local files with
-remote storage. For simple and non-sensitive contents this  is very useful.
-But we know that the contents on the net are being open. There is a chance for
-those contents will get read by others.</p>
-<p>I use Dropbox with my Debian machine to sync my local documents.
-But I'm worried about putting some of my documents on the cloud after
-knowing that there is a chance of breach. Because of that I avoided putting
-those contents on my cloud storage. Later I figured out that we can
-put an encrypted contents. I tried to use GPG and other methods to encrypt
-the contents and putting them on cloud. But those are all requires lot of work to
-push contents each time. GPG mainly used for transferring encrypted contents
-between sender and receiver, so that is not the good solution. We required
-a method to add the encrypted documents only to our cloud storage and the same
-time we want to access the actual copy of the document on our machine.</p>
-<p>Then I saw options for the ecrypted file systems like <strong>ecryptfs</strong>,
-<strong>encfs</strong> are available under Linux file systems. Which provide
-good flexibility that I required, and it only required pain of one time setup.</p>
-<p><em>encfs</em> is a User space filesystem, but the <em>ecryptfs</em> is working in the kernel space,
-because of that ecryptfs is little difficult to setup. But ecryptfs is faster
-and more secure than the encfs. Both of them using a passphrase as the initial
-key to do all the encryption and decryption, we can keep this
-passphrase with other file systems or even in external storage device, This is like
-normal password required to initiate the encryption or decryption.</p>
-<p>Here I'm explaining how to use the ecryptfs,</p>
-<p>First install the packages required,</p>
-<p>From root user follow these commands.</p>
-<div class="highlight"><pre><span class="gp">#</span>apt-get install ecryptfs-utils
-<span class="gp">#</span>modprobe cryptfs
+
+</footer><!-- /.post-info --><p>To follow this article you required basic idea of how to use Vim and its command
+based editing. And it focused on how to make it an IDE.</p>
+<p>Are you very eager to see how to <a class="reference internal" href="#setup-vim-from-scratch">Setup Vim from Scratch</a> ?</p>
+<p>In the first <a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html">article</a> I was describing how I came in to Vim editor and its
+fundamental difference with other type of editors.
+So on this article I'm trying to explain how to setup Vim as a common IDE for
+different programming languages. I'm basically a Python
+guy because of that this article is a little Python oriented. But most of them
+are applicable to other programming languages also. Vim has bunch of plugins
+and other supports available for all programming languages.
+So no worry regarding that.</p>
+<p>Lets change the Vim as a simple powerful editor to an IDE with Vim special
+capabilities.The default Vim installed on most of the Gnu/Linux destros are more than
+enough to do our work. But if you want more eye catchy look and feel and some
+handy tools to do your work more quickly then you need to install some Vim plugins,
+good looking font's, color themes etc.</p>
+<p>The Gnu/Linux Console based Vim has some limitation to show good font's and
+colors. So you have to use GTK version of the Vim(Gvim). Gvim gives you all
+the super looking features to your Vim. Just take a look
+at my konsole based Vim and Gvim screen shots.</p>
+<div class="section" id="vim-on-kde-konsole">
+<h2>Vim on KDE Konsole</h2>
+<img alt="vim-on-console" class="align-left" src="../static/images/vim-console.jpg" style="width: 768px; height: 400px;" />
+</div>
+<div class="section" id="gvim">
+<h2>Gvim</h2>
+<img alt="Gvim image" class="align-left" src="../static/images/gvim.jpg" style="width: 768px; height: 400px;" />
+<p>I configured my Vim with set of Vim plugins,color schemes and other settings
+to make it more productive. below I'm explaining all of them, and how to use
+my github vim settings available to all of you, so that finally you will get
+all of theses extra addition to your vim.</p>
+<hr class="docutils" />
+<div class="section" id="topics">
+<h3>Topics</h3>
+<ul>
+<li><dl class="first docutils">
+<dt>Plugins</dt>
+<dd><ol class="first last arabic simple">
+<li><a class="reference internal" href="#minibuferexplorer">MinibuferExplorer</a>.</li>
+<li><a class="reference internal" href="#command-t">Command-t</a>.</li>
+<li><a class="reference internal" href="#syntastic">Syntastic</a>.</li>
+<li><a class="reference internal" href="#snipmate">Snipmate</a>.</li>
+<li><a class="reference internal" href="#fugitive">Fugitive</a>.</li>
+<li><a class="reference internal" href="#nerdtree">NerdTree</a>.</li>
+<li><a class="reference internal" href="#nerdcommenter">Nerdcommenter</a>.</li>
+<li><a class="reference internal" href="#rope">Rope</a>.</li>
+<li><a class="reference internal" href="#tagbar">Tagbar</a>.</li>
+<li><a class="reference internal" href="#simplepairs">SimplePairs</a>.</li>
+<li><a class="reference internal" href="#others">Others</a>.</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p class="first"><a class="reference internal" href="#setup-vim-from-scratch">Setup Vim from Scratch</a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="#some-vim-shortcuts">Some Vim Shortcuts</a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="#summary">Summary</a></p>
+</li>
+</ul>
+<hr class="docutils" />
+<p>A Side Note</p>
+<blockquote>
+<p>In my .vimrc file, I disabled the use of arrow keys in the Vim command mode.
+So that was force me to learn the Vim clasic hjkl arrow keys and I succed
+in it. Now I don't required key board arrow keys any more even in Vim
+editing mode.</p>
+<p>If you want to change this behaviour, just remove below sections from my
+.vimrc file.</p>
+<img alt="/images/vimrc1.jpg" src="../static/images/vimrc1.jpg" />
+<p>Similarly, you can just go through my .vimrc file to see other options,
+I tried to document my .vimrc file as much as possible. You can play
+around with it to make it suitable for you.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="minibuferexplorer-file-tabs">
+<span id="minibuferexplorer"></span><h2>1. MinibuferExplorer (File Tabs)</h2>
+<p>This is like Tabs in other IDE's. We can see the opened files in vim using this
+plugin. By default, we have to use <cite>:ls</cite> to see opened buffers. So this
+plugin makes it very convenient to see the opened files as tabs.</p>
+<p>Vim has slightly different concept regarding the Tabs, compared to other IDE's.
+Vim has support for tabs by default. That tab is different from the normal
+IDE's Tabs. Actually the difference is that the vim tabs are
+a collection of opened buffers(or files.). So we can consider it as group of
+tabs in other IDE context.</p>
+<p>But most of the time we only required one vim tab and set of opened
+buffers(files.). MinibuferExplorar help you to see those opened buffers as
+a virtual tabs. See the below screen.</p>
+<img alt="/images/minibufexplorer.jpg" src="../static/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" />
+<p>You can use <cite>CTRL + h/j/k/l</cite> or <cite>CTRL + w</cite> to navigate around the different
+split windows and the mini buffer Explorer. Try out that right away. To open
+a hidden buffer in vertical split, just go in to the MinibuferExplorer and
+choose corresponding file buffer(You can use normal <cite>hj</cite> keys to move through
+different tabs ) and press <cite>v</cite>, to open it in vertical split
+window. Press <cite>s</cite> to show this in horizontal split window.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="command-t-file-search">
+<span id="command-t"></span><h2>2. Command-t (File Search)</h2>
+<p>Very awesome plugin for vim. Which help us to search the files very quickly.
+Actually to get better speed it was implemented in C. To install this plugin
+you need one extra compilation of this plugin because of C code. Don't worry
+I explained this in the setup section.</p>
+<img alt="images/command-t.jpg" src="../static/images/command-t.jpg" style="width: 100%;" />
+<p>Once we enabled this plugin you can see the search list using your
+<cite>&lt;leader&gt; + t</cite>. I'm using my leader key as <strong>,</strong>, so for me it looks like <cite>,t</cite>
+(comma + t). Normally the leader key is &quot;\&quot;. You can change this in .vimrc
+file.</p>
+<p>Actually the leader key provides a extension to use all the keys in the
+keyboard as your own shortcuts. This leader key is activated in the normal mode of the
+vim.</p>
+<p>Command-t also list the all opened buffers by <cite>,b</cite>, and it also list the vim
+jump list.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="syntastic-syntax-checker">
+<span id="syntastic"></span><h2>3. Syntastic (Syntax Checker)</h2>
+<p>Another very useful plugin for all types of programming languages.
+This plugin will help you to keep the syntax of the program correct,
+like auto correct in other IDE's. This package is general one,
+and we can expand very easily. By default it support lot of programming
+languages. So this plugin is a must one for Vim.</p>
+<p>For example, if your are editing an RST file (All my blog posts are in
+reStructured Text format), if we made some syntax errors and when we
+trying to save, the syntastic plugin show you the
+location of the error and its reason very neatly.</p>
+<p>Take a look at the portion of rst file of this blog post. I made a syntax error
+with image tag,</p>
+<img alt="/images/syntastic.jpg" src="../static/images/syntastic.jpg" style="width: 100%;" />
+<p>Similarly synstastic help you to follow a standard coding methods defined by the
+programming communities. for eg; Python code has PEP8 standard, so while
+writing python code, if you are not following it, synstastic will show you the
+problem. After a while you will learn the PEP8 without an extra work :).</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="snipmate-code-templates">
+<span id="snipmate"></span><h2>4. Snipmate (Code Templates)</h2>
+<p>A simple way to avoid typing some repetitive sequence of words. For example, in
+python, we initialize a class by typing <cite>class</cite> keyword, name, etc... Instead
+of doing all those drama, we can just populate the default set of class
+structure from snipmate, by typing <strong>cl</strong> &lt;tab&gt;. Try out by opening a python
+test file.</p>
+<p>The snimpate plugin provide lot of such shortcuts for different programming
+languages. We can also define our own snippets. For web developers this is very
+useful to create &lt;table&gt;, &lt;div&gt; tag completions.</p>
+<div class="highlight"><pre>vim test.py
 </pre></div>
-<p>I'm using Dropbox as my cloud storage. So inside your drobox folder just create
-one folder named Encrypted.</p>
-<div class="highlight"><pre><span class="gp">$</span> mkdir ~/Dropbox/Encrypted
-<span class="gp">$</span> mkdir ~/SecureDropbox
+<div class="highlight"><pre><span class="c">#!/bin/python</span>
+<span class="n">cl</span>
 </pre></div>
-<p>We are going to keep our documents under the ~/SecureDropbox folder, and the
-ecryptfs will generate the corresponding encrypted files on the
-~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.</p>
-<p>Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
-file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
-point where we can see the actual content of the files, we require the proper
-passphrase to mount the encrypted file system to local folder.This mounting and
-creation of the encrypted file system is explained bellow.</p>
-<p>To mount the encrypted device to the mount point, use the normal mount command
-with ecryptfs as its filesystem. This step ask for set of questions.</p>
-<div class="highlight"><pre><span class="c"># Mount command requires root privilage.</span>
-mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+<p>After tying <cite>cl</cite> press tab and see the magic of full class template.
+similarly you can define your own snipmate. for eg;
+<cite>for</cite> &lt;tab&gt; to expand the <cite>for</cite> statement completely for you language.</p>
+<p>You can see all the snipmate files inside this plugin folder, like
+python.snipmate, ruby.snipmate etc.. The syntax of defining new snipmate for
+your language is pretty interesting.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="fugitive-git">
+<span id="fugitive"></span><h2>5. Fugitive (Git)</h2>
+<p>This is for git repo management inside vim itself. It provide set of short
+commands, that we can directly typed in the vim command mode to see and do the
+git related operations. We don't need to go outside the editing environment to
+manage those stuffs.</p>
+<p>Also it have very nice git diff view inside vim itself, good looking and nice
+to use.</p>
+<p>To see all available git commands under this plugin just type
+<cite>:G&lt;tab&gt;</cite>.Provided you are been inside a git repository.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="nerdtree-file-browser">
+<span id="nerdtree"></span><h2>6. NerdTree (File Browser)</h2>
+<p>This will display your project directory structure in tree format.It provides
+lot of shortcuts to navigate through the source tree easily.This is another
+common thing required for an IDE. Check the below image to see how it looks
+like.</p>
+<p>Shortcuts - I mapped the following keys in .vimrc file to show and hide the
+nerdtree when ever required. My .vimrc file has this settings.
+You can map this to your own choice.</p>
+<img alt="/images/nerd_tree.jpg" src="../static/images/nerd_tree.jpg" />
+<p>To open and close the nerdtree press <em>CTRL + n</em>.</p>
+<p>Also you can see other available commands for this plugin by typing,</p>
+<p><tt class="docutils literal">ESC + :NERD &lt;tab&gt;</tt></p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="nerdcommenter-commenting">
+<span id="nerdcommenter"></span><h2>7. NerdCommenter (Commenting)</h2>
+<p>This plugin is only to comment the multi line code blocks together. In normal
+vim there is no such thing(Not sure), so if we want to comment multiple lines
+we have to go through each lines.</p>
+<p>This plugin make it handy, so you only need to select the code block using
+mouse or keyboard ( Vim visual mode) and type the following command to comment
+it out.</p>
+<p>Comment entire selected code block : <tt class="docutils literal">&lt;leader&gt;cc,</tt></p>
+<p>Toggle the commented state : <tt class="docutils literal">&lt;leader&gt;c&lt;space&gt;</tt></p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="id1">
+<span id="rope"></span><h2>8. Rope</h2>
+<p>Rope is specially for python project navigation. Most of the IDE's have this
+support to see the definition of a function or class by clicking on it(or
+via shortcut key).</p>
+<p>By default, if we open a python project in Vim it won't have support for this
+feature. When we trying to use this feature first time, the Rope prompt use to
+create a ropeproject under our directory. This is just a simple settings file
+under our project folder to specify different settings and path information.</p>
+<p>The Plugin help us to create it easily, after that we can use this plugin to
+view definition of all function or classes comes under the rope project path.</p>
+<p>In my Vim I mapped the <strong>&lt;leader&gt;j</strong> to :RopeGotoDefinition. For eg.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 </pre></div>
-<p>Check this console page to see the complete list of commands required to finish
-the mounting operation.</p>
-<img alt="/images/encryption-3.jpg" src="../static/images/encryption-3.jpg" />
-<p>Now check the filesystem to see whether the encrypted filesystem got mounted
-to the mount point, use df command.</p>
-<div class="highlight"><pre><span class="gp">#</span> df -h
+<p>Keep your cursor on top of the <cite>os</cite> and press the &lt;leader&gt;j or type
+:RopeGotoDefinition, Vim will open the os file from the system path
+into your the current Vim session as another buffer. Similarly we can go to
+definition of any python entity comes under the Rope path settings.</p>
+<p>This plugin also required to meet the modern IDE feature list. :)</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="tagbar-class-browser">
+<span id="tagbar"></span><h2>9. Tagbar (Class Browser)</h2>
+<p>This plugin is similar to the NerdTree, but instead of listing project
+directory structure it list the objects and functions inside a file. Like Class
+browser in other IDE's.</p>
+<img alt="/images/tagbar.jpg" src="../static/images/tagbar.jpg" style="width: 100%;" />
+<p>I mapped <cite>&lt;leader&gt;l</cite> to open tagbar and same combination to close it also.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="simple-pairs">
+<span id="simplepairs"></span><h2>10. Simple Pairs.</h2>
+<p>This is a simple plugin to auto complete single quote, double quote,
+parentheses. This is very handy to save some key press.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="id2">
+<span id="others"></span><h2>Others</h2>
+<p>This section is not to discus about plugin, but exploring already available
+features build in with the Vim.You can consider me as beginner in that area :).
+If you are looking for learning more advanced details of the Vim editor,
+you don't need to search in google, you can find it out under its documentation
+itself.</p>
+<p>To see the all documentation type <cite>ESC + :help</cite>. The documentation is very
+huge, so Vim provides search option across all its documentation. To see
+a documentation about a topic, type <cite>ESC + :help &lt;topic&gt;</cite></p>
+<p>For eg;</p>
+<p>To see about the documentation about <em>jumps</em> , type : <cite>ESC + :help jumps</cite></p>
+<p>I wrote above example, because it is an another interesting feature required
+for modern IDE. The thing is that it was build in with Vim.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Jump List</strong></p>
+<p>I found this feature accidently. This is to jump across different files and
+same time option for jump back through all the files we came across.</p>
+<p>To understand this feature - If we used Rope plugin to see definition of
+a function outside the current file, it will open new buffer in Vim and
+direct us to that file. What if we want to come back to the same location of
+previous file ?. This requires jump back operation. Press <cite>CTRL + o</cite>, you can
+see the magic. Press <cite>CTRL + &lt;tab&gt;</cite> to go forward again.</p>
+<p>There is much more things are there about jumplist, Vim internally keeps the
+list of our locations across different files. you can see that by typing
+<cite>:jumps</cite> command and this list is available different instance of the Vim
+editor.</p>
+<p>Similar to this, lot of things are out there to learn. This Others section
+is not going to end here :). But for now I'm stopping here.</p>
+</li>
+</ol>
+<p>So the explanation of Vim feature is over for now, lets look at how to setup
+the Vim to get all those above features, make Vim ready to extend with new
+plugins.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+<div class="section" id="setup-vim-from-scratch">
+<h3>Setup Vim from Scratch</h3>
+<p>These Vim pluins and all are there in my Vim <a class="reference external" href="https://github.com/haridas/Dotfiles/tree/master/vim-files">github</a> project. I put all those
+settings and plugins in standard way. So you can extend or remove them when
+ever required.</p>
+<p>Before doing this, please backup your current Vim settings from your home
+directory.</p>
+<p>My git has already every vim related files. Only thing required is just clone
+it and do some steps to go ahead with all the features that I discussed above.</p>
+<div class="highlight"><pre><span class="gp">$</span>git clone git://github.com/haridas/Dotfiles.git
+
+<span class="gp">$</span><span class="nb">cd </span>Dotfiles
 </pre></div>
-<p>So if there is no error, you can now check for the file encryption by directly
-adding one text file in to <cite>/home/haridas/SecureDropbox</cite>, immediately you can see
-the encrypted file with the same name under <cite>/home/haridas/Dropbox/Encrypted</cite>.
-Try out this.</p>
-<p>So we are done with the keeping only the encrypted files under Dropbox folder.
-So don't need to worry about the sensitive documents. But one thing is that in
-order to decrypt the files from other machines, you required the passphrase and
-other machines should support the ecryptfs. You can't us mobile
-devices to view the encrypted content.</p>
-<p>We need to mount the ecryptefs filesystem in the boot time to avoid that step
-every time. That requires passphrase, and set of other configurations, that was
-done while mounting the file system initially. We can pass this automatically by
-putting it in a <cite>.ecryptfsrc</cite> file under root home directory. So at boot time
-we can see system can read it.</p>
-<p>The <cite>/root/.ecryptfsrc</cite> file should have the following lines</p>
-<div class="highlight"><pre>key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
-ecryptfs_sig=b2f118ee01beb78b
-ecryptfs_cipher=aes
-ecryptfs_key_bytes=32
-ecryptfs_passthrough=n
-ecryptfs_enable_filename_crypto=n
+<p>I kept all the required plugins as git submodules. So we will get the new
+changes from the plugin projects by updating the submodule project.
+While cloning my main repo won't retrieve the submodules or external plugin git
+projects. But we have all the settings and paths in my git projects,
+so we can easily fetch the current stable code from
+all the external projects. To do that, type below command inside Dotfiles
+folder.</p>
+<div class="highlight"><pre><span class="gp">$</span><span class="nb">pwd</span>
+<span class="go">&lt;path to gitproject&gt;/Dotfiles</span>
+
+<span class="gp">$</span>git submodule init
+<span class="gp">$</span>git submodule update
 </pre></div>
-<p>After creating /root/.ecryptfsrc file, add the following line to <cite>/etc/fstab</cite>
-to automount at boot time.</p>
-<div class="highlight"><pre><span class="sr">/home/</span>haridas<span class="sr">/Dropbox/</span>Encrypted <span class="sr">/home/</span>haridas/SecureDropbox  ecryptfs
-defaults <span class="m">0</span> <span class="m">0</span>
+<p>Now you have all the files required to get start with vim, one more step left
+is link my git files as your vim settings files. To do that just soft link
+the files to git repo files. Here is the steps.</p>
+<div class="highlight"><pre><span class="gp">$</span><span class="nb">cd</span>
+<span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim .vim
+<span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim/vimrc .vimrc
 </pre></div>
-<p>The passphrase is the important thing that you have to keep in your machine or
-with external disk. Make sure that the passphrase is available to the system
-when you are trying to mount it in the booting time itself.</p>
-<p>Keep the passphrase safe !. Which determines the strength of your encryption.</p>
-<p>Enjoy.</p>
-<p>There are <a href=".././how-to-put-encrypted-contents-on-cloud-storages.html#disqus_thread">comments</a>.</p>
+<p>Thats it, now open your vim, you can see all the features described above are
+available, except command-t. Because it required a compilation. It has been
+implemented in C to improve the speed. The compilation step is very simple.</p>
+<div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;path-to&gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
+<span class="gp">$</span> ruby extconf.rb
+<span class="gp">$</span> make
+</pre></div>
+<p>The make will succeed only when you have gcc and ruby support with vim. To check
+the vim has ruby support, open your vim and type,</p>
+<div class="highlight"><pre><span class="p">:</span><span class="k">ruby</span> <span class="m">1</span>
+</pre></div>
+<p>If there is no error then you have ruby
+support with your vim. The latest versions of vim has support with major
+dynamic languages like Python, Ruby and others. So that won't give you any head ache.</p>
+<p>If the dynamic language support is not there with your Vim, then you have to
+install complete vim from your package manager.</p>
+<p>If you are using Debian based system you can follow this command. Other
+platforms has also the same option using their package manager tool.</p>
+<div class="highlight"><pre><span class="gp">$</span>apt-cache search python | grep vim
+<span class="gp">$</span>apt-cache search ruby | grep vim
+</pre></div>
+<p>From the list install any of the GUI based package.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="some-vim-shortcuts">
+<h3>Some Vim shortcuts</h3>
+<div class="highlight"><pre>In normal mode
+==============
+
+:23,30m200  -- move a section of code to another line.
+
+df, (reverse dF,)   -- delete all characters till , on the current line.
+
+I  -- go to beginning of the line as insert mode.
+
+$   -- in command mode, go to end of the line.
+
+gg  -- go to beginning of the file
+
+G  -- go to end of the file.
+
+CTRL + o, CTRL + i  -- Jumps back and forward, very useful.
+
+CTRL + h/j/k/l  -- move the control to different split windows and
+MinibuferExplorer.
+
+CTRL + F    -- page down scroll.
+
+CTRL + B    -- page back scroll.
+</pre></div>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+<div class="section" id="summary">
+<h3>Summary</h3>
+<p>All these features and hard work to setup Vim is useful to you only when you
+realize the fact that the Vim basic editing features will save lot of your time
+and increase the productivity. For that you don't required above discussed
+plugin features. The plugins will only reduce some
+keystrokes, But it won't turn you from other editors to Vim. Vim default features
+are more than enough to attract you from other editors.
+I hope you understood that feeling. :)</p>
+<p>Enjoy the Vim hacking.</p>
+<p>Back to <a class="reference internal" href="#topics">Topics</a></p>
+</div>
+</div>
+<p>There are <a href=".././vim-as-your-ide.html#disqus_thread">comments</a>.</p>
                 </article>
                 
             </aside><!-- /#featured -->
@@ -173,13 +454,13 @@ when you are trying to mount it in the booting time itself.</p>
             
             <li><article class="hentry">    
                 <header>
-                        <h1><a href=".././vim-as-your-ide.html" rel="bookmark" title="Permalink to Vim as your IDE">Vim as your IDE</a></h1>
+                        <h1><a href=".././how-to-put-encrypted-contents-on-cloud-storages.html" rel="bookmark" title="Permalink to How to put Encrypted Contents on Cloud Storages">How to put Encrypted Contents on Cloud Storages</a></h1>
                 </header>
                 
                 <div class="entry-content">
                 <footer class="post-info">
-        <abbr class="published" title="2012-08-11T00:00:00">
-                Sat 11 August 2012
+        <abbr class="published" title="2012-07-27T00:00:00">
+                Fri 27 July 2012
         </abbr>
 
         
@@ -188,16 +469,16 @@ when you are trying to mount it in the booting time itself.</p>
         </address>
         
 <p>In <a href=".././category/blog.html">blog</a>. </p>
-
+<p>tags: <a href=".././tag/security.html">security</a><a href=".././tag/server.html">server</a></p>
 
 
 </footer><!-- /.post-info -->
-                <p>To follow this article you required basic idea of how to use Vim and its command
-based editing. And it focused on how to make it an IDE.</p>
-<p>Are you very eager to see how to <a class="reference internal" href="#setup-vim-from-scratch">Setup Vim from Scratch</a> ?</p>
-<p>In the first <a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html">article</a> I was describing how I came ...</p>
-                <a class="readmore" href=".././vim-as-your-ide.html">read more</a>
-                <p>There are <a href=".././vim-as-your-ide.html#disqus_thread">comments</a>.</p>
+                <p>There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There ...</p>
+                <a class="readmore" href=".././how-to-put-encrypted-contents-on-cloud-storages.html">read more</a>
+                <p>There are <a href=".././how-to-put-encrypted-contents-on-cloud-storages.html#disqus_thread">comments</a>.</p>
                 </div><!-- /.entry-content -->
             </article></li>
         

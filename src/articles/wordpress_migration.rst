@@ -77,7 +77,7 @@ I hope it will get in to good position very soon.
 After checking different static site generators I was very confused with 
 different types of static site generators that I came across. Finally I got the
 one I'm looking for, Pelican (Another Python based static site generator.). The
-reason for picking Pelican is very simple.
+reason for picking Pelican was very simple.
 
 * Simplicity
 * Good Documentation

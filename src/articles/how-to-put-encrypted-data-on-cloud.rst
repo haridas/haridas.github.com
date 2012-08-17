@@ -2,6 +2,7 @@ How to put Encrypted Contents on Cloud Storages
 ===============================================
 :category: blog
 :tags: security,server
+:date: 27-07-2012
 
 There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with 

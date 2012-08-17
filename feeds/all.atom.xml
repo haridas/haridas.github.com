@@ -1,92 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-08-16T22:18:51+05:30</updated><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-08-16T22:18:51+05:30</updated><author><name>haridas</name></author><id>//how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
-It's very convenient and flexible that we can sync our local files with
-remote storage. For simple and non-sensitive contents this  is very useful.
-But we know that the contents on the net are being open. There is a chance for
-those contents will get read by others.&lt;/p&gt;
-&lt;p&gt;I use Dropbox with my Debian machine to sync my local documents.
-But I'm worried about putting some of my documents on the cloud after
-knowing that there is a chance of breach. Because of that I avoided putting
-those contents on my cloud storage. Later I figured out that we can
-put an encrypted contents. I tried to use GPG and other methods to encrypt
-the contents and putting them on cloud. But those are all requires lot of work to
-push contents each time. GPG mainly used for transferring encrypted contents
-between sender and receiver, so that is not the good solution. We required
-a method to add the encrypted documents only to our cloud storage and the same
-time we want to access the actual copy of the document on our machine.&lt;/p&gt;
-&lt;p&gt;Then I saw options for the ecrypted file systems like &lt;strong&gt;ecryptfs&lt;/strong&gt;,
-&lt;strong&gt;encfs&lt;/strong&gt; are available under Linux file systems. Which provide
-good flexibility that I required, and it only required pain of one time setup.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;encfs&lt;/em&gt; is a User space filesystem, but the &lt;em&gt;ecryptfs&lt;/em&gt; is working in the kernel space,
-because of that ecryptfs is little difficult to setup. But ecryptfs is faster
-and more secure than the encfs. Both of them using a passphrase as the initial
-key to do all the encryption and decryption, we can keep this
-passphrase with other file systems or even in external storage device, This is like
-normal password required to initiate the encryption or decryption.&lt;/p&gt;
-&lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
-&lt;p&gt;First install the packages required,&lt;/p&gt;
-&lt;p&gt;From root user follow these commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
-&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
-one folder named Encrypted.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
-&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
-ecryptfs will generate the corresponding encrypted files on the
-~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.&lt;/p&gt;
-&lt;p&gt;Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
-file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
-point where we can see the actual content of the files, we require the proper
-passphrase to mount the encrypted file system to local folder.This mounting and
-creation of the encrypted file system is explained bellow.&lt;/p&gt;
-&lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
-with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
-mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Check this console page to see the complete list of commands required to finish
-the mounting operation.&lt;/p&gt;
-&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
-&lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
-to the mount point, use df command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So if there is no error, you can now check for the file encryption by directly
-adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
-the encrypted file with the same name under &lt;cite&gt;/home/haridas/Dropbox/Encrypted&lt;/cite&gt;.
-Try out this.&lt;/p&gt;
-&lt;p&gt;So we are done with the keeping only the encrypted files under Dropbox folder.
-So don't need to worry about the sensitive documents. But one thing is that in
-order to decrypt the files from other machines, you required the passphrase and
-other machines should support the ecryptfs. You can't us mobile
-devices to view the encrypted content.&lt;/p&gt;
-&lt;p&gt;We need to mount the ecryptefs filesystem in the boot time to avoid that step
-every time. That requires passphrase, and set of other configurations, that was
-done while mounting the file system initially. We can pass this automatically by
-putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
-we can see system can read it.&lt;/p&gt;
-&lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the following lines&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
-ecryptfs_sig=b2f118ee01beb78b
-ecryptfs_cipher=aes
-ecryptfs_key_bytes=32
-ecryptfs_passthrough=n
-ecryptfs_enable_filename_crypto=n
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
-to automount at boot time.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
-defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
-with external disk. Make sure that the passphrase is available to the system
-when you are trying to mount it in the booting time itself.&lt;/p&gt;
-&lt;p&gt;Keep the passphrase safe !. Which determines the strength of your encryption.&lt;/p&gt;
-&lt;p&gt;Enjoy.&lt;/p&gt;
-</summary><category term="security"></category><category term="server"></category></entry><entry><title>Vim as your IDE</title><link href="//vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>//vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-08-11T00:00:00+05:30</updated><entry><title>Vim as your IDE</title><link href="//vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>//vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
 based editing. And it focused on how to make it an IDE.&lt;/p&gt;
 &lt;p&gt;Are you very eager to see how to &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt; ?&lt;/p&gt;
 &lt;p&gt;In the first &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;article&lt;/a&gt; I was describing how I came in to Vim editor and its
@@ -454,7 +367,94 @@ I hope you understood that feeling. :)&lt;/p&gt;
 &lt;p&gt;Back to &lt;a class="reference internal" href="#topics"&gt;Topics&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>How I came in to Vim</title><link href="//how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>haridas</name></author><id>//how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</summary></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-27T00:00:00+05:30</updated><author><name>haridas</name></author><id>//how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There is a chance for
+those contents will get read by others.&lt;/p&gt;
+&lt;p&gt;I use Dropbox with my Debian machine to sync my local documents.
+But I'm worried about putting some of my documents on the cloud after
+knowing that there is a chance of breach. Because of that I avoided putting
+those contents on my cloud storage. Later I figured out that we can
+put an encrypted contents. I tried to use GPG and other methods to encrypt
+the contents and putting them on cloud. But those are all requires lot of work to
+push contents each time. GPG mainly used for transferring encrypted contents
+between sender and receiver, so that is not the good solution. We required
+a method to add the encrypted documents only to our cloud storage and the same
+time we want to access the actual copy of the document on our machine.&lt;/p&gt;
+&lt;p&gt;Then I saw options for the ecrypted file systems like &lt;strong&gt;ecryptfs&lt;/strong&gt;,
+&lt;strong&gt;encfs&lt;/strong&gt; are available under Linux file systems. Which provide
+good flexibility that I required, and it only required pain of one time setup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;encfs&lt;/em&gt; is a User space filesystem, but the &lt;em&gt;ecryptfs&lt;/em&gt; is working in the kernel space,
+because of that ecryptfs is little difficult to setup. But ecryptfs is faster
+and more secure than the encfs. Both of them using a passphrase as the initial
+key to do all the encryption and decryption, we can keep this
+passphrase with other file systems or even in external storage device, This is like
+normal password required to initiate the encryption or decryption.&lt;/p&gt;
+&lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
+&lt;p&gt;First install the packages required,&lt;/p&gt;
+&lt;p&gt;From root user follow these commands.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
+&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
+one folder named Encrypted.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
+&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
+ecryptfs will generate the corresponding encrypted files on the
+~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.&lt;/p&gt;
+&lt;p&gt;Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
+file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
+point where we can see the actual content of the files, we require the proper
+passphrase to mount the encrypted file system to local folder.This mounting and
+creation of the encrypted file system is explained bellow.&lt;/p&gt;
+&lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
+with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
+mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check this console page to see the complete list of commands required to finish
+the mounting operation.&lt;/p&gt;
+&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
+&lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
+to the mount point, use df command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So if there is no error, you can now check for the file encryption by directly
+adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
+the encrypted file with the same name under &lt;cite&gt;/home/haridas/Dropbox/Encrypted&lt;/cite&gt;.
+Try out this.&lt;/p&gt;
+&lt;p&gt;So we are done with the keeping only the encrypted files under Dropbox folder.
+So don't need to worry about the sensitive documents. But one thing is that in
+order to decrypt the files from other machines, you required the passphrase and
+other machines should support the ecryptfs. You can't us mobile
+devices to view the encrypted content.&lt;/p&gt;
+&lt;p&gt;We need to mount the ecryptefs filesystem in the boot time to avoid that step
+every time. That requires passphrase, and set of other configurations, that was
+done while mounting the file system initially. We can pass this automatically by
+putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
+we can see system can read it.&lt;/p&gt;
+&lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the following lines&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+ecryptfs_sig=b2f118ee01beb78b
+ecryptfs_cipher=aes
+ecryptfs_key_bytes=32
+ecryptfs_passthrough=n
+ecryptfs_enable_filename_crypto=n
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
+to automount at boot time.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
+defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
+with external disk. Make sure that the passphrase is available to the system
+when you are trying to mount it in the booting time itself.&lt;/p&gt;
+&lt;p&gt;Keep the passphrase safe !. Which determines the strength of your encryption.&lt;/p&gt;
+&lt;p&gt;Enjoy.&lt;/p&gt;
+</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="//how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>haridas</name></author><id>//how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -597,7 +597,7 @@ I hope it will get in to good position very soon.&lt;/p&gt;
 &lt;p&gt;After checking different static site generators I was very confused with
 different types of static site generators that I came across. Finally I got the
 one I'm looking for, Pelican (Another Python based static site generator.). The
-reason for picking Pelican is very simple.&lt;/p&gt;
+reason for picking Pelican was very simple.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Simplicity&lt;/li&gt;
 &lt;li&gt;Good Documentation&lt;/li&gt;
