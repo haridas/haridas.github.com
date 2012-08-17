@@ -66,60 +66,65 @@
 <p>tags: <a href=".././tag/wordpress.html">wordpress</a><a href=".././tag/pelican.html">pelican</a><a href=".././tag/python.html">python</a></p>
 
 
-</footer><!-- /.post-info --><p>Initially this blog was a wordpress blog. As you know the reasons for
-that. Wordpress is the most successful and feature rich blogging engine. So
-I chose it without any doubt. I didn't even search for a python alternative blog
-engine at that time. But after a while I felt the dificulties while adding some
+</footer><!-- /.post-info --><p>Initially this blog was running on wordpress, And you know the reasons for
+that. Wordpress is the most successful and feature rich blog engine. So
+I chose it without thinking twice, I didn't even search for a python alternative blog
+engines at that time. But after a while I felt the difficulties while adding some
 changes to the wordpress code, bugs with the wordpress plugins and more
-importantly the Web UI is very annoying while typing new contents.</p>
+importantly the Web based editor is very annoying while typing new contents.</p>
 <p>If we are considering the technical points, wordpress is a dynamic blog engine,
-it is an over killing for blogs and other wiki based sites. Main issue is with speed of
-page rendering.The static pages are way faster compared to the dynamic contents. I know
-wordpress has caching plugins to make the static pages out of dynamic one but
-that are not a very reliable solution.</p>
-<p>Actually above points are all come to my mind after seeing the static site
-generators and their awesome features and flexibility.</p>
-<div class="section" id="advantages-of-static-site-generators-over-dynamic-blog-engines">
-<h2>Advantages of static site generators over Dynamic blog engines</h2>
+it is an overkill for simple blogs and other wiki based sites. Main issue is the speed of
+page rendering.The static pages are way faster than the dynamic pages. I know
+wordpress has caching feature to improve the speed of the page rendering,but it
+is not a simple solution.</p>
+<p>Actually above points are all came to my mind after seeing the static site
+generators and their awesome features.</p>
+<div class="section" id="advantage-of-static-site-generators-over-dynamic-blog-engines">
+<h2>Advantage of static site generators over Dynamic blog engines</h2>
 <ol class="arabic simple">
-<li>Serve html directly, so very fast.</li>
+<li>Serve html files directly, so very fast.</li>
 <li>Easy maintenance of the site, very less pain with server setup.</li>
-<li>Use your favourite Text editors for blog posting. I use VIM :).</li>
-<li>It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type
-the post in normal text with simple formating. So don't worry about the
-html formatting while typing the content.</li>
-<li>Host it on Github,  and very easy version control and site backup.</li>
-<li>Very easy to customize the Themes  or other internals if you want.</li>
+<li>Use your favourite text editor for blog posting. I'm a VIM fan :).</li>
+<li>It uses Markdown or Restructured Text Syntax for blog entry. So we just need to type
+the post in normal text with simple formating. So we don't need to worry about the
+html formatting while typing the content.This feature were attracted me more
+because the wordpress web editor sucks, and here I can use Vim.</li>
+<li>Host it on Github,Bitbucket. The entire blog is a set of text files that
+enables easy version controlling.</li>
+<li>Very easy to customize the Themes  or other internal structure.</li>
 </ol>
-<p>Next step was which static site generator I will choose for my site. There are
-a lot of them were implemented in Python and Ruby. I went through some of them
-and finally chose <a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a> a Python based static site generator.</p>
+<p>Next challenge that I faced was the selection of one static site generator from
+bunch of choice. There are lot of them are implemented in
+Python or Ruby. I was searched for few days to come up with a suitable one.
+Finally I picked up a Python based engine <a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a> as my favorite. It doesn't
+mean that others are bad implementation, but Pelican suits my taste better.</p>
+<p>Here is the list of few major static site generators that I went through as
+part of the selection process.</p>
 </div>
 <div class="section" id="jekyll">
 <h2><a class="reference external" href="http://jekyllrb.com/">Jekyll</a></h2>
 <p>Jekyll is a Ruby based system developed at github.com and it is very commonly
-used in the Ruby world. I tried to use it because of its native github
-support, but finally realized that we can do the same thing with other site
-generators. And other problems I found with Jekyll was,</p>
+used in Ruby world. I tried to use it because of its native github
+support, but finally I realized that we can do the same thing with other site
+generators, And other problems that I found on Jekyll was,</p>
 <ul class="simple">
-<li>Its structure is difficult  compared to other site generators.</li>
+<li>Its structure is difficult compared to other site generators.</li>
 <li>It's a Ruby based one, I'm more comfortable with Python.</li>
 </ul>
 </div>
 <div class="section" id="hyde">
 <h2><a class="reference external" href="http://hyde.github.com">Hyde</a></h2>
-<p>Hyde is a  Python based static site generator like Jekyll and it removes some
-of the difficulties with Jekyll. But it lacks good documentation, and mainly
-a way to migrate from other blog engines like wordpress. I can see
-that the project is evolving lately and got github site for documentation. But
-it only covers the basics right now. I hope it will get good documentation very
-soon.</p>
+<p>Hyde is a  Python based static site generator like Jekyll but less complex.
+But Hyde lacks good documentation, and mainly a way to migrate from other
+blog engines. I can see that the project getting more interest recently.
+I hope it will get in to good position very soon.</p>
 </div>
 <div class="section" id="pelican">
 <h2><a class="reference external" href="http://pelican.notmyidea.org/">Pelican</a></h2>
-<p>When I was very confused with different choices of static site generators, I came across
-Pelican (Another Python based static site generator.). It attracted me quickly
-because of its,</p>
+<p>After checking different static site generators I was very confused with
+different types of static site generators that I came across. Finally I got the
+one I'm looking for, Pelican (Another Python based static site generator.). The
+reason for picking Pelican is very simple.</p>
 <ul class="simple">
 <li>Simplicity</li>
 <li>Good Documentation</li>
@@ -130,7 +135,7 @@ because of its,</p>
 engines.And I liked the way it structured the blog posts and its contents.It
 got clear upper hand over other site generators, I don't need to think twice to
 select it.</p>
-<p>Currently I hosted this site under Github, you can <a class="reference external" href="https://github.com/haridas/haridas.github.com">fork</a> the project and give
+<p>Currently I hosted this site under Github, you can <a class="reference external" href="https://github.com/haridas/haridas.github.com">fork</a> this project and give
 a fresh try to see how quickly you can setup a blog.</p>
 </div>
 <p>There are <a href=".././wordpress-blog-migrated-to-pelican.html#disqus_thread">comments</a>.</p>

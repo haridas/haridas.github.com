@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2012-08-11T00:00:00+05:30</updated><entry><title>Vim as your IDE</title><link href="//vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>//vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="/" rel="alternate"></link><link href="//feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2012-08-16T22:18:51+05:30</updated><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-08-16T22:18:51+05:30</updated><author><name>haridas</name></author><id>//how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There is a chance for
+those contents will get read by others.&lt;/p&gt;
+&lt;p&gt;I use Dropbox with my Debian machine to sync my local documents.
+But I'm worried about putting some of my documents on the cloud after
+knowing that there is a chance of breach. Because of that I avoided putting
+those contents on my cloud storage. Later I figured out that we can
+put an encrypted contents. I tried to use GPG and other methods to encrypt
+the contents and putting them on cloud. But those are all requires lot of work to
+push contents each time. GPG mainly used for transferring encrypted contents
+between sender and receiver, so that is not the good solution. We required
+a method to add the encrypted documents only to our cloud storage and the same
+time we want to access the actual copy of the document on our machine.&lt;/p&gt;
+&lt;p&gt;Then I saw options for the ecrypted file systems like &lt;strong&gt;ecryptfs&lt;/strong&gt;,
+&lt;strong&gt;encfs&lt;/strong&gt; are available under Linux file systems. Which provide
+good flexibility that I required, and it only required pain of one time setup.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;encfs&lt;/em&gt; is a User space filesystem, but the &lt;em&gt;ecryptfs&lt;/em&gt; is working in the kernel space,
+because of that ecryptfs is little difficult to setup. But ecryptfs is faster
+and more secure than the encfs. Both of them using a passphrase as the initial
+key to do all the encryption and decryption, we can keep this
+passphrase with other file systems or even in external storage device, This is like
+normal password required to initiate the encryption or decryption.&lt;/p&gt;
+&lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
+&lt;p&gt;First install the packages required,&lt;/p&gt;
+&lt;p&gt;From root user follow these commands.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
+&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
+one folder named Encrypted.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
+&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
+ecryptfs will generate the corresponding encrypted files on the
+~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.&lt;/p&gt;
+&lt;p&gt;Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
+file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
+point where we can see the actual content of the files, we require the proper
+passphrase to mount the encrypted file system to local folder.This mounting and
+creation of the encrypted file system is explained bellow.&lt;/p&gt;
+&lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
+with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
+mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Check this console page to see the complete list of commands required to finish
+the mounting operation.&lt;/p&gt;
+&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
+&lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
+to the mount point, use df command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So if there is no error, you can now check for the file encryption by directly
+adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
+the encrypted file with the same name under &lt;cite&gt;/home/haridas/Dropbox/Encrypted&lt;/cite&gt;.
+Try out this.&lt;/p&gt;
+&lt;p&gt;So we are done with the keeping only the encrypted files under Dropbox folder.
+So don't need to worry about the sensitive documents. But one thing is that in
+order to decrypt the files from other machines, you required the passphrase and
+other machines should support the ecryptfs. You can't us mobile
+devices to view the encrypted content.&lt;/p&gt;
+&lt;p&gt;We need to mount the ecryptefs filesystem in the boot time to avoid that step
+every time. That requires passphrase, and set of other configurations, that was
+done while mounting the file system initially. We can pass this automatically by
+putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
+we can see system can read it.&lt;/p&gt;
+&lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the following lines&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+ecryptfs_sig=b2f118ee01beb78b
+ecryptfs_cipher=aes
+ecryptfs_key_bytes=32
+ecryptfs_passthrough=n
+ecryptfs_enable_filename_crypto=n
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
+to automount at boot time.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
+defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
+with external disk. Make sure that the passphrase is available to the system
+when you are trying to mount it in the booting time itself.&lt;/p&gt;
+&lt;p&gt;Keep the passphrase safe !. Which determines the strength of your encryption.&lt;/p&gt;
+&lt;p&gt;Enjoy.&lt;/p&gt;
+</summary><category term="security"></category><category term="server"></category></entry><entry><title>Vim as your IDE</title><link href="//vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>//vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article you required basic idea of how to use Vim and its command
 based editing. And it focused on how to make it an IDE.&lt;/p&gt;
 &lt;p&gt;Are you very eager to see how to &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt; ?&lt;/p&gt;
 &lt;p&gt;In the first &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;article&lt;/a&gt; I was describing how I came in to Vim editor and its
@@ -27,7 +114,7 @@ at my konsole based Vim and Gvim screen shots.&lt;/p&gt;
 &lt;h2&gt;Gvim&lt;/h2&gt;
 &lt;img alt="Gvim image" class="align-left" src="/images/gvim.jpg" style="width: 768px; height: 400px;" /&gt;
 &lt;p&gt;I configured my Vim with set of Vim plugins,color schemes and other settings
-to make it more productive. Bellow I'm explaining all of them, and how to use
+to make it more productive. below I'm explaining all of them, and how to use
 my github vim settings available to all of you, so that finally you will get
 all of theses extra addition to your vim.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
@@ -66,7 +153,7 @@ all of theses extra addition to your vim.&lt;/p&gt;
 So that was force me to learn the Vim clasic hjkl arrow keys and I succed
 in it. Now I don't required key board arrow keys any more even in Vim
 editing mode.&lt;/p&gt;
-&lt;p&gt;If you want to change this behaviour, just remove bellow sections from my
+&lt;p&gt;If you want to change this behaviour, just remove below sections from my
 .vimrc file.&lt;/p&gt;
 &lt;img alt="/images/vimrc1.jpg" src="/images/vimrc1.jpg" /&gt;
 &lt;p&gt;Similarly, you can just go through my .vimrc file to see other options,
@@ -87,7 +174,7 @@ a collection of opened buffers(or files.). So we can consider it as group of
 tabs in other IDE context.&lt;/p&gt;
 &lt;p&gt;But most of the time we only required one vim tab and set of opened
 buffers(files.). MinibuferExplorar help you to see those opened buffers as
-a virtual tabs. See the bellow screen.&lt;/p&gt;
+a virtual tabs. See the below screen.&lt;/p&gt;
 &lt;img alt="/images/minibufexplorer.jpg" src="/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" /&gt;
 &lt;p&gt;You can use &lt;cite&gt;CTRL + h/j/k/l&lt;/cite&gt; or &lt;cite&gt;CTRL + w&lt;/cite&gt; to navigate around the different
 split windows and the mini buffer Explorer. Try out that right away. To open
@@ -174,7 +261,7 @@ to use.&lt;/p&gt;
 &lt;span id="nerdtree"&gt;&lt;/span&gt;&lt;h2&gt;6. NerdTree (File Browser)&lt;/h2&gt;
 &lt;p&gt;This will display your project directory structure in tree format.It provides
 lot of shortcuts to navigate through the source tree easily.This is another
-common thing required for an IDE. Check the bellow image to see how it looks
+common thing required for an IDE. Check the below image to see how it looks
 like.&lt;/p&gt;
 &lt;p&gt;Shortcuts - I mapped the following keys in .vimrc file to show and hide the
 nerdtree when ever required. My .vimrc file has this settings.
@@ -287,7 +374,7 @@ changes from the plugin projects by updating the submodule project.
 While cloning my main repo won't retrieve the submodules or external plugin git
 projects. But we have all the settings and paths in my git projects,
 so we can easily fetch the current stable code from
-all the external projects. To do that, type bellow command inside Dotfiles
+all the external projects. To do that, type below command inside Dotfiles
 folder.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;span class="go"&gt;&amp;lt;path to gitproject&amp;gt;/Dotfiles&lt;/span&gt;
@@ -367,94 +454,7 @@ I hope you understood that feeling. :)&lt;/p&gt;
 &lt;p&gt;Back to &lt;a class="reference internal" href="#topics"&gt;Topics&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-27T10:25:34+05:30</updated><author><name>haridas</name></author><id>//how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
-It's very convenient and flexible that we can sync our local files with
-remote storage. For simple and non-sensitive contents this  is very useful.
-But we know that the contents on the net are being open. There is a chance for
-those contents will get read by others.&lt;/p&gt;
-&lt;p&gt;I use Dropbox with my Debian machine to sync my local documents.
-But I'm worried about putting some of my documents on the cloud after
-knowing that there is a chance of breach. Because of that I avoided putting
-those contents on my cloud storage. Later I figured out that we can
-put an encrypted contents. I tried to use GPG and other methods to encrypt
-the contents and putting them on cloud. But those are all requires lot of work to
-push contents each time. GPG mainly used for transferring encrypted contents
-between sender and receiver, so that is not the good solution. We required
-a method to add the encrypted documents only to our cloud storage and the same
-time we want to access the actual copy of the document on our machine.&lt;/p&gt;
-&lt;p&gt;Then I saw options for the ecrypted file systems like &lt;strong&gt;ecryptfs&lt;/strong&gt;,
-&lt;strong&gt;encfs&lt;/strong&gt; are available under Linux file systems. Which provide
-good flexibility that I required, and it only required pain of one time setup.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;encfs&lt;/em&gt; is a User space filesystem, but the &lt;em&gt;ecryptfs&lt;/em&gt; is working in the kernel space,
-because of that ecryptfs is little difficult to setup. But ecryptfs is faster
-and more secure than the encfs. Both of them using a passphrase as the initial
-key to do all the encryption and decryption, we can keep this
-passphrase with other file systems or even in external storage device, This is like
-normal password required to initiate the encryption or decryption.&lt;/p&gt;
-&lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
-&lt;p&gt;First install the packages required,&lt;/p&gt;
-&lt;p&gt;From root user follow these commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
-&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
-one folder named Encrypted.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
-&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
-ecryptfs will generate the corresponding encrypted files on the
-~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.&lt;/p&gt;
-&lt;p&gt;Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
-file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
-point where we can see the actual content of the files, we require the proper
-passphrase to mount the encrypted file system to local folder.This mounting and
-creation of the encrypted file system is explained bellow.&lt;/p&gt;
-&lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
-with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
-mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Check this console page to see the complete list of commands required to finish
-the mounting operation.&lt;/p&gt;
-&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
-&lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
-to the mount point, use df command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So if there is no error, you can now check for the file encryption by directly
-adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
-the encrypted file with the same name under &lt;cite&gt;/home/haridas/Dropbox/Encrypted&lt;/cite&gt;.
-Try out this.&lt;/p&gt;
-&lt;p&gt;So we are done with the keeping only the encrypted files under Dropbox folder.
-So don't need to worry about the sensitive documents. But one thing is that in
-order to decrypt the files from other machines, you required the passphrase and
-other machines should support the ecryptfs. You can't us mobile
-devices to view the encrypted content.&lt;/p&gt;
-&lt;p&gt;We need to mount the ecryptefs filesystem in the boot time to avoid that step
-every time. That requires passphrase, and set of other configurations, that was
-done while mounting the file system initially. We can pass this automatically by
-putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
-we can see system can read it.&lt;/p&gt;
-&lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the following lines&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
-ecryptfs_sig=b2f118ee01beb78b
-ecryptfs_cipher=aes
-ecryptfs_key_bytes=32
-ecryptfs_passthrough=n
-ecryptfs_enable_filename_crypto=n
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
-to automount at boot time.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
-defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
-with external disk. Make sure that the passphrase is available to the system
-when you are trying to mount it in the booting time itself.&lt;/p&gt;
-&lt;p&gt;Keep the passphrase safe !. Which determines the strength of your encryption.&lt;/p&gt;
-&lt;p&gt;Enjoy.&lt;/p&gt;
-</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="//how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>haridas</name></author><id>//how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</summary></entry><entry><title>How I came in to Vim</title><link href="//how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>haridas</name></author><id>//how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -539,60 +539,65 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="http://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was a wordpress blog. As you know the reasons for
-that. Wordpress is the most successful and feature rich blogging engine. So
-I chose it without any doubt. I didn't even search for a python alternative blog
-engine at that time. But after a while I felt the dificulties while adding some
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>haridas</name></author><id>//wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+that. Wordpress is the most successful and feature rich blog engine. So
+I chose it without thinking twice, I didn't even search for a python alternative blog
+engines at that time. But after a while I felt the difficulties while adding some
 changes to the wordpress code, bugs with the wordpress plugins and more
-importantly the Web UI is very annoying while typing new contents.&lt;/p&gt;
+importantly the Web based editor is very annoying while typing new contents.&lt;/p&gt;
 &lt;p&gt;If we are considering the technical points, wordpress is a dynamic blog engine,
-it is an over killing for blogs and other wiki based sites. Main issue is with speed of
-page rendering.The static pages are way faster compared to the dynamic contents. I know
-wordpress has caching plugins to make the static pages out of dynamic one but
-that are not a very reliable solution.&lt;/p&gt;
-&lt;p&gt;Actually above points are all come to my mind after seeing the static site
-generators and their awesome features and flexibility.&lt;/p&gt;
-&lt;div class="section" id="advantages-of-static-site-generators-over-dynamic-blog-engines"&gt;
-&lt;h2&gt;Advantages of static site generators over Dynamic blog engines&lt;/h2&gt;
+it is an overkill for simple blogs and other wiki based sites. Main issue is the speed of
+page rendering.The static pages are way faster than the dynamic pages. I know
+wordpress has caching feature to improve the speed of the page rendering,but it
+is not a simple solution.&lt;/p&gt;
+&lt;p&gt;Actually above points are all came to my mind after seeing the static site
+generators and their awesome features.&lt;/p&gt;
+&lt;div class="section" id="advantage-of-static-site-generators-over-dynamic-blog-engines"&gt;
+&lt;h2&gt;Advantage of static site generators over Dynamic blog engines&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Serve html directly, so very fast.&lt;/li&gt;
+&lt;li&gt;Serve html files directly, so very fast.&lt;/li&gt;
 &lt;li&gt;Easy maintenance of the site, very less pain with server setup.&lt;/li&gt;
-&lt;li&gt;Use your favourite Text editors for blog posting. I use VIM :).&lt;/li&gt;
-&lt;li&gt;It use Markdown and Restructured Text Syntaxes for blog entry. So we just need to type
-the post in normal text with simple formating. So don't worry about the
-html formatting while typing the content.&lt;/li&gt;
-&lt;li&gt;Host it on Github,  and very easy version control and site backup.&lt;/li&gt;
-&lt;li&gt;Very easy to customize the Themes  or other internals if you want.&lt;/li&gt;
+&lt;li&gt;Use your favourite text editor for blog posting. I'm a VIM fan :).&lt;/li&gt;
+&lt;li&gt;It uses Markdown or Restructured Text Syntax for blog entry. So we just need to type
+the post in normal text with simple formating. So we don't need to worry about the
+html formatting while typing the content.This feature were attracted me more
+because the wordpress web editor sucks, and here I can use Vim.&lt;/li&gt;
+&lt;li&gt;Host it on Github,Bitbucket. The entire blog is a set of text files that
+enables easy version controlling.&lt;/li&gt;
+&lt;li&gt;Very easy to customize the Themes  or other internal structure.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Next step was which static site generator I will choose for my site. There are
-a lot of them were implemented in Python and Ruby. I went through some of them
-and finally chose &lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; a Python based static site generator.&lt;/p&gt;
+&lt;p&gt;Next challenge that I faced was the selection of one static site generator from
+bunch of choice. There are lot of them are implemented in
+Python or Ruby. I was searched for few days to come up with a suitable one.
+Finally I picked up a Python based engine &lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; as my favorite. It doesn't
+mean that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
+&lt;p&gt;Here is the list of few major static site generators that I went through as
+part of the selection process.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="jekyll"&gt;
 &lt;h2&gt;&lt;a class="reference external" href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Jekyll is a Ruby based system developed at github.com and it is very commonly
-used in the Ruby world. I tried to use it because of its native github
-support, but finally realized that we can do the same thing with other site
-generators. And other problems I found with Jekyll was,&lt;/p&gt;
+used in Ruby world. I tried to use it because of its native github
+support, but finally I realized that we can do the same thing with other site
+generators, And other problems that I found on Jekyll was,&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;Its structure is difficult  compared to other site generators.&lt;/li&gt;
+&lt;li&gt;Its structure is difficult compared to other site generators.&lt;/li&gt;
 &lt;li&gt;It's a Ruby based one, I'm more comfortable with Python.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="hyde"&gt;
 &lt;h2&gt;&lt;a class="reference external" href="http://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Hyde is a  Python based static site generator like Jekyll and it removes some
-of the difficulties with Jekyll. But it lacks good documentation, and mainly
-a way to migrate from other blog engines like wordpress. I can see
-that the project is evolving lately and got github site for documentation. But
-it only covers the basics right now. I hope it will get good documentation very
-soon.&lt;/p&gt;
+&lt;p&gt;Hyde is a  Python based static site generator like Jekyll but less complex.
+But Hyde lacks good documentation, and mainly a way to migrate from other
+blog engines. I can see that the project getting more interest recently.
+I hope it will get in to good position very soon.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pelican"&gt;
 &lt;h2&gt;&lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;When I was very confused with different choices of static site generators, I came across
-Pelican (Another Python based static site generator.). It attracted me quickly
-because of its,&lt;/p&gt;
+&lt;p&gt;After checking different static site generators I was very confused with
+different types of static site generators that I came across. Finally I got the
+one I'm looking for, Pelican (Another Python based static site generator.). The
+reason for picking Pelican is very simple.&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Simplicity&lt;/li&gt;
 &lt;li&gt;Good Documentation&lt;/li&gt;
@@ -603,7 +608,7 @@ because of its,&lt;/p&gt;
 engines.And I liked the way it structured the blog posts and its contents.It
 got clear upper hand over other site generators, I don't need to think twice to
 select it.&lt;/p&gt;
-&lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; the project and give
+&lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="//find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>haridas</name></author><id>//find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
@@ -1115,33 +1120,31 @@ python date object by,&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="//programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>haridas</name></author><id>//programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
-Programming. After some time I learned about the Javascript and perl for
+Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and
-Perl describing about this at the beginning itself. But most of them are
+Perl describing about this at the beginning. But most of them are
 not clearly specifying the difference correctly.&lt;/p&gt;
 &lt;p&gt;I think these terms were came  due to the difference of how these codes
 are being running under the machine, ie; codes running under Interpreter
 were normally called as Scripts and in Compilers were called as
 Programs.The codes written in scripting languages are very simple to
-understand when compared with compiled languages like C/C++ or Java. But
-Java and other dynamic languages like Python have both interpretor and
-compilers to run its codes, even though we call Python as Scripting
-language. From this we can say that the naming hasn't any importance.&lt;/p&gt;
-&lt;p&gt;We are using these languages to solve or implement all types of logics.Here we
-need to give importance to the problems and how well we can solve it
-based on, which algorithm is being used, speed of the language, memory
-usage, etc...The important thing is the &lt;cite&gt;Algorithm&lt;/cite&gt;, if it is optimal
+understand compared to compiled languages like C/C++ or Java.&lt;/p&gt;
+&lt;p&gt;We are using these languages to solve or implement all types of problems. There we
+need to give importance to the problems and how well we can solve it using an
+efficient algorithm, It also counts the speed of the language, memory
+usage, etc. The important is the &lt;cite&gt;Algorithm&lt;/cite&gt;, if it is an optimal algorithm
 then you can select any language that you like. Currently all major
 Scripting languages like &lt;cite&gt;Python, Perl ,Ruby&lt;/cite&gt; and &lt;cite&gt;Tcl/Tk&lt;/cite&gt; are being
 used for general purposes along with famous programming languages like
 &lt;cite&gt;C/C++&lt;/cite&gt; and &lt;cite&gt;Java&lt;/cite&gt;.Other scripting languages are &lt;cite&gt;Php&lt;/cite&gt; (Web
 based applications ), &lt;cite&gt;Lua Script&lt;/cite&gt; (Embedded language , very fast,low
-memory foot print and also used for Game developments).&lt;/p&gt;
+memory foot print).&lt;/p&gt;
 &lt;div class="section" id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;You can call the Computer Languages as Scripting language or
-Programming language, but remember the Scripting languages can do any
-thing and we should not consider it as a secondary one.&lt;/p&gt;
+&lt;p&gt;You can call different Computer Languages as Scripting language or
+Programming language, but remember that the Scripting language can do any
+thing that a programming language could accomplish. And after all we have to be
+more rational while picking good tool set to solve our problem.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="programming"></category><category term="scripting"></category></entry></feed>
