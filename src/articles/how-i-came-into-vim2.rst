@@ -522,3 +522,9 @@ Enjoy the Vim hacking.
 
 Back to `Topics`_
 
+**Update 1**:
+
+    Please checkout the comments from `Hacker News`_ and `Reddit`_.
+
+    .. _`Hacker News`: http://news.ycombinator.com/item?id=4370175
+    .. _`Reddit`: http://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/

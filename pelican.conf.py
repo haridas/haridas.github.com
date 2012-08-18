@@ -1,24 +1,22 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
 AUTHOR = u"haridas"
 SITENAME = u"haridas.in"
-SITEURL = '/'
+# Don't, change the current URL scheme.
+SITEURL = 'http://haridas.in'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
-
-#CLEAN_URLS = True
 
 # Pagination settings.
 DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-THEME = '/usr/local/lib/python2.7/dist-packages/pelican/themes/notmyidea'
+#THEME = '/usr/local/lib/python2.7/dist-packages/pelican/themes/notmyidea'
 #THEME = '/mnt/data/projects/github/haridas.github.com/templates/notmyidea'
 #THEME = '/mnt/data/projects/workspace/myblog/pelican/haridas.github.com/exclude/pelican-themes/sneakyidea'
-#THEME_STATIC_PATHS = ['static']
-#CSS_FILE = 'main.css'
+THEME_STATIC_PATHS = ['static']
+CSS_FILE = 'main.css'
 
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
