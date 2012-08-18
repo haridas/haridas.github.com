@@ -25,9 +25,9 @@ Lets change the Vim as a simple powerful editor to an IDE with Vim special
 capabilities.The default Vim installed on most of the Gnu/Linux destros are more than
 enough to do our work. But if you want more eye catchy look and feel and some
 handy tools to do your work more quickly then you need to install some Vim plugins,
-good looking font's, color themes etc.
+good looking fonts, color themes etc.
 
-The Gnu/Linux Console based Vim has some limitation to show good font's and
+The Gnu/Linux Console based Vim has some limitation to show good fonts and
 colors. So you have to use GTK version of the Vim(Gvim). Gvim gives you all
 the super looking features to your Vim. Just take a look
 at my konsole based Vim and Gvim screen shots.
