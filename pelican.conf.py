@@ -12,9 +12,7 @@ DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-#THEME = '/usr/local/lib/python2.7/dist-packages/pelican/themes/notmyidea'
-#THEME = '/mnt/data/projects/github/haridas.github.com/templates/notmyidea'
-#THEME = '/mnt/data/projects/workspace/myblog/pelican/haridas.github.com/exclude/pelican-themes/sneakyidea'
+THEME = '/mnt/data/projects/github/haridas.github.com/src/templates/notmyidea'
 THEME_STATIC_PATHS = ['static']
 CSS_FILE = 'main.css'
 
@@ -44,4 +42,5 @@ SOCIAL = (
         ('linkedin', 'http://in.linkedin.com/pub/haridas-n/19/95/825'),
          )
 
+ARTICLE_EXCLUDES = ['templates', 'pages']
 PAGE_EXCLUDES = ['articles', 'drafts', 'pages']
