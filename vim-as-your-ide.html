@@ -73,26 +73,24 @@
 
 
 </footer><!-- /.post-info -->
-      <p>To follow this article you required basic idea of how to use Vim and its command
-based editing. And it focused on how to make it an IDE.</p>
-<p>Are you very eager to see how to <a class="reference internal" href="#setup-vim-from-scratch">Setup Vim from Scratch</a> ?</p>
-<p>In the first <a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html">article</a> I was describing how I came in to Vim editor and its
-fundamental difference with other type of editors.
-So on this article I'm trying to explain how to setup Vim as a common IDE for
-different programming languages. I'm basically a Python
-guy because of that this article is a little Python oriented. But most of them
-are applicable to other programming languages also. Vim has bunch of plugins
-and other supports available for all programming languages.
-So no worry regarding that.</p>
-<p>Lets change the Vim as a simple powerful editor to an IDE with Vim special
-capabilities.The default Vim installed on most of the Gnu/Linux destros are more than
-enough to do our work. But if you want more eye catchy look and feel and some
-handy tools to do your work more quickly then you need to install some Vim plugins,
-good looking fonts, color themes etc.</p>
-<p>The Gnu/Linux Console based Vim has some limitation to show good fonts and
-colors. So you have to use GTK version of the Vim(Gvim). Gvim gives you all
-the super looking features to your Vim. Just take a look
-at my konsole based Vim and Gvim screen shots.</p>
+      <p>To follow this article the reader should at least have a basic idea of how to use
+Vim and its command modes. Or if you are new to Vim, you can <a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html">read</a> my first blog to
+know how I came in to Vim and its fundamental differences with other editors.</p>
+<p>Here I'm trying to explain how to make the Vim more productive by adding some extra
+features through Vim plugins. After this setup the Vim would have most of the
+features that a modern IDE offers. I'm a python developer so this Vim setup
+is a little inclined to python side. But I'm including general plugins
+only to make it suitable for most of the programming languages.</p>
+<p>The installation and configuration setups are being described at the end,
+if you want to take a look at it, go here <a class="reference internal" href="#setup-vim-from-scratch">Setup Vim from Scratch</a>.</p>
+<p>The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
+more than enough for good productive works. And Vim has plugin structure, so we
+can extend the Vim through plugins. The plugins further improve the productivity and
+reduces lot of key strokes.</p>
+<p>The Gnu/Linux's Console or Terminal based Vim has some limitation to show good
+fonts and colors. So you have to install GTK version of the Vim(Gvim). Gvim gives
+you all the good looking features to your Vim. Just take a look
+at my Konsole and GTK Vim screen shots.</p>
 <div class="section" id="vim-on-kde-konsole">
 <h2>Vim on KDE Konsole</h2>
 <img alt="vim-on-console" class="align-left" src="static/images/vim-console.jpg" style="width: 768px; height: 400px;" />
@@ -100,10 +98,12 @@ at my konsole based Vim and Gvim screen shots.</p>
 <div class="section" id="gvim">
 <h2>Gvim</h2>
 <img alt="Gvim image" class="align-left" src="static/images/gvim.jpg" style="width: 768px; height: 400px;" />
-<p>I configured my Vim with set of Vim plugins,color schemes and other settings
-to make it more productive. below I'm explaining all of them, and how to use
-my github vim settings available to all of you, so that finally you will get
-all of theses extra addition to your vim.</p>
+<p>Here is the list of plugins that I have been configured on my Vim.
+It includes good color theme also. All of this Vim setup are there
+on my Github project. Towards the end I described how to make use of my Github project to
+get all of this features on your Vim. Before that first understand the
+functionalities and use case of different plugins and then we can go to the
+installation step.</p>
 <hr class="docutils" />
 <div class="section" id="topics">
 <h3>Topics</h3>
@@ -137,9 +137,9 @@ all of theses extra addition to your vim.</p>
 <p>A Side Note</p>
 <blockquote>
 <p>In my .vimrc file, I disabled the use of arrow keys in the Vim command mode.
-So that was force me to learn the Vim clasic hjkl arrow keys and I succed
-in it. Now I don't required key board arrow keys any more even in Vim
-editing mode.</p>
+That was forced me to learn the Vim classic <strong>hjkl</strong> arrow keys, it really
+worked for me. Now I don't required the key board arrow keys any more
+even in Vim editing mode.</p>
 <p>If you want to change this behaviour, just remove below sections from my
 .vimrc file.</p>
 <img alt="/images/vimrc1.jpg" src="static/images/vimrc1.jpg" />
@@ -151,24 +151,24 @@ around with it to make it suitable for you.</p>
 </div>
 <div class="section" id="minibuferexplorer-file-tabs">
 <span id="minibuferexplorer"></span><h2>1. MinibuferExplorer (File Tabs)</h2>
-<p>This is like Tabs in other IDE's. We can see the opened files in vim using this
+<p>This is like Tabs on other IDE's. We can see the opened files on vim using this
 plugin. By default, we have to use <cite>:ls</cite> to see opened buffers. So this
-plugin makes it very convenient to see the opened files as tabs.</p>
-<p>Vim has slightly different concept regarding the Tabs, compared to other IDE's.
+plugin makes it very convenient to view the opened files as a tabs.</p>
+<p>Vim has slightly different concept about the Tabs compared to other IDE's.
 Vim has support for tabs by default. That tab is different from the normal
-IDE's Tabs. Actually the difference is that the vim tabs are
-a collection of opened buffers(or files.). So we can consider it as group of
+IDE's Tab. Actually the difference is that the vim tabs are
+a collection of opened buffers(or files.). So we can consider it as a group of
 tabs in other IDE context.</p>
-<p>But most of the time we only required one vim tab and set of opened
-buffers(files.). MinibuferExplorar help you to see those opened buffers as
-a virtual tabs. See the below screen.</p>
+<p>But most of the time we only requires one vim tab and set of opened
+buffers(files.). The MinibuferExplorar will help you to see those opened buffers as
+a virtual tabs. See the below screen shot.</p>
 <img alt="/images/minibufexplorer.jpg" src="static/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" />
 <p>You can use <cite>CTRL + h/j/k/l</cite> or <cite>CTRL + w</cite> to navigate around the different
 split windows and the mini buffer Explorer. Try out that right away. To open
 a hidden buffer in vertical split, just go in to the MinibuferExplorer and
 choose corresponding file buffer(You can use normal <cite>hj</cite> keys to move through
-different tabs ) and press <cite>v</cite>, to open it in vertical split
-window. Press <cite>s</cite> to show this in horizontal split window.</p>
+different tabs ) and press <cite>v</cite>, to open it on a vertical split
+window. Press <cite>s</cite> to open buffer or file on a horizontal split window.</p>
 <p>Back to <a class="reference internal" href="#topics">Topics</a></p>
 </div>
 <div class="section" id="command-t-file-search">
@@ -441,7 +441,12 @@ I hope you understood that feeling. :)</p>
 <p>Back to <a class="reference internal" href="#topics">Topics</a></p>
 <p><strong>Update 1</strong>:</p>
 <blockquote>
-Please checkout the comments from <a class="reference external" href="http://news.ycombinator.com/item?id=4370175">Hacker News</a> and <a class="reference external" href="http://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/">Reddit</a>.</blockquote>
+Please check the comments from <a class="reference external" href="http://news.ycombinator.com/item?id=4370175">Hacker News</a> and <a class="reference external" href="http://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/">Reddit</a> also.</blockquote>
+<p><strong>Update 2</strong>:</p>
+<blockquote>
+Reworded some portions of the blog. Please let me know if you found any
+problems with this blog.Thanks to every one for your valuable suggestions
+to improve my blog.</blockquote>
 </div>
 </div>
 
