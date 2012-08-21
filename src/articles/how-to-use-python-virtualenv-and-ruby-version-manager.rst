@@ -22,7 +22,7 @@ now because of rapid development and feature updation of packages. To
 solve this issues and use the packaging system more flexibly both Python
 and Ruby providing their own tools.
 
-We can first checkout the Python Virtualenv tool for python projects.
+We can first check the Python Virtualenv tool for python projects.
 
 **Virtualenv**
 --------------
