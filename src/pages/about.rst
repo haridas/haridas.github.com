@@ -16,7 +16,7 @@ About this blog
 ---------------
 To know more about this blog read this blog `entry`_.
 
-Contact Information's -
+Contact Informations -
 ----------------------- 
 
  1. Email - haridas.nss at gmail dot com, haridas at haridas.in

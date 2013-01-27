@@ -1,5 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/blog.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2012-08-11T00:00:00+05:30</updated><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2012-08-11:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/blog.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2013-01-26T00:00:00+05:30</updated><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+every point of my programming life. This might looks like obvious to some but
+it was not in real life.&lt;/p&gt;
+&lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
+programming languages.&lt;/p&gt;
+&lt;div class="section" id="use-of-exceptions-handler-and-if-else-statement"&gt;
+&lt;h2&gt;1. Use of Exceptions Handler and if-else statement&lt;/h2&gt;
+&lt;p&gt;While writing a program we have to make sure that it won't fail for the edge
+cases. So usually what most of them do is -- put a &lt;cite&gt;if&lt;/cite&gt; condition to check for
+such scenarios. When the program runs, it has to check these conditions every time
+to make sure that it was not the special case. If your language
+has Exception handling system -- you can make use of it to handle the edge
+cases.&lt;/p&gt;
+&lt;p&gt;C doesn't have an exception handling system. It relay on error codes to notify the
+calling function about what happens to the call. It returns 0 for a successful call or
+a positive number, which represents an error. So the calling function has
+to check for return code using &lt;cite&gt;if-else&lt;/cite&gt; condition. There is no other option out
+there.&lt;/p&gt;
+&lt;p&gt;But for those languages which has Exception handling system, we can make use of
+it. But in that case we may mix up both if-else and Exception handling systems
+to handle errors or edge cases.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A Simple example&lt;/strong&gt; :-&lt;/p&gt;
+&lt;p&gt;Consider a daemonizing program, which check for pid file while starting/stopping.
+It calls the bellow function to get the pid. The calling function has main
+exception handler to make sure that its logic won't break.&lt;/p&gt;
+&lt;p&gt;When the bellow function got called -&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;While starting the daemon program&lt;/li&gt;
+&lt;li&gt;While stopping the daemon program.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What does the main daemon program do in each case -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;While starting.&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="first last loweralpha simple"&gt;
+&lt;li&gt;If it found the pid file, it means the daemon is running. Program
+stops by saying another instance of same program is running.&lt;/li&gt;
+&lt;li&gt;If it gets an error while reading the file, then there was no pid file, so
+the program is not running (An exception might happen while reading the pid
+file). Create new pid file and start the program.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;While Stopping.&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="first loweralpha simple"&gt;
+&lt;li&gt;If it found the pid file, remove it before stopping the program.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p class="last"&gt;b. If it didn't find the pid file, what it will do ?. It means there is no
+daemon running. Just report that to user.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bellow mentioned are the code block that gets called by the main daemon
+program to get the pid. See how we can handle the exceptions or errors using
+Exception handler and/or if-else statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Method 1&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is bad way of using exceptions, kinda defensive programming.&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;
+
+    &lt;span class="c"&gt;# No file in the path, may be other IO error.&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Faild to Read file&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Somebody put non integer values in the pid file. Whom to blame ?&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;WrongPID&lt;/span&gt;
+
+    &lt;span class="c"&gt;# This catch all exception not necessarily required&lt;/span&gt;
+    &lt;span class="c"&gt;# Since the calling function or main code has it. This is like&lt;/span&gt;
+    &lt;span class="c"&gt;# over use of exception handler feature.&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;SomeUnKnownError&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Method 2&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Using If/else method. The calling function has to check for None return&lt;/span&gt;
+&lt;span class="c"&gt;# value or an Exception case.&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;file.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c"&gt;# The programming languages which support exceptions&lt;/span&gt;
+            &lt;span class="c"&gt;# internally  raises exception when it fails one operation.&lt;/span&gt;
+            &lt;span class="c"&gt;# So we can&amp;#39;t expect C like behaviour here.&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Method 3&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Actually we know what going to happen, if some error happen while&lt;/span&gt;
+&lt;span class="c"&gt;# reading the pid file, it gets handled by the calling functions&amp;#39; exception&lt;/span&gt;
+&lt;span class="c"&gt;# handler. We are dealing with programming&lt;/span&gt;
+&lt;span class="c"&gt;# language which has Exception handling system. So make use of it&lt;/span&gt;
+&lt;span class="c"&gt;# effectively.&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I like the  &lt;strong&gt;Method 3&lt;/strong&gt;, since it works for most of the time. It fail
+rarely and at that time exception handler in the calling function should handle
+it and decide its logic based on it. I'm not considering the edge cases due to race
+conditions, since it was not for a real-time system :).&lt;/p&gt;
+&lt;p&gt;We know that both are important tools to make better good error free programs.&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;strong&gt;When we use if-else statement&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="first last arabic simple"&gt;
+&lt;li&gt;We know for certain what going to happen. Even though there are chance for
+different cases. ( C Error code mechanism is the good example ).&lt;/li&gt;
+&lt;li&gt;We use if-else commonly to control the flow of the execution based on the
+input.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;When we use Exeption handler&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ol class="first last arabic simple"&gt;
+&lt;li&gt;If we want to handle an error, otherwise leave it to system if you don't want
+to handle errors happened on your code. Those programming languages  which support
+Exceptions -- handles the exception itself on top level and report
+that to user unless you want your own way of error reporting.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code-optimization"&gt;
+&lt;h2&gt;2. Code Optimization&lt;/h2&gt;
+&lt;p&gt;Find out main code paths -- most of the time your program going to execute those
+sections. Try to optimize those portions first -- that also not in the first
+iteration of implementation. There should be remaining codes that handles edge
+cases or Failure/Error cases, those portions not necessarily being optimized till
+they are making any considerable noise on the performance :).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="number-of-lines-of-code"&gt;
+&lt;h2&gt;3. Number of lines of code.&lt;/h2&gt;
+&lt;p&gt;Don't try to reduce number of line of code, instead reduce number of lines
+of code per one job/task. Write simple functions/methods that do only
+one job not multiple jobs, otherwise you may have good reason to do it.&lt;/p&gt;
+&lt;p&gt;People usually try to reduce the number of lines by doing lot of jobs in single
+code block and make the program  more complex,  and such code blocks has to
+maintain pre-requirements for all the different cases, in which most of the
+time one of those case may going to happen. So all extra work done there would cost
+us when it executes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="learn-more-about-operating-system-and-compilers"&gt;
+&lt;h2&gt;4. Learn More about Operating System and Compilers&lt;/h2&gt;
+&lt;p&gt;Understand the machine and try to understand how things are happening deep
+inside the machine. That would be very useful to understand different bottle
+neck cases. And it would help you to find out reasons for why strange things are
+happening while running your code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="apply-basic-management-skills"&gt;
+&lt;h2&gt;5. Apply basic Management skills&lt;/h2&gt;
+&lt;p&gt;Apply Management skills to your programming. Pick right tool for right purpose
+and think that way. I'm not 100% unbiased, but I'm working on it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="chuck-all-rules-described-above"&gt;
+&lt;h2&gt;6. Chuck all rules described above :).&lt;/h2&gt;
+&lt;p&gt;It happens some time!, and it's not a bad thing though. We do programs that way
+-- when we develop a new prototype or finding a solution for a particular issue, where
+how we are going to implement doesn't make any importance but when we are
+going to finish it does make. I think most of them might have gone through
+such situations. For sure the good programming practices comes behind it.&lt;/p&gt;
+&lt;p&gt;Let me know your views about these points through comment.&lt;/p&gt;
+&lt;p&gt;Reference :&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks"&gt;http://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2012-08-11:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors.&lt;/p&gt;
 &lt;p&gt;Here I'm trying to explain how to make the Vim more productive by adding some extra
