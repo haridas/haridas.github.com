@@ -162,6 +162,11 @@ Don't try to reduce number of line of code, instead reduce number of lines
 of code per one job/task. Write simple functions/methods that do only
 one job not multiple jobs, otherwise you may have good reason to do it.
 
+**EDIT:** 05/Feb/2013
+
+This may violate the DRY ( Don't repeat yourself ) principle, but there is
+a good reason for it.
+
 People usually try to reduce the number of lines by doing lot of jobs in single
 code block and make the program  more complex,  and such code blocks has to 
 maintain pre-requirements for all the different cases, in which most of the 
