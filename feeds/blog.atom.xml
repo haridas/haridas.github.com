@@ -202,7 +202,7 @@ at my Konsole and GTK Vim screen shots.&lt;/p&gt;
 &lt;div class="section" id="gvim"&gt;
 &lt;h2&gt;Gvim&lt;/h2&gt;
 &lt;img alt="Gvim image" class="align-left" src="/images/gvim.jpg" style="width: 768px; height: 400px;" /&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;UPDATE:-
+&lt;div class="highlight"&gt;&lt;pre&gt;UPDATE (16/June/2013):-
 
 After using GVIM for a while, I came back to the Konsole itself since it&amp;#39;s
 more convenient for me. But one problem with terminal is that it only support only 256 colors.

@@ -52,7 +52,7 @@ Gvim
 
 .. code-block:: text 
 
-    UPDATE:- 
+    UPDATE (16/June/2013):- 
 
     After using GVIM for a while, I came back to the Konsole itself since it's
     more convenient for me. But one problem with terminal is that it only support only 256 colors.
