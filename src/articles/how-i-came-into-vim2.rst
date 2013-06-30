@@ -560,3 +560,12 @@ Back to `Topics`_
     Reworded some portions of the blog. Please let me know if you found any
     problems with this blog.Thanks to every one for your valuable suggestions 
     to improve my blog.
+
+**Update 3**:
+
+    **July-30-2013**
+    Serbo-Croation Translation Available!
+
+    Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
+    You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
+    Thank you Anja Skrba.
