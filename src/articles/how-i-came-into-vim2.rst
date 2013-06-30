@@ -5,6 +5,7 @@ My Vim Story 2
 :title: Vim as your IDE
 
 
+
 To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can `read`_ my first blog to 
 know how I came in to Vim and its fundamental differences with other editors.
@@ -19,6 +20,14 @@ only to make it suitable for most of the programming languages.
 
 The installation and configuration setups are being described at the end, 
 if you want to take a look at it, go here `Setup Vim from Scratch`_.
+
+    **Update July-30-2013**:
+
+        Serbo-Croation Translation Available!
+
+        Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
+        You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
+        Thank you Anja Skrba.
 
 The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
 more than enough for good productive works. And Vim has plugin structure, so we
@@ -561,11 +570,3 @@ Back to `Topics`_
     problems with this blog.Thanks to every one for your valuable suggestions 
     to improve my blog.
 
-**Update 3**:
-
-    **July-30-2013**
-    Serbo-Croation Translation Available!
-
-    Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
-    You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
-    Thank you Anja Skrba.

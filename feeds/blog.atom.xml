@@ -187,6 +187,15 @@ is a little inclined to python side. But I'm including general plugins
 only to make it suitable for most of the programming languages.&lt;/p&gt;
 &lt;p&gt;The installation and configuration setups are being described at the end,
 if you want to take a look at it, go here &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Update July-30-2013&lt;/strong&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Serbo-Croation Translation Available!&lt;/p&gt;
+&lt;p&gt;Anja Skrba gratiously offered to translate this article to Serbo-Croation!
+You can read the translation here: &lt;a class="reference external" href="http://science.webhostinggeeks.com/vim-kao-vas-ide"&gt;http://science.webhostinggeeks.com/vim-kao-vas-ide&lt;/a&gt;
+Thank you Anja Skrba.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
 more than enough for good productive works. And Vim has plugin structure, so we
 can extend the Vim through plugins. The plugins further improve the productivity and
@@ -572,14 +581,6 @@ I hope you understood my feeling. :)&lt;/p&gt;
 &lt;p&gt;Reworded some portions of the blog. Please let me know if you found any
 problems with this blog.Thanks to every one for your valuable suggestions
 to improve my blog.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Update 3&lt;/strong&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;July-30-2013&lt;/strong&gt;
-Serbo-Croation Translation Available!&lt;/p&gt;
-&lt;p&gt;Anja Skrba gratiously offered to translate this article to Serbo-Croation!
-You can read the translation here: &lt;a class="reference external" href="http://science.webhostinggeeks.com/vim-kao-vas-ide"&gt;http://science.webhostinggeeks.com/vim-kao-vas-ide&lt;/a&gt;
-Thank you Anja Skrba.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
