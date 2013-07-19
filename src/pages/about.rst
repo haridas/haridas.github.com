@@ -2,10 +2,10 @@ About Me
 ########
 :date: 2010-09-22 12:17
 
-I'm **Haridas N** from India_ (Kerala_). I'm a soft-spoken Computer Programmer,
+I'm **Haridas N** from India_ (Kerala_). I'm a Computer Programmer,
 and a hacker, who is amazed with the Technology and Human Revolution.
 
-This is my blog entry to write some of my experiences from my professional
+This is my blog to write some of my experiences from my professional
 life.
 
 .. _India: http://en.wikipedia.org/wiki/India
