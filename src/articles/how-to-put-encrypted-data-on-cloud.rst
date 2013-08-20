@@ -127,3 +127,8 @@ when you are trying to mount it in the booting time itself.
 Keep the passphrase safe !. Which determines the strength of your encryption.
 
 Enjoy.
+
+NOTE:
+    Please check the comments by "Jean-Sébastien Iker", He suggested a good
+    alternative of encrypting entire home directory using the inbuilt tool
+    available with the ecryptfs utils package. sdfasd

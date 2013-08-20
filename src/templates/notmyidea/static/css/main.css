@@ -12,13 +12,14 @@
 @import url("pygment.css");
 @import url("typogrify.css");
 @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+@import url(http://fonts.googleapis.com/css?family=Arvo);
 
 /***** Global *****/
 /* Body */
 body {
     background: #F5F4EF;
     color: #000305;
-    font-size: 87.5%; /* Base font size: 14px */
+    font-size: 100%; /* Base font size: 14px */
     font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     line-height: 1.429;
     margin: 0;
@@ -39,6 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.1;
 	margin-bottom: .8em;
     font-family: 'Yanone Kaffeesatz', arial, serif;
+    //font-family: 'Arvo', arial, serif;
 }
 
 h3, h4, h5, h6 { margin-top: .8em; }
@@ -98,9 +100,9 @@ dt {font-weight: bold;}
 dd {margin-left: 1.5em;}
 
 pre{
-    background-color: #f1f1f1; 
+    background-color: rgb(216, 255, 221); 
     padding: 10px; 
-    color: #7e7e7e;
+    color: #FF0200;
     margin: 10px;
     overflow: auto;
 }
