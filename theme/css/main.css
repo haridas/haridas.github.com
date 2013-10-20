@@ -100,9 +100,11 @@ dt {font-weight: bold;}
 dd {margin-left: 1.5em;}
 
 pre{
-    background-color: rgb(216, 255, 221); 
+    //background-color: rgb(216, 255, 221); 
+    background-color: #F0F0F0;
     padding: 10px; 
-    color: #FF0200;
+    border: 1px solid #CCCCCC;
+    color: grey;
     margin: 10px;
     overflow: auto;
 }
