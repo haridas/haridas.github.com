@@ -4,8 +4,8 @@ every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
 programming languages.&lt;/p&gt;
-&lt;div class="section" id="use-of-exceptions-handler-and-if-else-statement"&gt;
-&lt;h2&gt;1. Use of Exceptions Handler and if-else statement&lt;/h2&gt;
+&lt;div class="section" id="use-of-exception-handler-and-if-else-statement"&gt;
+&lt;h2&gt;1. Use of Exception Handler and if-else statement&lt;/h2&gt;
 &lt;p&gt;While writing a program we have to make sure that it won't fail for the edge
 cases. So usually what most of them do is -- put a &lt;cite&gt;if&lt;/cite&gt; condition to check for
 such scenarios. When the program runs, it has to check these conditions every time
@@ -1369,5 +1369,14 @@ memory foot print).&lt;/p&gt;
 Programming language, but remember that the Scripting language can do any
 thing that a programming language could accomplish. And after all we have to be
 more rational while picking good tool set to solve our problem.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update-14-jan-2014"&gt;
+&lt;h2&gt;Update - 14/Jan/2014&lt;/h2&gt;
+&lt;p&gt;This entry was the my first blog. That time I was just started to learn different
+languages in more depth. I was mainly trying the Python and other scripting
+languages, its beauty, easy to use and popularity on the Internet made me to
+think that it can do everything. Now After few years of experience in different
+parts of the Computer Science problems and work experience I can easily see
+that what I was wrote above was not going to work out practically.&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="programming"></category><category term="scripting"></category></entry></feed>
