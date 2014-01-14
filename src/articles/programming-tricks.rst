@@ -12,7 +12,7 @@ it was not in real life.
 The code samples are in Python, But concepts are applicable to most of the
 programming languages.
 
-1. Use of Exceptions Handler and if-else statement
+1. Use of Exception Handler and if-else statement
 --------------------------------------------------
 
 While writing a program we have to make sure that it won't fail for the edge
