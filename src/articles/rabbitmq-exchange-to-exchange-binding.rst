@@ -40,7 +40,7 @@ I'm using this method to do the following things.
 Here is the simple diagram showing the exchange-to-exchange binding. The orange
 lines showing the exchange-to-exchange binding.
 
-.. image:: images/Exchange-to-Exchange-Binding.png
+.. image:: /images/Exchange-to-Exchange-Binding.png
         :alt: Exchange-to-Exchange-Binding
         :width: 768px
         :height: 500px

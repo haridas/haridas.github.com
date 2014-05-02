@@ -28,7 +28,7 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Here is the simple diagram showing the exchange-to-exchange binding. The orange
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
-&lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" /&gt;
+&lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
 </summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><updated>2014-04-10T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2014-04-10:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
