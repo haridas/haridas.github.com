@@ -132,6 +132,13 @@ could have handled this situation if the traffic spikes some times only - In
 our case that was the situation. Python couldn't have done it if the rate of
 server is more than the rate at which Python can clear the socket backlog.
 
+Update (02-May-2014):-
+
+Please check out this `reddit`_ discussion about this post, which give you more
+insight into the problem and possible solutions.
+
+.. _`reddit`: http://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y
+
 
 references
 ----------
