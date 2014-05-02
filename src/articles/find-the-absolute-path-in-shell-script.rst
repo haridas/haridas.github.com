@@ -55,4 +55,4 @@ I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.
 
-See you next time.
+sEE YOU NEXT TIME.

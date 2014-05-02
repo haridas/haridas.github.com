@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Find the Absolute path in Shell Script</title>
+        <title>RabbitMQ's Exchange-to-Exchange binding</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://haridas.in/theme/css/main.css" type="text/css" />
 
@@ -33,8 +33,8 @@
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="find-the-absolute-path-in-shell-script.html" rel="bookmark"
-           title="Permalink to Find the Absolute path in Shell Script">Find the Absolute path in Shell Script</a></h1>
+        <a href="rabbitmqs-exchange-to-exchange-binding.html" rel="bookmark"
+           title="Permalink to RabbitMQ's Exchange-to-Exchange binding">RabbitMQ's Exchange-to-Exchange binding</a></h1>
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-annotation="inline" data-width="300"></div>
@@ -56,64 +56,52 @@
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2011-11-19T06:01:00">
-                Sat 19 November 2011
+        <abbr class="published" title="2014-04-30T00:00:00">
+                Wed 30 April 2014
         </abbr>
 
         <address class="vcard author">
                 By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
         </address>
 <p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://haridas.in/tag/server-admin.html">server admin</a><a href="http://haridas.in/tag/shell.html">shell</a></p></footer><!-- /.post-info -->      <p>This is a simple shell script snippet to get the full absolute path of
-that file while running it in a shell environment.</p>
-<p>What is the use of this script -- Yeah, this script is really helpful
-when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
-properly by including relative files correctly from the system path.
-Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would resolve every relative path
-properly. So how it would be, if we don't need to hard code the
-Project Bases paths, instead the project configurations detect it
-automatically :). So you could get this by using this shell script
-snippet.</p>
-<p>Here we can test how a shell script identify itself where it's located
-or its absolute path information.Please create a shell script with
-following content and run it from different locations.</p>
-<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
-<span class="c">#and then run it from different directory level, you can see the</span>
-<span class="c">#difference.</span>
-
-<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span>  <span class="nv">$dir</span>;<span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Path to this file : $FILE_PATH&quot;</span>
-</pre></div>
-<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
-its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
-<span class="gp">#</span>sh /usr/local/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd local</span>
-<span class="gp">#</span>sh shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-</pre></div>
-<p>I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.</p>
-<p>sEE YOU NEXT TIME.</p>
+<p>tags: <a href="http://haridas.in/tag/amqp.html">amqp</a><a href="http://haridas.in/tag/rabbitmq.html">rabbitmq</a></p></footer><!-- /.post-info -->      <p>I'm a long time user of RabbitMQ for different type of tasks
+like chat system, worker queue, logging etc. But lately I was looking for an
+option to track all messages passing through set of exchanges without
+interfering those exchanges. The need for it's that I want to analyze the
+messages passing in those exchanges. For that case Exchange-to-Queue binding
+is not enough for me, Because on that case I have to create one queue for each
+exchange available on the server.I want to avoid this. Then I came across this interesting
+RabbitMQ extension feature ( It's not there in the AMQP standard yet) which allow
+you to bind Exchange-to-Exchange.</p>
+<p>So using this exchange-to-exchange binding I can create a dummy exchange and
+bind it with those exchanges that I'm instead in. The routing keys used with
+the queue binding is applicable while binding the exchanges together.
+The messages are routed to the other binded exchanges by applying those routing
+keys. And obviously I created a dummy queue to persist those messages coming on
+the dummy exchange.</p>
+<p>By this way my external monitoring and quality checking code only monitor the
+dummy queue for the messages and it consumes and discard it from the queue. By
+the way this setup is not for permanent use.</p>
+<p>I'm using this method to do the following things.</p>
+<ol class="arabic simple">
+<li>To create more complex routing topologies for your application.</li>
+<li>To do the integration testing of complex systems which has asynchronous work
+flows.</li>
+<li>We can use this for do some debugging operations of production system without
+affecting the live machine. We can bind and start tap the messages at any
+time from the live system. After use we can remove those bindings.</li>
+</ol>
+<p>Here is the simple diagram showing the exchange-to-exchange binding. The orange
+lines showing the exchange-to-exchange binding.</p>
+<img alt="Exchange-to-Exchange-Binding" class="align-left" src="images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" />
+<p>Thank you.</p>
 
     </div><!-- /.entry-content -->
     <div class="comments">
       <h2>Comments !</h2>
       <div id="disqus_thread"></div>
       <script type="text/javascript">
-        var disqus_identifier = "find-the-absolute-path-in-shell-script.html";
+        var disqus_identifier = "rabbitmqs-exchange-to-exchange-binding.html";
         (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://haridas.disqus.com/embed.js';

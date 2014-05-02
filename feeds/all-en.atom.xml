@@ -1,5 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2013-01-26T00:00:00+05:30</updated><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+<feed xmlns="http://www.w3.org/2005/Atom"><title>haridas.in</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2014-04-30T00:00:00+05:30</updated><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><updated>2014-04-30T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+like chat system, worker queue, logging etc. But lately I was looking for an
+option to track all messages passing through set of exchanges without
+interfering those exchanges. The need for it's that I want to analyze the
+messages passing in those exchanges. For that case Exchange-to-Queue binding
+is not enough for me, Because on that case I have to create one queue for each
+exchange available on the server.I want to avoid this. Then I came across this interesting
+RabbitMQ extension feature ( It's not there in the AMQP standard yet) which allow
+you to bind Exchange-to-Exchange.&lt;/p&gt;
+&lt;p&gt;So using this exchange-to-exchange binding I can create a dummy exchange and
+bind it with those exchanges that I'm instead in. The routing keys used with
+the queue binding is applicable while binding the exchanges together.
+The messages are routed to the other binded exchanges by applying those routing
+keys. And obviously I created a dummy queue to persist those messages coming on
+the dummy exchange.&lt;/p&gt;
+&lt;p&gt;By this way my external monitoring and quality checking code only monitor the
+dummy queue for the messages and it consumes and discard it from the queue. By
+the way this setup is not for permanent use.&lt;/p&gt;
+&lt;p&gt;I'm using this method to do the following things.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;To create more complex routing topologies for your application.&lt;/li&gt;
+&lt;li&gt;To do the integration testing of complex systems which has asynchronous work
+flows.&lt;/li&gt;
+&lt;li&gt;We can use this for do some debugging operations of production system without
+affecting the live machine. We can bind and start tap the messages at any
+time from the live system. After use we can remove those bindings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here is the simple diagram showing the exchange-to-exchange binding. The orange
+lines showing the exchange-to-exchange binding.&lt;/p&gt;
+&lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" /&gt;
+&lt;p&gt;Thank you.&lt;/p&gt;
+</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><updated>2014-04-10T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2014-04-10:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+python compared with compiled language. So here I'm explaining a scenario
+where python was not the ideal choice.&lt;/p&gt;
+&lt;p&gt;We are using python for network programming, specifically a TCP client/server
+program which read packets from another C based server. We picked python because
+on the requirements the traffic volume wasn't huge enough to consider compiled
+languages like C/C++ or Java, and we are already using python so more comfortable
+with it.&lt;/p&gt;
+&lt;div class="section" id="the-network-topology"&gt;
+&lt;h2&gt;The network topology&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Network =&amp;gt; TCP Server A =&amp;gt; TCP Server B ( Do some operation.) ==&amp;gt; Network
+
+Where :-
+    Server A is implemented in C.
+    Server B is the one we implemented.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The data flowing from Server A to Server B via TCP. The Server B is implemented
+in python for now. This setup was running for more than a year without any
+problems or crashing. Then it started showing problems. The Server B crashing
+sometime because of the socket connection between the Server A and Server
+B getting closed by the Server A, We don't know why. Bellow listed are the errors
+that we are getting, one interesting thing is; these two errors won't happen
+together, some time Errno 104, some time Errno 107.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Errno: 104 - Peer closed the socket connection.&lt;/li&gt;
+&lt;li&gt;Errno: 107 - Transport endpoint closed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I initially thought this was happening because of python's long running process
+exiting due to memory overflow or some other reasons. We thought this because
+python's reputation as a long running daemon is not great. Then we figure
+out that long running daemon wasn't the reason for this issue, since the main
+python process wasn't consuming more RAM and it's very stable in memory usage.
+Our python server using very simple data structures, so python VM very
+efficiently handling the Memory.&lt;/p&gt;
+&lt;p&gt;Then I started to look into other areas of program, by changing the settings
+and tuning parameters to see any of it fixes the issue. All of the options
+seems to work for a while but it throws the same error after few days.
+I was stuck and no idea about the issue and spend around a week to go through
+the program's in and out to see any possible causes. But no clue from it.&lt;/p&gt;
+&lt;p&gt;Finally Stack Overflow came into help, IRC wasn't helpful for these type of very
+specific issues. Programmers can't live without Google and Stack Overflow.
+I put the question on the SO, people helped me to make the question better by
+adding the TCP traces picked up using &lt;tt class="docutils literal"&gt;tcpdump&lt;/tt&gt;. With in hours I got the
+answer I was looking for. It's mainly due the python socket reading related.
+In the Python side we are not clearing the TCP packets from the receive buffer
+of TCP socket completely, only reading few bytes (300B to 10KB) at a time.
+So which causing the Python server to send receive window size flag of TCP
+protocol as ZERO for multiple times In the heavy traffic period.
+This might triggering this issue. That was the idea I got from the stack Overflow.&lt;/p&gt;
+&lt;p&gt;You can see the &lt;a class="reference external" href="http://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected"&gt;stackOverflow post&lt;/a&gt;, I explained more technical
+details on the SO question, please have a look on it to get more details about
+the issue and sample tcpdump trace file to see what was happened on the network.&lt;/p&gt;
+&lt;p&gt;The problem on the python side is that,  it's a single threaded server which
+reading the data from the socket, one thing we are right now not doing is reading
+until socket is empty due to some implementation restrictions. From the SO
+answer I got some quick solutions to try,&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Remove unwanted codes from the main loop, so the total time taken to process
+one socket read would be as small as possible.&lt;/li&gt;
+&lt;li&gt;Tweak with the Kernel parameters for the TCP sending and receiving buffer
+size.&lt;/li&gt;
+&lt;li&gt;Improve the Code base or re-implement it in C completely or do the main part as
+C extension.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The method 1 and 2 was easy go ahead with, So I did it right away. It gives
+considerable difference and the crashes reduced considerably. But still it
+happened once or twice. So I know that it's not enough and need reimplementation
+of the parts which causing this problem. But we are holding  on the
+reimplementation since it will take lot of time to change the existing stuff.
+Any way the current changes give enough time to try more things to improve the
+existing code and investigate the problem more.&lt;/p&gt;
+&lt;p&gt;Mean while I did some more investigation locally to understand the issue more.
+From that what I understood was, when the network is heavily loaded the Python
+server side not clearing the traffic quick enough and which forcing the remote server
+to close the TCP socket (Not yet found why it's closing it). Right after the
+socket is closed on the remote end,  Python side of the code might be trying
+&lt;cite&gt;socket.send&lt;/cite&gt; or &lt;cite&gt;socket.recv&lt;/cite&gt; and it will fail since no active socket. So in
+the beginning I mentioned that I'm getting two errors, this is
+because some time right after the remote server closed the socket, the next
+socket interaction in the python side may be &lt;cite&gt;socket.send&lt;/cite&gt; which was triggering the
+error &lt;tt class="docutils literal"&gt;Errno 104&lt;/tt&gt;. If it was &lt;cite&gt;socket.recv&lt;/cite&gt; it would have been &lt;tt class="docutils literal"&gt;Errno 107&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;One other thing I learned after this was that, the TCP server usually handles
+the slow remote servers by blocking the new massage write into
+the sending buffer. In my environment I understood the remote server A
+is not blocking the write(Non-blocking socket) instead closing the socket( This
+could be due to timeout).If the TCP server has option to cache the extra
+packets into disk then it could have handled this peak traffic period.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-tcp-server-has-to-provide-atleast-these-features"&gt;
+&lt;h2&gt;A TCP Server has to provide atleast these features&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Way to handle the buffer overflow if the client is very slow.&lt;/li&gt;
+&lt;li&gt;Write the buffer overflowed data into durable queue or file system.&lt;/li&gt;
+&lt;li&gt;When the Client comes back, the server has to automatically deliver the
+pending messages in FIFO order.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="final-thoughts"&gt;
+&lt;h2&gt;Final thoughts&lt;/h2&gt;
+&lt;p&gt;If these options are there with the TCP server that I was handling, this problem
+couldn't have happened. So finally now I can say that Python
+could have handled this situation if the traffic spikes some times only - In
+our case that was the situation. Python couldn't have done it if the rate of
+server is more than the rate at which Python can clear the socket backlog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;references&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://linux.die.net/man/2/sendmsg"&gt;http://linux.die.net/man/2/sendmsg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;$ man socket&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
@@ -267,7 +412,7 @@ worked for me. Now I don't required the key board arrow keys any more
 even in Vim editing mode.&lt;/p&gt;
 &lt;p&gt;If you want to change this behaviour, just remove below sections from my
 .vimrc file.&lt;/p&gt;
-&lt;img alt="/images/vimrc1.jpg" src="/images/vimrc1.jpg" /&gt;
+&lt;img alt="" src="/images/vimrc1.jpg" /&gt;
 &lt;p&gt;Similarly, you can just go through my .vimrc file to see other options,
 I tried to document my .vimrc file as much as possible. You can play
 around with it to make it suitable for you.&lt;/p&gt;
@@ -287,7 +432,7 @@ tabs in other IDE context.&lt;/p&gt;
 &lt;p&gt;But most of the time we only requires one vim tab and set of opened
 buffers(files.). The MinibuferExplorar will help you to see those opened buffers as
 a virtual tabs. See the screen shot below.&lt;/p&gt;
-&lt;img alt="/images/minibufexplorer.jpg" src="/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" /&gt;
+&lt;img alt="" src="/images/minibufexplorer.jpg" style="width: 90%; height: 356px;" /&gt;
 &lt;p&gt;You can use &lt;cite&gt;CTRL + h/j/k/l&lt;/cite&gt; or &lt;cite&gt;CTRL + w&lt;/cite&gt; to navigate around the different
 split windows and the mini buffer Explorer. To open
 a hidden buffer on a vertical split window, just go to the MinibuferExplorer and
@@ -302,7 +447,7 @@ buffer or file on a horizontal split window.&lt;/p&gt;
 To get better speed it was implemented in C. To install this plugin
 you need one extra compilation of this plugin because of C code. Don't worry
 I explained this in the setup section.&lt;/p&gt;
-&lt;img alt="images/command-t.jpg" src="images/command-t.jpg" style="width: 100%;" /&gt;
+&lt;img alt="" src="images/command-t.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Once we have enabled this plugin you can see the search list using your
 &lt;cite&gt;&amp;lt;leader&amp;gt; + t&lt;/cite&gt;. I'm using my leader key as &lt;strong&gt;,&lt;/strong&gt; (Comma), so for me the
 command will looks like &lt;cite&gt;,t&lt;/cite&gt; (comma + t). Normally the leader key is &amp;quot;\&amp;quot; on
@@ -329,7 +474,7 @@ errors on your file automatically and show you the location of the error and
 its reason very neatly.&lt;/p&gt;
 &lt;p&gt;Take a look at a portion of the rst file of this blog post. I made a syntax
 error in the image tag,&lt;/p&gt;
-&lt;img alt="/images/syntastic.jpg" src="/images/syntastic.jpg" style="width: 100%;" /&gt;
+&lt;img alt="" src="/images/syntastic.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Similarly Synstastic will help you to follow the standard coding methods defined by
 different programming communities. For eg; Python code has &lt;strong&gt;PEP8&lt;/strong&gt; standard, so while
 writing the python code, if we are not following it, Synstastic will show you the
@@ -380,7 +525,7 @@ common Plugin required for an IDE. Check the below image to see how it looks
 like.&lt;/p&gt;
 &lt;p&gt;Shortcuts - I mapped the following keys in .vimrc file to show and hide the
 Nerdtree when ever required. You can re-map this to your own choice.&lt;/p&gt;
-&lt;img alt="/images/nerd_tree.jpg" src="/images/nerd_tree.jpg" /&gt;
+&lt;img alt="" src="/images/nerd_tree.jpg" /&gt;
 &lt;p&gt;To open and close the Nerdtree press &lt;strong&gt;CTRL + n&lt;/strong&gt;. Also you can see other
 available commands for this plugin by typing, &lt;tt class="docutils literal"&gt;ESC + :NERD &amp;lt;tab&amp;gt;&lt;/tt&gt;&lt;/p&gt;
 &lt;p&gt;Back to &lt;a class="reference internal" href="#topics"&gt;Topics&lt;/a&gt;&lt;/p&gt;
@@ -429,7 +574,7 @@ path settings. You can update the Rope settings for this python project from
 &lt;p&gt;This plugin is similar to the NerdTree, but instead of listing project
 directory structure it list the objects and functions names inside a file. Like Class
 browser in other IDE's.&lt;/p&gt;
-&lt;img alt="/images/tagbar.jpg" src="/images/tagbar.jpg" style="width: 100%;" /&gt;
+&lt;img alt="" src="/images/tagbar.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;I mapped &lt;cite&gt;&amp;lt;leader&amp;gt;l&lt;/cite&gt; to open tagbar and same combination to close it also.&lt;/p&gt;
 &lt;p&gt;Back to &lt;a class="reference internal" href="#topics"&gt;Topics&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -634,7 +779,7 @@ mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Check this console page to see the complete list of commands required to finish
 the mounting operation.&lt;/p&gt;
-&lt;img alt="/images/encryption-3.jpg" src="/images/encryption-3.jpg" /&gt;
+&lt;img alt="" src="/images/encryption-3.jpg" /&gt;
 &lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
@@ -876,7 +1021,7 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-&lt;p&gt;See you next time.&lt;/p&gt;
+&lt;p&gt;sEE YOU NEXT TIME.&lt;/p&gt;
 </summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
@@ -1077,7 +1222,7 @@ Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="/images/RabbitChat-Arch.png" src="/images/RabbitChat-Arch.png" /&gt;
+&lt;img alt="" src="/images/RabbitChat-Arch.png" /&gt;
 &lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
 github url &lt;cite&gt;git&amp;#64;github.com:haridas/RabbitChat.git&lt;/cite&gt;. Or download it
 directly from &lt;a class="reference external" href="https://github.com/haridas/RabbitChat"&gt;https://github.com/haridas/RabbitChat&lt;/a&gt;. Please check
@@ -1111,7 +1256,7 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="/images/south.png" src="/images/south.png" /&gt;
+</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -1183,7 +1328,7 @@ backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
 </summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="http://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><updated>2011-05-11T04:15:00+05:30</updated><author><name>haridas</name></author><id>tag:haridas.in,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
-&lt;img alt="/images/world_time2-300x172.gif" src="/images/world_time2-300x172.gif" /&gt;
+&lt;img alt="" src="/images/world_time2-300x172.gif" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of

@@ -3,314 +3,186 @@
 <head>
         <title>haridas.in - haridas</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
-        
-        <link href="http://haridas.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="haridas.in Atom Feed" />
-        
-        
+        <link rel="stylesheet" href="http://haridas.in/theme/css/main.css" type="text/css" />
 
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
         <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
-                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://haridas.in/css/ie.css"/>
+                <script src="http://haridas.in/js/IE8.js" type="text/javascript"></script><![endif]-->
 
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+                <link rel="stylesheet" type="text/css" media="all" href="http://haridas.in/css/ie6.css"/><![endif]-->
 
 </head>
 
 <body id="index" class="home">
-
 <a href="http://github.com/haridas">
-
 <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-
 </a>
-
         <header id="banner" class="body">
-                <h1><a href="../.">haridas.in </a></h1>
+                <h1><a href="http://haridas.in">haridas.in </a></h1>
                 <nav><ul>
-                
                     <li><a href="/archives.html">Archives</a></li>
-                
-                
-                
-                    <li><a href=".././pages/about-me.html">About Me</a></li>
-                
-                
-                
-                    <li ><a href=".././category/blog.html">blog</a></li>
-                
+                    <li><a href="http://haridas.in/pages/about-me.html">About Me</a></li>
+                    <li ><a href="http://haridas.in/category/blog.html">blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-                
-
-            
-
         
         
+
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././change-and-migrate-django-models-using-south.html">Change and Migrate Django Models using South</a></h1> 
-                    <footer class="post-info">
-        <abbr class="published" title="2011-06-17T10:41:00">
-                Fri 17 June 2011
+                    <h1 class="entry-title"><a href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html">RabbitMQ's Exchange-to-Exchange binding</a></h1> 
+<footer class="post-info">
+        <abbr class="published" title="2014-04-30T00:00:00">
+                Wed 30 April 2014
         </abbr>
 
-        
         <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+                By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
         </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/django.html">django</a><a href=".././tag/south.html">south</a></p>
-
-
-</footer><!-- /.post-info --><img alt="/images/south.png" src="../static/images/south.png" />
-<p>South is very handy django application to manage the django models. If
-we are developing web projects using django we need to change the Django
-model several times , In normal case we have to do these changes
-manually by editing both django model and backend database
-appropriately. This is very frustrating if we have to do it several
-times.</p>
-<p>The South application makes it very easy to handle the model changes
-and fill the initial data's into the database tables. To setup the South
-application along with your django project, you need to do very simple
-changes to the settings.py file of your django project. To make it
-simple you have to do this step before adding any of your django apps to
-the project.</p>
-<p>First of all install the south application to your system.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install south
-</pre></div>
-<p>then you have to add your south app to django settings.py file under</p>
-<p>INSTALLED_APPS veriable, ie;</p>
-<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-<span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable the admin:</span>
-<span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable admin documentation:</span>
-<span class="c"># &#39;django.contrib.admindocs&#39;,</span>
-<span class="s">&#39;south&#39;</span><span class="p">,</span> <span class="c"># &lt;---HERE</span>
-<span class="p">)</span>
-</pre></div>
-<p>Now we added the south app to our django project, the commands
-associated with this app is comes under the manage.py.</p>
-<p>Next step is to sync all models to the backend database, for that you
-have to use the usual method , ie;</p>
-<div class="highlight"><pre><span class="go">Migrate all tables to backend database,</span>
-<span class="go">it includes our south apps tables.</span>
-
-<span class="gp">$</span>python manage.py syncdb
-</pre></div>
-<p>That's it !. we are now ready to use south app for our apps model
-management.</p>
-<p>Currently we added tables of default django apps and south app to
-backend. Now we are ready to add our applications to django project.
-After adding new django application to the sttings.py INSTALLED_APPS
-variable, we need to migrate it's models using south management
-commands,</p>
-<div class="highlight"><pre><span class="go">Initially you have to add new app under south , for that,</span>
-<span class="go">python manage.py schemamigration your_app --initial</span>
-<span class="go">This will setup your app under south, need to run only once,</span>
-<span class="go">Then migrate models to backend database,</span>
-
-<span class="gp">$</span>python manage.py migrate your_app
-</pre></div>
-<p>After the initial addition of your django app under south, to migrate
-the future model changes under the same app, you have to do the bellow
-steps,</p>
-<div class="highlight"><pre><span class="go">After any changes to your model,</span>
-<span class="go">First detect those changes ,</span>
-
-<span class="gp">$</span>python manage.py schemamigration your_app --auto
-
-<span class="go">Then Migrate to backend,</span>
-
-<span class="gp">$</span>python manage.py migrate your_app
-</pre></div>
-<p>So using south app you are now manged model changes without touching
-backend database. In this manner we can manage all django applications
-under your project.</p>
-<p>Try this out ! and save your time.</p>
-<p>There are <a href=".././change-and-migrate-django-models-using-south.html#disqus_thread">comments</a>.</p>
-                </article>
-                
+<p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://haridas.in/tag/amqp.html">amqp</a><a href="http://haridas.in/tag/rabbitmq.html">rabbitmq</a></p></footer><!-- /.post-info --><p>I'm a long time user of RabbitMQ for different type of tasks
+like chat system, worker queue, logging etc. But lately I was looking for an
+option to track all messages passing through set of exchanges without
+interfering those exchanges. The need for it's that I want to analyze the
+messages passing in those exchanges. For that case Exchange-to-Queue binding
+is not enough for me, Because on that case I have to create one queue for each
+exchange available on the server.I want to avoid this. Then I came across this interesting
+RabbitMQ extension feature ( It's not there in the AMQP standard yet) which allow
+you to bind Exchange-to-Exchange.</p>
+<p>So using this exchange-to-exchange binding I can create a dummy exchange and
+bind it with those exchanges that I'm instead in. The routing keys used with
+the queue binding is applicable while binding the exchanges together.
+The messages are routed to the other binded exchanges by applying those routing
+keys. And obviously I created a dummy queue to persist those messages coming on
+the dummy exchange.</p>
+<p>By this way my external monitoring and quality checking code only monitor the
+dummy queue for the messages and it consumes and discard it from the queue. By
+the way this setup is not for permanent use.</p>
+<p>I'm using this method to do the following things.</p>
+<ol class="arabic simple">
+<li>To create more complex routing topologies for your application.</li>
+<li>To do the integration testing of complex systems which has asynchronous work
+flows.</li>
+<li>We can use this for do some debugging operations of production system without
+affecting the live machine. We can bind and start tap the messages at any
+time from the live system. After use we can remove those bindings.</li>
+</ol>
+<p>Here is the simple diagram showing the exchange-to-exchange binding. The orange
+lines showing the exchange-to-exchange binding.</p>
+<img alt="Exchange-to-Exchange-Binding" class="align-left" src="images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" />
+<p>Thank you.</p>
+<p>There are <a href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html#disqus_thread">comments</a>.</p>                </article>
             </aside><!-- /#featured -->
-            
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
-            
         
-        
-        
-            
 
-        
-         
-            
+ 
             <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././find-the-absolute-path-in-shell-script.html" rel="bookmark"
-                           title="Permalink to Find the Absolute path in Shell Script">Find the Absolute path in Shell Script</a></h1>
+                    <h1><a href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="bookmark"
+                           title="Permalink to What happens when we hit the speed limit of python">What happens when we hit the speed limit of python</a></h1>
                 </header>
                 
                 <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2011-11-19T06:01:00">
-                Sat 19 November 2011
+<footer class="post-info">
+        <abbr class="published" title="2014-04-10T00:00:00">
+                Thu 10 April 2014
         </abbr>
 
-        
         <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+                By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
         </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/server-admin.html">server admin</a><a href=".././tag/shell.html">shell</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>This is a simple shell script snippet to get the full absolute path of
-that file while running it in a shell environment.</p>
-<p>What is the use of this script -- Yeah, this script is really helpful
-when you are looking for a stable deployment of a multi-file project in
-a ...</p>
-                <a class="readmore" href=".././find-the-absolute-path-in-shell-script.html">read more</a>
-                <p>There are <a href=".././find-the-absolute-path-in-shell-script.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+<p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
+<p>tags: <a href="http://haridas.in/tag/python.html">python</a><a href="http://haridas.in/tag/networking.html">networking</a><a href="http://haridas.in/tag/tcp.html">tcp</a></p></footer><!-- /.post-info -->                <p>Python is a beautiful language but we know the limitations of the
+python compared with compiled language. So here I'm explaining a scenario
+where python was not the ideal choice.</p>
+<p>We are using python for network programming, specifically a TCP client/server
+program which read packets from another C ...</p>
+                <a class="readmore" href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html">read more</a>
+<p>There are <a href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
         
-        
-            
 
-        
-         
-            
+ 
             <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././how-i-came-in-to-vim.html" rel="bookmark"
-                           title="Permalink to How I came in to Vim">How I came in to Vim</a></h1>
+                    <h1><a href="http://haridas.in/some-programming-strategies.html" rel="bookmark"
+                           title="Permalink to Some Programming Strategies">Some Programming Strategies</a></h1>
                 </header>
                 
                 <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-05-27T16:30:00">
-                Sun 27 May 2012
+<footer class="post-info">
+        <abbr class="published" title="2013-01-26T00:00:00">
+                Sat 26 January 2013
         </abbr>
 
-        
         <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+                By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
         </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/linux.html">linux</a><a href=".././tag/vim.html">vim</a><a href=".././tag/editor.html">editor</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.</p>
-<p>I was started to use the ...</p>
-                <a class="readmore" href=".././how-i-came-in-to-vim.html">read more</a>
-                <p>There are <a href=".././how-i-came-in-to-vim.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+<p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
+</footer><!-- /.post-info -->                <p>Here I want to share some of my thoughts that helps me to make good decisions in
+every point of my programming life. This might looks like obvious to some but
+it was not in real life.</p>
+<p>The code samples are in Python, But concepts are applicable to most of ...</p>
+                <a class="readmore" href="http://haridas.in/some-programming-strategies.html">read more</a>
+<p>There are <a href="http://haridas.in/some-programming-strategies.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
         
-        
-            
 
-        
-         
-            
+ 
             <li><article class="hentry">    
                 <header>
-                    <h1><a href=".././how-to-put-encrypted-contents-on-cloud-storages.html" rel="bookmark"
-                           title="Permalink to How to put Encrypted Contents on Cloud Storages">How to put Encrypted Contents on Cloud Storages</a></h1>
+                    <h1><a href="http://haridas.in/vim-as-your-ide.html" rel="bookmark"
+                           title="Permalink to Vim as your IDE">Vim as your IDE</a></h1>
                 </header>
                 
                 <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-07-27T00:00:00">
-                Fri 27 July 2012
+<footer class="post-info">
+        <abbr class="published" title="2012-08-11T00:00:00">
+                Sat 11 August 2012
         </abbr>
 
-        
         <address class="vcard author">
-                By <a class="url fn" href=".././author/haridas.html">haridas</a>
+                By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
         </address>
-        
-<p>In <a href=".././category/blog.html">blog</a>. </p>
-<p>tags: <a href=".././tag/security.html">security</a><a href=".././tag/server.html">server</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>There is a plenty of cloud storage services out there for free.
-It's very convenient and flexible that we can sync our local files with
-remote storage. For simple and non-sensitive contents this  is very useful.
-But we know that the contents on the net are being open. There ...</p>
-                <a class="readmore" href=".././how-to-put-encrypted-contents-on-cloud-storages.html">read more</a>
-                <p>There are <a href=".././how-to-put-encrypted-contents-on-cloud-storages.html#disqus_thread">comments</a>.</p>
-                </div><!-- /.entry-content -->
+<p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
+</footer><!-- /.post-info -->                <p>To follow this article the reader should at least have a basic idea of how to use
+Vim and its command modes. Or if you are new to Vim, you can <a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html">read</a> my first blog to
+know how I came in to Vim and its fundamental differences with other editors ...</p>
+                <a class="readmore" href="http://haridas.in/vim-as-your-ide.html">read more</a>
+<p>There are <a href="http://haridas.in/vim-as-your-ide.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
             </article></li>
-        
-        
             </ol><!-- /#posts-list -->
-            
-                
 <p class="paginator">
-    
     Page 1 / 3
-    
-        <a href=".././author/haridas2.html">&raquo;</a>
-    
+        <a href="http://haridas.in/author/haridas2.html">&raquo;</a>
 </p>
-
-            
             </section><!-- /#content -->
-        
-    
-
-
         <section id="extras" class="body">
-        
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                        
                             <li><a href="http://docs.notmyidea.org/alexis/pelican/">Pelican</a></li>
-                        
                             <li><a href="http://python.org">Python.org</a></li>
-                        
                         </ul>
                 </div><!-- /.blogroll -->
-        
-        
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="http://haridas.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            
+                            <li><a href="http://haridas.in/" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-                        
                             <li><a href="http://twitter.com/haridas_n">twitter</a></li>
-                        
                             <li><a href="http://github.com/haridas">github</a></li>
-                        
                             <li><a href="http://in.linkedin.com/pub/haridas-n/19/95/825">linkedin</a></li>
-                        
                         </ul>
                 </div><!-- /.social -->
-        
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
@@ -321,7 +193,6 @@ But we know that the contents on the net are being open. There ...</p>
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
-
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -331,9 +202,6 @@ But we know that the contents on the net are being open. There ...</p>
         var pageTracker = _gat._getTracker("UA-23592173-1");
     pageTracker._trackPageview();
     } catch(err) {}</script>
-
-
-
 <script type="text/javascript">
     var disqus_shortname = 'haridas';
     (function () {
@@ -343,6 +211,5 @@ But we know that the contents on the net are being open. There ...</p>
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>
-
 </body>
 </html>
