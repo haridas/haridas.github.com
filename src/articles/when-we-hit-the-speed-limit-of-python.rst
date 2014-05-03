@@ -494,4 +494,3 @@ references
 
 1. http://linux.die.net/man/2/sendmsg 
 2. $ man socket
-3. $ man send
