@@ -139,10 +139,359 @@ insight into the problem and possible solutions.
 
 .. _`reddit`: http://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y
 
+Update ( 03-May-2014):-
+
+Simulate the Production Environment
+-----------------------------------
+
+So finally I got the working sample to simulate my server and client
+behaviour. This was only possible from the encouragement I got from reddit and
+twitter for my this blog entry. Thank you guys.
+
+Here I created one C tcp sample server(tcp_server.c), which simulate my actual C
+server in the production environment. And one Python TCP client(tcp_server.py) 
+which simulate the TCP socket reading operation in the production Python server
+implementation.
+
+.. code-block:: python
+    
+    # Python server tcp_server.py 
+
+    from optparse import OptionParser
+    import socket
+    import time
+    import select
+
+    PORT = 8000
+    HOST = "localhost"
+
+
+    def start_tcp_client():
+        """
+        Connect to sever and push lot of data.
+        """
+        print "Starting Client"
+        sock = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        sock.connect((HOST, PORT))
+
+        count = 1
+        while 1:
+            print "sending " + str(count)
+            data = sock.recv(10)
+
+            #
+            # Does some action on the data. and return the response.
+            #
+            time.sleep(0.5)
+
+            sock.send('Hi i got the data')
+            print data
+            count += 1
+
+
+    def start_tcp_client_with_fix():
+        """
+        The TCP client with fix applied. So it will read complete data from socket
+        and avoid the errors like 'errno 104' or 'errno 107'.
+        """
+        print "Starting the newly implemented client..."
+        sock = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        sock.connect((HOST, PORT))
+
+        # make the socket non-blocking
+        sock.setblocking(0)
+
+        count = 1
+        while 1:
+            print "sending " + str(count)
+            data = ""
+            t_data = ""
+
+            rsock, _, _ = select.select([sock], [], [])
+            if rsock:
+                rsock = rsock[0]
+                try:
+                    while(1):
+                        t_data = rsock.recv(1024)
+                        data += t_data
+                except Exception as ex:
+                    if ex.errno == 11:  # EAGAIN
+                        # Nothing more to read;
+                        pass
+                    else:
+                        raise ex
+            else:
+                continue
+            #
+            # Doese some action on the package `data`
+            #
+            print "Handled {} bytes".format(len(data))
+            rsock.send(str(len(data)))
+
+            count += 1
+
+    if __name__ == "__main__":
+
+        parser = OptionParser()
+
+        parser.add_option("-c", "--client", action="store_true",
+                          dest="new_client",
+                          default=False,
+                          help="Start the new client with fix applied.")
+
+        options, args = parser.parse_args()
+        new_client = options.new_client
+
+        if new_client:
+            start_tcp_client_with_fix()
+        else:
+            start_tcp_client()
+
+
+
+.. code-block:: cpp
+
+    /*
+        tcp_server.c - Implements the TCP server in my production environment.
+    */
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <unistd.h>
+    #include <errno.h>
+
+    #include <netdb.h>
+    #include <sys/types.h>
+    #include <sys/socket.h>
+    #include <arpa/inet.h>
+    #include <netinet/in.h>
+    #include <sys/wait.h>
+    #include <fcntl.h>
+
+
+    #define PORT "8000"
+    #define HOST "127.0.0.1"
+    #define MAX_LISTEN 5
+    #define SIZE 512
+
+
+    void *get_in_addr(struct sockaddr *sa){
+        if(sa->sa_family == AF_INET){
+            return &(((struct sockaddr_in*)sa)->sin_addr);
+        }
+
+        return &(((struct sockaddr_in6*)sa)->sin6_addr);
+    }
+
+
+    int send_sock_msg(int sock_fd){
+        struct sockaddr_in receiver_addr;
+
+        char line[15] = "Hello World!";
+        struct msghdr msg;
+        struct iovec iov;
+
+        //sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+        receiver_addr.sin_family = AF_INET;
+        receiver_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+        receiver_addr.sin_port = htons(8000);
+        
+        msg.msg_name = &receiver_addr;
+        msg.msg_namelen = sizeof(receiver_addr);
+        msg.msg_iov = &iov;
+        msg.msg_iovlen = 1;
+        msg.msg_iov->iov_base = line;
+        msg.msg_iov->iov_len = 13;
+        msg.msg_control = 0;
+        msg.msg_controllen = 0;
+        msg.msg_flags = 0;
+
+        return sendmsg(sock_fd, &msg, 0);
+    }
+
+    int main(void){
+
+        int sd, new_sd;
+        int yes = 1;
+        int rv;
+        int ttl = 8;
+        char s[INET6_ADDRSTRLEN];
+
+        struct sockaddr_in addr;
+        struct addrinfo hints, *serverinfo, *p;
+        struct sockaddr_storage their_addr; // COnnectors address info.
+        socklen_t sin_size;
+
+        memset(&hints, 0, sizeof(hints));
+        hints.ai_family = AF_UNSPEC;
+        hints.ai_socktype = SOCK_STREAM;
+        hints.ai_flags = AI_PASSIVE;
+
+        if((rv = getaddrinfo(NULL, PORT, &hints, &serverinfo)) != 0){
+            fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+            return 1;
+        }
+
+        // Loop through different results and pick up the first one.
+        for( p = serverinfo; p != NULL; p = p->ai_next){
+
+            if ((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
+                perror("server: socket");
+                continue;
+            }
+
+            if((fcntl(sd, F_SETFL, O_NONBLOCK)) < 0){
+                perror("error:fnctl");
+                exit(EXIT_FAILURE);
+            }
+
+            if(setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &yes,
+                        sizeof(int)) == -1){
+                perror("setsockopt");
+                exit(1);
+            }
+
+            if(bind(sd, p->ai_addr, p->ai_addrlen) == -1){
+                close(sd);
+                perror("server: bind");
+                continue;
+            }
+
+            break;
+        }
+
+        if (p == NULL){
+            fprintf(stderr, "server: failed to bind \n");
+            return 2;
+        }
+
+        freeaddrinfo(serverinfo); // No need for it further.
+        
+        if(listen(sd, MAX_LISTEN) == -1){
+            perror("listen");
+            exit(1);
+        }
+
+
+        printf("server: waiting for connections...\n");
+
+        while(1){
+            sin_size = sizeof their_addr;
+            new_sd  = accept(sd, (struct sockaddr *)&their_addr, &sin_size);
+
+            if(new_sd == -1){
+                perror("accept ...");
+                sleep(1);
+                continue;
+            }
+
+            inet_ntop(their_addr.ss_family,
+                    get_in_addr((struct sockaddr *)&their_addr),
+                    s, sizeof s);
+
+            printf("server: got connection from %s \n", s);
+
+            if(!fork()){ // This is child process.
+                close(sd); // Child doesn't need the listner socket. I'm not sure thought.
+                int count = 1;
+                FILE *logfile = fopen("server.log", "w");
+
+                if(logfile == NULL){
+                    perror("logfile open error");
+                    return(-1);
+                }
+
+                /*
+                 * Change the new client socket non-blocking.
+                 *
+                 * This will simulte the server scenario by writing the send buffer
+                 * as much as it can, and returns -1 if it's full. So that point the
+                 * server is reset the connection by closing the socket.
+                 *
+                 * So that's the current server behaviour in my environment. Check
+                 * the python client side, how it handling to avoid the connection
+                 * reset by the server.
+                 */
+                if((fcntl(new_sd, F_SETFL, O_NONBLOCK)) < 0){
+                    perror("error:fnctl");
+                    exit(EXIT_FAILURE);
+                }
+
+                while(1){
+                    int numbytes;
+
+                    sleep(0.1);
+
+                    if((numbytes = send_sock_msg(new_sd)) < 0){
+                    fprintf(logfile, "Kernel sending buffer is full. Closing the connection.: %d %d\n", count,numbytes);
+                    close(new_sd);
+                    exit(EXIT_FAILURE);
+                }
+                fprintf(logfile, "Server sending the msg no: %d %d\n", count,numbytes);
+                count ++;
+            }
+            close(new_sd);
+            exit(0);
+        }
+        close(new_sd); // Parent doesn't need child's socket.
+        }
+
+    return 0;
+    }
+
+
+How to Run the code.
+--------------------
+
+.. code-block:: bash
+
+    #
+    # Start the C server. Which listening on the port 8000 and handles the
+    # Client connections on another thread.
+    #
+
+    $ gcc tcp_server.c
+    $ ./a.out
+
+    # 
+    # On another shell environemnt run python client.
+    # It has two options - 
+
+    #    1. Run the Python client which gives the error 104 and 107 issue. Which
+    #       is the issue I'm getting right now on the production machine.
+
+    #    2. Another implementation of the Python client which fixes the issue and 
+    #       read the socket data without causing socket error 104 and 107
+
+    $ python tcp_server.py  # Simulate the tcp client with socket problem.
+
+    #    This will crash after while since the server closes the socket on its
+    #    side due to the kernel sending buffer is full on the server side.
+
+    $ python tcp_server.py -c # This client has the option to fix that issue.
+
+    #    This will read the socket data in non-blocking mode and read entire 
+    #    data from the socket till it throws EAGAIN exception.
+
+    #    This time the client won't throw any excetion and the server and client
+    #    work smoothly. So finally I got the protype to fix the actual production
+    #    system.
+
+    #    To See what is happening while running this scripts run `tcpdump`
+    #    caommand.
+
+    $ sudo tcpdump -i any port 8000
+
+
 
 references
 ----------
 
 1. http://linux.die.net/man/2/sendmsg 
 2. $ man socket
-
+3. $ man send
