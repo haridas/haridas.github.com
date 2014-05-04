@@ -431,17 +431,19 @@ implementation.
                     fprintf(logfile, "Kernel sending buffer is full. Closing the connection.: %d %d\n", count,numbytes);
                     close(new_sd);
                     exit(EXIT_FAILURE);
+                    }
+
+                    fprintf(logfile, "Server sending the msg no: %d %d\n", count,numbytes);
+                    count ++;
                 }
-                fprintf(logfile, "Server sending the msg no: %d %d\n", count,numbytes);
-                count ++;
+                close(new_sd);
+                exit(0);
             }
-            close(new_sd);
-            exit(0);
-        }
-        close(new_sd); // Parent doesn't need child's socket.
+
+            close(new_sd); // Parent doesn't need child's socket.
         }
 
-    return 0;
+        return 0;
     }
 
 

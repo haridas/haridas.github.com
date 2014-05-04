@@ -456,17 +456,19 @@ implementation.</p>
                 <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Kernel sending buffer is full. Closing the connection.: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
                 <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
                 <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Server sending the msg no: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
+                <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
             <span class="p">}</span>
-            <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Server sending the msg no: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
-            <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
+            <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
         <span class="p">}</span>
-        <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span> <span class="c1">// Parent doesn&#39;t need child&#39;s socket.</span>
+
+        <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span> <span class="c1">// Parent doesn&#39;t need child&#39;s socket.</span>
     <span class="p">}</span>
 
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
