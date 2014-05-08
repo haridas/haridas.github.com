@@ -1,556 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-        <title>haridas.in - networking</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="http://haridas.in/theme/css/main.css" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Haridas N, ">
 
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="alternate"  href="./feeds/all.atom.xml" type="application/atom+xml" title="Haridas N Full Atom Feed"/>
 
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="http://haridas.in/css/ie.css"/>
-                <script src="http://haridas.in/js/IE8.js" type="text/javascript"></script><![endif]-->
+        <title>networking tag // Haridas N // </title>
 
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="http://haridas.in/css/ie6.css"/><![endif]-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./theme/css/pure.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
-<a href="http://github.com/haridas">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-</a>
-        <header id="banner" class="body">
-                <h1><a href="http://haridas.in">haridas.in </a></h1>
-                <nav><ul>
-                    <li><a href="/archives.html">Archives</a></li>
-                    <li><a href="http://haridas.in/pages/about-me.html">About Me</a></li>
-                    <li ><a href="http://haridas.in/category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-        
-        
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html">What happens when we hit the speed limit of python</a></h1> 
-<footer class="post-info">
-        <abbr class="published" title="2014-04-10T00:00:00">
-                Thu 10 April 2014
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://haridas.in/author/haridas.html">haridas</a>
-        </address>
-<p>In <a href="http://haridas.in/category/blog.html">blog</a>. </p>
-<p>tags: <a href="http://haridas.in/tag/python.html">python</a><a href="http://haridas.in/tag/networking.html">networking</a><a href="http://haridas.in/tag/tcp.html">tcp</a></p></footer><!-- /.post-info --><p>Python is a beautiful language but we know the limitations of the
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('images/Photz057.jpg')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <img class="avatar" src="images/Image022.jpg">
+                            <h1 class="brand-main"><a href="/">Haridas N</a></h1>
+                            <p class="tagline"></p>
+                                <p class="links"><a href=".//archives.html">Archives</a></p>
+                                <p class="links"><a href=".//pages/about-me.html">About</a></p>
+                                <p class="social">
+                                    <a href="http://twitter.com/haridas_n">
+                                        <i class="fa fa-twitter-square fa-3x"></i>
+                                    </a>
+                                    <a href="http://github.com/haridas">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                <p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts tagged 'networking'                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="./what-happens-when-we-hit-the-speed-limit-of-python.html">What happens when we hit the speed limit of python</a></h3>
+                            <p class="post-meta"><p>Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.</p>
 <p>We are using python for network programming, specifically a TCP client/server
-program which read packets from another C based server. We picked python because
-on the requirements the traffic volume wasn't huge enough to consider compiled
-languages like C/C++ or Java, and we are already using python so more comfortable
-with it.</p>
-<div class="section" id="the-network-topology">
-<h2>The network topology</h2>
-<div class="highlight"><pre>Network =&gt; TCP Server A =&gt; TCP Server B ( Do some operation.) ==&gt; Network
-
-Where :-
-    Server A is implemented in C.
-    Server B is the one we implemented.
-</pre></div>
-<p>The data flowing from Server A to Server B via TCP. The Server B is implemented
-in python for now. This setup was running for more than a year without any
-problems or crashing. Then it started showing problems. The Server B crashing
-sometime because of the socket connection between the Server A and Server
-B getting closed by the Server A, We don't know why. Bellow listed are the errors
-that we are getting, one interesting thing is; these two errors won't happen
-together, some time Errno 104, some time Errno 107.</p>
-<blockquote>
-<ol class="arabic simple">
-<li>Errno: 104 - Peer closed the socket connection.</li>
-<li>Errno: 107 - Transport endpoint closed.</li>
-</ol>
-</blockquote>
-<p>I initially thought this was happening because of python's long running process
-exiting due to memory overflow or some other reasons. We thought this because
-python's reputation as a long running daemon is not great. Then we figure
-out that long running daemon wasn't the reason for this issue, since the main
-python process wasn't consuming more RAM and it's very stable in memory usage.
-Our python server using very simple data structures, so python VM very
-efficiently handling the Memory.</p>
-<p>Then I started to look into other areas of program, by changing the settings
-and tuning parameters to see any of it fixes the issue. All of the options
-seems to work for a while but it throws the same error after few days.
-I was stuck and no idea about the issue and spend around a week to go through
-the program's in and out to see any possible causes. But no clue from it.</p>
-<p>Finally Stack Overflow came into help, IRC wasn't helpful for these type of very
-specific issues. Programmers can't live without Google and Stack Overflow.
-I put the question on the SO, people helped me to make the question better by
-adding the TCP traces picked up using <tt class="docutils literal">tcpdump</tt>. With in hours I got the
-answer I was looking for. It's mainly due the python socket reading related.
-In the Python side we are not clearing the TCP packets from the receive buffer
-of TCP socket completely, only reading few bytes (300B to 10KB) at a time.
-So which causing the Python server to send receive window size flag of TCP
-protocol as ZERO for multiple times In the heavy traffic period.
-This might triggering this issue. That was the idea I got from the stack Overflow.</p>
-<p>You can see the <a class="reference external" href="http://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected">stackOverflow post</a>, I explained more technical
-details on the SO question, please have a look on it to get more details about
-the issue and sample tcpdump trace file to see what was happened on the network.</p>
-<p>The problem on the python side is that,  it's a single threaded server which
-reading the data from the socket, one thing we are right now not doing is reading
-until socket is empty due to some implementation restrictions. From the SO
-answer I got some quick solutions to try,</p>
-<ol class="arabic simple">
-<li>Remove unwanted codes from the main loop, so the total time taken to process
-one socket read would be as small as possible.</li>
-<li>Tweak with the Kernel parameters for the TCP sending and receiving buffer
-size.</li>
-<li>Improve the Code base or re-implement it in C completely or do the main part as
-C extension.</li>
-</ol>
-<p>The method 1 and 2 was easy go ahead with, So I did it right away. It gives
-considerable difference and the crashes reduced considerably. But still it
-happened once or twice. So I know that it's not enough and need reimplementation
-of the parts which causing this problem. But we are holding  on the
-reimplementation since it will take lot of time to change the existing stuff.
-Any way the current changes give enough time to try more things to improve the
-existing code and investigate the problem more.</p>
-<p>Mean while I did some more investigation locally to understand the issue more.
-From that what I understood was, when the network is heavily loaded the Python
-server side not clearing the traffic quick enough and which forcing the remote server
-to close the TCP socket (Not yet found why it's closing it). Right after the
-socket is closed on the remote end,  Python side of the code might be trying
-<cite>socket.send</cite> or <cite>socket.recv</cite> and it will fail since no active socket. So in
-the beginning I mentioned that I'm getting two errors, this is
-because some time right after the remote server closed the socket, the next
-socket interaction in the python side may be <cite>socket.send</cite> which was triggering the
-error <tt class="docutils literal">Errno 104</tt>. If it was <cite>socket.recv</cite> it would have been <tt class="docutils literal">Errno 107</tt>.</p>
-<p>One other thing I learned after this was that, the TCP server usually handles
-the slow remote servers by blocking the new massage write into
-the sending buffer. In my environment I understood the remote server A
-is not blocking the write(Non-blocking socket) instead closing the socket( This
-could be due to timeout).If the TCP server has option to cache the extra
-packets into disk then it could have handled this peak traffic period.</p>
-</div>
-<div class="section" id="a-tcp-server-has-to-provide-atleast-these-features">
-<h2>A TCP Server has to provide atleast these features</h2>
-<ol class="arabic simple">
-<li>Way to handle the buffer overflow if the client is very slow.</li>
-<li>Write the buffer overflowed data into durable queue or file system.</li>
-<li>When the Client comes back, the server has to automatically deliver the
-pending messages in FIFO order.</li>
-</ol>
-</div>
-<div class="section" id="final-thoughts">
-<h2>Final thoughts</h2>
-<p>If these options are there with the TCP server that I was handling, this problem
-couldn't have happened. So finally now I can say that Python
-could have handled this situation if the traffic spikes some times only - In
-our case that was the situation. Python couldn't have done it if the rate of
-server is more than the rate at which Python can clear the socket backlog.</p>
-<p>Update (02-May-2014):-</p>
-<p>Please check out this <a class="reference external" href="http://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y">reddit</a> discussion about this post, which give you more
-insight into the problem and possible solutions.</p>
-<p>Update ( 03-May-2014):-</p>
-</div>
-<div class="section" id="simulate-the-production-environment">
-<h2>Simulate the Production Environment</h2>
-<p>So finally I got the working sample to simulate my server and client
-behaviour. This was only possible from the encouragement I got from reddit and
-twitter for my this blog entry. Thank you guys.</p>
-<p>Here I created one C tcp sample server(tcp_server.c), which simulate my actual C
-server in the production environment. And one Python TCP client(tcp_server.py)
-which simulate the TCP socket reading operation in the production Python server
-implementation.</p>
-<div class="highlight"><pre><span class="c"># Python server tcp_server.py</span>
-
-<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
-<span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">select</span>
-
-<span class="n">PORT</span> <span class="o">=</span> <span class="mi">8000</span>
-<span class="n">HOST</span> <span class="o">=</span> <span class="s">&quot;localhost&quot;</span>
-
-
-<span class="k">def</span> <span class="nf">start_tcp_client</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Connect to sever and push lot of data.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;Starting Client&quot;</span>
-    <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">proto</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
-
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-        <span class="c">#</span>
-        <span class="c"># Does some action on the data. and return the response.</span>
-        <span class="c">#</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-
-        <span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s">&#39;Hi i got the data&#39;</span><span class="p">)</span>
-        <span class="k">print</span> <span class="n">data</span>
-        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-
-
-<span class="k">def</span> <span class="nf">start_tcp_client_with_fix</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The TCP client with fix applied. So it will read complete data from socket</span>
-<span class="sd">    and avoid the errors like &#39;errno 104&#39; or &#39;errno 107&#39;.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;Starting the newly implemented client...&quot;</span>
-    <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">proto</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
-
-    <span class="c"># make the socket non-blocking</span>
-    <span class="n">sock</span><span class="o">.</span><span class="n">setblocking</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-        <span class="n">t_data</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-
-        <span class="n">rsock</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">sock</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[])</span>
-        <span class="k">if</span> <span class="n">rsock</span><span class="p">:</span>
-            <span class="n">rsock</span> <span class="o">=</span> <span class="n">rsock</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-                    <span class="n">t_data</span> <span class="o">=</span> <span class="n">rsock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
-                    <span class="n">data</span> <span class="o">+=</span> <span class="n">t_data</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>  <span class="c"># EAGAIN</span>
-                    <span class="c"># Nothing more to read;</span>
-                    <span class="k">pass</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">ex</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="c">#</span>
-        <span class="c"># Doese some action on the package `data`</span>
-        <span class="c">#</span>
-        <span class="k">print</span> <span class="s">&quot;Handled {} bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-        <span class="n">rsock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
-
-        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
-
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-c&quot;</span><span class="p">,</span> <span class="s">&quot;--client&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store_true&quot;</span><span class="p">,</span>
-                      <span class="n">dest</span><span class="o">=</span><span class="s">&quot;new_client&quot;</span><span class="p">,</span>
-                      <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Start the new client with fix applied.&quot;</span><span class="p">)</span>
-
-    <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-    <span class="n">new_client</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">new_client</span>
-
-    <span class="k">if</span> <span class="n">new_client</span><span class="p">:</span>
-        <span class="n">start_tcp_client_with_fix</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">start_tcp_client</span><span class="p">()</span>
-</pre></div>
-<div class="highlight"><pre><span class="cm">/*</span>
-<span class="cm">    tcp_server.c - Implements the TCP server in my production environment.</span>
-<span class="cm">*/</span>
-
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;stdlib.h&gt;</span>
-<span class="cp">#include &lt;string.h&gt;</span>
-<span class="cp">#include &lt;unistd.h&gt;</span>
-<span class="cp">#include &lt;errno.h&gt;</span>
-
-<span class="cp">#include &lt;netdb.h&gt;</span>
-<span class="cp">#include &lt;sys/types.h&gt;</span>
-<span class="cp">#include &lt;sys/socket.h&gt;</span>
-<span class="cp">#include &lt;arpa/inet.h&gt;</span>
-<span class="cp">#include &lt;netinet/in.h&gt;</span>
-<span class="cp">#include &lt;sys/wait.h&gt;</span>
-<span class="cp">#include &lt;fcntl.h&gt;</span>
-
-
-<span class="cp">#define PORT &quot;8000&quot;</span>
-<span class="cp">#define HOST &quot;127.0.0.1&quot;</span>
-<span class="cp">#define MAX_LISTEN 5</span>
-<span class="cp">#define SIZE 512</span>
-
-
-<span class="kt">void</span> <span class="o">*</span><span class="nf">get_in_addr</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">sa</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">sa</span><span class="o">-&gt;</span><span class="n">sa_family</span> <span class="o">==</span> <span class="n">AF_INET</span><span class="p">){</span>
-        <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="n">sockaddr_in6</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin6_addr</span><span class="p">);</span>
-<span class="p">}</span>
-
-
-<span class="kt">int</span> <span class="nf">send_sock_msg</span><span class="p">(</span><span class="kt">int</span> <span class="n">sock_fd</span><span class="p">){</span>
-    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">receiver_addr</span><span class="p">;</span>
-
-    <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">msghdr</span> <span class="n">msg</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">iovec</span> <span class="n">iov</span><span class="p">;</span>
-
-    <span class="c1">//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span>
-
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_LOOPBACK</span><span class="p">);</span>
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">8000</span><span class="p">);</span>
-
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_name</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">receiver_addr</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_namelen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">receiver_addr</span><span class="p">);</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iov</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iovlen</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_base</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_len</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_control</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_controllen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="n">sendmsg</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-
-    <span class="kt">int</span> <span class="n">sd</span><span class="p">,</span> <span class="n">new_sd</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">yes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">rv</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">ttl</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
-
-    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">addr</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">addrinfo</span> <span class="n">hints</span><span class="p">,</span> <span class="o">*</span><span class="n">serverinfo</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">sockaddr_storage</span> <span class="n">their_addr</span><span class="p">;</span> <span class="c1">// COnnectors address info.</span>
-    <span class="kt">socklen_t</span> <span class="n">sin_size</span><span class="p">;</span>
-
-    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">hints</span><span class="p">));</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_family</span> <span class="o">=</span> <span class="n">AF_UNSPEC</span><span class="p">;</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span> <span class="o">=</span> <span class="n">SOCK_STREAM</span><span class="p">;</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_flags</span> <span class="o">=</span> <span class="n">AI_PASSIVE</span><span class="p">;</span>
-
-    <span class="k">if</span><span class="p">((</span><span class="n">rv</span> <span class="o">=</span> <span class="n">getaddrinfo</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverinfo</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
-        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;getaddrinfo: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">gai_strerror</span><span class="p">(</span><span class="n">rv</span><span class="p">));</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Loop through different results and pick up the first one.</span>
-    <span class="k">for</span><span class="p">(</span> <span class="n">p</span> <span class="o">=</span> <span class="n">serverinfo</span><span class="p">;</span> <span class="n">p</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_next</span><span class="p">){</span>
-
-        <span class="k">if</span> <span class="p">((</span><span class="n">sd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: socket&quot;</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">O_NONBLOCK</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">yes</span><span class="p">,</span>
-                    <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;setsockopt&quot;</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: bind&quot;</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
-        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;server: failed to bind </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">freeaddrinfo</span><span class="p">(</span><span class="n">serverinfo</span><span class="p">);</span> <span class="c1">// No need for it further.</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">MAX_LISTEN</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">perror</span><span class="p">(</span><span class="s">&quot;listen&quot;</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: waiting for connections...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">sin_size</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">their_addr</span><span class="p">;</span>
-        <span class="n">new_sd</span>  <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="n">new_sd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;accept ...&quot;</span><span class="p">);</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="n">inet_ntop</span><span class="p">(</span><span class="n">their_addr</span><span class="p">.</span><span class="n">ss_family</span><span class="p">,</span>
-                <span class="n">get_in_addr</span><span class="p">((</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">),</span>
-                <span class="n">s</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">s</span><span class="p">);</span>
-
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: got connection from %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">()){</span> <span class="c1">// This is child process.</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span> <span class="c1">// Child doesn&#39;t need the listner socket. I&#39;m not sure thought.</span>
-            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="kt">FILE</span> <span class="o">*</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;server.log&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">);</span>
-
-            <span class="k">if</span><span class="p">(</span><span class="n">logfile</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
-                <span class="n">perror</span><span class="p">(</span><span class="s">&quot;logfile open error&quot;</span><span class="p">);</span>
-                <span class="k">return</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="cm">/*</span>
-<span class="cm">             * Change the new client socket non-blocking.</span>
-<span class="cm">             *</span>
-<span class="cm">             * This will simulte the server scenario by writing the send buffer</span>
-<span class="cm">             * as much as it can, and returns -1 if it&#39;s full. So that point the</span>
-<span class="cm">             * server is reset the connection by closing the socket.</span>
-<span class="cm">             *</span>
-<span class="cm">             * So that&#39;s the current server behaviour in my environment. Check</span>
-<span class="cm">             * the python client side, how it handling to avoid the connection</span>
-<span class="cm">             * reset by the server.</span>
-<span class="cm">             */</span>
-            <span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">new_sd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">O_NONBLOCK</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-                <span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
-                <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-                <span class="kt">int</span> <span class="n">numbytes</span><span class="p">;</span>
-
-                <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
-
-                <span class="k">if</span><span class="p">((</span><span class="n">numbytes</span> <span class="o">=</span> <span class="n">send_sock_msg</span><span class="p">(</span><span class="n">new_sd</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-                <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Kernel sending buffer is full. Closing the connection.: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
-                <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
-                <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-                <span class="p">}</span>
-
-                <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Server sending the msg no: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
-                <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span> <span class="c1">// Parent doesn&#39;t need child&#39;s socket.</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="section" id="how-to-run-the-code">
-<h2>How to Run the code.</h2>
-<div class="highlight"><pre><span class="c">#</span>
-<span class="c"># Start the C server. Which listening on the port 8000 and handles the</span>
-<span class="c"># Client connections on another thread.</span>
-<span class="c">#</span>
-
-<span class="nv">$ </span>gcc tcp_server.c
-<span class="nv">$ </span>./a.out
-
-<span class="c">#</span>
-<span class="c"># On another shell environemnt run python client.</span>
-<span class="c"># It has two options -</span>
-
-<span class="c">#    1. Run the Python client which gives the error 104 and 107 issue. Which</span>
-<span class="c">#       is the issue I&#39;m getting right now on the production machine.</span>
-
-<span class="c">#    2. Another implementation of the Python client which fixes the issue and</span>
-<span class="c">#       read the socket data without causing socket error 104 and 107</span>
-
-<span class="nv">$ </span>python tcp_server.py  <span class="c"># Simulate the tcp client with socket problem.</span>
-
-<span class="c">#    This will crash after while since the server closes the socket on its</span>
-<span class="c">#    side due to the kernel sending buffer is full on the server side.</span>
-
-<span class="nv">$ </span>python tcp_server.py -c <span class="c"># This client has the option to fix that issue.</span>
-
-<span class="c">#    This will read the socket data in non-blocking mode and read entire</span>
-<span class="c">#    data from the socket till it throws EAGAIN exception.</span>
-
-<span class="c">#    This time the client won&#39;t throw any excetion and the server and client</span>
-<span class="c">#    work smoothly. So finally I got the protype to fix the actual production</span>
-<span class="c">#    system.</span>
-
-<span class="c">#    To See what is happening while running this scripts run `tcpdump`</span>
-<span class="c">#    caommand.</span>
-
-<span class="nv">$ </span>sudo tcpdump -i any port 8000
-</pre></div>
-</div>
-<div class="section" id="references">
-<h2>references</h2>
-<ol class="arabic simple">
-<li><a class="reference external" href="http://linux.die.net/man/2/sendmsg">http://linux.die.net/man/2/sendmsg</a></li>
-<li>$ man socket</li>
-</ol>
-</div>
-<p>There are <a href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html#disqus_thread">comments</a>.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://docs.notmyidea.org/alexis/pelican/">Pelican</a></li>
-                            <li><a href="http://python.org">Python.org</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://haridas.in/" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="http://twitter.com/haridas_n">twitter</a></li>
-                            <li><a href="http://github.com/haridas">github</a></li>
-                            <li><a href="http://in.linkedin.com/pub/haridas-n/19/95/825">linkedin</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+program which read packets from another C ...</p></p>
+                            <p class="post-meta">
+                                in <a href="./category/blog.html">blog</a> &middot; Thu 10 April 2014
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                &nbsp;
+        </div>
+        <span>Page 1 / 1</span>
+        <div class="pagination-right">
+        </div>
+    </div>
+</div><footer class="footer">
+    <p>&copy; Haridas N &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
     </script>
     <script type="text/javascript">
-    try {
-        var pageTracker = _gat._getTracker("UA-23592173-1");
-    pageTracker._trackPageview();
-    } catch(err) {}</script>
-<script type="text/javascript">
-    var disqus_shortname = 'haridas';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
 </body>
 </html>
