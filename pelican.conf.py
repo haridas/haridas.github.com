@@ -3,7 +3,7 @@
 AUTHOR = u"Haridas N"
 SITENAME = u"Haridas N"
 # Don't, change the current URL scheme.
-SITEURL = 'haridas.in'
+SITEURL = '.'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
 
