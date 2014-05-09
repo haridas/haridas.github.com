@@ -3,7 +3,7 @@
 AUTHOR = u"Haridas N"
 SITENAME = u"Haridas N"
 # Don't, change the current URL scheme.
-SITEURL = '.'
+SITEURL = 'haridas.in'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
 
@@ -21,8 +21,8 @@ CSS_FILE = 'pure.css'
 REVERSE_ARCHIVE_ORDER = True
 
 # Other menu items
-MENUITEMS = [('Archives', '/archives.html'),
-             ('About', '/pages/about-me.html')]
+MENUITEMS = [('Archives', 'archives.html'),
+             ('About', 'pages/about-me.html')]
 
 COVER_IMG_URL = "images/Photz057.jpg"
 PROFILE_IMG_URL = "images/Image022.jpg"
@@ -41,8 +41,8 @@ LINKS = (
 # Social widget
 SOCIAL = (
     ('twitter-square', 'http://twitter.com/haridas_n'),
-    ('github', 'http://github.com/haridas'),
-    ('linkedin', 'http://in.linkedin.com/pub/haridas-n/19/95/825'),
+    ('github-square', 'http://github.com/haridas'),
+    ('linkedin-square', 'http://in.linkedin.com/pub/haridas-n/19/95/825'),
 )
 
 ARTICLE_EXCLUDES = ['templates', 'pages']

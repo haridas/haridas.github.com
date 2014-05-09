@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Haridas N</title><link href="./" rel="alternate"></link><link href="./feeds/blog.atom.xml" rel="self"></link><id>./</id><updated>2014-04-30T00:00:00+05:30</updated><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="./rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><updated>2014-04-30T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Haridas N</title><link href="haridas.in/" rel="alternate"></link><link href="haridas.in/feeds/blog.atom.xml" rel="self"></link><id>haridas.in/</id><updated>2014-04-30T00:00:00+05:30</updated><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><updated>2014-04-30T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
 like chat system, worker queue, logging etc. But lately I was looking for an
 option to track all messages passing through set of exchanges without
 interfering those exchanges. The need for it's that I want to analyze the
@@ -30,7 +30,7 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
 &lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 768px; height: 500px;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
-</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="./what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><updated>2014-04-10T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2014-04-10:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><updated>2014-04-10T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2014-04-10:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.&lt;/p&gt;
 &lt;p&gt;We are using python for network programming, specifically a TCP client/server
@@ -485,7 +485,7 @@ implementation.&lt;/p&gt;
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>Some Programming Strategies</title><link href="./some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>Some Programming Strategies</title><link href="haridas.in/some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
@@ -663,7 +663,7 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;li&gt;&lt;a class="reference external" href="http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Vim as your IDE</title><link href="./vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2012-08-11:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+</summary></entry><entry><title>Vim as your IDE</title><link href="haridas.in/vim-as-your-ide.html" rel="alternate"></link><updated>2012-08-11T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2012-08-11:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors.&lt;/p&gt;
 &lt;p&gt;Here I'm trying to explain how to make the Vim more productive by adding some extra
@@ -1070,7 +1070,7 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="./how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2012-07-27:how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</summary></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2012-07-27:how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is a chance for
@@ -1163,7 +1163,7 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="./how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2012-05-27:how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2012-05-27:how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -1248,7 +1248,7 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="http://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="./wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2012-05-07:wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2012-05-07:wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt the difficulties while adding some
@@ -1320,7 +1320,7 @@ select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="./find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2011-11-19:find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2011-11-19:find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -1363,7 +1363,7 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
 &lt;p&gt;sEE YOU NEXT TIME.&lt;/p&gt;
-</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="./how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
@@ -1558,7 +1558,7 @@ version.&lt;/p&gt;
 ruby.&lt;/p&gt;
 &lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="./rabbitchat-web-based-chat-system.html" rel="alternate"></link><updated>2011-07-28T12:10:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2011-07-28:rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><updated>2011-07-28T12:10:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2011-07-28:rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
 Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
@@ -1597,7 +1597,7 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="./change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" /&gt;
+</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -1668,7 +1668,7 @@ steps,&lt;/p&gt;
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="./playing-with-timezone-using-pytz.html" rel="alternate"></link><updated>2011-05-11T04:15:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><updated>2011-05-11T04:15:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
@@ -1828,7 +1828,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="./programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>Haridas N</name></author><id>tag:.,2010-09-28:programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="haridas.in/programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2010-09-28:programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and
