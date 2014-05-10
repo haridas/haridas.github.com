@@ -32,6 +32,9 @@
                                 <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
                             {% endfor %}
                         </p>
+                        <p class="post-meta">
+                            in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
+                        </p>
                 </header>
             </section>
             {{ article.content }}

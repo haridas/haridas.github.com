@@ -3,7 +3,7 @@
 AUTHOR = u"Haridas N"
 SITENAME = u"Haridas N"
 # Don't, change the current URL scheme.
-SITEURL = '.'
+SITEURL = 'http://haridas.in'
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
 
@@ -24,8 +24,8 @@ REVERSE_ARCHIVE_ORDER = True
 MENUITEMS = [('Archives', 'archives.html'),
              ('About', 'pages/about-me.html')]
 
-COVER_IMG_URL = "images/Photz057.jpg"
-PROFILE_IMG_URL = "images/Image022.jpg"
+COVER_IMG_URL = "/images/Photz057.jpg"
+PROFILE_IMG_URL = "/images/profile_pic.jpg"
 
 ## External services and Social medias.
 

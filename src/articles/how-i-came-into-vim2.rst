@@ -3,6 +3,7 @@ My Vim Story 2
 :category: blog
 :date: 11-08-2012
 :title: Vim as your IDE
+:tags: linux,vim,editor
 
 
 
