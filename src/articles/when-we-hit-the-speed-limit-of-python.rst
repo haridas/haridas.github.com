@@ -472,10 +472,43 @@ How to Run the code.
 
     $ python tcp_server.py  # Simulate the tcp client with socket problem.
 
+    # OUTPUT #
+
+    Starting Client
+    sending 1
+    Hello Worl
+    sending 2
+    Traceback (most recent call last):
+      File "tcp_server.py", line 98, in <module>
+        start_tcp_client()
+      File "tcp_server.py", line 31, in start_tcp_client
+        sock.send('Hi i got the data')
+    socket.error: [Errno 104] Connection reset by peer
+
+
     #    This will crash after while since the server closes the socket on its
     #    side due to the kernel sending buffer is full on the server side.
 
     $ python tcp_server.py -c # This client has the option to fix that issue.
+
+    #OUTPUT#
+
+    Starting the newly implemented client...
+    sending 1
+    Handled 169 bytes
+    sending 2
+    Handled 156 bytes
+    sending 3
+    Handled 1079 bytes
+    sending 4
+    Handled 208 bytes
+    sending 5
+    Handled 364 bytes
+    sending 6
+    Handled 286 bytes
+    ....
+
+    Goese on like this without any interrupt or network buffer overflow.
 
     #    This will read the socket data in non-blocking mode and read entire 
     #    data from the socket till it throws EAGAIN exception.
@@ -489,6 +522,10 @@ How to Run the code.
 
     $ sudo tcpdump -i any port 8000
 
+
+You can get the above code from this `github repository`_. 
+
+.. _`github repository`: https://github.com/haridas/non-blocking-tcp-server-sample
 
 
 references

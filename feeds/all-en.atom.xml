@@ -460,10 +460,43 @@ implementation.&lt;/p&gt;
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py  &lt;span class="c"&gt;# Simulate the tcp client with socket problem.&lt;/span&gt;
 
+&lt;span class="c"&gt;# OUTPUT #&lt;/span&gt;
+
+Starting Client
+sending 1
+Hello Worl
+sending 2
+Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
+  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line 98, in &amp;lt;module&amp;gt;
+    start_tcp_client&lt;span class="o"&gt;()&lt;/span&gt;
+  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line 31, in start_tcp_client
+    sock.send&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hi i got the data&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+socket.error: &lt;span class="o"&gt;[&lt;/span&gt;Errno 104&lt;span class="o"&gt;]&lt;/span&gt; Connection reset by peer
+
+
 &lt;span class="c"&gt;#    This will crash after while since the server closes the socket on its&lt;/span&gt;
 &lt;span class="c"&gt;#    side due to the kernel sending buffer is full on the server side.&lt;/span&gt;
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py -c &lt;span class="c"&gt;# This client has the option to fix that issue.&lt;/span&gt;
+
+&lt;span class="c"&gt;#OUTPUT#&lt;/span&gt;
+
+Starting the newly implemented client...
+sending 1
+Handled 169 bytes
+sending 2
+Handled 156 bytes
+sending 3
+Handled 1079 bytes
+sending 4
+Handled 208 bytes
+sending 5
+Handled 364 bytes
+sending 6
+Handled 286 bytes
+....
+
+Goese on like this without any interrupt or network buffer overflow.
 
 &lt;span class="c"&gt;#    This will read the socket data in non-blocking mode and read entire&lt;/span&gt;
 &lt;span class="c"&gt;#    data from the socket till it throws EAGAIN exception.&lt;/span&gt;
@@ -477,6 +510,7 @@ implementation.&lt;/p&gt;
 
 &lt;span class="nv"&gt;$ &lt;/span&gt;sudo tcpdump -i any port 8000
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can get the above code from this &lt;a class="reference external" href="https://github.com/haridas/non-blocking-tcp-server-sample"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="references"&gt;
 &lt;h2&gt;references&lt;/h2&gt;
