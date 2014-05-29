@@ -169,11 +169,15 @@ pre {
 }
 
 .post {
+    /*
     padding-bottom: 1em;
     border-bottom: 1px solid #f2f2f0;
+    */
 }
 .post-title {
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
+    font-size: 120%;
+    line-width: 1.45;
     color: #333332;
     letter-spacing: -1px;
 }

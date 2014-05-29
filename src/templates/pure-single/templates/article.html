@@ -35,12 +35,12 @@
                     </p>
 
                     <p class="post-meta">
-                        in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
+                        {{ article.locale_date }}
                     </p>
 
                     <p class="post-meta">
-                      {% include 'twitter.html' %}
-                      {% include 'google-plus.html' %}
+                        {% include 'twitter.html' %} &middot;  {% include 'google-plus.html' %}
+
                     </p>
 
                 </header>
