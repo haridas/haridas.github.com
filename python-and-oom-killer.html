@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="./feeds/all.atom.xml" type="application/atom+xml" title="Haridas N Full Atom Feed"/>
 
-        <title>Find the Absolute path in Shell Script // Haridas N // </title>
+        <title>Python and OOM Killer // Haridas N // </title>
 
     <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css"> -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -56,15 +56,16 @@
         <div class="content">
             <section class="post">
                 <header >
-                    <h1 class="post-header">Find the Absolute path in Shell Script</h1>
+                    <h1 class="post-header">Python and OOM Killer</h1>
 
                     <p class="post-meta">
-                            <a class="post-category" href="./tag/server-admin.html">server admin</a>
-                            <a class="post-category" href="./tag/shell.html">shell</a>
+                            <a class="post-category" href="./tag/python.html">python</a>
+                            <a class="post-category" href="./tag/oom.html">oom</a>
+                            <a class="post-category" href="./tag/celery.html">celery</a>
                     </p>
 
                     <p class="post-meta">
-                        Sat 19 November 2011
+                        Sat 04 October 2014
                     </p>
 
                     <p class="post-meta">
@@ -88,49 +89,83 @@
 
                 </header>
             </section>
-            <p>This is a simple shell script snippet to get the full absolute path of
-that file while running it in a shell environment.</p>
-<p>What is the use of this script -- Yeah, this script is really helpful
-when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
-properly by including relative files correctly from the system path.
-Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would resolve every relative path
-properly. So how it would be, if we don't need to hard code the
-Project Bases paths, instead the project configurations detect it
-automatically :). So you could get this by using this shell script
-snippet.</p>
-<p>Here we can test how a shell script identify itself where it's located
-or its absolute path information.Please create a shell script with
-following content and run it from different locations.</p>
-<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
-<span class="c">#and then run it from different directory level, you can see the</span>
-<span class="c">#difference.</span>
-
-<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span>  <span class="nv">$dir</span>;<span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Path to this file : $FILE_PATH&quot;</span>
-</pre></div>
-<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
-its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
-<span class="gp">#</span>sh /usr/local/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd local</span>
-<span class="gp">#</span>sh shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-</pre></div>
-<p>I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.</p>
-<p>sEE YOU NEXT TIME.</p>
+            <p>Those who are working with python for few years might have encountered this
+problem at least once. What happens is that python processes are getting killed by
+the OS's Out Of Memory Killer. OOM Killer does this to
+reclaim the memory for OS, since there is no enough RAM space available for the
+critical OS operations. This OOM killer getting involved with python
+processes is not due ot python's problem but because of how the programmer
+using python to get their things done.</p>
+<p>Python is a fully Object Oriented and Dynamically typed language. Python's internal
+memory manager does lot of optimization to make the program run faster with
+effective use of memory. Python providing lot of flexibility for the coder, all
+these flexibility costs internally while running (runtime cost) the code. But Python tries to
+optimize this cost as much as possible. Programmers who know about this won't
+blame python for its lack of performance with memory management compared to
+statically typed language.</p>
+<div class="section" id="a-sneak-peek-into-python-memory-manager">
+<h2>A sneak peek into python memory manager</h2>
+<p>Python's memory manager keeps it's own pool of memory(Private heap) for python
+objects and this pool of memory was claimed from the OS via raw <cite>malloc</cite> call at low level.
+Python's memory manager abstract the <cite>malloc</cite> call and provides its own special
+<cite>malloc</cite> method specifically for different types of python objects. Python won't
+release the memory back to the OS when an object goes out of scope in python
+program. Instead it keeps this memory for future reuse.</p>
+<p>The python garbage collector does reclaim memory back into OS if it meet certain
+criteria  - Please read this <a class="reference external" href="http://www.evanjones.ca/memoryallocator/">article</a> for more information about python's
+memory allocation policies.</p>
+<p>We won't come across this problem if our system has enough RAM and peak memory
+usage of the program comes under the RAM size. We usually start worrying about the
+python's memory problems once the OOM Killer starts terminating the process.
+Immediate steps to solve this problem are,</p>
+<ol class="arabic simple">
+<li>Optimize the python program by using generators where every possible.</li>
+<li>Learn best python programming paradigms. Usually newbies get into this
+problem because of the bad coding practices.</li>
+<li>Know how much memory needs for your application in peak time and add that much
+RAM or Increase the SWAP. Use of swap space may not be very good because it
+will reduce the performance of the program if program constantly swapping
+data from RAM to Disk.</li>
+</ol>
+<p>I have encountered this problem while working with long running python programs
+with it's peak memory usage is very higher than the average memory usage.</p>
+</div>
+<div class="section" id="with-celery">
+<h2>With Celery</h2>
+<p>Celery is a very famous distributed job scheduler in python. Most of them are
+using it for their asynchronous task executions and other complex scenarios. Those
+who using celery for simple tasks wouldn't have faced the memory issue. But in
+our case -- we use celery very heavily.</p>
+<p>RabbitMQ is the AMQP Message queue; backbone to the celery.</p>
+<p>In our case what happened was that, we call celery tasks with <cite>kwargs</cite> - which
+holds very large objects with no defined structure. Celery passes this data
+through rabbitmq's queue and deliver to the actual celery's job runner which
+runs the task with given <cite>kwargs</cite>. Since the size of the <cite>kwargs</cite> was very high
+and the structure varies each time the celery's main process keep on increase
+its memory foot print. Obviously if we have enough RAM then we can handle the
+peak memory requirement but this minimum RAM size wasn't affordable to us,
+so we have to find solution to prevent celery's main process from acquiring lot of memory.</p>
+<p>The solution for this problem is, use <cite>kwargs</cite> (or <cite>message</cite>) with fixed structure and
+small in size. Only pass ids or indexes through the message so that the celery's
+main process won't acquire more memory. And celery has option to kill its worker
+processes and respawn after some time, you can make use of this also so that
+the work processes also release all its memory after some time and starts fresh.</p>
+<p>RabbitMQ also recommends to use message with smaller size so that we get better
+performance out of the system. This doesn't mean rabbitmq can't handle large
+messages. The smaller message size reduce the IO overload required for the
+RabbitMQ.</p>
+<p>I hope this brief explanation will help you to tackle similar problems. If you
+have any questions or suggestion please put it on the comment section bellow.</p>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://deeplearning.net/software/theano/tutorial/python-memory-management.html">http://deeplearning.net/software/theano/tutorial/python-memory-management.html</a></li>
+<li><a class="reference external" href="http://www.evanjones.ca/memoryallocator/">http://www.evanjones.ca/memoryallocator/</a></li>
+<li><a class="reference external" href="http://arctrix.com/nas/python/gc/">http://arctrix.com/nas/python/gc/</a></li>
+<li><a class="reference external" href="https://docs.python.org/2/c-api/memory.html">https://docs.python.org/2/c-api/memory.html</a></li>
+</ol>
+</div>
 
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
