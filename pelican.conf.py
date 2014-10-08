@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = u"Haridas N"
-SITENAME = u"Haridas N"
+SITENAME = u"HN"
 # Don't, change the current URL scheme.
 SITEURL = 'http://haridas.in'
 TIMEZONE = 'Asia/Kolkata'
