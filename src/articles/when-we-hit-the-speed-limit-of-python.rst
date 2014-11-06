@@ -153,7 +153,8 @@ server in the production environment. And one Python TCP client(tcp_server.py)
 which simulate the TCP socket reading operation in the production Python server
 implementation.
 
-.. code-block:: python
+.. sourcecode:: python
+    :linenos: 5
     
     # Python server tcp_server.py 
 
@@ -252,6 +253,7 @@ implementation.
 
 
 .. code-block:: cpp
+    :linenos: 5
 
     /*
         tcp_server.c - Implements the TCP server in my production environment.

@@ -210,6 +210,10 @@ different programming communities. For eg; Python code has **PEP8** standard, so
 writing the python code, if we are not following it, Synstastic will show you the
 errors. After a while you would learn the PEP8 standard without any extra work :).
 
+
+
+
+
 Back to `Topics`_
 
 .. _Snipmate:
@@ -505,6 +509,37 @@ platforms has also the same option using their package manager tool.
 
 
 From the list install any of the GUI based package.
+
+Update: 06-Nov-2014
+-------------------
+
+Syntastic 
+
+    If you are seeing the syntax highlighter is not catching the errors on your program
+    then it means, the required syntax checkers aren't installed. Please check this link
+    and find the corresponding syntax checkers to be installed on your machine.
+
+    eg; For `python`, you have to install `"pyflakes"` (`"pip install pyflakes"`)
+
+    Read the FAQ section of the syntastic doc - [`FAQ Link`_]
+
+    Check all the supported parsers by the syntastic - [`Syntax Checkers`_]
+
+Command-t
+    If you are setting this up on a freshly installed machine then you have
+    to install `ruby-dev` package from your package manager.
+
+    On Debian based machines 
+        `sudo apt-get install ruby-dev`
+
+    On Redhat based machines
+        `yum install ruby-devel`
+
+    
+
+.. _`Syntax Checkers`: https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers
+.. _`FAQ Link`: https://github.com/scrooloose/syntastic#3-faq
+
 
 Back to `Topics`_
 
