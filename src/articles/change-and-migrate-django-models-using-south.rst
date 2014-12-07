@@ -5,6 +5,7 @@ Change and Migrate Django Models using South
 :tags: python,django,south
 
 .. image:: /images/south.png
+    :width: 100%
 
 South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django

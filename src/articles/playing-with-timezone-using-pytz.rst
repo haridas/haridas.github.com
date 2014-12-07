@@ -7,6 +7,7 @@ playing with timezone using pytz
 World Timezone Image from www.physicalgeography.net
 
 .. image:: /images/world_time2-300x172.gif
+    :width: 100%
 
 When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a

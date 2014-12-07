@@ -42,8 +42,7 @@ lines showing the exchange-to-exchange binding.
 
 .. image:: /images/Exchange-to-Exchange-Binding.png
         :alt: Exchange-to-Exchange-Binding
-        :width: 768px
-        :height: 500px
+        :width: 100%
         :align: left
 
 Thank you.

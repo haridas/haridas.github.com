@@ -13,6 +13,7 @@ between server and connected clients.
 
 
 .. figure:: /images/RabbitChat-Arch.png
+    :width: 100% 
 
     If you want to try this now, checkout a copy of project from this
     github url `git@github.com:haridas/RabbitChat.git`. Or download it

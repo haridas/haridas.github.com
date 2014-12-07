@@ -47,7 +47,7 @@ Vim on KDE Konsole
 .. image:: /images/vim-console.jpg
         :alt: vim-on-console
         :height: 400px
-        :width: 768px
+        :width: 100%
         :align: left
 
 
@@ -56,7 +56,7 @@ Gvim
 .. image:: /images/gvim.jpg
     :alt: Gvim image
     :height: 400px 
-    :width: 768px
+    :width: 100%
     :align: left
 
 
@@ -116,6 +116,7 @@ A Side Note
     .vimrc file.
 
     .. image:: /images/vimrc1.jpg
+        :width: 100%
 
     Similarly, you can just go through my .vimrc file to see other options,
     I tried to document my .vimrc file as much as possible. You can play 
@@ -286,6 +287,7 @@ Nerdtree when ever required. You can re-map this to your own choice.
 
 
 .. image:: /images/nerd_tree.jpg
+    :width: 100%
 
 To open and close the Nerdtree press **CTRL + n**. Also you can see other 
 available commands for this plugin by typing, ``ESC + :NERD <tab>``

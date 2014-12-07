@@ -74,6 +74,7 @@ Check this console page to see the complete list of commands required to finish
 the mounting operation.
 
 .. image:: /images/encryption-3.jpg
+    :width: 100%
 
 Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.
