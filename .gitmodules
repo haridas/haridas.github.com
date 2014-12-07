@@ -1,0 +1,3 @@
+[submodule "src/templates/pure-single"]
+	path = src/templates/pure-single
+	url = https://github.com/haridas/pure-single.git
