@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*- #
+import os
+
+DEBUG = True
 
 AUTHOR = u"Haridas N"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-SITEURL = 'http://haridas.in'
+if not DEBUG:
+    SITEURL = 'http://haridas.in'
+else:
+    SITEURL = os.path.dirname(__file__)
+
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
 
@@ -12,9 +19,8 @@ DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-THEME = '/mnt/data/projects/github/haridas.github.com/src/templates/pure-single'
+THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
 THEME_STATIC_PATHS = ['static']
-#CSS_FILE = 'main.css'
 CSS_FILE = 'pure.css'
 
 # Ordering of content.
@@ -24,10 +30,10 @@ REVERSE_ARCHIVE_ORDER = True
 MENUITEMS = [('Archives', 'archives.html'),
              ('About', 'pages/about-me.html')]
 
-COVER_IMG_URL = "/images/Photz057.jpg"
-PROFILE_IMG_URL = "/images/profile_pic.jpg"
+# COVER_IMG_URL = "./images/Photz057.jpg"
+PROFILE_IMG_URL = "./images/profile_pic.jpg"
 
-## External services and Social medias.
+# External services and Social medias.
 
 DISQUS_SITENAME = 'haridas'
 GITHUB_URL = 'http://github.com/haridas'

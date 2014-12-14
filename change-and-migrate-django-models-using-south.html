@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="HN, ">
 
-        <link rel="alternate"  href="http://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+        <link rel="alternate"  href="/mnt/data/projects/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
 
-        <title>Change and Migrate Django Models using South // HN // </title>
+    <title>Change and Migrate Django Models using South // HN </title>
 
-    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css"> -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://haridas.in/theme/css/pure.css">
 
-    <link rel="stylesheet" href="http://haridas.in/theme/css/pygments.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="/mnt/data/projects/github/haridas.github.com/theme/css/pure.css">
+    <link rel="stylesheet" href="/mnt/data/projects/github/haridas.github.com/theme/css/pygments.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
@@ -25,71 +34,64 @@
 </head>
 
 <body>
-    <div class="pure-g-r" id="layout">
-        <div class="sidebar pure-u">
-            <div class="cover-img" style="background-image: url('/images/Photz057.jpg')">
-                <div class="cover-body">
-                    <header class="header">
-                        <hgroup>
-                            <img class="avatar" src="/images/profile_pic.jpg">
-                            <h1 class="brand-main"><a href="/">HN</a></h1>
-                            <p class="tagline"></p>
-                                <p class="links"><a href="http://haridas.in/archives.html">Archives</a></p>
-                                <p class="links"><a href="http://haridas.in/pages/about-me.html">About</a></p>
-                                <p class="social">
-                                    <a href="http://twitter.com/haridas_n">
-                                        <i class="fa fa-twitter-square fa-3x"></i>
-                                    </a>
-                                    <a href="http://github.com/haridas">
-                                        <i class="fa fa-github-square fa-3x"></i>
-                                    </a>
-                                    <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
-                                        <i class="fa fa-linkedin-square fa-3x"></i>
-                                    </a>
-                                <p>
-                        </hgroup>
-                    </header>
-                </div>
+    <div class="container">
+
+            <div class="container-header">
             </div>
-        </div>
-    <div class="pure-u">
-        <div class="content">
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="header">
+
+                            <hgroup>
+
+                                    <img class="avatar" src="./images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="/mnt/data/projects/github/haridas.github.com">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="/mnt/data/projects/github/haridas.github.com/archives.html">Archives
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/mnt/data/projects/github/haridas.github.com/pages/about-me.html">About
+                                            </a>
+                                        </p>
+
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                            <i class="fa fa-twitter-square fa-3x"></i>
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                            <i class="fa fa-github-square fa-3x"></i>
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                            <i class="fa fa-linkedin-square fa-3x"></i>
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
             <section class="post">
-                <header >
-                    <h1 class="post-header">Change and Migrate Django Models using South</h1>
-
-                    <p class="post-meta">
-                            <a class="post-category" href="http://haridas.in/tag/python.html">python</a>
-                            <a class="post-category" href="http://haridas.in/tag/django.html">django</a>
-                            <a class="post-category" href="http://haridas.in/tag/south.html">south</a>
-                    </p>
-
-                    <p class="post-meta">
-                        Fri 17 June 2011
-                    </p>
-
-                    <p class="post-meta">
-<!-- twitter starts here -->
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<!-- twitter ends here. -->
- &middot;  <!-- Place this tag where you want the +1 button to render. -->
-<!-- <div class="g-plusone" data-annotation="bubble" data-size="medium"></div> -->
-
-<g:plusone size="medium"></g:plusone>
-
-<!-- Place this tag after the last +1 button tag. -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-                    </p>
-
+                <header class="post-header">
+                    <h1 class="article-title">Change and Migrate Django Models using South</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="/mnt/data/projects/github/haridas.github.com/tag/python.html">python</a>
+                                <a class="post-category" href="/mnt/data/projects/github/haridas.github.com/tag/django.html">django</a>
+                                <a class="post-category" href="/mnt/data/projects/github/haridas.github.com/tag/south.html">south</a>
+                        </p>
                 </header>
             </section>
-            <img alt="" src="/images/south.png" />
+            <img alt="" src="/images/south.png" style="width: 100%;" />
 <p>South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -185,7 +187,16 @@ under your project.</p>
     </p>
 </footer>        </div>
     </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+            </div>
+
     </div>
+
+
     <script>
         var $top = $('.go-top');
 
