@@ -65,14 +65,15 @@ Gvim
     UPDATE (16/June/2013):- 
 
     After using GVIM for a while, I came back to the Konsole itself since it's
-    more convenient for me. But one problem with terminal is that it only support only 256 colors.
-    But don't need to worry actually it's more than enough. On the command mode of the vim run
-    this command to enable 256 colors - ":set t_Co=256". Actually
-    this special setting is not required for the default themes, but if we are
-    using new themes with more colors and font settings
-    then those themes may not work properly on the terminal mode. So this settings
-    will make sure that it will work even though it will degrade the features gracefully.
-    My .vimrc has been updated with these changes so you will get it from github.
+    more convenient for me. But one problem with terminal is that it only
+    support only 256 colors. But don't need to worry actually it's more than
+    enough. On the command mode of the vim run this command to enable 256
+    colors - ":set t_Co=256". Actually this special setting is not required for
+    the default themes, but if we are using new themes with more colors and
+    font settings then those themes may not work properly on the terminal mode.
+    So this settings will make sure that it will work even though it will
+    degrade the features gracefully. My .vimrc has been updated with these
+    changes so you will get it from github.
 
 
 Here is the list of plugins that I have been configured on my Vim. 

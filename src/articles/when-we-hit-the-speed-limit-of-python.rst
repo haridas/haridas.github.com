@@ -20,7 +20,7 @@ The network topology
 
 .. code-block:: text
 
- Network => TCP Server A => TCP Server B ( Do some operation.) ==> Network
+ Network => TCP Server A => TCP Server B ( Do some operation.) ==> Network......
 
  Where :- 
      Server A is implemented in C.
@@ -154,7 +154,6 @@ which simulate the TCP socket reading operation in the production Python server
 implementation.
 
 .. sourcecode:: python
-    :linenos: 5
     
     # Python server tcp_server.py 
 
@@ -193,8 +192,8 @@ implementation.
 
     def start_tcp_client_with_fix():
         """
-        The TCP client with fix applied. So it will read complete data from socket
-        and avoid the errors like 'errno 104' or 'errno 107'.
+        The TCP client with fix applied. So it will read complete data from
+        socket and avoid the errors like 'errno 104' or 'errno 107'.
         """
         print "Starting the newly implemented client..."
         sock = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM, proto=0)
@@ -253,7 +252,6 @@ implementation.
 
 
 .. code-block:: cpp
-    :linenos: 5
 
     /*
         tcp_server.c - Implements the TCP server in my production environment.
@@ -399,7 +397,8 @@ implementation.
             printf("server: got connection from %s \n", s);
 
             if(!fork()){ // This is child process.
-                close(sd); // Child doesn't need the listner socket. I'm not sure thought.
+                // Child doesn't need the listner socket. I'm not sure thought.
+                close(sd); 
                 int count = 1;
                 FILE *logfile = fopen("server.log", "w");
 
@@ -411,14 +410,14 @@ implementation.
                 /*
                  * Change the new client socket non-blocking.
                  *
-                 * This will simulte the server scenario by writing the send buffer
-                 * as much as it can, and returns -1 if it's full. So that point the
-                 * server is reset the connection by closing the socket.
-                 *
-                 * So that's the current server behaviour in my environment. Check
-                 * the python client side, how it handling to avoid the connection
-                 * reset by the server.
+                 * This will simulte the server scenario by writing the send
+                 * buffer as much as it can, and returns -1 if it's full. So
+                 * that point the * server is reset the connection by closing 
+                 * the socket. So that's the current server behaviour in my
+                 * environment. Check the python client side, how it handling
+                 * to avoid the connection reset by the server.
                  */
+
                 if((fcntl(new_sd, F_SETFL, O_NONBLOCK)) < 0){
                     perror("error:fnctl");
                     exit(EXIT_FAILURE);
@@ -430,12 +429,14 @@ implementation.
                     sleep(0.1);
 
                     if((numbytes = send_sock_msg(new_sd)) < 0){
-                    fprintf(logfile, "Kernel sending buffer is full. Closing the connection.: %d %d\n", count,numbytes);
+                    fprintf(logfile, "Kernel sending buffer is full."\
+                           "Closing the connection.: %d %d\n", count,numbytes);
                     close(new_sd);
                     exit(EXIT_FAILURE);
                     }
 
-                    fprintf(logfile, "Server sending the msg no: %d %d\n", count,numbytes);
+                    fprintf(logfile, "Server sending the msg no: %d %d\n",
+                            count,numbytes);
                     count ++;
                 }
                 close(new_sd);
