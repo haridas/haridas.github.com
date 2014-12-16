@@ -20,7 +20,7 @@ The network topology
 
 .. code-block:: text
 
- Network => TCP Server A => TCP Server B ( Do some operation.) ==> Network......
+ Network => TCP Server A => TCP Server B ( Do some operation.) ==> Network.
 
  Where :- 
      Server A is implemented in C.
