@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- #
 import os
 
-DEBUG = True
+DEBUG = False
 
 AUTHOR = u"Haridas N"
 SITENAME = u"HN"
