@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- #
 import os
 
-DEBUG = False
+DEBUG = True
 
 AUTHOR = u"Haridas N"
 SITENAME = u"HN"
@@ -31,7 +31,7 @@ MENUITEMS = [('Archives', 'archives.html'),
              ('About', 'pages/about-me.html')]
 
 # COVER_IMG_URL = "./images/Photz057.jpg"
-PROFILE_IMG_URL = "/images/profile_pic.jpg"
+PROFILE_IMG_URL = "images/profile_pic.jpg"
 
 # External services and Social medias.
 

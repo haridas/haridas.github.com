@@ -86,7 +86,7 @@ languages like C/C++ or Java, and we are already using python so more comfortabl
 with it.&lt;/p&gt;
 &lt;div class="section" id="the-network-topology"&gt;
 &lt;h2&gt;The network topology&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Network =&amp;gt; TCP Server A =&amp;gt; TCP Server B ( Do some operation.) ==&amp;gt; Network......
+&lt;div class="highlight"&gt;&lt;pre&gt;Network =&amp;gt; TCP Server A =&amp;gt; TCP Server B ( Do some operation.) ==&amp;gt; Network.
 
 Where :-
     Server A is implemented in C.

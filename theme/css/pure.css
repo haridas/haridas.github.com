@@ -270,10 +270,11 @@ pre {
 }
 
 .highlight {
-    background-color: #ffffcc;
+    background-color: rgba(255, 255, 204, 0.3);
     border-style: solid;
     border-color: rgb(203, 203, 203);
     border-width: 1px;
+    border-radius: 3px;
     padding: 10px 10px 10px 10px;
     overflow: auto;
 }
@@ -284,11 +285,14 @@ pre {
     /* overflow: auto; */
 }
 
-cite {
-    color: #999999;
-    font-size: 14px;
-    display: block;
-    margin-top: 5px;
+cite, tt {
+    color: #c25;
+    margin: 1px;
+    font-size: 90%;
+    background-color: #F7F7F9;
+    border: 1px solid #D5D5E7;
+    padding: 0 0.3em;
+    border-radius: 3px;
 }
 
 
