@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2014-10-04T00:00:00+05:30</updated><entry><title>Python and OOM Killer</title><link href="/python-and-oom-killer.html" rel="alternate"></link><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:,2014-10-04:python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="/" rel="alternate"></link><link href="/feeds/hn.atom.xml" rel="self"></link><id>/</id><updated>2014-10-04T00:00:00+05:30</updated><entry><title>Python and OOM Killer</title><link href="/python-and-oom-killer.html" rel="alternate"></link><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:,2014-10-04:python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
 the OS's Out Of Memory Killer. OOM Killer does this to
 reclaim the memory for OS, since there is no enough RAM space available for the

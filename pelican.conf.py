@@ -3,13 +3,13 @@ import os
 
 DEBUG = False
 
-AUTHOR = u"Haridas N"
+AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
 if not DEBUG:
     SITEURL = 'http://haridas.in'
 else:
-    SITEURL = os.path.dirname(__file__)
+    SITEURL = ""
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
