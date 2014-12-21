@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*- #
 import os
 
-DEBUG = False
-
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-if not DEBUG:
-    SITEURL = 'http://haridas.in'
-else:
-    SITEURL = ""
+SITEURL = 'haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
@@ -19,7 +14,8 @@ DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
+#THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
+THEME = '../pure-single'
 THEME_STATIC_PATHS = ['static']
 CSS_FILE = 'pure.css'
 
@@ -45,10 +41,17 @@ LINKS = (
 )
 
 # Social widget
+#
+# Make sure that the name of the images won't trigger addblock ;)
+#
+# Provide OPTIONAL (wxh) tuple if you want to resize the logo.
+#
+# FORMAT :- ( Label, logo, link, (width, height))
 SOCIAL = (
-    ('twitter-square', 'http://twitter.com/haridas_n'),
-    ('github-square', 'http://github.com/haridas'),
-    ('linkedin-square', 'http://in.linkedin.com/pub/haridas-n/19/95/825'),
+    ('Twitter', 'images/tt.svg', 'http://twitter.com/haridas_n', ('48', '48')),
+    ('Github', 'images/github.svg', 'http://github.com/haridas', ('45', '45')),
+    ('Linkedin', 'images/linkedin.svg',
+     'http://in.linkedin.com/pub/haridas-n/19/95/825', ('48', '48'))
 )
 
 ARTICLE_EXCLUDES = ['templates', 'pages']

@@ -22,13 +22,13 @@ only to make it suitable for most of the programming languages.
 The installation and configuration setups are being described at the end, 
 if you want to take a look at it, go here `Setup Vim from Scratch`_.
 
-    **Update July-30-2013**:
+    Update July-30-2013:-
 
-        Serbo-Croation Translation Available!
+    Serbo-Croation Translation Available!
 
-        Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
-        You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
-        Thank you Anja Skrba.
+    Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
+    You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
+    Thank you Anja Skrba.
 
 The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
 more than enough for good productive works. And Vim has plugin structure, so we
@@ -60,7 +60,15 @@ Gvim
     :align: left
 
 
-.. code-block:: text 
+
+
+
+Here is the list of plugins that I have been configured on my Vim. 
+It includes good color theme also. All of this Vim setup are there
+on my Github project. Towards the end I described how to make use of my Github project to
+get all of this features on your Vim. Before that first understand the 
+functionalities and use case of different plugins and then we can go to the 
+installation step.
 
     UPDATE (16/June/2013):- 
 
@@ -74,14 +82,6 @@ Gvim
     So this settings will make sure that it will work even though it will
     degrade the features gracefully. My .vimrc has been updated with these
     changes so you will get it from github.
-
-
-Here is the list of plugins that I have been configured on my Vim. 
-It includes good color theme also. All of this Vim setup are there
-on my Github project. Towards the end I described how to make use of my Github project to
-get all of this features on your Vim. Before that first understand the 
-functionalities and use case of different plugins and then we can go to the 
-installation step.
 
 ------------
 

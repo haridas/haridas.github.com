@@ -87,9 +87,8 @@ pre {
     clear: both;
 }
 
-.header {
+.content-sidebar {
     text-align: center;
-    width: 767px;
     max-width: 100%;
 }
 
@@ -121,16 +120,10 @@ pre {
 }
 .social a {
     text-decoration: none;
-    margin-left: 15px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     color: rgba(0, 0, 0, 0.8);
 }
 
-.social-footer a {
-    color: rgba(0, 0, 0, 0.8);
-    margin-left: 2px;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
 
 .content-subhead {
     text-transform: uppercase;
@@ -208,9 +201,16 @@ pre {
 
 .footer {
     text-align: center;
-    padding: 1em 0;
     font-size: 75%;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 2px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
+
+.footer a {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 .footer .pure-menu a:hover,
 .footer .pure-menu a:focus {
     background: none;
@@ -280,6 +280,16 @@ cite, tt {
     border-radius: 3px;
 }
 
+blockquote {
+    margin: 1px;
+    font-size: 90%;
+    background-color: #F7F7F9;
+    border: 1px solid #D5D5E7;
+    padding: 0 0.3em;
+    border-radius: 3px;
+    overflow: auto;
+}
+
 
 /*************************************
  * New Layout styles
@@ -293,6 +303,7 @@ cite, tt {
 
 .container-body {
     display: flex;
+    /* height: calc(100vh - 3em); */
 }
 
 .container-footer {
@@ -337,6 +348,10 @@ cite, tt {
     padding: 0 20px;
 }
 
+.section {
+    overflow: auto;
+}
+
 
 /******************/
 
@@ -366,10 +381,10 @@ cite, tt {
         margin: 0;
     }
 
-    .content {
-        padding: 1em 1.5em 0;
-        font-size: 90%;
+    .column {
+        padding: 0 5px; 
     }
+
 
     .cover-body {
         padding-bottom: 5%;
@@ -386,7 +401,4 @@ cite, tt {
     #layout {
         padding: 0;
     }
-}
-
-@media (max-width: 480px) {
 }
