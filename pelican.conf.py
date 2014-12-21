@@ -4,7 +4,7 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-SITEURL = 'haridas.in'
+SITEURL = 'http://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
@@ -14,8 +14,7 @@ DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-#THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
-THEME = '../pure-single'
+THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
 THEME_STATIC_PATHS = ['static']
 CSS_FILE = 'pure.css'
 
