@@ -532,17 +532,17 @@ socket.error: &lt;span class="o"&gt;[&lt;/span&gt;Errno 104&lt;span class="o"&gt
 
 Starting the newly implemented client...
 sending 1
-Handled 169 bytes
+Handled &lt;span class="m"&gt;169&lt;/span&gt; bytes
 sending 2
-Handled 156 bytes
+Handled &lt;span class="m"&gt;156&lt;/span&gt; bytes
 sending 3
-Handled 1079 bytes
+Handled &lt;span class="m"&gt;1079&lt;/span&gt; bytes
 sending 4
-Handled 208 bytes
+Handled &lt;span class="m"&gt;208&lt;/span&gt; bytes
 sending 5
-Handled 364 bytes
+Handled &lt;span class="m"&gt;364&lt;/span&gt; bytes
 sending 6
-Handled 286 bytes
+Handled &lt;span class="m"&gt;286&lt;/span&gt; bytes
 ....
 
 Goese on like this without any interrupt or network buffer overflow.
@@ -1124,8 +1124,8 @@ head ache.&lt;/p&gt;
 install complete vim from your package manager.&lt;/p&gt;
 &lt;p&gt;If you are using Debian based system you can follow this command. Other
 platforms has also the same option using their package manager tool.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search python | grep vim
-&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search ruby | grep vim
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search python &lt;span class="p"&gt;|&lt;/span&gt; grep vim
+&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search ruby &lt;span class="p"&gt;|&lt;/span&gt; grep vim
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;From the list install any of the GUI based package.&lt;/p&gt;
 &lt;/div&gt;
@@ -1480,9 +1480,9 @@ following content and run it from different locations.&lt;/p&gt;
 &lt;span class="nv"&gt;curr_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 
 &lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;dirname &lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="nv"&gt;FILE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;  &lt;span class="nv"&gt;$dir&lt;/span&gt;;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;FILE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;  &lt;span class="nv"&gt;$dir&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 
-&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Path to this file : $FILE_PATH&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Path to this file : &lt;/span&gt;&lt;span class="nv"&gt;$FILE_PATH&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
 its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;

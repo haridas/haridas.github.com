@@ -14,7 +14,7 @@ DEFAULT_PAGINATION = 4
 DEFAULT_ORPHANS = 2
 
 # Theme settings.
-THEME = os.path.join(os.path.dirname(__file__), 'src/templates/pure-single')
+THEME = os.path.join(os.path.dirname(__file__), 'src/templates/hn-theme')
 THEME_STATIC_PATHS = ['static']
 CSS_FILE = 'pure.css'
 
