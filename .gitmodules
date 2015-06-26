@@ -1,3 +1,0 @@
-[submodule "src/templates/hn-theme"]
-	path = src/templates/hn-theme
-	url = https://github.com/haridas/hn-theme.git
