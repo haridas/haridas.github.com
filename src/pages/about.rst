@@ -2,30 +2,30 @@ About Me
 ########
 :date: 2010-09-22 12:17
 
-I'm **Haridas N** from India_ (Kerala_). I'm a Computer Programmer,
-and a hacker, who is amazed with the Technology and Human Revolution.
+I'm a computer programmer from India. Interested with working in different
+technological domains. like, Web application development, SOA,
+Machine Learning / AI and System programming.
 
-This is my blog to write some of my experiences from my professional
-life.
+This is my personal blog to dump some of my experiences in one place, so I can
+refer it in future. I hope some of this would be helpful to others.
 
-.. _India: http://en.wikipedia.org/wiki/India
-.. _Kerala: http://en.wikipedia.org/wiki/Kerala
 
-Please send me a mail for any other information.
 
-About this blog
----------------
-To know more about this blog read this blog `entry`_.
+Contact Informations
+-------------------- 
 
-Contact Informations -
------------------------ 
-
- 1. Email - `haridas.nss at gmail dot com`, `haridas at haridas.in`
+ 1. `hn at haridas.in`
  2. `LinkedIn`_
  3. `Twitter`_
  4. Skype Id - haridas.in
 
 
+About this blog
+---------------
+This blog was created using `Pelican`_ static site generator. To know more about
+this blog, read this `entry`_.
+
 .. _LinkedIn: http://in.linkedin.com/pub/haridas-n/19/95/825
 .. _Twitter: http://twitter.com/#!/haridas_n
 .. _entry: http://haridas.in/wordpress-blog-migrated-to-pelican.html
+.. _Pelican: http://blog.getpelican.com/ 
