@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="/home/haridasn/projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
 
-    <title>Change and Migrate Django Models using South // HN </title>
+    <title>Spell Checker for Vim // HN </title>
 
 
     <!-- Google Fonts -->
@@ -85,11 +85,9 @@
         <div class="column">
             <section class="post">
                 <header class="post-header">
-                    <h1 class="article-title">Change and Migrate Django Models using South</h1>
+                    <h1 class="article-title">Spell Checker for Vim</h1>
                         <p class="post-meta">
-                            Tags:                                 <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/python.html">python</a>
-                                <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/django.html">django</a>
-                                <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/south.html">south</a>
+                            Tags:                                 <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/vim.html">vim</a>
                         </p>
 
 
@@ -110,81 +108,67 @@
                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                  })();
 </script>                        <p class="post-date">
-                            in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Fri 17 June 2011
+                            in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Sun 28 June 2015
                         </p>
                 </header>
             </section>
-            <img alt="" src="/images/south.png" style="width: 100%;" />
-<p>South is very handy django application to manage the django models. If
-we are developing web projects using django we need to change the Django
-model several times , In normal case we have to do these changes
-manually by editing both django model and backend database
-appropriately. This is very frustrating if we have to do it several
-times.</p>
-<p>The South application makes it very easy to handle the model changes
-and fill the initial data's into the database tables. To setup the South
-application along with your django project, you need to do very simple
-changes to the settings.py file of your django project. To make it
-simple you have to do this step before adding any of your django apps to
-the project.</p>
-<p>First of all install the south application to your system.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install south
+            <p>As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+spell checker tool, but it's little cumbersome to use. I use vim for
+most of the purposes like,</p>
+<ol class="arabic simple">
+<li>To write my blog entries.</li>
+<li>Coding</li>
+<li>To write git commit messages, where I get some typos. This one is more annoying
+than typos in any other places.</li>
+<li>Coding in any languages except Java ;).</li>
+</ol>
+<p>So what usually happens was I miss some types on git commits or comments
+that I put while coding. Before using this plugin I use the inbuilt vim spell
+checker directly, to access that you have to type this command in the command mode,</p>
+<div class="highlight"><pre>:setlocal spell spelllang=en_us
 </pre></div>
-<p>then you have to add your south app to django settings.py file under</p>
-<p>INSTALLED_APPS veriable, ie;</p>
-<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-<span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable the admin:</span>
-<span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable admin documentation:</span>
-<span class="c"># &#39;django.contrib.admindocs&#39;,</span>
-<span class="s">&#39;south&#39;</span><span class="p">,</span> <span class="c"># &lt;---HERE</span>
-<span class="p">)</span>
+<p>Most of the time I forgot this full command and I have to issue <cite>:help spell</cite> to
+get this command :). What was other annoying problem is, after checking the spell
+corrections, I need a quick way to disable the spell check highlights. With the
+inbuild spell checker you need to type the following command to disable it.</p>
+<p>Unset the spell variable to disable the highlights,</p>
+<div class="highlight"><pre>:setlocal spell spellang=
 </pre></div>
-<p>Now we added the south app to our django project, the commands
-associated with this app is comes under the manage.py.</p>
-<p>Next step is to sync all models to the backend database, for that you
-have to use the usual method , ie;</p>
-<div class="highlight"><pre><span class="go">Migrate all tables to backend database,</span>
-<span class="go">it includes our south apps tables.</span>
+<p>Eventually these typos are started to come and bite me. So I was started to look
+for an easy way to achieve spell check. I don't want to use any new plugin for this
+feature. I want to use the inbuilt vim spell checker itself but in more saner way.
+So to get that done I wrote simple function in vimscript and put it in the <cite>~/.vimrc</cite>.
+Thats it.</p>
+<p>So after putting this script, I only need to type <cite>&lt;leader&gt;c</cite> to enable the
+spell check and <cite>&lt;leader&gt;c</cite> again to toggle the spell check.</p>
+<p>Here is the function that you can put it in your vimrc file to get these spell
+check bindings</p>
+<div class="highlight"><pre>&quot; &gt; Spell checker Toggler &lt;
 
-<span class="gp">$</span>python manage.py syncdb
+nnoremap &lt;leader&gt;c :call SpellChecker()&lt;cr&gt;
+
+let g:spell_checker_is_active = 0
+function! SpellChecker()
+    if g:spell_checker_is_active
+        setlocal spell spelllang=
+        let g:spell_checker_is_active = 0
+    else
+        setlocal spell spelllang=en_us
+        let g:spell_checker_is_active = 1
+    endif
+endfunction
+
+&quot; &gt; End of spell check toggler &lt;
 </pre></div>
-<p>That's it !. we are now ready to use south app for our apps model
-management.</p>
-<p>Currently we added tables of default django apps and south app to
-backend. Now we are ready to add our applications to django project.
-After adding new django application to the sttings.py INSTALLED_APPS
-variable, we need to migrate it's models using south management
-commands,</p>
-<div class="highlight"><pre><span class="go">Initially you have to add new app under south , for that,</span>
-<span class="go">python manage.py schemamigration your_app --initial</span>
-<span class="go">This will setup your app under south, need to run only once,</span>
-<span class="go">Then migrate models to backend database,</span>
-
-<span class="gp">$</span>python manage.py migrate your_app
-</pre></div>
-<p>After the initial addition of your django app under south, to migrate
-the future model changes under the same app, you have to do the bellow
-steps,</p>
-<div class="highlight"><pre><span class="go">After any changes to your model,</span>
-<span class="go">First detect those changes ,</span>
-
-<span class="gp">$</span>python manage.py schemamigration your_app --auto
-
-<span class="go">Then Migrate to backend,</span>
-
-<span class="gp">$</span>python manage.py migrate your_app
-</pre></div>
-<p>So using south app you are now manged model changes without touching
-backend database. In this manner we can manage all django applications
-under your project.</p>
-<p>Try this out ! and save your time.</p>
+<p>To see this in action see the bellow gif.</p>
+<img alt="" class="align-left" src="images/spell-check.gif" style="width: 100%; height: 400px;" />
+<p>If you are using my vim package from the github, then this feature is already
+there. Or if you want only this feature just copy paste above vimscript function
+in your vimrc file.</p>
+<div class="section" id="reference">
+<h2>Reference</h2>
+<p>Link to the learn vimscript hard way.</p>
+</div>
 
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">

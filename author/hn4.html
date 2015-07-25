@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="/home/haridasn/projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
 
-    <title>Find the Absolute path in Shell Script // HN </title>
+    <title>HN author // HN </title>
 
 
     <!-- Google Fonts -->
@@ -22,18 +22,11 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/home/haridasn/projects/personal/github/haridas.github.com/theme/css/pure.css">
 
-    <link rel="stylesheet" href="/home/haridasn/projects/personal/github/haridas.github.com/theme/css/pygments.css">
 
     <!--
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".content").fitVids();
-        });
-    </script>
 </head>
 
 <body>
@@ -82,98 +75,63 @@
 
                     <div class="body-column">
     <div class="content">
+        <!-- A wrapper for all the blog posts -->
         <div class="column">
-            <section class="post">
-                <header class="post-header">
-                    <h1 class="article-title">Find the Absolute path in Shell Script</h1>
-                        <p class="post-meta">
-                            Tags:                                 <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/server-admin.html">server admin</a>
-                                <a class="post-category" href="/home/haridasn/projects/personal/github/haridas.github.com/tag/shell.html">shell</a>
-                        </p>
-
-
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
-    Tweet
-</a>
-
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-
-<!-- Place this tag where you want the +1 button to render. -->
-<div class="g-plusone" data-size="medium"></div>
-
-<!-- Place this tag after the last +1 button tag. -->
-<script type="text/javascript">
-  (function() {
-       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-           po.src = 'https://apis.google.com/js/platform.js';
-               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                 })();
-</script>                        <p class="post-date">
-                            in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Sat 19 November 2011
-                        </p>
-                </header>
-            </section>
-            <p>This is a simple shell script snippet to get the full absolute path of
-that file while running it in a shell environment.</p>
-<p>What is the use of this script -- Yeah, this script is really helpful
-when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
-with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
-properly by including relative files correctly from the system path.
-Commonly what we do is, we hard code the SYSTEM PATH information to a
-Global variable so that would resolve every relative path
-properly. So how it would be, if we don't need to hard code the
-Project Bases paths, instead the project configurations detect it
-automatically :). So you could get this by using this shell script
-snippet.</p>
-<p>Here we can test how a shell script identify itself where it's located
-or its absolute path information.Please create a shell script with
-following content and run it from different locations.</p>
-<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
-<span class="c">#and then run it from different directory level, you can see the</span>
-<span class="c">#difference.</span>
-
-<span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span>  <span class="nv">$dir</span><span class="p">;</span><span class="nb">pwd</span><span class="sb">`</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Path to this file : </span><span class="nv">$FILE_PATH</span><span class="s2">&quot;</span>
-</pre></div>
-<p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
-its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
-<span class="gp">#</span>sh /usr/local/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd local</span>
-<span class="gp">#</span>sh shell.sh
-<span class="go">Absolute PATH : /usr/local</span>
-</pre></div>
-<p>I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.</p>
-<p>sEE YOU NEXT TIME.</p>
-
-            <a href="#" class="go-top">Go Top</a>
-    <div class="comments">
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            <div class="posts">
+                <h1 class="content-subhead">
+Posts by 'HN'                        &ndash; Page&nbsp;4
+                </h1>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="/home/haridasn/projects/personal/github/haridas.github.com/change-and-migrate-django-models-using-south.html">Change and Migrate Django Models using South</a></h3>
+                            <p class="post-meta"><img alt="" src="/images/south.png" style="width: 100%;" />
+<p>South is very handy django application to manage the django models. If
+we are developing web projects using django we need to change the Django
+model several times , In normal case we have to do these changes
+manually by editing both django model and backend database
+appropriately. This is very ...</p></p>
+                            <p class="post-meta">
+                                in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Fri 17 June 2011
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="/home/haridasn/projects/personal/github/haridas.github.com/playing-with-timezone-using-pytz.html">playing with timezone using pytz</a></h3>
+                            <p class="post-meta"><p>World Timezone Image from www.physicalgeography.net</p>
+<img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" />
+<p>When we develop web applications some times we need multiple timezone
+support. If we don’t have any previous experience then it might be a
+tough and confusing job. Here I will help you to get some basics of
+Timezone conversion.</p>
+<p>I have ...</p></p>
+                            <p class="post-meta">
+                                in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Wed 11 May 2011
+                            </p>
+                        </header>
+                    </section>
+                    <section class="post">
+                        <header class="post-header">
+                            <h3><a class="post-title" href="/home/haridasn/projects/personal/github/haridas.github.com/programming-vs-scripting.html">Programming Vs. Scripting.</a></h3>
+                            <p class="post-meta"><p>When I was started to learn C programming language, I only know the term
+Programming. After some time I learned basics of the Javascript and perl for
+some internal projects, from there onwards I started to use the two
+terms Scripting and Programming. I found some books of Javascript and ...</p></p>
+                            <p class="post-meta">
+                                in <a href="/home/haridasn/projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Tue 28 September 2010
+                            </p>
+                        </header>
+                    </section>
+<div class="pagination-wrapper content-subhead">
+    <div class="pagination">
+        <div class="pagination-left">
+                <a href="/home/haridasn/projects/personal/github/haridas.github.com/author/hn3.html"><span>&larr; Newer posts</span></a>
+        </div>
+        <span>Page 4 / 4</span>
+        <div class="pagination-right">
+        </div>
     </div>
+</div>            </div>
         </div>
     </div>
                     </div>

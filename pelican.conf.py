@@ -4,7 +4,8 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-SITEURL = 'http://haridas.in'
+SITEURL = os.path.dirname(__file__)
+#SITEURL = 'http://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
@@ -53,5 +54,5 @@ SOCIAL = (
      'http://in.linkedin.com/pub/haridas-n/19/95/825', ('48', '48'))
 )
 
-ARTICLE_EXCLUDES = ['templates', 'pages']
+ARTICLE_EXCLUDES = ['templates', 'pages', 'draft-articles']
 PAGE_EXCLUDES = ['articles', 'drafts']
