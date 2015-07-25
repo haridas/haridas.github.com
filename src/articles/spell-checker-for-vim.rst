@@ -84,4 +84,6 @@ in your vimrc file.
 
 Reference
 ---------
-Link to the learn vimscript hard way.
+1. `Learn Vim The Hardway`_
+
+.. _`Learn Vim The Hardway`: http://learnvimscriptthehardway.stevelosh.com/

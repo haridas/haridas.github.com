@@ -54,7 +54,9 @@ there. Or if you want only this feature just copy paste above vimscript function
 in your vimrc file.&lt;/p&gt;
 &lt;div class="section" id="reference"&gt;
 &lt;h2&gt;Reference&lt;/h2&gt;
-&lt;p&gt;Link to the learn vimscript hard way.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 28 Jun 2015 00:00:00 +0530</pubDate><guid>tag:haridas.in,2015-06-28:spell-checker-for-vim.html</guid><category>vim</category></item><item><title>Python and OOM Killer</title><link>http://haridas.in/python-and-oom-killer.html</link><description>&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
