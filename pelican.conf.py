@@ -36,6 +36,11 @@ GITHUB_URL = 'http://github.com/haridas'
 GOOGLE_ANALYTICS = 'UA-23592173-1'
 TWITTER_USERNAME = 'haridas_n'
 
+# plugins.
+PLUGINS = [
+    "pelican_gist"
+]
+
 # Blogroll
 LINKS = (
 )
