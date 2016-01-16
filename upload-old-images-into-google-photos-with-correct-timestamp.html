@@ -162,90 +162,96 @@ If you want to remove records from EXIF, you can do it using exiv2 command.</p>
 <p>On platforms other than Linux, you can find google photos desktop application to
 upload old photos. Please try that out if it compatible to your machine.</p>
 <p>Here is the scripts that I used to do this,</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="gist">
+    <script src='https://gist.github.com/6905941c73a28492fa43.js'></script>
+    <noscript>
+        <pre><code>import os
+import sys
+import subprocess
+from optparse import OptionParser
+from datetime import datetime
 
-<span class="k">def</span> <span class="nf">run_shell_script</span><span class="p">(</span><span class="n">shell_script</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assuming that the script is comming from trusted source.</span>
+def run_shell_script(shell_script):
+    """
+    Assuming that the script is comming from trusted source.
 
-<span class="sd">    :param shell_script: String quaoted shell script.</span>
-<span class="sd">    :return tuple (boolean, string)</span>
-<span class="sd">                  True - shell script executed correctly, then tuple includes</span>
-<span class="sd">                         response in string.</span>
-<span class="sd">                  False - Some error with executing the script. may be $? is 1</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">shell_script</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">True</span><span class="p">,</span> <span class="n">output</span>
-    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+    :param shell_script: String quaoted shell script.
+    :return tuple (boolean, string)
+                  True - shell script executed correctly, then tuple includes
+                         response in string.
+                  False - Some error with executing the script. may be $? is 1
+    """
+    try:
+        output = subprocess.check_output(shell_script, shell=True)
+        return True, output
+    except subprocess.CalledProcessError:
+        return False, ""
 
-<span class="k">def</span> <span class="nf">get_file_timestamp_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">createtime</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">filetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">createtime</span><span class="p">,</span> <span class="s">&quot;%Y%m</span><span class="si">%d</span><span class="s">&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y:%m:</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
+def get_file_timestamp_from_filename(filename):
+    createtime = filename.split("_")[1]
+    filetime = datetime.strptime(createtime, "%Y%m%d")
+    return filetime.strftime("%Y:%m:%d %H:%M:%S")
 
-<span class="k">def</span> <span class="nf">get_file_timestamp_from_mtime</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">filetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y:%m:</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
+def get_file_timestamp_from_mtime(filename):
+    stat = os.stat(filename)
+    filetime = datetime.fromtimestamp(stat.st_mtime)
+    return filetime.strftime("%Y:%m:%d %H:%M:%S")
 
-<span class="k">def</span> <span class="nf">delete_exif_record</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">exif_record_name</span><span class="p">):</span>
-    <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">run_shell_script</span><span class="p">(</span>
-        <span class="s">&#39;exiv2 -M&quot;del {record_name}&quot; {filename}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">record_name</span><span class="o">=</span><span class="n">exif_record_name</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;Failed to delete the record: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exif_record_name</span><span class="p">)</span>
+def delete_exif_record(filename, exif_record_name):
+    done, _ = run_shell_script(
+        'exiv2 -M"del {record_name}" {filename}'.format(
+            filename=filename, record_name=exif_record_name
+        )
+    )                                                                                                                                                                                             
+    if not done:                                                                                                                                                                                  
+        print "Failed to delete the record: {}".format(exif_record_name)                                                                                                                          
+                                                                                                                                                                                                  
+def add_exif_datetime_original_field(filename, new_timestamp):                                                                                                                                    
+    """                                                                                                                                                                                           
+    Add Exif.Photo.DateTimeOriginal record in EXIF data of given file.                                                                                                                            
+    We only add this record if it doesn't exist already on this file.                                                                                                                             
+                                                                                                                                                                                                  
+    :param filename: Exif record of this file gets modified.                                                                                                                                      
+    :param new_timestamp: The timestamp in "YYYY:MM:DD HH:MM:SS" format.                                                                                                                          
+    """                                                                                                                                                                                           
+                                                                                                                                                                                                  
+    is_rec_exists, _ = run_shell_script(                                                                                                                                                          
+        'exiv2 -pt {} | grep Exif.Photo.DateTimeOriginal'.format(filename))                                                                                                                       
+    if not is_rec_exists:                                                                                                                                                                         
+        updated, _ = run_shell_script(                                                                                                                                                            
+            'exiv2 -M"add Exif.Photo.DateTimeOriginal {new_timestamp}" {filename}'.format(                                                                                                        
+                new_timestamp=new_timestamp, filename=filename))                                                                                                                                  
+        if not updated:                                                                                                                                                                           
+            print "Failed to update the Exif record of file: {}".format(filename)                                                                                                                 
 
-<span class="k">def</span> <span class="nf">add_exif_datetime_original_field</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">new_timestamp</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Add Exif.Photo.DateTimeOriginal record in EXIF data of given file.</span>
-<span class="sd">    We only add this record if it doesn&#39;t exist already on this file.</span>
 
-<span class="sd">    :param filename: Exif record of this file gets modified.</span>
-<span class="sd">    :param new_timestamp: The timestamp in &quot;YYYY:MM:DD HH:MM:SS&quot; format.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">is_rec_exists</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">run_shell_script</span><span class="p">(</span>
-        <span class="s">&#39;exiv2 -pt {} | grep Exif.Photo.DateTimeOriginal&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_rec_exists</span><span class="p">:</span>
-        <span class="n">updated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">run_shell_script</span><span class="p">(</span>
-            <span class="s">&#39;exiv2 -M&quot;add Exif.Photo.DateTimeOriginal {new_timestamp}&quot; {filename}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">new_timestamp</span><span class="o">=</span><span class="n">new_timestamp</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">))</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">updated</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s">&quot;Failed to update the Exif record of file: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+if __name__ == "__main__":
+    """
+    How to use this script.
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    How to use this script.</span>
+    1. Picks the timestamp from the filename itself.
+        python add_exif_record -t ftime -f IMG_20081214_122122.jpg
+        
+    2. Pick the timestamp from the file's modification time.
+        python add_exif_record -t mtime -f img.jpg 
+    """
+    parser = OptionParser()
+    parser.add_option("-t", "--timestamp", dest="timestamp",
+                      help="How to evaluate the file timestamp. default: ftime",
+                      default="ftime")
+    parser.add_option("-f", "--file", dest="file_name",
+                      help="Name of the file need to be updaetd")
 
-<span class="sd">    1. Picks the timestamp from the filename itself.</span>
-<span class="sd">        python add_exif_record -t ftime -f IMG_20081214_122122.jpg</span>
+    (options, args) = parser.parse_args()
 
-<span class="sd">    2. Pick the timestamp from the file&#39;s modification time.</span>
-<span class="sd">        python add_exif_record -t mtime -f img.jpg</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-t&quot;</span><span class="p">,</span> <span class="s">&quot;--timestamp&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&quot;timestamp&quot;</span><span class="p">,</span>
-                      <span class="n">help</span><span class="o">=</span><span class="s">&quot;How to evaluate the file timestamp. default: ftime&quot;</span><span class="p">,</span>
-                      <span class="n">default</span><span class="o">=</span><span class="s">&quot;ftime&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-f&quot;</span><span class="p">,</span> <span class="s">&quot;--file&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&quot;file_name&quot;</span><span class="p">,</span>
-                      <span class="n">help</span><span class="o">=</span><span class="s">&quot;Name of the file need to be updaetd&quot;</span><span class="p">)</span>
-
-    <span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">file_name</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">timestamp</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s">&quot;mtime&quot;</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">timestamp</span><span class="p">:</span>
-            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">get_file_timestamp_from_mtime</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">file_name</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">get_file_timestamp_from_filename</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">file_name</span><span class="p">)</span>
-        <span class="n">add_exif_datetime_original_field</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
-</pre></div>
+    if options.file_name and options.timestamp:
+        if "mtime" in options.timestamp:
+            timestamp = get_file_timestamp_from_mtime(options.file_name)
+        else:
+            timestamp = get_file_timestamp_from_filename(options.file_name)
+        add_exif_datetime_original_field(options.file_name, timestamp)</code></pre>
+    </noscript>
+</div>
 <p>Now simply give following commands to update your file's EXIF tag <cite>Exif.Photo.DateTimeOriginal</cite>.</p>
 <p>The bellow command will find all the &quot;jpg&quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.</p>
