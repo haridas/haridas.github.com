@@ -23,8 +23,10 @@ CSS_FILE = 'pure.css'
 REVERSE_ARCHIVE_ORDER = True
 
 # Other menu items
-MENUITEMS = [('Archives', 'archives.html'),
-             ('About', 'pages/about-me.html')]
+MENUITEMS = [
+             #('Archives', 'archives.html'),
+             ('About', 'pages/about-me.html'),
+            ]
 
 # COVER_IMG_URL = "./images/Photz057.jpg"
 PROFILE_IMG_URL = "images/profile_pic.jpg"
