@@ -1702,7 +1702,6 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-&lt;p&gt;sEE YOU NEXT TIME.&lt;/p&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sat, 19 Nov 2011 06:01:00 +0530</pubDate><guid>tag:haridas.in,2011-11-19:find-the-absolute-path-in-shell-script.html</guid><category>server admin</category><category>shell</category></item><item><title>How to use Python Virtualenv and Ruby Version Manager</title><link>http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html</link><description>&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from

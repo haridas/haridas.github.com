@@ -54,5 +54,3 @@ its current locations is **/usr/local/**)
 I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.
-
-sEE YOU NEXT TIME.

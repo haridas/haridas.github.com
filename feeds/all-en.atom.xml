@@ -1702,7 +1702,6 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-&lt;p&gt;sEE YOU NEXT TIME.&lt;/p&gt;
 </summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
