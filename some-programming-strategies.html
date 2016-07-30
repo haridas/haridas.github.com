@@ -166,51 +166,51 @@ daemon running. Just report that to user.</p>
 program to get the pid. See how we can handle the exceptions or errors using
 Exception handler and/or if-else statement.</p>
 <p><strong>Method 1</strong></p>
-<div class="highlight"><pre><span class="c"># This is bad way of using exceptions, kinda defensive programming.</span>
+<div class="highlight"><pre><span></span><span class="c1"># This is bad way of using exceptions, kinda defensive programming.</span>
 <span class="k">def</span> <span class="nf">read_pid_file</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;daemon.pid&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;daemon.pid&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
         <span class="n">pid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">pid</span>
 
-    <span class="c"># No file in the path, may be other IO error.</span>
+    <span class="c1"># No file in the path, may be other IO error.</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="s">&quot;Faild to Read file&quot;</span>
+        <span class="k">raise</span> <span class="s2">&quot;Faild to Read file&quot;</span>
 
-    <span class="c"># Somebody put non integer values in the pid file. Whom to blame ?</span>
+    <span class="c1"># Somebody put non integer values in the pid file. Whom to blame ?</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">WrongPID</span>
 
-    <span class="c"># This catch all exception not necessarily required</span>
-    <span class="c"># Since the calling function or main code has it. This is like</span>
-    <span class="c"># over use of exception handler feature.</span>
+    <span class="c1"># This catch all exception not necessarily required</span>
+    <span class="c1"># Since the calling function or main code has it. This is like</span>
+    <span class="c1"># over use of exception handler feature.</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">SomeUnKnownError</span>
 </pre></div>
 <p><strong>Method 2</strong></p>
-<div class="highlight"><pre><span class="c"># Using If/else method. The calling function has to check for None return</span>
-<span class="c"># value or an Exception case.</span>
+<div class="highlight"><pre><span></span><span class="c1"># Using If/else method. The calling function has to check for None return</span>
+<span class="c1"># value or an Exception case.</span>
 
 <span class="k">def</span> <span class="nf">read_pid_file</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;daemon.pid&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;daemon.pid&#39;</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;file.pid&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-            <span class="c"># The programming languages which support exceptions</span>
-            <span class="c"># internally  raises exception when it fails one operation.</span>
-            <span class="c"># So we can&#39;t expect C like behaviour here.</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.pid&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="c1"># The programming languages which support exceptions</span>
+            <span class="c1"># internally  raises exception when it fails one operation.</span>
+            <span class="c1"># So we can&#39;t expect C like behaviour here.</span>
             <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">):</span>
             <span class="k">pass</span>
 </pre></div>
 <p><strong>Method 3</strong></p>
-<div class="highlight"><pre><span class="c"># Actually we know what going to happen, if some error happen while</span>
-<span class="c"># reading the pid file, it gets handled by the calling functions&#39; exception</span>
-<span class="c"># handler. We are dealing with programming</span>
-<span class="c"># language which has Exception handling system. So make use of it</span>
-<span class="c"># effectively.</span>
+<div class="highlight"><pre><span></span><span class="c1"># Actually we know what going to happen, if some error happen while</span>
+<span class="c1"># reading the pid file, it gets handled by the calling functions&#39; exception</span>
+<span class="c1"># handler. We are dealing with programming</span>
+<span class="c1"># language which has Exception handling system. So make use of it</span>
+<span class="c1"># effectively.</span>
 
 <span class="k">def</span> <span class="nf">read_pid_file</span><span class="p">():</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;daemon.pid&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;daemon.pid&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 <p>I like the  <strong>Method 3</strong>, since it works for most of the time. It fail

@@ -125,9 +125,9 @@ snippet.</p>
 <p>Here we can test how a shell script identify itself where it's located
 or its absolute path information.Please create a shell script with
 following content and run it from different locations.</p>
-<div class="highlight"><pre><span class="c">#Add this content in a shell.sh,</span>
-<span class="c">#and then run it from different directory level, you can see the</span>
-<span class="c">#difference.</span>
+<div class="highlight"><pre><span></span><span class="c1">#Add this content in a shell.sh,</span>
+<span class="c1">#and then run it from different directory level, you can see the</span>
+<span class="c1">#difference.</span>
 
 <span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 
@@ -138,13 +138,13 @@ following content and run it from different locations.</p>
 </pre></div>
 <p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
 its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> /
+<div class="highlight"><pre><span></span><span class="gp">#</span> <span class="nb">cd</span> /
 <span class="gp">#</span>sh /usr/local/shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
 <span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp">#</span> sh <span class="nb">local</span>/shell.sh
+<span class="gp">#</span> sh local/shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd local</span>
+<span class="gp">#</span><span class="nb">cd</span> <span class="nb">local</span>
 <span class="gp">#</span>sh shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
 </pre></div>

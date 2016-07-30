@@ -137,22 +137,22 @@ order it correctly.</p>
 <p>Luckily we have set of utilities available to edit EXIF tags in an image.
 <a class="reference external" href="http://www.exiv2.org/">exiv2</a> is the one of it.</p>
 <p>It's available on all platforms. Lets install and checkout some samples.</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install exiv2
+<div class="highlight"><pre><span></span>$ sudo apt-get install exiv2
 </pre></div>
 <p>How to change single photo's EXIF record using exiv2 tool.</p>
-<div class="highlight"><pre>$ exiv2 -M&quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&quot; IMG_20090305_000553.jpg
+<div class="highlight"><pre><span></span>$ exiv2 -M&quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&quot; IMG_20090305_000553.jpg
 </pre></div>
 <p>We are adding Exif header to this photo with correct time that we took this
 photo. How we know this date, that's up to you to decide :). The bellow script that
 I attached has option to pick the date time from the filename format or from its
 modification time.</p>
 <p>To check your photo has all expected Exif records use this command,</p>
-<div class="highlight"><pre>$ exiv2 -pt IMG_200090305_000553.jpg
+<div class="highlight"><pre><span></span>$ exiv2 -pt IMG_200090305_000553.jpg
 </pre></div>
 <p>If you noticed one thing, if we add the <cite>Exif.Photo.DateTimeOriginal</cite>
 multiple times, then duplicate entries are being creatd in the EXIF tags.
 If you want to remove records from EXIF, you can do it using exiv2 command.</p>
-<div class="highlight"><pre>$ exiv2 -M&quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&quot; IMG_20090303_000550.jpg
+<div class="highlight"><pre><span></span>$ exiv2 -M&quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&quot; IMG_20090303_000550.jpg
 </pre></div>
 <p>Now lets automate the process in a script,</p>
 <p>On platforms other than Linux, you can find google photos desktop application to
@@ -251,7 +251,7 @@ if __name__ == "__main__":
 <p>Now simply give following commands to update your file's EXIF tag <cite>Exif.Photo.DateTimeOriginal</cite>.</p>
 <p>The bellow command will find all the &quot;jpg&quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.</p>
-<div class="highlight"><pre><span class="k">for</span> file in <span class="sb">`</span>find . -iname <span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> python add_exif_record.py -t ftime -f <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> file in <span class="sb">`</span>find . -iname <span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> python add_exif_record.py -t ftime -f <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
 
             <a href="#" class="go-top">Go Top</a>

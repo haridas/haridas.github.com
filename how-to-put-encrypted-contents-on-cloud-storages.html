@@ -136,12 +136,12 @@ normal password required to initiate the encryption or decryption.</p>
 <p>Here I'm explaining how to use the ecryptfs,</p>
 <p>First install the packages required,</p>
 <p>From root user follow these commands.</p>
-<div class="highlight"><pre><span class="gp">#</span>apt-get install ecryptfs-utils
+<div class="highlight"><pre><span></span><span class="gp">#</span>apt-get install ecryptfs-utils
 <span class="gp">#</span>modprobe cryptfs
 </pre></div>
 <p>I'm using Dropbox as my cloud storage. So inside your drobox folder just create
 one folder named Encrypted.</p>
-<div class="highlight"><pre><span class="gp">$</span> mkdir ~/Dropbox/Encrypted
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/Dropbox/Encrypted
 <span class="gp">$</span> mkdir ~/SecureDropbox
 </pre></div>
 <p>We are going to keep our documents under the ~/SecureDropbox folder, and the
@@ -154,7 +154,7 @@ passphrase to mount the encrypted file system to local folder.This mounting and
 creation of the encrypted file system is explained bellow.</p>
 <p>To mount the encrypted device to the mount point, use the normal mount command
 with ecryptfs as its filesystem. This step ask for set of questions.</p>
-<div class="highlight"><pre><span class="c"># Mount command requires root privilage.</span>
+<div class="highlight"><pre><span></span><span class="c1"># Mount command requires root privilage.</span>
 mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
 </pre></div>
 <p>Check this console page to see the complete list of commands required to finish
@@ -162,7 +162,7 @@ the mounting operation.</p>
 <img alt="" src="/images/encryption-3.jpg" style="width: 100%;" />
 <p>Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.</p>
-<div class="highlight"><pre><span class="gp">#</span> df -h
+<div class="highlight"><pre><span></span><span class="gp">#</span> df -h
 </pre></div>
 <p>So if there is no error, you can now check for the file encryption by directly
 adding one text file in to <cite>/home/haridas/SecureDropbox</cite>, immediately you can see
@@ -179,7 +179,7 @@ done while mounting the file system initially. We can pass this automatically by
 putting it in a <cite>.ecryptfsrc</cite> file under root home directory. So at boot time
 we can see system can read it.</p>
 <p>The <cite>/root/.ecryptfsrc</cite> file should have the following lines</p>
-<div class="highlight"><pre>key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+<div class="highlight"><pre><span></span>key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
 ecryptfs_sig=b2f118ee01beb78b
 ecryptfs_cipher=aes
 ecryptfs_key_bytes=32
@@ -188,7 +188,7 @@ ecryptfs_enable_filename_crypto=n
 </pre></div>
 <p>After creating /root/.ecryptfsrc file, add the following line to <cite>/etc/fstab</cite>
 to automount at boot time.</p>
-<div class="highlight"><pre><span class="sr">/home/</span>haridas<span class="sr">/Dropbox/</span>Encrypted <span class="sr">/home/</span>haridas/SecureDropbox  ecryptfs
+<div class="highlight"><pre><span></span><span class="sr">/home/</span>haridas<span class="sr">/Dropbox/</span>Encrypted <span class="sr">/home/</span>haridas/SecureDropbox  ecryptfs
 defaults <span class="m">0</span> <span class="m">0</span>
 </pre></div>
 <p>The passphrase is the important thing that you have to keep in your machine or

@@ -124,29 +124,29 @@ changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
 the project.</p>
 <p>First of all install the south application to your system.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install south
+<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install south
 </pre></div>
 <p>then you have to add your south app to django settings.py file under</p>
 <p>INSTALLED_APPS veriable, ie;</p>
-<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-<span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-<span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable the admin:</span>
-<span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-<span class="c"># Uncomment the next line to enable admin documentation:</span>
-<span class="c"># &#39;django.contrib.admindocs&#39;,</span>
-<span class="s">&#39;south&#39;</span><span class="p">,</span> <span class="c"># &lt;---HERE</span>
+<div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+<span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+<span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+<span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+<span class="s1">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+<span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+<span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+<span class="c1"># Uncomment the next line to enable the admin:</span>
+<span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+<span class="c1"># Uncomment the next line to enable admin documentation:</span>
+<span class="c1"># &#39;django.contrib.admindocs&#39;,</span>
+<span class="s1">&#39;south&#39;</span><span class="p">,</span> <span class="c1"># &lt;---HERE</span>
 <span class="p">)</span>
 </pre></div>
 <p>Now we added the south app to our django project, the commands
 associated with this app is comes under the manage.py.</p>
 <p>Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;</p>
-<div class="highlight"><pre><span class="go">Migrate all tables to backend database,</span>
+<div class="highlight"><pre><span></span><span class="go">Migrate all tables to backend database,</span>
 <span class="go">it includes our south apps tables.</span>
 
 <span class="gp">$</span>python manage.py syncdb
@@ -158,7 +158,7 @@ backend. Now we are ready to add our applications to django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,</p>
-<div class="highlight"><pre><span class="go">Initially you have to add new app under south , for that,</span>
+<div class="highlight"><pre><span></span><span class="go">Initially you have to add new app under south , for that,</span>
 <span class="go">python manage.py schemamigration your_app --initial</span>
 <span class="go">This will setup your app under south, need to run only once,</span>
 <span class="go">Then migrate models to backend database,</span>
@@ -168,7 +168,7 @@ commands,</p>
 <p>After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
 steps,</p>
-<div class="highlight"><pre><span class="go">After any changes to your model,</span>
+<div class="highlight"><pre><span></span><span class="go">After any changes to your model,</span>
 <span class="go">First detect those changes ,</span>
 
 <span class="gp">$</span>python manage.py schemamigration your_app --auto

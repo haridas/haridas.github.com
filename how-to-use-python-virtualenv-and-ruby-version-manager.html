@@ -131,10 +131,10 @@ and Ruby providing their own tools.</p>
 binaries in to a user defined folder.</p>
 <p>First install <cite>virtualenv</cite> package by using default pythons package
 installation tool or you can use <cite>pip</cite>.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install virtualenv
+<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install virtualenv
 </pre></div>
 <p>To create new virtual environment,</p>
-<div class="highlight"><pre><span class="gp">$</span>virtualenv python_project
+<div class="highlight"><pre><span></span><span class="gp">$</span>virtualenv python_project
 </pre></div>
 <p>This command will create new folder 'python_project', inside this
 folder we have three other folders 'bin' for python and other binaries ,
@@ -143,13 +143,13 @@ python standard packages. When we will install new python packages under
 this virtual environment those files also been comes under this lib
 folder.</p>
 <p>To activate and use this virtual environment,</p>
-<div class="highlight"><pre><span class="gp">$</span><span class="nb">cd </span>python_project
+<div class="highlight"><pre><span></span><span class="gp">$</span><span class="nb">cd</span> python_project
 <span class="gp">$</span><span class="nb">source</span> ./bin/activate
 </pre></div>
 <p>Above command will change the current shell session by updating the
 system PATH and it also change the shell prompt, to get a notion of we
 are in the virtual environment.</p>
-<div class="highlight"><pre><span class="gp">(virtual)host@name$</span> which python
+<div class="highlight"><pre><span></span><span class="gp">(virtual)host@name$</span> which python
 <span class="go">PATH-to-DIR/python_project/bin/python</span>
 <span class="gp">(virtual)host@name$</span> which easy_install
 <span class="go">PATH-to-DIR/python_project/bin/easy_install</span>
@@ -161,7 +161,7 @@ and <cite>pip</cite>) were created under the bin directory so you can directly
 use them to install new packages under virtual environment easily that
 never going to affect the python packages installed in the default
 system path(/usr/lib/python-2.x/).</p>
-<div class="highlight"><pre><span class="gp">(virtual)host@name$</span> deactivate
+<div class="highlight"><pre><span></span><span class="gp">(virtual)host@name$</span> deactivate
 </pre></div>
 <p>This will deactivate our virtual environment and the control will be
 return to system shell prompt, after removing all changes in the system
@@ -176,17 +176,17 @@ requirements.</p>
 multiple virtual environments by single set of shell commands. Here is
 the brief description about virtualenvwrapper.</p>
 <p>To install virtualenvwrapper, as usual you can use easy_install or pip</p>
-<div class="highlight"><pre><span class="gp">#</span>pip install virtualenvwrapper
+<div class="highlight"><pre><span></span><span class="gp">#</span>pip install virtualenvwrapper
 </pre></div>
 <p>After the installation append the following two lines to .bashrc or
 .profile file.</p>
-<div class="highlight"><pre><span class="go">export WORKON_HOME=&quot;~/.virtualenvs&quot;</span>
+<div class="highlight"><pre><span></span><span class="go">export WORKON_HOME=&quot;~/.virtualenvs&quot;</span>
 <span class="go">source /usr/local/bin/virtualenvwrapper.sh</span>
 </pre></div>
 <p>Now from next shell session onwards following commands would be
 available to us, which helps to manage the multiple virtual
 environments.</p>
-<div class="highlight"><pre><span class="go">Create a new virtual environment and enter into it.</span>
+<div class="highlight"><pre><span></span><span class="go">Create a new virtual environment and enter into it.</span>
 
 <span class="gp">$</span>mkvirtualenv test_proj
 
@@ -229,10 +229,10 @@ recommended, because the RVM only avaiable to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.</p>
 <p>To install RVM you can use git if it available in your system,</p>
-<div class="highlight"><pre><span class="gp">$</span>bash &lt; &lt;<span class="o">(</span>curl -s https://rvm.beginrescueend.com/install/rvm<span class="o">)</span>
+<div class="highlight"><pre><span></span><span class="gp">$</span>bash &lt; &lt;<span class="o">(</span>curl -s https://rvm.beginrescueend.com/install/rvm<span class="o">)</span>
 </pre></div>
 <p>OR (If we dont have git installed )</p>
-<div class="highlight"><pre><span class="go">Fetch installer script and run it ourself.</span>
+<div class="highlight"><pre><span></span><span class="go">Fetch installer script and run it ourself.</span>
 <span class="gp">$</span> curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
 <span class="gp">$</span>chmod +x rvm-installer
@@ -245,11 +245,11 @@ activate <cite>rvm</cite> command for this user you have do one more step.</p>
 onwards the <cite>rvm</cite> commands were available to this user. OR you can
 just run bellow code in your current shell to activate it for this user
 session only.</p>
-<div class="highlight"><pre><span class="go">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; #</span>
+<div class="highlight"><pre><span></span><span class="go">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; #</span>
 <span class="go">   This loads RVM into a shell session</span>
 </pre></div>
 <p>Open a new shell session,</p>
-<div class="highlight"><pre><span class="gp">$</span> ruby --version
+<div class="highlight"><pre><span></span><span class="gp">$</span> ruby --version
 <span class="go">ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]</span>
 
 <span class="go">Current system ruby version</span>
@@ -268,7 +268,7 @@ session only.</p>
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,</p>
 <p>To use ruby-1.9.1 in one shell session only, try bellow commands.</p>
-<div class="highlight"><pre><span class="gp">$</span>rvm use 1.9.1
+<div class="highlight"><pre><span></span><span class="gp">$</span>rvm use 1.9.1
 <span class="gp">$</span>ruby --version
 <span class="go">ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]</span>
 <span class="go">[/shell]</span>
@@ -291,7 +291,7 @@ system. To switch between these versions,</p>
 <p>Using RVM we can now set your suitable version of ruby, after that you
 can install ruby gem packages using <cite>gem</cite> command of current ruby
 version.</p>
-<div class="highlight"><pre><span class="gp">$</span> ruby --version
+<div class="highlight"><pre><span></span><span class="gp">$</span> ruby --version
 <span class="go">ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]</span>
 <span class="gp">$</span> gem --version
 <span class="go">1.3.7</span>

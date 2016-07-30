@@ -282,9 +282,9 @@ Snipmate does have support for different html tags. Please check
 the snippets folder(<cite>~/.vim/bundle/snippets/</cite>) to see all available
 snippets for a particular language or markup.</p>
 <p>More examples;</p>
-<div class="highlight"><pre>vim test.py
+<div class="highlight"><pre><span></span>vim test.py
 </pre></div>
-<div class="highlight"><pre><span class="c">#!/bin/python</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/python</span>
 <span class="n">cl</span>
 </pre></div>
 <p>After typing <cite>cl</cite> press tab and see the magic of full class structure.
@@ -345,7 +345,7 @@ current directory.</p>
 <p>The Plugin helps us to create the settings easily, after that we can use this plugin to
 view definition of all functions or classes comes under the rope project path.</p>
 <p>In my Vim I mapped the <strong>&lt;leader&gt;j</strong> to :RopeGotoDefinition. For eg.</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 </pre></div>
 <p>Keep your cursor on top of the <cite>os</cite> and press the &lt;leader&gt;j or type
@@ -414,9 +414,9 @@ ever required.</p>
 <p>Before doing this, please take a backup of your current Vim settings from your home
 directory.</p>
 <p>We can start the installation by picking my Git Repository,</p>
-<div class="highlight"><pre><span class="gp">$</span>git clone git://github.com/haridas/Dotfiles.git
+<div class="highlight"><pre><span></span><span class="gp">$</span>git clone git://github.com/haridas/Dotfiles.git
 
-<span class="gp">$</span><span class="nb">cd </span>Dotfiles
+<span class="gp">$</span><span class="nb">cd</span> Dotfiles
 </pre></div>
 <p>I kept all the required plugins as git submodules. So we will get the new
 changes from the plugin projects by updating the submodule project.
@@ -424,7 +424,7 @@ While cloning my main repo, it won't retrieve the submodules or external plugin 
 projects. But we have all the settings and paths in my git projects itself.
 So we can easily fetch the current stable code from all the external projects.
 To do that, type below commands inside your Dotfiles folder.</p>
-<div class="highlight"><pre><span class="gp">$</span><span class="nb">pwd</span>
+<div class="highlight"><pre><span></span><span class="gp">$</span><span class="nb">pwd</span>
 <span class="go">&lt;path to gitproject&gt;/Dotfiles</span>
 
 <span class="gp">$</span>git submodule init
@@ -434,20 +434,20 @@ To do that, type below commands inside your Dotfiles folder.</p>
 link my git files as your vim files. To do that just create soft link of
 the Vim system files and then point it to my git repository files.
 Here is the steps.</p>
-<div class="highlight"><pre><span class="gp">$</span><span class="nb">cd</span>
+<div class="highlight"><pre><span></span><span class="gp">$</span><span class="nb">cd</span>
 <span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim .vim
 <span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim/vimrc .vimrc
 </pre></div>
 <p>Thats it, now open your vim, you can see all the features described above are
 being available, except command-t. Because it requires a compilation.
 The compilation step is very simple. Follow me,</p>
-<div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;path-to&gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
+<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> &lt;path-to&gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
 <span class="gp">$</span> ruby extconf.rb
 <span class="gp">$</span> make
 </pre></div>
 <p>The make will succeed only when you have gcc installed ,
 and your Vim has ruby support. To check the ruby support, open your vim and type,</p>
-<div class="highlight"><pre><span class="p">:</span><span class="k">ruby</span> <span class="m">1</span>
+<div class="highlight"><pre><span></span><span class="p">:</span><span class="k">ruby</span> <span class="m">1</span>
 </pre></div>
 <p>If there is no error then you have ruby support with your vim.
 The latest version of Vim has support for major
@@ -457,7 +457,7 @@ head ache.</p>
 install complete vim from your package manager.</p>
 <p>If you are using Debian based system you can follow this command. Other
 platforms has also the same option using their package manager tool.</p>
-<div class="highlight"><pre><span class="gp">$</span>apt-cache search python <span class="p">|</span> grep vim
+<div class="highlight"><pre><span></span><span class="gp">$</span>apt-cache search python <span class="p">|</span> grep vim
 <span class="gp">$</span>apt-cache search ruby <span class="p">|</span> grep vim
 </pre></div>
 <p>From the list install any of the GUI based package.</p>
@@ -489,7 +489,7 @@ to install <cite>ruby-dev</cite> package from your package manager.</p>
 <p>Back to <a class="reference internal" href="#topics">Topics</a></p>
 <div class="section" id="some-vim-shortcuts">
 <h3>Some Vim shortcuts</h3>
-<div class="highlight"><pre>In normal mode
+<div class="highlight"><pre><span></span>In normal mode
 ==============
 
 :23,30m200  -- Move a section of code to another line.

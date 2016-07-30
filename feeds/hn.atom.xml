@@ -1,5 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2016-01-08T16:29:00+05:30</updated><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2016-07-25T00:00:00+05:30</updated><entry><title>What I Like about J2EE</title><link href="http://haridas.in/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2016-07-25:what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
+chance to work with the latest technologies in SOA environment. From that experience
+I just want to put down some points that I liked about java, as I'm coming
+from other languages I felt few things are interesting to me.&lt;/p&gt;
+&lt;div class="section" id="interfaces"&gt;
+&lt;h2&gt;Interfaces&lt;/h2&gt;
+&lt;p&gt;As a Object oriented language it doesn't have multiple inheritance, but it
+provides Interfaces. If you check java libraries there are lot of standard
+interfaces reused from Java language. Also J2EE provides lot of standard
+interfaces to the application or product developers to come up with their on
+implementation.&lt;/p&gt;
+&lt;p&gt;May be key example for this would be the Servlet interface in J2EE. If you see Servlet
+containers(Jetty, Tomcat), it comes with its own implementation of the
+&lt;cite&gt;HttpServletRequest&lt;/cite&gt; and &lt;cite&gt;HttpServletResponse&lt;/cite&gt;, all these implementation follows
+standard interface given by the J2EE. What it means is we develop our application
+independent of servlet container implementation or we can run the web application
+on any servlet container as it should be.&lt;/p&gt;
+&lt;p&gt;Interfaces are good for more disciplined and consistent software development.
+I think the current Oracle vs Google fight is because of this standard interfaces.
+Google doesn't want to change the interface to make it look like another cousin
+language.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="standards"&gt;
+&lt;h2&gt;Standards&lt;/h2&gt;
+&lt;p&gt;Most of the mainstream languages got their own feature addition process to
+propose feature requests for the language. For java it called JSR ( Java
+Specification Request). Here goes all the initial design proposals and drafting
+of the specification and mostly it follows a reference implementation of the new specification.
+I'm curious to see the final implementation of following JSR, and other interesting JSRs.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=369"&gt;JSR-369&lt;/a&gt;: Servlet 4.0 with http2 support ( Under review stage)&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=311"&gt;JSR-311&lt;/a&gt;: JAX-RS Java Restful web service specification. Reference
+implementation &lt;a class="reference external" href="https://jersey.java.net/"&gt;Jersy&lt;/a&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=370"&gt;JSR-370&lt;/a&gt;: JAX-RS 2.1 New specification to get HTTP2, non blocking I/O and etc.&lt;/dt&gt;
+&lt;dd&gt;This will really make the JAX-RS more powerful and widespread.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt;: Defines the standard annotations for dependency injection, &amp;#64;Inject, &amp;#64;Named,
+&amp;#64;Provider, &amp;#64;Singleton and &amp;#64;Qualifier and how it should behave.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=229"&gt;JSR-229&lt;/a&gt;: J2EE standard Dependency injection engine, supports the JSR-330
+convention.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="servlets-servlet-filters-and-web-fragment-for-micro-service-development"&gt;
+&lt;h2&gt;Servlets, servlet filters and web-fragment for Micro service development&lt;/h2&gt;
+&lt;p&gt;I got surprised by the flexibility of these standard interfaces supplied by the
+J2EE. It's more than enough to develop a web service or web framework from the
+ground up without much boiler plate codes. Assume if you want to do some request
+response validation via swagger schema, it's much simple by adding a servlet
+filter for it and wrapper classes to intercept the response stream.&lt;/p&gt;
+&lt;p&gt;I worked with MVC frameworks which uses a concept called middleware to intercept the
+request/response flow before actual processing, I felt the servlet filter acts the same role
+in J2EE platform. I agree the fact that J2EE is a Java plus lot of libraries, may
+be we can consider it as a web framework :).&lt;/p&gt;
+&lt;p&gt;Usually to package the servlets and filters, there is web.xml file, it
+does the url routing logic, and the filter ordering, this is kinda configuration
+files in different frameworks, but it's in xml ;).&lt;/p&gt;
+&lt;p&gt;Another interesting thing is &lt;a class="reference external" href="http://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html"&gt;web-fragment.xml&lt;/a&gt;. This is really good feature
+which we leveraged to build a micro web framework with default routes ( /admin,
+/health, /doc etc) and supplied to developers as jar file. You can call this as
+a micro web framework which can be used in the micro service development
+environment where the number of routes in a particular service going to be very
+minimal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dependency-injection"&gt;
+&lt;h2&gt;Dependency Injection&lt;/h2&gt;
+&lt;p&gt;DI was the one area I spend most of my time. I integrated libraries which comes with
+DI support into our application. Mainly I used google guice because those
+libraries already implemented in google guice DI so we didn't have much choice.&lt;/p&gt;
+&lt;p&gt;The thing I liked about the DI is its magics. How it wire the actual
+implementation classes to the interfaces. There are standard set of annotations
+defined for DI purpose, &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt; defines it, You can import it from the
+package &lt;a class="reference external" href="http://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html"&gt;javax.inject&lt;/a&gt;. Currently most of the DI
+implementations supports JSR-330, and it's recommended to stick to JSR-330 while
+using injections in our code so that we can easily switch the actual DI engine
+based on application requirements.&lt;/p&gt;
+&lt;p&gt;As described above &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt; defines the annotations that can be used to tag the
+injection behavior across the code. Google guice, CDI, and Dagger are the few
+famous Dependency Injection library. In which CDI is the standard implementation comes
+with J2EE and described in &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=229"&gt;JSR-229&lt;/a&gt;. Looks like most of the servlet containers
+are now support CDI by default. But I felt like CDI is bit more
+magic than google guice. Google guice does the manual bindings by default and
+it's more explicitly but CDI does the auto scan across the class path to find
+the implementations and targets on which it can be injected.&lt;/p&gt;
+&lt;p&gt;I will stick to google guice if third party libraries are already making use of
+it, if that's not your case then, going with CDI is best for the future support and platform
+compatibility across J2EE environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-testing-and-logging-libraries"&gt;
+&lt;h2&gt;Unit Testing and Logging libraries&lt;/h2&gt;
+&lt;p&gt;One of my favorite libraries in Java. New annotation based Test methods are
+far easier to write. The test runner automatically knows the Test classes and
+test methods. You can test each and very part of your application using
+Junit and some mocking library. We tested entire micro service from the
+servelet filter level.&lt;/p&gt;
+&lt;p&gt;Logging library got much more flexibility, and python's logging library was
+designed after this one. I liked the design of &lt;a class="reference external" href="http://www.slf4j.org/"&gt;slf4j&lt;/a&gt; how easily we can
+configure the backends and its logging behaviors via xml configurations. Slf4j
+is the another example of standard Interface which keeps the logging API common
+across multiple logging frameworks ( log4j, logback and java.util.logging).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="servlet-containers-and-osgi"&gt;
+&lt;h2&gt;Servlet Containers and OSGi&lt;/h2&gt;
+&lt;p&gt;There are lot of of servlet container implementations exists,
+famous one are Jetty and Tomcat. Jetty is small and more easy to embedded
+in your code. Most of the servlet containers are do auto reload if we place the
+war files into its ROOT folder.&lt;/p&gt;
+&lt;p&gt;Apart from the standard servlet containers, I liked the concept of &lt;a class="reference external" href="https://www.osgi.org/"&gt;OSGi&lt;/a&gt;. OSGi is
+more modular and service oriented platform. You can release you project as jar
+file with some version details ( As the standard jar doesn't have any notion of
+version). We can expose our application interfaces as services to
+other teams, they can consume it easily. I tried few POCs with the &lt;a class="reference external" href="http://karaf.apache.org/index.html"&gt;apache
+karaf&lt;/a&gt; and &lt;a class="reference external" href="http://karaf.apache.org/projects.html#cellar"&gt;karaf celler&lt;/a&gt; to know more of it.&lt;/p&gt;
+&lt;p&gt;I felt OSGi gives all the tools required to go with SOA based microservice
+application development. Apache karaf team call their platform as polymorphic
+container it can run OSGi bundles, war, jar, spring etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="echosystem"&gt;
+&lt;h2&gt;Echosystem&lt;/h2&gt;
+&lt;p&gt;Java ecosystem is huge and vast with around 2 decades of experience and maturity
+in the tools and platforms build on it. And the new language upgrades catching
+up with the new trends in computer language arena.  eg: Java8 got lambdas,
+functional stream processing APIs etc. And interestingly java9 comes with a REPL.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;People who says about java is verbose and rigid compared to
+other languages. But I would say that verbosity thing can be easily overcome
+by using a good IDE. Regarding the flexibility it's purely with the product
+design. I mostly see development flows like this, develop the initial product using any of
+the language that you are comfortable with, if the situation arises for more scalability /
+reliability / speed you can switch to java or other static languages.
+If you consider the SOA platforms this isn't required at all, create your
+microservice using the tool or language which fits best on top of a standard
+communication protocol ( http / thrift / protocol buffer etc ).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References:-&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://techsticles.blogspot.in/2016/07/oracle-and-fall-of-java-ee.html?utm_content=bufferf1a2e&amp;amp;utm_medium=social&amp;amp;utm_source=linkedin.com&amp;amp;utm_campaign=buffer"&gt;Oracle and Fall of J2EE&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</summary><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
 another backup location. Google photos was the excellege option as I'm
 using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -27,22 +168,22 @@ order it correctly.&lt;/p&gt;
 &lt;p&gt;Luckily we have set of utilities available to edit EXIF tags in an image.
 &lt;a class="reference external" href="http://www.exiv2.org/"&gt;exiv2&lt;/a&gt; is the one of it.&lt;/p&gt;
 &lt;p&gt;It's available on all platforms. Lets install and checkout some samples.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install exiv2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install exiv2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;How to change single photo's EXIF record using exiv2 tool.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -M&amp;quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&amp;quot; IMG_20090305_000553.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -M&amp;quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&amp;quot; IMG_20090305_000553.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We are adding Exif header to this photo with correct time that we took this
 photo. How we know this date, that's up to you to decide :). The bellow script that
 I attached has option to pick the date time from the filename format or from its
 modification time.&lt;/p&gt;
 &lt;p&gt;To check your photo has all expected Exif records use this command,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -pt IMG_200090305_000553.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -pt IMG_200090305_000553.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you noticed one thing, if we add the &lt;cite&gt;Exif.Photo.DateTimeOriginal&lt;/cite&gt;
 multiple times, then duplicate entries are being creatd in the EXIF tags.
 If you want to remove records from EXIF, you can do it using exiv2 command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -M&amp;quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&amp;quot; IMG_20090303_000550.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -M&amp;quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&amp;quot; IMG_20090303_000550.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now lets automate the process in a script,&lt;/p&gt;
 &lt;p&gt;On platforms other than Linux, you can find google photos desktop application to
@@ -141,9 +282,9 @@ if __name__ == "__main__":
 &lt;p&gt;Now simply give following commands to update your file's EXIF tag &lt;cite&gt;Exif.Photo.DateTimeOriginal&lt;/cite&gt;.&lt;/p&gt;
 &lt;p&gt;The bellow command will find all the &amp;quot;jpg&amp;quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="http://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+</summary><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="http://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
 spell checker tool, but it's little cumbersome to use. I use vim for
 most of the purposes like,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -156,14 +297,14 @@ than typos in any other places.&lt;/li&gt;
 &lt;p&gt;So what usually happens was I miss some types on git commits or comments
 that I put while coding. Before using this plugin I use the inbuilt vim spell
 checker directly, to access that you have to type this command in the command mode,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;:setlocal spell spelllang=en_us
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:setlocal spell spelllang=en_us
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Most of the time I forgot this full command and I have to issue &lt;cite&gt;:help spell&lt;/cite&gt; to
 get this command :). What was other annoying problem is, after checking the spell
 corrections, I need a quick way to disable the spell check highlights. With the
 inbuild spell checker you need to type the following command to disable it.&lt;/p&gt;
 &lt;p&gt;Unset the spell variable to disable the highlights,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;:setlocal spell spellang=
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;:setlocal spell spellang=
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Eventually these typos are started to come and bite me. So I was started to look
 for an easy way to achieve spell check. I don't want to use any new plugin for this
@@ -174,7 +315,7 @@ Thats it.&lt;/p&gt;
 spell check and &lt;cite&gt;&amp;lt;leader&amp;gt;c&lt;/cite&gt; again to toggle the spell check.&lt;/p&gt;
 &lt;p&gt;Here is the function that you can put it in your vimrc file to get these spell
 check bindings&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;quot; &amp;gt; Spell checker Toggler &amp;lt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot; &amp;gt; Spell checker Toggler &amp;lt;
 
 nnoremap &amp;lt;leader&amp;gt;c :call SpellChecker()&amp;lt;cr&amp;gt;
 
@@ -202,7 +343,7 @@ in your vimrc file.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="http://haridas.in/python-and-oom-killer.html" rel="alternate"></link><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+</summary><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="http://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
 the OS's Out Of Memory Killer. OOM Killer does this to
 reclaim the memory for OS, since there is no enough RAM space available for the
@@ -279,7 +420,7 @@ have any questions or suggestion please put it on the comment section bellow.&lt
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/2/c-api/memory.html"&gt;https://docs.python.org/2/c-api/memory.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+</summary><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.&lt;/p&gt;
 &lt;p&gt;We are using python for network programming, specifically a TCP client/server
@@ -289,7 +430,7 @@ languages like C/C++ or Java, and we are already using python so more comfortabl
 with it.&lt;/p&gt;
 &lt;div class="section" id="the-network-topology"&gt;
 &lt;h2&gt;The network topology&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Network =&amp;gt; TCP Server A =&amp;gt; TCP Server B ( Do some operation.) ==&amp;gt; Network.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Network =&amp;gt; TCP Server A =&amp;gt; TCP Server B ( Do some operation.) ==&amp;gt; Network.
 
 Where :-
     Server A is implemented in C.
@@ -399,7 +540,7 @@ twitter for my this blog entry. Thank you guys.&lt;/p&gt;
 server in the production environment. And one Python TCP client(tcp_server.py)
 which simulate the TCP socket reading operation in the production Python server
 implementation.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Python server tcp_server.py&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Python server tcp_server.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;optparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OptionParser&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
@@ -407,29 +548,29 @@ implementation.&lt;/p&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;select&lt;/span&gt;
 
 &lt;span class="n"&gt;PORT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;
-&lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;
 
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;start_tcp_client&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    Connect to sever and push lot of data.&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Starting Client&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Starting Client&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;HOST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;PORT&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
     &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;sending &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sending &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-        &lt;span class="c"&gt;#&lt;/span&gt;
-        &lt;span class="c"&gt;# Does some action on the data. and return the response.&lt;/span&gt;
-        &lt;span class="c"&gt;#&lt;/span&gt;
+        &lt;span class="c1"&gt;#&lt;/span&gt;
+        &lt;span class="c1"&gt;# Does some action on the data. and return the response.&lt;/span&gt;
+        &lt;span class="c1"&gt;#&lt;/span&gt;
         &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-        &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Hi i got the data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hi i got the data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;
         &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 
@@ -439,19 +580,19 @@ implementation.&lt;/p&gt;
 &lt;span class="sd"&gt;    The TCP client with fix applied. So it will read complete data from&lt;/span&gt;
 &lt;span class="sd"&gt;    socket and avoid the errors like &amp;#39;errno 104&amp;#39; or &amp;#39;errno 107&amp;#39;.&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Starting the newly implemented client...&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Starting the newly implemented client...&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;proto&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;HOST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;PORT&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-    &lt;span class="c"&gt;# make the socket non-blocking&lt;/span&gt;
+    &lt;span class="c1"&gt;# make the socket non-blocking&lt;/span&gt;
     &lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setblocking&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;sending &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-        &lt;span class="n"&gt;t_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sending &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="n"&gt;t_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
         &lt;span class="n"&gt;rsock&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;sock&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="p"&gt;[])&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;rsock&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -461,29 +602,29 @@ implementation.&lt;/p&gt;
                     &lt;span class="n"&gt;t_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rsock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;recv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
                     &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;t_data&lt;/span&gt;
             &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c"&gt;# EAGAIN&lt;/span&gt;
-                    &lt;span class="c"&gt;# Nothing more to read;&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errno&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c1"&gt;# EAGAIN&lt;/span&gt;
+                    &lt;span class="c1"&gt;# Nothing more to read;&lt;/span&gt;
                     &lt;span class="k"&gt;pass&lt;/span&gt;
                 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
                     &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;
         &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;
-        &lt;span class="c"&gt;#&lt;/span&gt;
-        &lt;span class="c"&gt;# Doese some action on the package `data`&lt;/span&gt;
-        &lt;span class="c"&gt;#&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Handled {} bytes&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="c1"&gt;#&lt;/span&gt;
+        &lt;span class="c1"&gt;# Doese some action on the package `data`&lt;/span&gt;
+        &lt;span class="c1"&gt;#&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Handled {} bytes&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;rsock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
         &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OptionParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-c&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;--client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;store_true&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                      &lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;new_client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_option&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-c&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;--client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;store_true&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                      &lt;span class="n"&gt;dest&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;new_client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                       &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                      &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Start the new client with fix applied.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                      &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Start the new client with fix applied.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;new_client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new_client&lt;/span&gt;
@@ -493,24 +634,24 @@ implementation.&lt;/p&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;start_tcp_client&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
 &lt;span class="cm"&gt;    tcp_server.c - Implements the TCP server in my production environment.&lt;/span&gt;
 &lt;span class="cm"&gt;*/&lt;/span&gt;
 
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;unistd.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;errno.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;errno.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-&lt;span class="cp"&gt;#include &amp;lt;netdb.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;netinet/in.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;sys/wait.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;fcntl.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;netdb.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/types.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;netinet/in.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sys/wait.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;fcntl.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 
 &lt;span class="cp"&gt;#define PORT &amp;quot;8000&amp;quot;&lt;/span&gt;
@@ -692,27 +833,27 @@ implementation.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="how-to-run-the-code"&gt;
 &lt;h2&gt;How to Run the code.&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# Start the C server. Which listening on the port 8000 and handles the&lt;/span&gt;
-&lt;span class="c"&gt;# Client connections on another thread.&lt;/span&gt;
-&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# Start the C server. Which listening on the port 8000 and handles the&lt;/span&gt;
+&lt;span class="c1"&gt;# Client connections on another thread.&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;gcc tcp_server.c
-&lt;span class="nv"&gt;$ &lt;/span&gt;./a.out
+$ gcc tcp_server.c
+$ ./a.out
 
-&lt;span class="c"&gt;#&lt;/span&gt;
-&lt;span class="c"&gt;# On another shell environemnt run python client.&lt;/span&gt;
-&lt;span class="c"&gt;# It has two options -&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="c1"&gt;# On another shell environemnt run python client.&lt;/span&gt;
+&lt;span class="c1"&gt;# It has two options -&lt;/span&gt;
 
-&lt;span class="c"&gt;#    1. Run the Python client which gives the error 104 and 107 issue. Which&lt;/span&gt;
-&lt;span class="c"&gt;#       is the issue I&amp;#39;m getting right now on the production machine.&lt;/span&gt;
+&lt;span class="c1"&gt;#    1. Run the Python client which gives the error 104 and 107 issue. Which&lt;/span&gt;
+&lt;span class="c1"&gt;#       is the issue I&amp;#39;m getting right now on the production machine.&lt;/span&gt;
 
-&lt;span class="c"&gt;#    2. Another implementation of the Python client which fixes the issue and&lt;/span&gt;
-&lt;span class="c"&gt;#       read the socket data without causing socket error 104 and 107&lt;/span&gt;
+&lt;span class="c1"&gt;#    2. Another implementation of the Python client which fixes the issue and&lt;/span&gt;
+&lt;span class="c1"&gt;#       read the socket data without causing socket error 104 and 107&lt;/span&gt;
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py  &lt;span class="c"&gt;# Simulate the tcp client with socket problem.&lt;/span&gt;
+$ python tcp_server.py  &lt;span class="c1"&gt;# Simulate the tcp client with socket problem.&lt;/span&gt;
 
-&lt;span class="c"&gt;# OUTPUT #&lt;/span&gt;
+&lt;span class="c1"&gt;# OUTPUT #&lt;/span&gt;
 
 Starting Client
 sending 1
@@ -726,12 +867,12 @@ Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span clas
 socket.error: &lt;span class="o"&gt;[&lt;/span&gt;Errno 104&lt;span class="o"&gt;]&lt;/span&gt; Connection reset by peer
 
 
-&lt;span class="c"&gt;#    This will crash after while since the server closes the socket on its&lt;/span&gt;
-&lt;span class="c"&gt;#    side due to the kernel sending buffer is full on the server side.&lt;/span&gt;
+&lt;span class="c1"&gt;#    This will crash after while since the server closes the socket on its&lt;/span&gt;
+&lt;span class="c1"&gt;#    side due to the kernel sending buffer is full on the server side.&lt;/span&gt;
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;python tcp_server.py -c &lt;span class="c"&gt;# This client has the option to fix that issue.&lt;/span&gt;
+$ python tcp_server.py -c &lt;span class="c1"&gt;# This client has the option to fix that issue.&lt;/span&gt;
 
-&lt;span class="c"&gt;#OUTPUT#&lt;/span&gt;
+&lt;span class="c1"&gt;#OUTPUT#&lt;/span&gt;
 
 Starting the newly implemented client...
 sending 1
@@ -750,17 +891,17 @@ Handled &lt;span class="m"&gt;286&lt;/span&gt; bytes
 
 Goese on like this without any interrupt or network buffer overflow.
 
-&lt;span class="c"&gt;#    This will read the socket data in non-blocking mode and read entire&lt;/span&gt;
-&lt;span class="c"&gt;#    data from the socket till it throws EAGAIN exception.&lt;/span&gt;
+&lt;span class="c1"&gt;#    This will read the socket data in non-blocking mode and read entire&lt;/span&gt;
+&lt;span class="c1"&gt;#    data from the socket till it throws EAGAIN exception.&lt;/span&gt;
 
-&lt;span class="c"&gt;#    This time the client won&amp;#39;t throw any excetion and the server and client&lt;/span&gt;
-&lt;span class="c"&gt;#    work smoothly. So finally I got the protype to fix the actual production&lt;/span&gt;
-&lt;span class="c"&gt;#    system.&lt;/span&gt;
+&lt;span class="c1"&gt;#    This time the client won&amp;#39;t throw any excetion and the server and client&lt;/span&gt;
+&lt;span class="c1"&gt;#    work smoothly. So finally I got the protype to fix the actual production&lt;/span&gt;
+&lt;span class="c1"&gt;#    system.&lt;/span&gt;
 
-&lt;span class="c"&gt;#    To See what is happening while running this scripts run `tcpdump`&lt;/span&gt;
-&lt;span class="c"&gt;#    caommand.&lt;/span&gt;
+&lt;span class="c1"&gt;#    To See what is happening while running this scripts run `tcpdump`&lt;/span&gt;
+&lt;span class="c1"&gt;#    caommand.&lt;/span&gt;
 
-&lt;span class="nv"&gt;$ &lt;/span&gt;sudo tcpdump -i any port 8000
+$ sudo tcpdump -i any port 8000
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can get the above code from this &lt;a class="reference external" href="https://github.com/haridas/non-blocking-tcp-server-sample"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -771,7 +912,7 @@ Goese on like this without any interrupt or network buffer overflow.
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
 like chat system, worker queue, logging etc. But lately I was looking for an
 option to track all messages passing through set of exchanges without
 interfering those exchanges. The need for it's that I want to analyze the
@@ -802,7 +943,7 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
 &lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 100%;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
-</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
@@ -861,51 +1002,51 @@ daemon running. Just report that to user.&lt;/p&gt;
 program to get the pid. See how we can handle the exceptions or errors using
 Exception handler and/or if-else statement.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Method 1&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# This is bad way of using exceptions, kinda defensive programming.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# This is bad way of using exceptions, kinda defensive programming.&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt;
 
-    &lt;span class="c"&gt;# No file in the path, may be other IO error.&lt;/span&gt;
+    &lt;span class="c1"&gt;# No file in the path, may be other IO error.&lt;/span&gt;
     &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Faild to Read file&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Faild to Read file&amp;quot;&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Somebody put non integer values in the pid file. Whom to blame ?&lt;/span&gt;
+    &lt;span class="c1"&gt;# Somebody put non integer values in the pid file. Whom to blame ?&lt;/span&gt;
     &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;WrongPID&lt;/span&gt;
 
-    &lt;span class="c"&gt;# This catch all exception not necessarily required&lt;/span&gt;
-    &lt;span class="c"&gt;# Since the calling function or main code has it. This is like&lt;/span&gt;
-    &lt;span class="c"&gt;# over use of exception handler feature.&lt;/span&gt;
+    &lt;span class="c1"&gt;# This catch all exception not necessarily required&lt;/span&gt;
+    &lt;span class="c1"&gt;# Since the calling function or main code has it. This is like&lt;/span&gt;
+    &lt;span class="c1"&gt;# over use of exception handler feature.&lt;/span&gt;
     &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;SomeUnKnownError&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Method 2&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Using If/else method. The calling function has to check for None return&lt;/span&gt;
-&lt;span class="c"&gt;# value or an Exception case.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Using If/else method. The calling function has to check for None return&lt;/span&gt;
+&lt;span class="c1"&gt;# value or an Exception case.&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;file.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="c"&gt;# The programming languages which support exceptions&lt;/span&gt;
-            &lt;span class="c"&gt;# internally  raises exception when it fails one operation.&lt;/span&gt;
-            &lt;span class="c"&gt;# So we can&amp;#39;t expect C like behaviour here.&lt;/span&gt;
+            &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;file.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c1"&gt;# The programming languages which support exceptions&lt;/span&gt;
+            &lt;span class="c1"&gt;# internally  raises exception when it fails one operation.&lt;/span&gt;
+            &lt;span class="c1"&gt;# So we can&amp;#39;t expect C like behaviour here.&lt;/span&gt;
             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
         &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ne"&gt;IOError&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
             &lt;span class="k"&gt;pass&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Method 3&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Actually we know what going to happen, if some error happen while&lt;/span&gt;
-&lt;span class="c"&gt;# reading the pid file, it gets handled by the calling functions&amp;#39; exception&lt;/span&gt;
-&lt;span class="c"&gt;# handler. We are dealing with programming&lt;/span&gt;
-&lt;span class="c"&gt;# language which has Exception handling system. So make use of it&lt;/span&gt;
-&lt;span class="c"&gt;# effectively.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Actually we know what going to happen, if some error happen while&lt;/span&gt;
+&lt;span class="c1"&gt;# reading the pid file, it gets handled by the calling functions&amp;#39; exception&lt;/span&gt;
+&lt;span class="c1"&gt;# handler. We are dealing with programming&lt;/span&gt;
+&lt;span class="c1"&gt;# language which has Exception handling system. So make use of it&lt;/span&gt;
+&lt;span class="c1"&gt;# effectively.&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_pid_file&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;daemon.pid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I like the  &lt;strong&gt;Method 3&lt;/strong&gt;, since it works for most of the time. It fail
@@ -980,7 +1121,7 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;li&gt;&lt;a class="reference external" href="http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+</summary></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors.&lt;/p&gt;
 &lt;p&gt;Here I'm trying to explain how to make the Vim more productive by adding some extra
@@ -1152,9 +1293,9 @@ Snipmate does have support for different html tags. Please check
 the snippets folder(&lt;cite&gt;~/.vim/bundle/snippets/&lt;/cite&gt;) to see all available
 snippets for a particular language or markup.&lt;/p&gt;
 &lt;p&gt;More examples;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;vim test.py
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim test.py
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/python&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/python&lt;/span&gt;
 &lt;span class="n"&gt;cl&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After typing &lt;cite&gt;cl&lt;/cite&gt; press tab and see the magic of full class structure.
@@ -1215,7 +1356,7 @@ current directory.&lt;/p&gt;
 &lt;p&gt;The Plugin helps us to create the settings easily, after that we can use this plugin to
 view definition of all functions or classes comes under the rope project path.&lt;/p&gt;
 &lt;p&gt;In my Vim I mapped the &lt;strong&gt;&amp;lt;leader&amp;gt;j&lt;/strong&gt; to :RopeGotoDefinition. For eg.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Keep your cursor on top of the &lt;cite&gt;os&lt;/cite&gt; and press the &amp;lt;leader&amp;gt;j or type
@@ -1284,9 +1425,9 @@ ever required.&lt;/p&gt;
 &lt;p&gt;Before doing this, please take a backup of your current Vim settings from your home
 directory.&lt;/p&gt;
 &lt;p&gt;We can start the installation by picking my Git Repository,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;git clone git://github.com/haridas/Dotfiles.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;git clone git://github.com/haridas/Dotfiles.git
 
-&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;Dotfiles
+&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; Dotfiles
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I kept all the required plugins as git submodules. So we will get the new
 changes from the plugin projects by updating the submodule project.
@@ -1294,7 +1435,7 @@ While cloning my main repo, it won't retrieve the submodules or external plugin 
 projects. But we have all the settings and paths in my git projects itself.
 So we can easily fetch the current stable code from all the external projects.
 To do that, type below commands inside your Dotfiles folder.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
 &lt;span class="go"&gt;&amp;lt;path to gitproject&amp;gt;/Dotfiles&lt;/span&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;git submodule init
@@ -1304,20 +1445,20 @@ To do that, type below commands inside your Dotfiles folder.&lt;/p&gt;
 link my git files as your vim files. To do that just create soft link of
 the Vim system files and then point it to my git repository files.
 Here is the steps.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;ln -s &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim .vim
 &lt;span class="gp"&gt;$&lt;/span&gt;ln -s &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim/vimrc .vimrc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Thats it, now open your vim, you can see all the features described above are
 being available, except command-t. Because it requires a compilation.
 The compilation step is very simple. Follow me,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &amp;lt;path-to&amp;gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
 &lt;span class="gp"&gt;$&lt;/span&gt; ruby extconf.rb
 &lt;span class="gp"&gt;$&lt;/span&gt; make
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The make will succeed only when you have gcc installed ,
 and your Vim has ruby support. To check the ruby support, open your vim and type,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;ruby&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;ruby&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there is no error then you have ruby support with your vim.
 The latest version of Vim has support for major
@@ -1327,7 +1468,7 @@ head ache.&lt;/p&gt;
 install complete vim from your package manager.&lt;/p&gt;
 &lt;p&gt;If you are using Debian based system you can follow this command. Other
 platforms has also the same option using their package manager tool.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search python &lt;span class="p"&gt;|&lt;/span&gt; grep vim
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search python &lt;span class="p"&gt;|&lt;/span&gt; grep vim
 &lt;span class="gp"&gt;$&lt;/span&gt;apt-cache search ruby &lt;span class="p"&gt;|&lt;/span&gt; grep vim
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;From the list install any of the GUI based package.&lt;/p&gt;
@@ -1359,7 +1500,7 @@ to install &lt;cite&gt;ruby-dev&lt;/cite&gt; package from your package manager.&
 &lt;p&gt;Back to &lt;a class="reference internal" href="#topics"&gt;Topics&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="some-vim-shortcuts"&gt;
 &lt;h3&gt;Some Vim shortcuts&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;In normal mode
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;In normal mode
 ==============
 
 :23,30m200  -- Move a section of code to another line.
@@ -1410,7 +1551,7 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="http://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="http://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is a chance for
@@ -1437,12 +1578,12 @@ normal password required to initiate the encryption or decryption.&lt;/p&gt;
 &lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
 &lt;p&gt;First install the packages required,&lt;/p&gt;
 &lt;p&gt;From root user follow these commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
 &lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
 one folder named Encrypted.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
 &lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
@@ -1455,7 +1596,7 @@ passphrase to mount the encrypted file system to local folder.This mounting and
 creation of the encrypted file system is explained bellow.&lt;/p&gt;
 &lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
 with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Mount command requires root privilage.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Mount command requires root privilage.&lt;/span&gt;
 mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Check this console page to see the complete list of commands required to finish
@@ -1463,7 +1604,7 @@ the mounting operation.&lt;/p&gt;
 &lt;img alt="" src="/images/encryption-3.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So if there is no error, you can now check for the file encryption by directly
 adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
@@ -1480,7 +1621,7 @@ done while mounting the file system initially. We can pass this automatically by
 putting it in a &lt;cite&gt;.ecryptfsrc&lt;/cite&gt; file under root home directory. So at boot time
 we can see system can read it.&lt;/p&gt;
 &lt;p&gt;The &lt;cite&gt;/root/.ecryptfsrc&lt;/cite&gt; file should have the following lines&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
 ecryptfs_sig=b2f118ee01beb78b
 ecryptfs_cipher=aes
 ecryptfs_key_bytes=32
@@ -1489,7 +1630,7 @@ ecryptfs_enable_filename_crypto=n
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After creating /root/.ecryptfsrc file, add the following line to &lt;cite&gt;/etc/fstab&lt;/cite&gt;
 to automount at boot time.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sr"&gt;/home/&lt;/span&gt;haridas&lt;span class="sr"&gt;/Dropbox/&lt;/span&gt;Encrypted &lt;span class="sr"&gt;/home/&lt;/span&gt;haridas/SecureDropbox  ecryptfs
 defaults &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The passphrase is the important thing that you have to keep in your machine or
@@ -1503,7 +1644,7 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="http://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="http://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -1588,7 +1729,7 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="http://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="http://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="http://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt the difficulties while adding some
@@ -1660,7 +1801,7 @@ select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="http://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="http://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -1676,9 +1817,9 @@ snippet.&lt;/p&gt;
 &lt;p&gt;Here we can test how a shell script identify itself where it's located
 or its absolute path information.Please create a shell script with
 following content and run it from different locations.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Add this content in a shell.sh,&lt;/span&gt;
-&lt;span class="c"&gt;#and then run it from different directory level, you can see the&lt;/span&gt;
-&lt;span class="c"&gt;#difference.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#Add this content in a shell.sh,&lt;/span&gt;
+&lt;span class="c1"&gt;#and then run it from different directory level, you can see the&lt;/span&gt;
+&lt;span class="c1"&gt;#difference.&lt;/span&gt;
 
 &lt;span class="nv"&gt;curr_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 
@@ -1689,20 +1830,20 @@ following content and run it from different locations.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
 its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /
 &lt;span class="gp"&gt;#&lt;/span&gt;sh /usr/local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr
-&lt;span class="gp"&gt;#&lt;/span&gt; sh &lt;span class="nb"&gt;local&lt;/span&gt;/shell.sh
+&lt;span class="gp"&gt;#&lt;/span&gt; sh local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd local&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nb"&gt;local&lt;/span&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;sh shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
@@ -1724,10 +1865,10 @@ and Ruby providing their own tools.&lt;/p&gt;
 binaries in to a user defined folder.&lt;/p&gt;
 &lt;p&gt;First install &lt;cite&gt;virtualenv&lt;/cite&gt; package by using default pythons package
 installation tool or you can use &lt;cite&gt;pip&lt;/cite&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install virtualenv
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install virtualenv
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;To create new virtual environment,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;virtualenv python_project
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;virtualenv python_project
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This command will create new folder 'python_project', inside this
 folder we have three other folders 'bin' for python and other binaries ,
@@ -1736,13 +1877,13 @@ python standard packages. When we will install new python packages under
 this virtual environment those files also been comes under this lib
 folder.&lt;/p&gt;
 &lt;p&gt;To activate and use this virtual environment,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;python_project
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; python_project
 &lt;span class="gp"&gt;$&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ./bin/activate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Above command will change the current shell session by updating the
 system PATH and it also change the shell prompt, to get a notion of we
 are in the virtual environment.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; which python
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; which python
 &lt;span class="go"&gt;PATH-to-DIR/python_project/bin/python&lt;/span&gt;
 &lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; which easy_install
 &lt;span class="go"&gt;PATH-to-DIR/python_project/bin/easy_install&lt;/span&gt;
@@ -1754,7 +1895,7 @@ and &lt;cite&gt;pip&lt;/cite&gt;) were created under the bin directory so you ca
 use them to install new packages under virtual environment easily that
 never going to affect the python packages installed in the default
 system path(/usr/lib/python-2.x/).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; deactivate
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;(virtual)host@name$&lt;/span&gt; deactivate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will deactivate our virtual environment and the control will be
 return to system shell prompt, after removing all changes in the system
@@ -1769,17 +1910,17 @@ requirements.&lt;/p&gt;
 multiple virtual environments by single set of shell commands. Here is
 the brief description about virtualenvwrapper.&lt;/p&gt;
 &lt;p&gt;To install virtualenvwrapper, as usual you can use easy_install or pip&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;pip install virtualenvwrapper
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;pip install virtualenvwrapper
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After the installation append the following two lines to .bashrc or
 .profile file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;export WORKON_HOME=&amp;quot;~/.virtualenvs&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;export WORKON_HOME=&amp;quot;~/.virtualenvs&amp;quot;&lt;/span&gt;
 &lt;span class="go"&gt;source /usr/local/bin/virtualenvwrapper.sh&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now from next shell session onwards following commands would be
 available to us, which helps to manage the multiple virtual
 environments.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Create a new virtual environment and enter into it.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Create a new virtual environment and enter into it.&lt;/span&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;mkvirtualenv test_proj
 
@@ -1822,10 +1963,10 @@ recommended, because the RVM only avaiable to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.&lt;/p&gt;
 &lt;p&gt;To install RVM you can use git if it available in your system,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class="o"&gt;(&lt;/span&gt;curl -s https://rvm.beginrescueend.com/install/rvm&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class="o"&gt;(&lt;/span&gt;curl -s https://rvm.beginrescueend.com/install/rvm&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;OR (If we dont have git installed )&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Fetch installer script and run it ourself.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Fetch installer script and run it ourself.&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
 &lt;span class="gp"&gt;$&lt;/span&gt;chmod +x rvm-installer
@@ -1838,11 +1979,11 @@ activate &lt;cite&gt;rvm&lt;/cite&gt; command for this user you have do one more
 onwards the &lt;cite&gt;rvm&lt;/cite&gt; commands were available to this user. OR you can
 just run bellow code in your current shell to activate it for this user
 session only.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;[[ -s &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; ]] &amp;amp;&amp;amp; source &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; #&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;[[ -s &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; ]] &amp;amp;&amp;amp; source &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot; #&lt;/span&gt;
 &lt;span class="go"&gt;   This loads RVM into a shell session&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Open a new shell session,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
 &lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
 
 &lt;span class="go"&gt;Current system ruby version&lt;/span&gt;
@@ -1861,7 +2002,7 @@ session only.&lt;/p&gt;
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,&lt;/p&gt;
 &lt;p&gt;To use ruby-1.9.1 in one shell session only, try bellow commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use 1.9.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use 1.9.1
 &lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
 &lt;span class="go"&gt;ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]&lt;/span&gt;
 &lt;span class="go"&gt;[/shell]&lt;/span&gt;
@@ -1884,7 +2025,7 @@ system. To switch between these versions,&lt;/p&gt;
 &lt;p&gt;Using RVM we can now set your suitable version of ruby, after that you
 can install ruby gem packages using &lt;cite&gt;gem&lt;/cite&gt; command of current ruby
 version.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ruby --version
 &lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; gem --version
 &lt;span class="go"&gt;1.3.7&lt;/span&gt;
@@ -1897,7 +2038,7 @@ version.&lt;/p&gt;
 ruby.&lt;/p&gt;
 &lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="http://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="http://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
 Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
@@ -1936,7 +2077,7 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -1950,29 +2091,29 @@ changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
 the project.&lt;/p&gt;
 &lt;p&gt;First of all install the south application to your system.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install south
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install south
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;then you have to add your south app to django settings.py file under&lt;/p&gt;
 &lt;p&gt;INSTALLED_APPS veriable, ie;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.sessions&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.sites&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.messages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="c"&gt;# Uncomment the next line to enable the admin:&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;django.contrib.admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="c"&gt;# Uncomment the next line to enable admin documentation:&lt;/span&gt;
-&lt;span class="c"&gt;# &amp;#39;django.contrib.admindocs&amp;#39;,&lt;/span&gt;
-&lt;span class="s"&gt;&amp;#39;south&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# &amp;lt;---HERE&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.sessions&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.sites&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.messages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="c1"&gt;# Uncomment the next line to enable the admin:&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;django.contrib.admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="c1"&gt;# Uncomment the next line to enable admin documentation:&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;#39;django.contrib.admindocs&amp;#39;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;south&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# &amp;lt;---HERE&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we added the south app to our django project, the commands
 associated with this app is comes under the manage.py.&lt;/p&gt;
 &lt;p&gt;Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Migrate all tables to backend database,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Migrate all tables to backend database,&lt;/span&gt;
 &lt;span class="go"&gt;it includes our south apps tables.&lt;/span&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py syncdb
@@ -1984,7 +2125,7 @@ backend. Now we are ready to add our applications to django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;Initially you have to add new app under south , for that,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Initially you have to add new app under south , for that,&lt;/span&gt;
 &lt;span class="go"&gt;python manage.py schemamigration your_app --initial&lt;/span&gt;
 &lt;span class="go"&gt;This will setup your app under south, need to run only once,&lt;/span&gt;
 &lt;span class="go"&gt;Then migrate models to backend database,&lt;/span&gt;
@@ -1994,7 +2135,7 @@ commands,&lt;/p&gt;
 &lt;p&gt;After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
 steps,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;After any changes to your model,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;After any changes to your model,&lt;/span&gt;
 &lt;span class="go"&gt;First detect those changes ,&lt;/span&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py schemamigration your_app --auto
@@ -2007,7 +2148,7 @@ steps,&lt;/p&gt;
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="http://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="http://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
@@ -2018,7 +2159,7 @@ same for all languages.So here I will explain things using python
 timezone module &amp;quot;pytz&amp;quot;. You have to install this module first into your
 system by using &amp;quot;easy_install&amp;quot;&lt;/p&gt;
 &lt;p&gt;Install python timezone module.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This python module support all major timezones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
@@ -2053,29 +2194,29 @@ default tiemzone as UTC. So in our database the time and date are always
 in UTC. If above methods are not working for your application you
 manually need to convert the local system time into UTC format and then
 save it. Below code sample explain things more clearly,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="go"&gt;haridas@haridas-debian:~$ python&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;haridas@haridas-debian:~$ python&lt;/span&gt;
 &lt;span class="go"&gt;Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)&lt;/span&gt;
 &lt;span class="go"&gt;[GCC 4.4.5] on linux2&lt;/span&gt;
 &lt;span class="go"&gt;Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;#Get local system time and&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;#Get local system time and&lt;/span&gt;
 &lt;span class="go"&gt;    date.&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system&lt;/span&gt;
 &lt;span class="go"&gt;datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# utcnow() function&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# utcnow() function&lt;/span&gt;
 &lt;span class="go"&gt;     give the UTC time of current local time.&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c"&gt;# But this date tupple doesn&amp;#39;t have the timezone&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c1"&gt;# But this date tupple doesn&amp;#39;t have the timezone&lt;/span&gt;
 &lt;span class="go"&gt;      information.&lt;/span&gt;
 &lt;span class="go"&gt;      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive&lt;/span&gt;
 &lt;span class="go"&gt;     representation(Date object without Timezone information.)&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt; &lt;span class="c"&gt;#This output None value or nothing.&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt; &lt;span class="c1"&gt;#This output None value or nothing.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;#Adding&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#Adding&lt;/span&gt;
 &lt;span class="go"&gt;     timezone information to &amp;quot;local_system_utc&amp;quot;&lt;/span&gt;
 
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
@@ -2095,29 +2236,29 @@ user specific timezone. So this conversion is only for view purpose.&lt;/p&gt;
 &lt;h2&gt;&lt;strong&gt;2. Converstion from UTC to localtime&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;We need to convert UTC times to corresponding user timezone, follow the
 bellow method,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;#Our UTC naive time from DB,&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;#Our UTC naive time from DB,&lt;/span&gt;
 &lt;span class="go"&gt;   for the time being here I&amp;#39;m taking it as current system UTC time..&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;
 &lt;span class="go"&gt;    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive&lt;/span&gt;
 &lt;span class="go"&gt;   form.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Europe/Paris&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;#Our Local timezone, to&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_tz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Europe/Paris&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#Our Local timezone, to&lt;/span&gt;
 &lt;span class="go"&gt;   which we want to convert the UTC time.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;#Add Timezone information to&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#Add Timezone information to&lt;/span&gt;
 &lt;span class="go"&gt;   UTC time.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;
 &lt;span class="go"&gt;datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&amp;lt;UTC&amp;gt;) # The&lt;/span&gt;
 &lt;span class="go"&gt;   full datetime tuple&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;now_utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;\&lt;span class="n"&gt;_tz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# Convert to local&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;now_utc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;\&lt;span class="n"&gt;_tz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Convert to local&lt;/span&gt;
 &lt;span class="go"&gt;   time.&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_time&lt;/span&gt; &lt;span class="c"&gt;#Current local time in Paris&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_time&lt;/span&gt; &lt;span class="c1"&gt;#Current local time in Paris&lt;/span&gt;
 &lt;span class="go"&gt;datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&amp;lt;DstTzInfo&lt;/span&gt;
 &lt;span class="go"&gt;   &amp;#39;Europe/Paris&amp;#39; CEST+2:00:00 DST&amp;gt;)&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
@@ -2139,7 +2280,7 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You can reconstruct the javascrpt string format of the date in to
 python date object by,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
@@ -2151,7 +2292,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="go"&gt;#From DB we will get the corresponding users timezone information , for&lt;/span&gt;
 &lt;span class="go"&gt;   eg; we can take &amp;#39;America/Chicago&amp;#39; as our local timezone.&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;America/Chicago&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;America/Chicago&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_std_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;\&lt;span class="n"&gt;_date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="ow"&gt;is&lt;/span&gt;\&lt;span class="n"&gt;_dst&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_std_date&lt;/span&gt;
@@ -2167,7 +2308,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="http://haridas.in/programming-vs-scripting.html" rel="alternate"></link><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="http://haridas.in/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and

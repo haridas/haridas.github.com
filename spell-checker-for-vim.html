@@ -121,14 +121,14 @@ than typos in any other places.</li>
 <p>So what usually happens was I miss some types on git commits or comments
 that I put while coding. Before using this plugin I use the inbuilt vim spell
 checker directly, to access that you have to type this command in the command mode,</p>
-<div class="highlight"><pre>:setlocal spell spelllang=en_us
+<div class="highlight"><pre><span></span>:setlocal spell spelllang=en_us
 </pre></div>
 <p>Most of the time I forgot this full command and I have to issue <cite>:help spell</cite> to
 get this command :). What was other annoying problem is, after checking the spell
 corrections, I need a quick way to disable the spell check highlights. With the
 inbuild spell checker you need to type the following command to disable it.</p>
 <p>Unset the spell variable to disable the highlights,</p>
-<div class="highlight"><pre>:setlocal spell spellang=
+<div class="highlight"><pre><span></span>:setlocal spell spellang=
 </pre></div>
 <p>Eventually these typos are started to come and bite me. So I was started to look
 for an easy way to achieve spell check. I don't want to use any new plugin for this
@@ -139,7 +139,7 @@ Thats it.</p>
 spell check and <cite>&lt;leader&gt;c</cite> again to toggle the spell check.</p>
 <p>Here is the function that you can put it in your vimrc file to get these spell
 check bindings</p>
-<div class="highlight"><pre>&quot; &gt; Spell checker Toggler &lt;
+<div class="highlight"><pre><span></span>&quot; &gt; Spell checker Toggler &lt;
 
 nnoremap &lt;leader&gt;c :call SpellChecker()&lt;cr&gt;
 

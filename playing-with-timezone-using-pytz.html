@@ -121,7 +121,7 @@ same for all languages.So here I will explain things using python
 timezone module &quot;pytz&quot;. You have to install this module first into your
 system by using &quot;easy_install&quot;</p>
 <p>Install python timezone module.</p>
-<div class="highlight"><pre><span class="gp">#</span>easy_install pytz
+<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install pytz
 </pre></div>
 <p>This python module support all major timezones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
@@ -156,29 +156,29 @@ default tiemzone as UTC. So in our database the time and date are always
 in UTC. If above methods are not working for your application you
 manually need to convert the local system time into UTC format and then
 save it. Below code sample explain things more clearly,</p>
-<div class="highlight"><pre><span class="go">haridas@haridas-debian:~$ python</span>
+<div class="highlight"><pre><span></span><span class="go">haridas@haridas-debian:~$ python</span>
 <span class="go">Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)</span>
 <span class="go">[GCC 4.4.5] on linux2</span>
 <span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c">#Get local system time and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c1">#Get local system time and</span>
 <span class="go">    date.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span>
 <span class="go">datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c"># utcnow() function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1"># utcnow() function</span>
 <span class="go">     give the UTC time of current local time.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c"># But this date tupple doesn&#39;t have the timezone</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c1"># But this date tupple doesn&#39;t have the timezone</span>
 <span class="go">      information.</span>
 <span class="go">      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive</span>
 <span class="go">     representation(Date object without Timezone information.)</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span><span class="o">.</span><span class="n">tzinfo</span> <span class="c">#This output None value or nothing.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span><span class="o">.</span><span class="n">tzinfo</span> <span class="c1">#This output None value or nothing.</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local_system_utc</span><span class="p">)</span> <span class="c">#Adding</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local_system_utc</span><span class="p">)</span> <span class="c1">#Adding</span>
 <span class="go">     timezone information to &quot;local_system_utc&quot;</span>
 
 <span class="go">&gt;&gt;&gt;</span>
@@ -198,29 +198,29 @@ user specific timezone. So this conversion is only for view purpose.</p>
 <h2><strong>2. Converstion from UTC to localtime</strong></h2>
 <p>We need to convert UTC times to corresponding user timezone, follow the
 bellow method,</p>
-<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c">#Our UTC naive time from DB,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1">#Our UTC naive time from DB,</span>
 <span class="go">   for the time being here I&#39;m taking it as current system UTC time..</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
 <span class="go">    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive</span>
 <span class="go">   form.</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s">&#39;Europe/Paris&#39;</span><span class="p">)</span> <span class="c">#Our Local timezone, to</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Europe/Paris&#39;</span><span class="p">)</span> <span class="c1">#Our Local timezone, to</span>
 <span class="go">   which we want to convert the UTC time.</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">now_utc</span><span class="p">)</span> <span class="c">#Add Timezone information to</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">now_utc</span><span class="p">)</span> <span class="c1">#Add Timezone information to</span>
 <span class="go">   UTC time.</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
 <span class="go">datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&lt;UTC&gt;) # The</span>
 <span class="go">   full datetime tuple</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">now_utc</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">local</span>\<span class="n">_tz</span><span class="p">)</span> <span class="c"># Convert to local</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">now_utc</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">local</span>\<span class="n">_tz</span><span class="p">)</span> <span class="c1"># Convert to local</span>
 <span class="go">   time.</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="c">#Current local time in Paris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="c1">#Current local time in Paris</span>
 <span class="go">datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&lt;DstTzInfo</span>
 <span class="go">   &#39;Europe/Paris&#39; CEST+2:00:00 DST&gt;)</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -242,7 +242,7 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S</li>
 </ol>
 <p>You can reconstruct the javascrpt string format of the date in to
 python date object by,</p>
-<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="go">&gt;&gt;&gt;</span>
@@ -254,7 +254,7 @@ python date object by,</p>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="go">#From DB we will get the corresponding users timezone information , for</span>
 <span class="go">   eg; we can take &#39;America/Chicago&#39; as our local timezone.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">timezone</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s">&#39;America/Chicago&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timezone</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local</span>\<span class="n">_date</span><span class="p">,</span><span class="ow">is</span>\<span class="n">_dst</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span>

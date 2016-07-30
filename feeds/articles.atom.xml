@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/articles.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2016-01-08T16:29:00+05:30</updated><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/articles.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2016-01-08T16:29:00+05:30</updated><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
 another backup location. Google photos was the excellege option as I'm
 using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -27,22 +27,22 @@ order it correctly.&lt;/p&gt;
 &lt;p&gt;Luckily we have set of utilities available to edit EXIF tags in an image.
 &lt;a class="reference external" href="http://www.exiv2.org/"&gt;exiv2&lt;/a&gt; is the one of it.&lt;/p&gt;
 &lt;p&gt;It's available on all platforms. Lets install and checkout some samples.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install exiv2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install exiv2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;How to change single photo's EXIF record using exiv2 tool.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -M&amp;quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&amp;quot; IMG_20090305_000553.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -M&amp;quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&amp;quot; IMG_20090305_000553.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We are adding Exif header to this photo with correct time that we took this
 photo. How we know this date, that's up to you to decide :). The bellow script that
 I attached has option to pick the date time from the filename format or from its
 modification time.&lt;/p&gt;
 &lt;p&gt;To check your photo has all expected Exif records use this command,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -pt IMG_200090305_000553.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -pt IMG_200090305_000553.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you noticed one thing, if we add the &lt;cite&gt;Exif.Photo.DateTimeOriginal&lt;/cite&gt;
 multiple times, then duplicate entries are being creatd in the EXIF tags.
 If you want to remove records from EXIF, you can do it using exiv2 command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ exiv2 -M&amp;quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&amp;quot; IMG_20090303_000550.jpg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ exiv2 -M&amp;quot;del Exif.Photo.DateTimeOriginal 2009:03:05 12:03:35&amp;quot; IMG_20090303_000550.jpg
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now lets automate the process in a script,&lt;/p&gt;
 &lt;p&gt;On platforms other than Linux, you can find google photos desktop application to
@@ -141,6 +141,6 @@ if __name__ == "__main__":
 &lt;p&gt;Now simply give following commands to update your file's EXIF tag &lt;cite&gt;Exif.Photo.DateTimeOriginal&lt;/cite&gt;.&lt;/p&gt;
 &lt;p&gt;The bellow command will find all the &amp;quot;jpg&amp;quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </summary><category term="sync"></category><category term="photo"></category></entry></feed>
