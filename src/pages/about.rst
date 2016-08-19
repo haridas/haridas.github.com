@@ -2,13 +2,11 @@ About Me
 ########
 :date: 2010-09-22 12:17
 
-I'm a computer programmer from India. Interested with working in different
-technological domains. like, Web application development, SOA,
-Machine Learning / AI and System programming.
+Hello, I'm a Developer from India. Interested in different domains like,
+Web application development, SOA, Machine Learning, Distributed systems and Devop.
 
-This is my personal blog to dump some of my experiences in one place, so I can
+This is my personal blog to dump my thoughts, so I can
 refer it in future. I hope some of this would be helpful to others.
-
 
 
 Contact Informations
