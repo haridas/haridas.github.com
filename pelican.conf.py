@@ -19,6 +19,10 @@ THEME = os.path.join(os.path.dirname(__file__), 'src/templates/hn-theme')
 THEME_STATIC_PATHS = ['static']
 CSS_FILE = 'pure.css'
 
+# Ipython template directory setting.
+IPYTHON_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__),
+                                     "src/ipython_templates")
+
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
 
@@ -38,9 +42,13 @@ GITHUB_URL = 'http://github.com/haridas'
 GOOGLE_ANALYTICS = 'UA-23592173-1'
 TWITTER_USERNAME = 'haridas_n'
 
+MARKUP = ('md', 'ipynb', 'rst')
+
+PLUGIN_PATHS = ('./plugins',)
 # plugins.
 PLUGINS = [
-    "pelican_gist"
+    "pelican_gist",
+    "ipynb.markup"
 ]
 
 # Blogroll
