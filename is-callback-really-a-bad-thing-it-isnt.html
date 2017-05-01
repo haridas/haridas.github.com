@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="http://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Is callback really a bad thing ? It isn't. // all posts // HN </title>
+
+
+    <!-- Google Fonts -->
+
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://haridas.in/theme/css/pure.css">
+
+    <link rel="stylesheet" href="http://haridas.in/theme/css/pygments.css">
+
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="http://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="http://haridas.in">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="http://haridas.in/pages/about-me.html">About
+                                            </a>
+                                        </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="http://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="http://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                                <img src="http://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Is callback really a bad thing ? It isn't.</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="http://haridas.in/tag/node.html">node</a>
+                                <a class="post-category" href="http://haridas.in/tag/callback.html">callback</a>
+                                <a class="post-category" href="http://haridas.in/tag/promise.html">promise</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="http://haridas.in/category/blog.html">blog</a> &middot; Mon 01 May 2017
+                        </p>
+                </header>
+            </section>
+            <p>TL;DR version</p>
+<blockquote>
+<p>Make use of the node.js team recommendation for callbacks,</p>
+<ol class="arabic simple">
+<li>Fix the callback signature, like callback(err, obj),</li>
+<li>Callback should be the last argument in a function,</li>
+<li>Change the data structure or make use of promise, and similar methods to
+reduce the nested nature of callbacks.</li>
+<li>Don't bring baggages from other languages, be like JS ninja when coding in
+JS ;)</li>
+</ol>
+</blockquote>
+<p>Full version,</p>
+<p>My early part of career I used to code in vanila-javascript, Jquery,
+Jquery-plugins,  Sproutcore etc. Those time I wasn't faced with these callback
+issues mainly because I wasn't involved with much complicated JS centric codes
+and frameworks really helped out to abstract out the complications.
+So it's mainly writing simple functions, closures and DOM tricks.</p>
+<p>But lately after coding in node.js for few months, it's very clear that
+callbacks are there most part of the codebase. To understand the callbacks and
+why it exists is the key, after that it naturally comes for you when writing
+codes.</p>
+<p>Key concepts of Node.js / JS engines are</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Event loop,</li>
+<li>Call Stack ( Macro and Micro )</li>
+<li>Non-blocking IO (Network, memory, Disk, IPC)</li>
+<li>Transparent worker threads / web workers</li>
+</ol>
+</blockquote>
+<p>If you dig more down you can see that the language is build on top of the core
+OS kernal features like non-blocking IO and related libs (libuv).
+And lately the big players are invested a lot of time to create more optimized
+compilers, which helped the boom of node.js at backend side.</p>
+<p>Due to this inherent nature of non-blocking IO and event loop, most of the code that you write
+going to be executed nonsequential, so we need to attach a callback function
+which will take care the operation when it finished and ready with
+result or error.</p>
+<p>We have full freedom to define the callback function for each requirements, but
+its recommended to keep the common signature across project / language
+/ community to avoid lot of confusions.</p>
+<p>Here I&quot;m making use of the redis library to showcase the callback chain.
+Similarly any DB / IO related libraries follows this method in
+nodejs standard library.</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Brief doc about the what function does.</span>
+
+<span class="cm">@arg key:</span>
+<span class="cm">@arg callback(err, result): The More information about the signature of the</span>
+<span class="cm">                            callback is much appreciated one.</span>
+<span class="cm">*/</span>
+<span class="err">&#39;</span><span class="n">use</span> <span class="n">strict</span><span class="err">&#39;</span><span class="o">;</span>
+<span class="n">var</span> <span class="n">Redis</span> <span class="o">=</span> <span class="n">require</span><span class="o">(</span><span class="s">&quot;ioredis&quot;</span><span class="o">);</span>
+<span class="n">var</span> <span class="n">redis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Redis</span><span class="o">();</span>
+
+<span class="n">function</span> <span class="nf">initializeRedis</span><span class="o">(</span><span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">var</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">pipeline</span><span class="o">();</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&quot;weightKey&quot;</span><span class="o">,</span> <span class="mi">80</span><span class="o">);</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&quot;heightKey&quot;</span><span class="o">,</span> <span class="mf">1.8</span><span class="o">);</span>
+
+    <span class="n">pipeline</span><span class="o">.</span><span class="na">exec</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">callback</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">callback</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="o">}</span>
+
+    <span class="o">});</span>
+
+<span class="o">};</span>
+
+<span class="n">function</span> <span class="nf">calculateBmi</span><span class="o">(</span><span class="n">weightKey</span><span class="o">,</span> <span class="n">heightKey</span><span class="o">,</span> <span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">redis</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;weightKey&quot;</span><span class="o">,</span> <span class="n">function</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="n">weight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">redis</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;heightKey&quot;</span><span class="o">,</span> <span class="n">function</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">callback</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+                <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                    <span class="c1">// Units: Weight in KG, and height in Meters.</span>
+                    <span class="n">let</span> <span class="n">bmi</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="o">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">height</span><span class="o">)</span>
+                    <span class="n">callback</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">bmi</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+        <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+            <span class="n">callback</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="n">initializeRedis</span><span class="o">(</span><span class="n">function</span> <span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="n">done</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Redis initalization failed&quot;</span><span class="o">);</span>
+        <span class="n">process</span><span class="o">.</span><span class="na">exit</span><span class="o">()</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">//Actual call to the method.</span>
+        <span class="n">calculateBmi</span><span class="o">(</span><span class="s">&quot;weightKey&quot;</span><span class="o">,</span> <span class="s">&quot;heightKey&quot;</span><span class="o">,</span> <span class="n">function</span><span class="o">(</span><span class="n">err</span><span class="o">,</span> <span class="n">bmi</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Error on calculation: &quot;</span> <span class="o">+</span> <span class="n">err</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Your BMI: &quot;</span> <span class="o">+</span> <span class="n">bmi</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">process</span><span class="o">.</span><span class="na">exit</span><span class="o">()</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+<p>Above code you can see that how the use of callbacks comes in, and how we set
+the signature of the callback to propagate the error back to the caller. The
+redis db call is IO involved, so it will be scheduled asynchronously, that's the
+reason we are attaching the <cite>callback</cite> with its arguments. The things go out of
+our control if we have more nested redis calls. That's where our code go crazy
+and we call it as callback hell and all.</p>
+<p>Sticking to the standard callback structure, still it's cluttered with nested
+callbacks. But clarity of how the code execution happening is very clear, and
+I feel keeping verbosity is fine to avoid readability issue and better
+maintenance. Other normal coding standards like keeping the reusable components
+separate as much as possible so that we won't repeat ourself in different part of our
+codebase.</p>
+<p>You can make use of the Database API options like <cite>pipeline</cite>, <cite>multi key</cite>
+retrieval, or picking better DB data structure which reduces the number of IO
+interaction ( Which means we are reducing the #callbacks )</p>
+<p>Eg: here we can avoid two calls if we keep the information of a person in
+a redis HASH set.</p>
+<p>This will greatly reduce the nested structure.</p>
+<div class="highlight"><pre><span></span><span class="nx">redis</span><span class="p">.</span><span class="nx">hmget</span><span class="p">(</span><span class="s2">&quot;userHashKey&quot;</span><span class="p">,</span> <span class="s2">&quot;heightKey&quot;</span><span class="p">,</span> <span class="s2">&quot;weightKey&quot;</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+           <span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+           <span class="kd">let</span> <span class="nx">weight</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+           <span class="c1">// Do your work now..</span>
+       <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Think of the case if we can't modify the data structure, and still want to
+simplify the syntax, make use of Promise or similar methods.</p>
+<div class="section" id="promises">
+<h2>Promises</h2>
+<p>Promise a method to reduce the verbosity of the callback, mainly recommended by
+the community, so it's good to leverage the promise features in our code to
+make the code less verbose and less number of if/else blocks. But one thing is the
+libraries that we are using, or the modules we are writing should expose
+promisified objects or classes, so you can interact with libs as per the promise
+coding pattern. Currently promise libraries like <cite>bluebird</cite> provide options to
+promisify an object which doesn't support promise behavior.</p>
+<p>Technically It's kinda method as the word litterly means, gives some promise
+object which will be met in future. Here we don't need to pass callback when we
+creating the object rather, we create the object first, and then we attach the
+required handlers, so that when the object actually returns result / error there
+will be some handler ( callback ) available to deal with it. In the case of
+promise the way that handler attachment is done is shown bellow, nothing
+complecated, just need to get familear with it.</p>
+<p>Any object with <cite>then</cite> method can be called promise if that objects follows the
+specification given in <cite>Promise/A+</cite>. Promise wraps the async operation and gives
+the response object even though the response is not yet ready, it eventually be ready.
+Promise objecs can also be called as <strong>thenable</strong> objects, and it can be
+chainable.</p>
+<div class="highlight"><pre><span></span><span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">);</span>
+<span class="c1">// Where onFulfilled and onRejected are callback with single argument</span>
+<span class="c1">// onFullfiled gets result.</span>
+<span class="c1">// onRejected gets reason for failure.</span>
+</pre></div>
+<p>Rewriting the above example looks as follows:-</p>
+<div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<span class="cm"> * Create your own promise object, that behave like thenable object</span>
+<span class="cm"> * and can be used other parts of the codebase</span>
+<span class="cm"> */</span>
+<span class="n">var</span> <span class="n">getValuePromise</span> <span class="o">=</span> <span class="n">function</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Promise</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">onFulfilled</span><span class="o">,</span> <span class="n">onRejected</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">var</span> <span class="n">redisPromise</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;heightKey&quot;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;weightKey&quot;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">exec</span><span class="o">();</span>
+
+            <span class="n">redisPromise</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// Both height and weight are packed in `results` object.</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">||</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">])</span> <span class="o">{</span>
+                    <span class="c1">// If the redis operation have some error, call the</span>
+                    <span class="c1">// Promise reject.</span>
+                    <span class="n">onRejected</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="c1">// Successful promise.</span>
+                    <span class="n">let</span> <span class="n">val</span> <span class="o">=</span> <span class="o">{</span>
+                        <span class="err">&#39;</span><span class="n">height</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">],</span>
+                        <span class="err">&#39;</span><span class="n">weight</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span>
+                    <span class="o">}</span>
+                    <span class="n">onFulfilled</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+        <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="n">var</span> <span class="n">getYourBmi</span> <span class="o">=</span> <span class="n">function</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">getValuePromise</span><span class="o">().</span><span class="na">then</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//console.log(&quot;Bmi calculation: &quot; + val.height)</span>
+        <span class="k">return</span> <span class="n">val</span><span class="o">.</span><span class="na">weight</span> <span class="o">/</span> <span class="o">(</span><span class="n">val</span><span class="o">.</span><span class="na">height</span> <span class="o">*</span> <span class="n">val</span><span class="o">.</span><span class="na">height</span> <span class="o">);</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+
+
+<span class="n">getYourBmi</span><span class="o">().</span><span class="na">then</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Your Bmi: &quot;</span> <span class="o">+</span> <span class="n">result</span> <span class="o">);</span>
+    <span class="n">process</span><span class="o">.</span><span class="na">exit</span><span class="o">()</span>
+<span class="o">}).</span><span class="na">catch</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Calculation failed with error: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="o">);</span>
+    <span class="n">process</span><span class="o">.</span><span class="na">exit</span><span class="o">()</span>
+<span class="o">}</span>
+</pre></div>
+<p>NOTE: Here the promise examples are based on the bluebird promise
+implementation. Any objects or user defined objects can be converted to the
+promisified version, by making use of the <cite>Promise</cite> object.</p>
+<p>I'm surprised to see the specification of the <cite>Promise/A+</cite>,  it is very small and
+concise text document. It clearly says what a promise implementation should
+follow. After programming in Node.js with standard node.js callbacks
+I'm convinced that use of Promise really make the code better and clean.</p>
+<p>Main benefits are:-</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Less nesting levels or less number of callbacks. ie; Don't need to pass
+callback to each and every methods to properly handle the results from
+it.</li>
+<li>We can design the data flow and transformation as a pipeline.</li>
+<li>Error propagation and handling similar to that of sync code base.</li>
+<li>Chain the promise with multiple transformation or filters etc.</li>
+<li>Thenable objects are won't throw, it nicely pack the error and can be
+intercepted via <cite>.catch</cite> method of the promise object.</li>
+</ol>
+</blockquote>
+<p>What happens Promise when a promise object is ready with its result before
+a 'then' handler is attached to handle it ?</p>
+<blockquote>
+This won't happen because Promise/A+ insists so :). As the specification
+guarantee that,this scenario shouldn't happen, the implementation has to
+ensure this by making the actual code block execution after emptying the
+current call stack.</blockquote>
+</div>
+<div class="section" id="generators">
+<h2>Generators</h2>
+<p>As you guess this is co-routine implementation in Node.js and included in the
+ES6 specification. If you familiar with python you should know the generators.
+The concept is same. But with node.js, there is one more things, ie; its inherent
+asynchronous execution, so combining async with generator give much better way to
+represent complex flows in easy syntax. See few examples bellow. My current
+projects we didn't used it, looking forward to try out in future projects.</p>
+<p>Main features of generators are:-</p>
+<ol class="arabic simple">
+<li>Lazy loading</li>
+<li>Memory efficient due to the lazy loading behavior, best fit to iterate
+through chunks of big files or streams.</li>
+<li>Plays well with Asynchronous codes, this is win-win situation for both.</li>
+</ol>
+<p>Here is the simple example of how to define a generator and how to consume it.</p>
+<div class="highlight"><pre><span></span><span class="c1">//Generator functions are defined using &quot;function*&quot; syntax.</span>
+<span class="n">function</span><span class="o">*</span> <span class="n">getList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">yield</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span>
+    <span class="n">yield</span> <span class="sc">&#39;b&#39;</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="n">let</span> <span class="n">x</span> <span class="n">of</span> <span class="nf">getList</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">x</span><span class="o">)</span>
+<span class="o">}</span>
+<span class="c1">// Prints</span>
+<span class="n">a</span>
+<span class="n">b</span>
+
+
+<span class="c1">// Another way to retrieve the generator values are making use of &#39;next&#39;</span>
+<span class="c1">// method.</span>
+<span class="n">var</span> <span class="n">gen</span> <span class="o">=</span> <span class="n">getList</span><span class="o">();</span>
+
+<span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">gen</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+<span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">gen</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+<span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">gen</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+
+<span class="c1">// Prints</span>
+<span class="o">{</span> <span class="n">value</span><span class="o">:</span> <span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="n">done</span><span class="o">:</span> <span class="kc">false</span> <span class="o">}</span>
+<span class="o">{</span> <span class="n">value</span><span class="o">:</span> <span class="sc">&#39;b&#39;</span><span class="o">,</span> <span class="n">done</span><span class="o">:</span> <span class="kc">false</span> <span class="o">}</span>
+<span class="o">{</span> <span class="n">value</span><span class="o">:</span> <span class="n">undefined</span><span class="o">,</span> <span class="n">done</span><span class="o">:</span> <span class="kc">true</span><span class="o">}</span> <span class="c1">// Indicates generator finished.</span>
+</pre></div>
+<p>Lets implement our above example using generator and promise.
+we are using <em>'co' library</em> which is just wrapper around generator which
+internally loop through the generator till it finishes, so that we are getting the
+sequential behavior.</p>
+<div class="highlight"><pre><span></span><span class="c1">// Here is the generator magic.</span>
+<span class="c1">// The async calls will be executed synchronously. Ie; it will block till</span>
+<span class="c1">// the call to async call finishes.</span>
+
+<span class="n">var</span> <span class="n">bmi</span> <span class="o">=</span> <span class="n">co</span><span class="o">(</span><span class="n">function</span><span class="o">*()</span> <span class="o">{</span>
+
+    <span class="c1">// First async call</span>
+
+    <span class="n">var</span> <span class="n">setRedis</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">redis</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
+                              <span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&quot;heightKey&quot;</span><span class="o">,</span> <span class="mf">1.8</span><span class="o">)</span>
+                              <span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&quot;weightKey&quot;</span><span class="o">,</span> <span class="mi">80</span><span class="o">)</span>
+                              <span class="o">.</span><span class="na">exec</span><span class="o">();</span>
+
+    <span class="c1">// Blocks here till the redis write operation finishes.</span>
+
+
+    <span class="c1">// Second async call</span>
+    <span class="n">var</span> <span class="n">res</span> <span class="o">=</span> <span class="n">yield</span> <span class="nf">getYourBmi</span><span class="o">()</span>
+    <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">&quot;Your Bmi: &quot;</span> <span class="o">+</span> <span class="n">res</span><span class="o">);</span>
+
+<span class="o">}).</span><span class="na">catch</span><span class="o">(</span><span class="n">function</span><span class="o">(</span><span class="n">err</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Errors are wrapped out ensure no callback way of handling the errors</span>
+    <span class="c1">// from bottom up fashion.</span>
+    <span class="n">console</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">err</span><span class="o">.</span><span class="na">stack</span><span class="o">);</span>
+
+<span class="o">});</span>
+</pre></div>
+<p>You can see how cleanly generators helps to handle the async codes in sequential way.
+There are lot of other ways you can make use of this feature in your code,
+please check out the co library's github page for more examples.</p>
+</div>
+<div class="section" id="references">
+<h2>References</h2>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://2ality.com/2015/03/es6-generators.html">http://2ality.com/2015/03/es6-generators.html</a></li>
+<li><a class="reference external" href="https://www.promisejs.org/">https://www.promisejs.org/</a></li>
+<li><a class="reference external" href="https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/">https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/</a></li>
+<li><a class="reference external" href="https://promisesaplus.com/">https://promisesaplus.com/</a></li>
+<li><a class="reference external" href="https://github.com/tj/co">https://github.com/tj/co</a></li>
+</ol>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
