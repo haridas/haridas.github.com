@@ -161,10 +161,10 @@ container it can run OSGi bundles, war, jar, spring etc.
 .. _`apache karaf`: http://karaf.apache.org/index.html
 .. _`karaf celler`: http://karaf.apache.org/projects.html#cellar
 
-Echosystem
-----------
+Java community
+--------------
 
-Java ecosystem is huge and vast with around 2 decades of experience and maturity
+Java community is huge and vast with around 2 decades of experience and maturity
 in the tools and platforms build on it. And the new language upgrades catching
 up with the new trends in computer language arena.  eg: Java8 got lambdas,
 functional stream processing APIs etc. And interestingly java9 comes with a REPL.
