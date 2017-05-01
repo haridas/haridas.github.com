@@ -8,26 +8,24 @@ Is callback really a bad thing ? It isn't.
 
 TL;DR version
 
-    Make use of the node.js team recommendation for callbacks,
-
     1. Fix the callback signature, like callback(err, obj),
     2. Callback should be the last argument in a function,
     3. Change the data structure or make use of promise, and similar methods to 
-       reduce the nested nature of callbacks.
-    4. Don't bring baggages from other languages, be like JS ninja when coding in
+       reduce the nested nature of callback chain.
+    4. Don't bring baggages from other language, be like JS ninja when coding in
        JS ;)
 
 
 Full version,
 
 My early part of career I used to code in vanila-javascript, Jquery,
-Jquery-plugins,  Sproutcore etc. Those time I wasn't faced with these callback
+Jquery-plugins,  Sproutcore etc. That time I wasn't faced with callback issues,
 issues mainly because I wasn't involved with much complicated JS centric codes
 and frameworks really helped out to abstract out the complications.
 So it's mainly writing simple functions, closures and DOM tricks.
 
 But lately after coding in node.js for few months, it's very clear that
-callbacks are there most part of the codebase. To understand the callbacks and
+callbacks are there in most part of the codebase. Understanding the callback and
 why it exists is the key, after that it naturally comes for you when writing
 codes.
 
@@ -38,23 +36,21 @@ Key concepts of Node.js / JS engines are
     3. Non-blocking IO (Network, memory, Disk, IPC)
     4. Transparent worker threads / web workers
 
-If you dig more down you can see that the language is build on top of the core
-OS kernal features like non-blocking IO and related libs (libuv).
-And lately the big players are invested a lot of time to create more optimized
-compilers, which helped the boom of node.js at backend side.
+If you dig more down you can see that the language is built on top of the core
+OS kernel features like non-blocking IO and related libs (libuv).
+And lately the big players like Google, FB Microsoft etc. invested a lot of time
+to create more optimized compilers, which helped the boom of node.js at backend side.
 
-Due to this inherent nature of non-blocking IO and event loop, most of the code that you write
-going to be executed nonsequential, so we need to attach a callback function
-which will take care the operation when it finished and ready with
-result or error.
+Due to this inherent nature of non-blocking IO and event loop, most of the code
+that you write going to be executed nonsequential way, so we need to attach a callback function
+which will resume the operation when the results ready.
 
 We have full freedom to define the callback function for each requirements, but
-its recommended to keep the common signature across project / language
-/ community to avoid lot of confusions.
+it's recommended to keep the common signature across project / languagei
+to avoid lot of confusions.
 
 Here I"m making use of the redis library to showcase the callback chain.
-Similarly any DB / IO related libraries follows this method in
-nodejs standard library.
+Similarly any DB / IO related nodejs libraries follows this method.
 
 .. code-block:: java
 
@@ -103,9 +99,11 @@ nodejs standard library.
         });
     }
 
+    // We have to initialize the redis first and then read and do our task.
+    // You can see from this point onwards we are passing a callback
     initializeRedis(function (err, done) {
         if(err) {
-            console.log("Redis initalization failed");
+            console.log("Redis initialization failed");
             process.exit()
         } else {
             //Actual call to the method.
@@ -120,18 +118,22 @@ nodejs standard library.
         }
     });
 
-Above code you can see that how the use of callbacks comes in, and how we set
-the signature of the callback to propagate the error back to the caller. The
+In the above code you can see that, how the use of callback comes in, and how we set
+the signature of the callback to propagate the error and result back to the caller. The
 redis db call is IO involved, so it will be scheduled asynchronously, that's the
-reason we are attaching the `callback` with its arguments. The things go out of
-our control if we have more nested redis calls. That's where our code go crazy
-and we call it as callback hell and all.
+reason we are attaching the `callback` with its arguments. If we have complex
+logic around this then the callback nested nature will go further and looks
+messy. Generally this is called as callback-hell.
 
-Sticking to the standard callback structure, still it's cluttered with nested
-callbacks. But clarity of how the code execution happening is very clear, and
+How to avoid callback hell is, sticking to the standard callback structure, even
+though this also have nested callbacks, So think non-standard callback signature
+increases the complications.
+
+With standard signature the clarity of how the code execution happens is very clear, and
 I feel keeping verbosity is fine to avoid readability issue and better
-maintenance. Other normal coding standards like keeping the reusable components
-separate as much as possible so that we won't repeat ourself in different part of our
+maintenance. Other normal coding standards will reduce the callback-hell
+further, like keeping the reusable components separate (modularization) as much
+as possible so that we won't repeat ourself in different part of our
 codebase.
 
 You can make use of the Database API options like `pipeline`, `multi key`
@@ -141,7 +143,7 @@ interaction ( Which means we are reducing the #callbacks )
 Eg: here we can avoid two calls if we keep the information of a person in
 a redis HASH set.
 
-This will greatly reduce the nested structure.
+This will reduce the nested structure.
 
 .. code-block:: js
 
@@ -156,8 +158,9 @@ This will greatly reduce the nested structure.
            }
     }
     
-Think of the case if we can't modify the data structure, and still want to
-simplify the syntax, make use of Promise or similar methods.
+Think of the case, if we can't modify the data structure, and still want to
+simplify the syntax, then make use of Promise or similar methods, which is
+explained bellow.
 
 
 Promises
@@ -171,19 +174,18 @@ promisified objects or classes, so you can interact with libs as per the promise
 coding pattern. Currently promise libraries like `bluebird` provide options to
 promisify an object which doesn't support promise behavior.
 
-Technically It's kinda method as the word litterly means, gives some promise
+Technically Promise is a kinda method as the word literally means, gives some promise
 object which will be met in future. Here we don't need to pass callback when we
 creating the object rather, we create the object first, and then we attach the
 required handlers, so that when the object actually returns result / error there
 will be some handler ( callback ) available to deal with it. In the case of
-promise the way that handler attachment is done is shown bellow, nothing
-complecated, just need to get familear with it.
+promise the way that handler attachment is done is shown bellow. Another benefit
+is the chaining capabilities of promise object.
 
-Any object with `then` method can be called promise if that objects follows the
-specification given in `Promise/A+`. Promise wraps the async operation and gives
+Any object with `then` method can be called promise if that object follows the
+specification given in `Promise/A+`_ specification. Promise wraps the async operation and gives
 the response object even though the response is not yet ready, it eventually be ready.
-Promise objecs can also be called as **thenable** objects, and it can be
-chainable.
+Promise object can also be called as **thenable** object.
 
 .. code-block:: javascript
 
@@ -245,7 +247,7 @@ Rewriting the above example looks as follows:-
 
 NOTE: Here the promise examples are based on the bluebird promise
 implementation. Any objects or user defined objects can be converted to the
-promisified version, by making use of the `Promise` object.
+promisified version using bluebird library.
 
 I'm surprised to see the specification of the `Promise/A+`,  it is very small and
 concise text document. It clearly says what a promise implementation should
@@ -260,9 +262,8 @@ Main benefits are:-
     2. We can design the data flow and transformation as a pipeline.
     3. Error propagation and handling similar to that of sync code base.
     4. Chain the promise with multiple transformation or filters etc.
-    5. Thenable objects are won't throw, it nicely pack the error and can be
+    5. Thenable objects won't throw, it nicely pack the error and can be
        intercepted via `.catch` method of the promise object.
-
 
 What happens Promise when a promise object is ready with its result before 
 a 'then' handler is attached to handle it ?
@@ -277,11 +278,12 @@ Generators
 ----------
 
 As you guess this is co-routine implementation in Node.js and included in the
-ES6 specification. If you familiar with python you should know the generators.
+ES6 specification. If you familiar with `python` you should know the generators.
 The concept is same. But with node.js, there is one more things, ie; its inherent
 asynchronous execution, so combining async with generator give much better way to
 represent complex flows in easy syntax. See few examples bellow. My current
-projects we didn't used it, looking forward to try out in future projects.
+projects we didn't used it, looking forward to try out in future projects. In
+`python3` there is similar behavior available using *asyncio* stdlib.
 
 Main features of generators are:-
 
@@ -324,8 +326,8 @@ Here is the simple example of how to define a generator and how to consume it.
 
 
 Lets implement our above example using generator and promise.  
-we are using *'co' library* which is just wrapper around generator which
-internally loop through the generator till it finishes, so that we are getting the
+we are using *'co' library* which is a wrapper around generator which
+internally loop through the generator till it finishes, so outside we only see
 sequential behavior.
 
 .. code-block:: java
@@ -371,3 +373,5 @@ References
 3. https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/
 4. https://promisesaplus.com/
 5. https://github.com/tj/co
+
+.. _Promise/A+: https://www.promisejs.org/
