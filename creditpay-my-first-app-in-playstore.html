@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="http://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
 
-    <title>HN - Authors</title>
+    <title>Creditpay My First app in playstore ! // all posts // HN </title>
 
 
     <!-- Google Fonts -->
@@ -22,11 +22,18 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://haridas.in/theme/css/pure.css">
 
+    <link rel="stylesheet" href="http://haridas.in/theme/css/pygments.css">
 
     <!--
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     -->
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
 <body>
@@ -70,11 +77,102 @@
 
 
                     <div class="body-column">
-    <h1>Authors on HN</h1>
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Creditpay My First app in playstore !</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="http://haridas.in/tag/android.html">android</a>
+                                <a class="post-category" href="http://haridas.in/tag/firebase.html">firebase</a>
+                        </p>
 
-    <ul>        <li><a href="http://haridas.in/author/haridas-n.html">Haridas N</a> (1)</li>
-        <li><a href="http://haridas.in/author/hn.html">HN</a> (18)</li>
-    </ul>
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="http://haridas.in/category/blog.html">blog</a> &middot; Thu 20 April 2017
+                        </p>
+                </header>
+            </section>
+            <p>Yes, this is my first app in google play store. I created it my own needs.
+It's simple app which helps to recommend a credit card for use on a particular day.</p>
+<p>Right now the UX is very simple, but included the following features,</p>
+<ol class="arabic simple">
+<li>Multi device cloud sync using firebase database.</li>
+<li>O-Auth support</li>
+<li>Easy way to add new card with Card Name, Billing day (eg: 04, if the billing
+date is 04/April), and Grace Period ( How many days you get between bill
+generation date to actual bill payment date, generally this is 20 days).</li>
+<li>Modify the card details.</li>
+<li>Can be used offline.</li>
+</ol>
+<p>Currently the card suggestion is based on the grace period details that we enter
+when we add new card. It checks; for each card, how many days are there before
+the card bill is generated.</p>
+<p>For example, assume today is 6'th of a month, then we have to pick the card
+which gives best score based on the following calculation.</p>
+<blockquote>
+<p>For a card;</p>
+<p>Billing day = 05'th of a month</p>
+<p>Grace period = 20 days</p>
+<p>Score of a card is: (#days between 6'th of this to 5'th of coming month)
++ (grace period of the card)</p>
+<p>ie; score = 30 + 20 = 50 (This will vary slightly due to varying number days
+of each month), and note that this is best score of a card based on the
+above given values.</p>
+</blockquote>
+<p>Another example:-</p>
+<p>Assume today date is 21'st, we want to pick a card, for that card, the score is
+= (05 (next month) - 21) + 20 = 14 + 20 = 34 days.</p>
+<p>In ideal case we can maximize this if we made the purchase on 05'nd of the month
+using this card. The app is just doing this and displaying the card after
+sorting it out based on the score of each card.</p>
+<img alt="yard-login-page" class="align-left" src="/images/creditpay.png" style="width: 50%; height: 550px;" />
+<p>Roadmap:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>UX improvements.</li>
+<li>Display the card with more images and details.</li>
+<li>Methods to improve the offline usage.</li>
+</ol>
+</blockquote>
+<p>If you guys interested, give a try and let me know your feedbacks.</p>
+<p>Cheers!</p>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
                     </div>
 
             </div>

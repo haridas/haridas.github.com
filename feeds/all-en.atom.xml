@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2016-09-04T00:00:00+05:30</updated><entry><title>Outlier removal clustring</title><link href="http://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:outlier-removal-clustering.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2017-04-20T00:00:00+05:30</updated><entry><title>Creditpay My First app in playstore !</title><link href="http://haridas.in/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2017-04-20:creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
+It's simple app which helps to recommend a credit card for use on a particular day.&lt;/p&gt;
+&lt;p&gt;Right now the UX is very simple, but included the following features,&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Multi device cloud sync using firebase database.&lt;/li&gt;
+&lt;li&gt;O-Auth support&lt;/li&gt;
+&lt;li&gt;Easy way to add new card with Card Name, Billing day (eg: 04, if the billing
+date is 04/April), and Grace Period ( How many days you get between bill
+generation date to actual bill payment date, generally this is 20 days).&lt;/li&gt;
+&lt;li&gt;Modify the card details.&lt;/li&gt;
+&lt;li&gt;Can be used offline.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Currently the card suggestion is based on the grace period details that we enter
+when we add new card. It checks; for each card, how many days are there before
+the card bill is generated.&lt;/p&gt;
+&lt;p&gt;For example, assume today is 6'th of a month, then we have to pick the card
+which gives best score based on the following calculation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For a card;&lt;/p&gt;
+&lt;p&gt;Billing day = 05'th of a month&lt;/p&gt;
+&lt;p&gt;Grace period = 20 days&lt;/p&gt;
+&lt;p&gt;Score of a card is: (#days between 6'th of this to 5'th of coming month)
++ (grace period of the card)&lt;/p&gt;
+&lt;p&gt;ie; score = 30 + 20 = 50 (This will vary slightly due to varying number days
+of each month), and note that this is best score of a card based on the
+above given values.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Another example:-&lt;/p&gt;
+&lt;p&gt;Assume today date is 21'st, we want to pick a card, for that card, the score is
+= (05 (next month) - 21) + 20 = 14 + 20 = 34 days.&lt;/p&gt;
+&lt;p&gt;In ideal case we can maximize this if we made the purchase on 05'nd of the month
+using this card. The app is just doing this and displaying the card after
+sorting it out based on the score of each card.&lt;/p&gt;
+&lt;img alt="yard-login-page" class="align-left" src="/images/creditpay.png" style="width: 50%; height: 550px;" /&gt;
+&lt;p&gt;Roadmap:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;UX improvements.&lt;/li&gt;
+&lt;li&gt;Display the card with more images and details.&lt;/li&gt;
+&lt;li&gt;Methods to improve the offline usage.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you guys interested, give a try and let me know your feedbacks.&lt;/p&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;
+</summary><category term="android"></category><category term="firebase"></category></entry><entry><title>Outlier removal clustring</title><link href="http://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:outlier-removal-clustering.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
