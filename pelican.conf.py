@@ -5,6 +5,7 @@ AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
 #SITEURL = os.path.dirname(__file__)
+#
 SITEURL = 'http://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
@@ -28,9 +29,9 @@ REVERSE_ARCHIVE_ORDER = True
 
 # Other menu items
 MENUITEMS = [
-             #('Archives', 'archives.html'),
-             ('About', 'pages/about-me.html'),
-            ]
+    #('Archives', 'archives.html'),
+    ('About', 'pages/about-me.html'),
+]
 
 # COVER_IMG_URL = "./images/Photz057.jpg"
 PROFILE_IMG_URL = "images/profile_pic.jpg"
@@ -42,13 +43,17 @@ GITHUB_URL = 'http://github.com/haridas'
 GOOGLE_ANALYTICS = 'UA-23592173-1'
 TWITTER_USERNAME = 'haridas_n'
 
-MARKUP = ('md', 'ipynb', 'rst')
-
-PLUGIN_PATHS = ('./plugins',)
+MARKUP = ('md', 'ipynb', 'rst', 'adoc')
+# Ascii doc markup settings.
+ASCIIDOC_CMD = 'asciidoctor'
+ASCIIDOC_OPTIONS = []
+ASCIIDOC_BACKEND = 'html5'
+PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), './plugins'),)
 # plugins.
 PLUGINS = [
     "pelican_gist",
-    "ipynb.markup"
+    "ipynb.markup",
+    "asciidoc_reader.asciidoc_reader"
 ]
 
 # Blogroll

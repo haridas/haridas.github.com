@@ -307,7 +307,7 @@ implementation.</p>
 
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
     <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
 
@@ -546,15 +546,15 @@ $ python tcp_server.py  <span class="c1"># Simulate the tcp client with socket p
 <span class="c1"># OUTPUT #</span>
 
 Starting Client
-sending 1
+sending <span class="m">1</span>
 Hello Worl
-sending 2
+sending <span class="m">2</span>
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&quot;tcp_server.py&quot;</span>, line 98, in &lt;module&gt;
+  File <span class="s2">&quot;tcp_server.py&quot;</span>, line <span class="m">98</span>, in &lt;module&gt;
     start_tcp_client<span class="o">()</span>
-  File <span class="s2">&quot;tcp_server.py&quot;</span>, line 31, in start_tcp_client
+  File <span class="s2">&quot;tcp_server.py&quot;</span>, line <span class="m">31</span>, in start_tcp_client
     sock.send<span class="o">(</span><span class="s1">&#39;Hi i got the data&#39;</span><span class="o">)</span>
-socket.error: <span class="o">[</span>Errno 104<span class="o">]</span> Connection reset by peer
+socket.error: <span class="o">[</span>Errno <span class="m">104</span><span class="o">]</span> Connection reset by peer
 
 
 <span class="c1">#    This will crash after while since the server closes the socket on its</span>
@@ -565,17 +565,17 @@ $ python tcp_server.py -c <span class="c1"># This client has the option to fix t
 <span class="c1">#OUTPUT#</span>
 
 Starting the newly implemented client...
-sending 1
+sending <span class="m">1</span>
 Handled <span class="m">169</span> bytes
-sending 2
+sending <span class="m">2</span>
 Handled <span class="m">156</span> bytes
-sending 3
+sending <span class="m">3</span>
 Handled <span class="m">1079</span> bytes
-sending 4
+sending <span class="m">4</span>
 Handled <span class="m">208</span> bytes
-sending 5
+sending <span class="m">5</span>
 Handled <span class="m">364</span> bytes
-sending 6
+sending <span class="m">6</span>
 Handled <span class="m">286</span> bytes
 ....
 
@@ -591,7 +591,7 @@ Goese on like this without any interrupt or network buffer overflow.
 <span class="c1">#    To See what is happening while running this scripts run `tcpdump`</span>
 <span class="c1">#    caommand.</span>
 
-$ sudo tcpdump -i any port 8000
+$ sudo tcpdump -i any port <span class="m">8000</span>
 </pre></div>
 <p>You can get the above code from this <a class="reference external" href="https://github.com/haridas/non-blocking-tcp-server-sample">github repository</a>.</p>
 </div>

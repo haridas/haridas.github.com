@@ -1,5 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2017-05-01T00:00:00+05:30</updated><entry><title>Is callback really a bad thing ? It isn't.</title><link href="http://haridas.in/is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2017-05-01:is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="http://haridas.in/" rel="alternate"></link><link href="http://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>http://haridas.in/</id><updated>2017-12-18T00:00:00+05:30</updated><entry><title>Vim Upgrade 2017</title><link href="http://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;After using vim for few years the main difficulties I have with my current
+pathogen based vim plugin environment is, it's bit difficult to re-produce a
+fresh setup on new machine, managing gitmodules is dirty thing and adding new
+plugins and playing around with it is not straight. So I realized new plugins and
+plugin managers available now are well fit to address these problems. So here
+I'm logging the cosmetic and plugin changes done on my latest vim environment.&lt;/p&gt;
+&lt;div class="section" id="setup-vim-configurations"&gt;
+&lt;h2&gt;Setup Vim configurations&lt;/h2&gt;
+&lt;img alt="vim-setup" class="align-left" src="images/setup-vim.gif" style="width: 100%; height: 400px;" /&gt;
+&lt;p&gt;The commands shown in this gif are given bellow.&lt;/p&gt;
+&lt;p&gt;For all plugins go to &lt;a class="reference external" href="https://vimawesome.com"&gt;https://vimawesome.com&lt;/a&gt; site.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vim-plug"&gt;
+&lt;h2&gt;vim-plug&lt;/h2&gt;
+&lt;p&gt;Now switched to new plugin manager &lt;cite&gt;vim-plug&lt;/cite&gt;. This is very minimalistic and
+easy to use compared to pathogen. Also don't need to manage the plugins via git
+submodules. Reproducing the setup on a new system is much simpler now.  With this
+plugin manager you can easily try out new plugins, lazy load the plugins when
+need it etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="plugin-list"&gt;
+&lt;h2&gt;Plugin list&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#fzf-vim"&gt;fzf.vim&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#ack-vim"&gt;ack.vim&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#syntastic"&gt;Syntastic&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#nerdtree"&gt;NerdTree&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#languagespecific"&gt;LanguageSpecific&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#vimthemerelated"&gt;VimThemeRelated&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fzf"&gt;
+&lt;span id="fzf-vim"&gt;&lt;/span&gt;&lt;h2&gt;1. FZF&lt;/h2&gt;
+&lt;p&gt;Fuzzy file search and buffer search, better than &lt;cite&gt;Command-t&lt;/cite&gt; and there is no
+separate manual step needed to set it up when using with &lt;cite&gt;vim-plug&lt;/cite&gt;. This plugin
+also relay on &lt;cite&gt;.gitignore&lt;/cite&gt; file to filter out the unnecessary files from search.&lt;/p&gt;
+&lt;p&gt;Dependency: golang1.9.x+ installed in your box.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="silver-searcher"&gt;
+&lt;span id="ack-vim"&gt;&lt;/span&gt;&lt;h2&gt;2. Silver searcher&lt;/h2&gt;
+&lt;p&gt;If you not yet have it, then this one is must needed plugin for vim. This plugin
+depends on the command &lt;cite&gt;ag (silver searcher)&lt;/cite&gt; on your machine, if it's not installed, install it
+from package manager.&lt;/p&gt;
+&lt;p&gt;Grep a keyword across the source directory, this is common feature in full fledged
+IDE's. Here we use the silver search with the ack.vim plugin to get the ag
+capabilities inside vim, also easy navigation on search results.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;span id="nerdtree"&gt;&lt;/span&gt;&lt;h2&gt;3. NerdTree&lt;/h2&gt;
+&lt;p&gt;Standard plugin to list the project directories.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="code-syntax-check-using-lint-tools"&gt;
+&lt;span id="syntastic"&gt;&lt;/span&gt;&lt;h2&gt;3. Code syntax check using lint tools.&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Syntastic: Pretty standard generic syntax issue identifier and reporter.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="language-plugins"&gt;
+&lt;span id="languagespecific"&gt;&lt;/span&gt;&lt;h2&gt;4. Language plugins&lt;/h2&gt;
+&lt;p&gt;These plugins we can load when we open those language files only, vim-plug have
+option to do this when configure the plugin with it. See bellow section for the sample
+vim-plug configuration.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;vim.go : Make vim more friendly in vim, do re-format, highlight issues etc.&lt;/li&gt;
+&lt;li&gt;rust.vim.git&lt;/li&gt;
+&lt;li&gt;vim-ansible-yaml.git&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vim-theme-related"&gt;
+&lt;span id="vimthemerelated"&gt;&lt;/span&gt;&lt;h2&gt;5. Vim Theme Related.&lt;/h2&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;vim-color-solaraized&lt;/p&gt;
+&lt;p&gt;Nice vim color plugin for all environments and language, i would recommend it
+for all.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;vim-airline
+This will add some nice colors to your bottom vim status bar and shows good
+information about the editing status and all.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Example vimrc snippat for plugin.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Plug &lt;span class="s1"&gt;&amp;#39;scrooloose/nerdtree&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; { &lt;span class="s1"&gt;&amp;#39;on&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;NERDTreeToggle&amp;#39;&lt;/span&gt; }
+Plug &lt;span class="s1"&gt;&amp;#39;https://github.com/scrooloose/syntastic.git&amp;#39;&lt;/span&gt;
+Plug &lt;span class="s1"&gt;&amp;#39;https://github.com/fatih/vim-go.git&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; { &lt;span class="s1"&gt;&amp;#39;for&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;go&amp;#39;&lt;/span&gt;}
+Plug &lt;span class="s1"&gt;&amp;#39;https://github.com/chase/vim-ansible-yaml.git&amp;#39;&lt;/span&gt;
+Plug &lt;span class="s1"&gt;&amp;#39;https://github.com/mileszs/ack.vim.git&amp;#39;&lt;/span&gt;
+Plug &lt;span class="s1"&gt;&amp;#39;junegunn/fzf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; { &lt;span class="s1"&gt;&amp;#39;dir&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;~/.fzf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;do&amp;#39;&lt;/span&gt;: &lt;span class="s1"&gt;&amp;#39;./install --all&amp;#39;&lt;/span&gt; }
+Plug &lt;span class="s1"&gt;&amp;#39;junegunn/fzf.vim&amp;#39;&lt;/span&gt;
+Plug &lt;span class="s1"&gt;&amp;#39;altercation/vim-colors-solarized&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-setup-this-environment"&gt;
+&lt;h2&gt;How to setup this Environment.&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/haridas/Dotfiles.git ~/Dotfiles
+ln -s ~/Dotfiles/vim-files/vim ~/.vim
+ln -s ~/Dotfiles/vim-files/vimrc ~/.vimrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now ready to install all plugins with single command &lt;cite&gt;:PlugInstall&lt;/cite&gt;. See bellow
+highlight.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="possible-errors"&gt;
+&lt;h2&gt;Possible errors&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Sigfault when running :PlugInstall command&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is mainly comes when the ruby binding compiled with vim might have some issue,
+try this &lt;cite&gt;:ruby print &amp;quot;hello&amp;quot;&lt;/cite&gt;, this might reproduce the segfault issue. In this case
+get a fresh vim version or ensure vim got latest ruby bindings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://vimawesome.com"&gt;https://vimawesome.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content><category term="vim"></category></entry><entry><title>Is callback really a bad thing ? It isn't.</title><link href="http://haridas.in/is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><updated>2017-05-01T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-05-01:/is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Fix the callback signature, like callback(err, obj),&lt;/li&gt;
+&lt;li&gt;Callback should be the last argument in a function,&lt;/li&gt;
+&lt;li&gt;Change the data structure or make use of promise, and similar methods to
+reduce the nested nature of callback chain.&lt;/li&gt;
+&lt;li&gt;Don't bring baggages from other language, be like JS ninja …&lt;/li&gt;&lt;/ol&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Fix the callback signature, like callback(err, obj),&lt;/li&gt;
@@ -328,7 +453,11 @@ please check out the co library's github page for more examples.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/tj/co"&gt;https://github.com/tj/co&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="http://haridas.in/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2017-04-20:creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
+</content><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="http://haridas.in/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><updated>2017-04-20T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-04-20:/creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
+It's simple app which helps to recommend a credit card for use on a particular day.&lt;/p&gt;
+&lt;p&gt;Right now the UX is very simple, but included the following features,&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Multi device cloud sync using firebase …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
 It's simple app which helps to recommend a credit card for use on a particular day.&lt;/p&gt;
 &lt;p&gt;Right now the UX is very simple, but included the following features,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -372,7 +501,10 @@ sorting it out based on the score of each card.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;If you guys interested, give a try and let me know your feedbacks.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
-</summary><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="http://haridas.in/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2016-07-25:what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+</content><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="http://haridas.in/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-07-25:/what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
+chance to work with the latest technologies in SOA environment. From that experience
+I just want to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
 and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
 chance to work with the latest technologies in SOA environment. From that experience
 I just want to put down some points that I liked about java, as I'm coming
@@ -513,7 +645,13 @@ communication protocol ( http / thrift / protocol buffer etc ).&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://techsticles.blogspot.in/2016/07/oracle-and-fall-of-java-ee.html?utm_content=bufferf1a2e&amp;amp;utm_medium=social&amp;amp;utm_source=linkedin.com&amp;amp;utm_campaign=buffer"&gt;Oracle and Fall of J2EE&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+</content><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="http://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:/upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+another backup location. Google photos was the excellege option as I'm
+using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Duplicate detection while uploading photos.&lt;/li&gt;
+&lt;li&gt;Auto taging, searching.&lt;/li&gt;
+&lt;li&gt;Easily …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
 another backup location. Google photos was the excellege option as I'm
 using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -657,7 +795,13 @@ if __name__ == "__main__":
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="http://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+</content><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="http://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:/spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+spell checker tool, but it's little cumbersome to use. I use vim for
+most of the purposes like,&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;To write my blog entries.&lt;/li&gt;
+&lt;li&gt;Coding&lt;/li&gt;
+&lt;li&gt;To write git commit messages, where I get some …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
 spell checker tool, but it's little cumbersome to use. I use vim for
 most of the purposes like,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -716,7 +860,10 @@ in your vimrc file.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="http://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+</content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="http://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+problem at least once. What happens is that python processes are getting killed by
+the OS's Out Of Memory Killer. OOM Killer does this to
+reclaim the memory for OS, since there is no enough RAM space …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
 the OS's Out Of Memory Killer. OOM Killer does this to
 reclaim the memory for OS, since there is no enough RAM space available for the
@@ -793,7 +940,11 @@ have any questions or suggestion please put it on the comment section bellow.&lt
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/2/c-api/memory.html"&gt;https://docs.python.org/2/c-api/memory.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+</content><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="http://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+python compared with compiled language. So here I'm explaining a scenario
+where python was not the ideal choice.&lt;/p&gt;
+&lt;p&gt;We are using python for network programming, specifically a TCP client/server
+program which read packets from another C based …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.&lt;/p&gt;
 &lt;p&gt;We are using python for network programming, specifically a TCP client/server
@@ -990,7 +1141,7 @@ implementation.&lt;/p&gt;
 
         &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 
     &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OptionParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
@@ -1229,15 +1380,15 @@ $ python tcp_server.py  &lt;span class="c1"&gt;# Simulate the tcp client with so
 &lt;span class="c1"&gt;# OUTPUT #&lt;/span&gt;
 
 Starting Client
-sending 1
+sending &lt;span class="m"&gt;1&lt;/span&gt;
 Hello Worl
-sending 2
+sending &lt;span class="m"&gt;2&lt;/span&gt;
 Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
-  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line 98, in &amp;lt;module&amp;gt;
+  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;98&lt;/span&gt;, in &amp;lt;module&amp;gt;
     start_tcp_client&lt;span class="o"&gt;()&lt;/span&gt;
-  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line 31, in start_tcp_client
+  File &lt;span class="s2"&gt;&amp;quot;tcp_server.py&amp;quot;&lt;/span&gt;, line &lt;span class="m"&gt;31&lt;/span&gt;, in start_tcp_client
     sock.send&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hi i got the data&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-socket.error: &lt;span class="o"&gt;[&lt;/span&gt;Errno 104&lt;span class="o"&gt;]&lt;/span&gt; Connection reset by peer
+socket.error: &lt;span class="o"&gt;[&lt;/span&gt;Errno &lt;span class="m"&gt;104&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; Connection reset by peer
 
 
 &lt;span class="c1"&gt;#    This will crash after while since the server closes the socket on its&lt;/span&gt;
@@ -1248,17 +1399,17 @@ $ python tcp_server.py -c &lt;span class="c1"&gt;# This client has the option to
 &lt;span class="c1"&gt;#OUTPUT#&lt;/span&gt;
 
 Starting the newly implemented client...
-sending 1
+sending &lt;span class="m"&gt;1&lt;/span&gt;
 Handled &lt;span class="m"&gt;169&lt;/span&gt; bytes
-sending 2
+sending &lt;span class="m"&gt;2&lt;/span&gt;
 Handled &lt;span class="m"&gt;156&lt;/span&gt; bytes
-sending 3
+sending &lt;span class="m"&gt;3&lt;/span&gt;
 Handled &lt;span class="m"&gt;1079&lt;/span&gt; bytes
-sending 4
+sending &lt;span class="m"&gt;4&lt;/span&gt;
 Handled &lt;span class="m"&gt;208&lt;/span&gt; bytes
-sending 5
+sending &lt;span class="m"&gt;5&lt;/span&gt;
 Handled &lt;span class="m"&gt;364&lt;/span&gt; bytes
-sending 6
+sending &lt;span class="m"&gt;6&lt;/span&gt;
 Handled &lt;span class="m"&gt;286&lt;/span&gt; bytes
 ....
 
@@ -1274,7 +1425,7 @@ Goese on like this without any interrupt or network buffer overflow.
 &lt;span class="c1"&gt;#    To See what is happening while running this scripts run `tcpdump`&lt;/span&gt;
 &lt;span class="c1"&gt;#    caommand.&lt;/span&gt;
 
-$ sudo tcpdump -i any port 8000
+$ sudo tcpdump -i any port &lt;span class="m"&gt;8000&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can get the above code from this &lt;a class="reference external" href="https://github.com/haridas/non-blocking-tcp-server-sample"&gt;github repository&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -1285,7 +1436,10 @@ $ sudo tcpdump -i any port 8000
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+</content><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="http://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:/rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+like chat system, worker queue, logging etc. But lately I was looking for an
+option to track all messages passing through set of exchanges without
+interfering those exchanges. The need for it's that I want to analyze the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
 like chat system, worker queue, logging etc. But lately I was looking for an
 option to track all messages passing through set of exchanges without
 interfering those exchanges. The need for it's that I want to analyze the
@@ -1316,7 +1470,10 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
 &lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 100%;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
-</summary><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+</content><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="http://haridas.in/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:/some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+every point of my programming life. This might looks like obvious to some but
+it was not in real life.&lt;/p&gt;
+&lt;p&gt;The code samples are in Python, But concepts are applicable to most of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of the
@@ -1494,7 +1651,9 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;li&gt;&lt;a class="reference external" href="http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+</content></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:/vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
+know how I came in to Vim and its fundamental differences with other editors …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors.&lt;/p&gt;
 &lt;p&gt;Here I'm trying to explain how to make the Vim more productive by adding some extra
@@ -1505,11 +1664,11 @@ only to make it suitable for most of the programming languages.&lt;/p&gt;
 &lt;p&gt;The installation and configuration setups are being described at the end,
 if you want to take a look at it, go here &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Update July-30-2013:-&lt;/p&gt;
-&lt;p&gt;Serbo-Croation Translation Available!&lt;/p&gt;
-&lt;p&gt;Anja Skrba gratiously offered to translate this article to Serbo-Croation!
-You can read the translation here: &lt;a class="reference external" href="http://science.webhostinggeeks.com/vim-kao-vas-ide"&gt;http://science.webhostinggeeks.com/vim-kao-vas-ide&lt;/a&gt;
-Thank you Anja Skrba.&lt;/p&gt;
+&lt;p&gt;Update Dec-18-2017&lt;/p&gt;
+&lt;p&gt;The plugin and vim environment got new changes. I captured it
+on a separate blog (&lt;a class="reference external" href="http://haridas.in/vim-upgrade-2017.html"&gt;http://haridas.in/vim-upgrade-2017.html&lt;/a&gt;).
+Please follow new blog entry now on.&lt;/p&gt;
+&lt;p&gt;Support for vim environment specified in this blog entry is deprecated now.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
 more than enough for good productive works. And Vim has plugin structure, so we
@@ -1548,10 +1707,10 @@ changes so you will get it from github.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;div class="section" id="topics"&gt;
 &lt;h3&gt;Topics&lt;/h3&gt;
-&lt;ul&gt;
+&lt;ul class="simple"&gt;
 &lt;li&gt;&lt;dl class="first docutils"&gt;
 &lt;dt&gt;Plugins&lt;/dt&gt;
-&lt;dd&gt;&lt;ol class="first last arabic simple"&gt;
+&lt;dd&gt;&lt;ol class="first last arabic"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#minibuferexplorer"&gt;MinibuferExplorer&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#command-t"&gt;Command-t&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference internal" href="#syntastic"&gt;Syntastic&lt;/a&gt;.&lt;/li&gt;
@@ -1567,12 +1726,9 @@ changes so you will get it from github.&lt;/p&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#some-vim-shortcuts"&gt;Some Vim Shortcuts&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;&lt;a class="reference internal" href="#summary"&gt;Summary&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#some-vim-shortcuts"&gt;Some Vim Shortcuts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#summary"&gt;Summary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr class="docutils" /&gt;
 &lt;p&gt;A Side Note&lt;/p&gt;
@@ -1924,7 +2080,10 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="http://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="http://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is a chance for
@@ -2017,7 +2176,10 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</summary><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="http://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</content><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="http://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
+has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
@@ -2102,7 +2264,10 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="http://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="http://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="http://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:/wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+that. Wordpress is the most successful and feature rich blog engine. So
+I chose it without thinking twice, I didn't even search for a python alternative blog
+engines at that time. But after a while I felt …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt the difficulties while adding some
@@ -2174,7 +2339,11 @@ select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="http://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</content><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="http://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+that file while running it in a shell environment.&lt;/p&gt;
+&lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
+when you are looking for a stable deployment of a multi-file project in
+a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -2216,7 +2385,11 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-</summary><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+</content><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="http://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+instead only describing how to install and use them.&lt;/p&gt;
+&lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
+system default Python or Ruby installation. We use Virtualenv for Python
+and RVM(Ruby …&lt;/p&gt;</summary><content type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
@@ -2360,10 +2533,10 @@ session only.&lt;/p&gt;
 &lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
 
 &lt;span class="go"&gt;Current system ruby version&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; rvm install 1.9.2
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm install &lt;span class="m"&gt;1&lt;/span&gt;.9.2
 
 &lt;span class="go"&gt;This will install new ruby-1.9.2&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; rvm install 1.9.1
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm install &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 
 &lt;span class="go"&gt;This will install new ruby-1.9.1&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; rvm list
@@ -2375,13 +2548,13 @@ session only.&lt;/p&gt;
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,&lt;/p&gt;
 &lt;p&gt;To use ruby-1.9.1 in one shell session only, try bellow commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use 1.9.1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 &lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
 &lt;span class="go"&gt;ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]&lt;/span&gt;
 &lt;span class="go"&gt;[/shell]&lt;/span&gt;
 &lt;span class="go"&gt;To make this version change permanent for all user shell sessions use,&lt;/span&gt;
 &lt;span class="go"&gt;[shell]&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt;rvm --default use 1.9.1
+&lt;span class="gp"&gt;$&lt;/span&gt;rvm --default use &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 &lt;span class="gp"&gt;$&lt;/span&gt;rvm default list
 &lt;span class="go"&gt;rvm rubies&lt;/span&gt;
 &lt;span class="go"&gt;=&amp;gt; ruby-1.9.1-p431 [ i386 ]&lt;/span&gt;
@@ -2402,7 +2575,7 @@ version.&lt;/p&gt;
 &lt;span class="go"&gt;ruby 1.8.7 (2010-08-16 patchlevel 302) [i486-linux]&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; gem --version
 &lt;span class="go"&gt;1.3.7&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; rvm --default use 1.9.2
+&lt;span class="gp"&gt;$&lt;/span&gt; rvm --default use &lt;span class="m"&gt;1&lt;/span&gt;.9.2
 &lt;span class="go"&gt;Using /home/haridas/.rvm/gems/ruby-1.9.2-p290&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; gem --version
 &lt;span class="go"&gt;1.8.6&lt;/span&gt;
@@ -2411,7 +2584,14 @@ version.&lt;/p&gt;
 ruby.&lt;/p&gt;
 &lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="http://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+</content><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="http://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+Hight speed Python web framework. It uses Websoket for Full-duplex
+communication over http and RabbitMQ Broker for message transaction
+between server and connected clients.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="" src="/images/RabbitChat-Arch.png" style="width: 100%;" /&gt;
+&lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
+github …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
 Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
@@ -2450,7 +2630,12 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</summary><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+</content><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="http://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+&lt;p&gt;South is very handy django application to manage the django models. If
+we are developing web projects using django we need to change the Django
+model several times , In normal case we have to do these changes
+manually by editing both django model and backend database
+appropriately. This is very …&lt;/p&gt;</summary><content type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -2521,7 +2706,13 @@ steps,&lt;/p&gt;
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</summary><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="http://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+</content><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="http://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+&lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
+&lt;p&gt;When we develop web applications some times we need multiple timezone
+support. If we don’t have any previous experience then it might be a
+tough and confusing job. Here I will help you to get some basics of
+Timezone conversion.&lt;/p&gt;
+&lt;p&gt;I have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
@@ -2681,7 +2872,10 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</summary><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="http://haridas.in/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+</content><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="http://haridas.in/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:/programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+Programming. After some time I learned basics of the Javascript and perl for
+some internal projects, from there onwards I started to use the two
+terms Scripting and Programming. I found some books of Javascript and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and
@@ -2718,4 +2912,4 @@ think that it can do everything. Now After few years of experience in different
 parts of the Computer Science problems and work experience I can easily see
 that what I was wrote above was not going to work out practically.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="programming"></category><category term="scripting"></category></entry></feed>
+</content><category term="programming"></category><category term="scripting"></category></entry></feed>

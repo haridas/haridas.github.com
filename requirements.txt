@@ -1,0 +1,4 @@
+pelican==3.7.1
+pelican-gist==0.3.3
+markdown==2.6.9
+jupyter=1.0.0

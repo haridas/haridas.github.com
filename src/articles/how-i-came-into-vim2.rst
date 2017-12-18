@@ -22,13 +22,15 @@ only to make it suitable for most of the programming languages.
 The installation and configuration setups are being described at the end, 
 if you want to take a look at it, go here `Setup Vim from Scratch`_.
 
-    Update July-30-2013:-
+    Update on Dec-18-2017
 
-    Serbo-Croation Translation Available!
+    The plugin and vim environment got new changes. I captured it
+    on a separate blog (http://haridas.in/vim-upgrade-2017.html).
+    Please follow new blog entry now on.
 
-    Anja Skrba gratiously offered to translate this article to Serbo-Croation! 
-    You can read the translation here: http://science.webhostinggeeks.com/vim-kao-vas-ide
-    Thank you Anja Skrba.
+    Support for vim environment specified in this blog entry is deprecated now.
+    
+
 
 The basic Vim or Vi installation comes with most of the Gnu/Linux machines are
 more than enough for good productive works. And Vim has plugin structure, so we

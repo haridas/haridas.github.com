@@ -267,6 +267,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -287,11 +288,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1029,8 +1025,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -1041,9 +1039,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1082,25 +1082,29 @@ h6:hover .anchor-link {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="cell border-box-sizing text_cell rendered">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Outlier-Removal-Clustering">Outlier Removal Clustering<a class="anchor-link" href="#Outlier-Removal-Clustering">¶</a></h1>
+<h1 id="Outlier-Removal-Clustering">Outlier Removal Clustering<a class="anchor-link" href="#Outlier-Removal-Clustering">&#182;</a></h1>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Outlier Removal Clustering ( ORC ) is a improved version of KMean with outlier removal in each iteration. As we all know that KMean is more sensitive with outliers, and might result into local optimal centroids. For unsupervised clustering KMean is the mainly used algorithm because which is very effective as well as easy to implement. For data which has lot of outliers still works well with KMean if we add outlier removal mechanism in each iteration of the KMean clustering. ORC is the name of the algorithm. This will ensure the centroid calculation won't be skewed by the points far away from the cluster centroid.</p>
 <p><strong>Lets start with understanding the data</strong></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Imports required to understand the dataset, get initial</span>
 <span class="c1"># intuition of how the data looks like.</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
@@ -1111,105 +1115,146 @@ h6:hover .anchor-link {
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="c1"># Load the data see its basic characteristics.</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./2d-cluster.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./2d-cluster.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>x</th>
-<th>y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>count</th>
-<td>1000.000000</td>
-<td>1000.000000</td>
-</tr>
-<tr>
-<th>mean</th>
-<td>0.237606</td>
-<td>0.873407</td>
-</tr>
-<tr>
-<th>std</th>
-<td>2.537506</td>
-<td>4.110400</td>
-</tr>
-<tr>
-<th>min</th>
-<td>-5.282198</td>
-<td>-7.767262</td>
-</tr>
-<tr>
-<th>25%</th>
-<td>-1.788132</td>
-<td>-4.048163</td>
-</tr>
-<tr>
-<th>50%</th>
-<td>-0.461928</td>
-<td>2.946717</td>
-</tr>
-<tr>
-<th>75%</th>
-<td>2.762360</td>
-<td>4.023089</td>
-</tr>
-<tr>
-<th>max</th>
-<td>5.879087</td>
-<td>7.436844</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.237606</td>
+      <td>0.873407</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.537506</td>
+      <td>4.110400</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-5.282198</td>
+      <td>-7.767262</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-1.788132</td>
+      <td>-4.048163</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-0.461928</td>
+      <td>2.946717</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.762360</td>
+      <td>4.023089</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>5.879087</td>
+      <td>7.436844</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Lets-see-the-data-distribution-in-terms-of-historgram">Lets see the data distribution in terms of historgram<a class="anchor-link" href="#Lets-see-the-data-distribution-in-terms-of-historgram">¶</a></h3><p>It clearly shows the points not in normal distribution as expected, so we have multiple clusters that we can isolate from this data.</p>
+<h3 id="Lets-see-the-data-distribution-in-terms-of-historgram">Lets see the data distribution in terms of historgram<a class="anchor-link" href="#Lets-see-the-data-distribution-in-terms-of-historgram">&#182;</a></h3><p>It clearly shows the points not in normal distribution as expected, so we have multiple clusters that we can isolate from this data.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">},</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">},</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.axes._subplots.axessubplot at 0x7fae37ddd290></pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fae37ddd290&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_text output_subarea ">
-<pre><matplotlib.figure.figure at 0x7fae455b4e90></pre>
+<pre>&lt;matplotlib.figure.Figure at 0x7fae455b4e90&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYYAAAEACAYAAAC3adEgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGHpJREFUeJzt3XuUVfV99/H3h0sMREXjZWgZAbHEmsYGrApPfGJOqm0j
@@ -1324,37 +1369,61 @@ X+A9BPW5+f594CPAI+XXN09ExAXFllTWKCdnSjoOOAtok7Sa8t/6ioj4l2Ira2gXAwskDQdeAGYV
 XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 4mAwM7MUB4OZmaX8fyDb/LPL+OUeAAAAAElFTkSuQmCC
 ">
-</img></div>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Plot-it-on-2D-plane">Plot it on 2D plane<a class="anchor-link" href="#Plot-it-on-2D-plane">¶</a></h3><p>Here comes the easy way to see the natural clusters in the data. As currently our data is in 2d it's pretty straight forward to identify the natural clusters by ploting it.</p>
+<h3 id="Plot-it-on-2D-plane">Plot it on 2D plane<a class="anchor-link" href="#Plot-it-on-2D-plane">&#182;</a></h3><p>Here comes the easy way to see the natural clusters in the data. As currently our data is in 2d it's pretty straight forward to identify the natural clusters by ploting it.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># df = pd.read_csv("data_2d.csv", )</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># df = pd.read_csv(&quot;data_2d.csv&quot;, )</span>
 <span class="kn">from</span> <span class="nn">pandas.tools.plotting</span> <span class="kn">import</span> <span class="n">scatter_plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.pathcollection at 0x7fae37b5f6d0></pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x7fae37b5f6d0&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEACAYAAABWLgY0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztvX+QXNd13/m9M/P6vTf9Y37II5IiSAwIEARJAOTAgVZy
@@ -1683,48 +1752,72 @@ Pw7gK0qpS9D3zBGS/6m/LdtUHILOyvcAfA3AB/vcntyQrCqlPgfgEoBr5t8zzbaXZChBEIQhZlDc
 NYIgCEIPEJEXBEEYYkTkBUEQhhgReUEQhCFGRF4QBGGIEZEXBEEYYkTkBUEQhhgReUEQhCHm/wcQ
 G8zD1Ch+pwAAAABJRU5ErkJggg==
 ">
-</img></div>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Lets-cluter-the-points-with-KMean">Lets cluter the points with KMean<a class="anchor-link" href="#Lets-cluter-the-points-with-KMean">¶</a></h3><p>As we know above that we can give the number cluster as 3 while applying the KMean algorithm. We are using <code>sklearn</code> library here, also plotting the final clusters by applying different color to each clusters.</p>
+<h3 id="Lets-cluter-the-points-with-KMean">Lets cluter the points with KMean<a class="anchor-link" href="#Lets-cluter-the-points-with-KMean">&#182;</a></h3><p>As we know above that we can give the number cluster as 3 while applying the KMean algorithm. We are using <code>sklearn</code> library here, also plotting the final clusters by applying different color to each clusters.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
-<span class="c1"># df = pd.read_csv("data_2d.csv")</span>
+<span class="c1"># df = pd.read_csv(&quot;data_2d.csv&quot;)</span>
 <span class="c1"># Fit the data into KMean model, default params are</span>
-<span class="c1"># KMeans(copy_x=True, init='k-means++', max_iter=300,</span>
+<span class="c1"># KMeans(copy_x=True, init=&#39;k-means++&#39;, max_iter=300,</span>
 <span class="c1">#        n_clusters=3, n_init=10, n_jobs=1,</span>
-<span class="c1">#        precompute_distances='auto',</span>
+<span class="c1">#        precompute_distances=&#39;auto&#39;,</span>
 <span class="c1">#        random_state=None, tol=0.0001, verbose=0)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># Plot the First iteration of the kmean.</span>
-<span class="n">colormap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'lime'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">])</span>
+<span class="n">colormap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.pathcollection at 0x7fae37a8d490></pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x7fae37a8d490&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEACAYAAABWLgY0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsXXd4FdX2XTO3ztyWXiEJJKEmofcqvSMIVlBBKVIUAREV
@@ -2392,15 +2485,19 @@ Y2nkwnHYzuSbsBp4RUQ+BKqAiDlgLkOJvK+vy4FY4A/BGaELVfX77kZqmKrWishDOL2CPMAqVY2k
 NNcYY4xpA1bkjTEmilmRN8aYKGZF3hhjopgVeWOMiWJW5I0xJopZkTfGmChmRd4YY6LY/wGYoMif
 Zr3WPAAAAABJRU5ErkJggg==
 ">
-</img></div>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="KMean-with-Outlier-removal-(ORC)">KMean with Outlier removal (ORC)<a class="anchor-link" href="#KMean-with-Outlier-removal-(ORC)">¶</a></h3><p>From the initial test it's known that the clusters are overlapping, so the KMean iterations are giving consistent centroid selection. But it's pretty clear that due to the anomalies around the cluster the cluster centroids are bit deviated to accommodate these points. On the plot it's clear that, we can remove it out still we will get the same cluster with more clear boundaries.</p>
+<h3 id="KMean-with-Outlier-removal-(ORC)">KMean with Outlier removal (ORC)<a class="anchor-link" href="#KMean-with-Outlier-removal-(ORC)">&#182;</a></h3><p>From the initial test it's known that the clusters are overlapping, so the KMean iterations are giving consistent centroid selection. But it's pretty clear that due to the anomalies around the cluster the cluster centroids are bit deviated to accommodate these points. On the plot it's clear that, we can remove it out still we will get the same cluster with more clear boundaries.</p>
 <p>The method has following steps:-</p>
 <ol>
 <li>Do KMean with fixed number of iterations.</li>
@@ -2409,15 +2506,17 @@ Zr3WPAAAAABJRU5ErkJggg==
 <li>Set a threshold distance, T=0.9, all points with distance more than this is considered anomaly.</li>
 <li>Repeat from step 1, Till we removed enough anomalies from our data.</li>
 </ol>
-<p>Setting T < 1 ensures at least one data vector will be removed each time as part of anomaly removal step, so we need to tune T, as well as number of iteration to ensure we aren't trimming actual cluster data vectors.</p>
+<p>Setting T &lt; 1 ensures at least one data vector will be removed each time as part of anomaly removal step, so we need to tune T, as well as number of iteration to ensure we aren't trimming actual cluster data vectors.</p>
 <p><strong> Here is the complete code which does above steps </strong></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -2436,17 +2535,17 @@ Zr3WPAAAAABJRU5ErkJggg==
 <span class="n">T</span> <span class="o">=</span> <span class="mf">0.95</span>
 
 <span class="c1"># Data frames loaded from csv.</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./2d-cluster.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./2d-cluster.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find distance between two points in a plain.</span>
 <span class="sd">    @param x: 2D point.</span>
 <span class="sd">    @param y: 2D point.</span>
 <span class="sd">    </span>
 <span class="sd">    @return euclidean distance between this point.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">d1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="n">d2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d1</span><span class="o">*</span><span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="o">*</span><span class="n">d2</span><span class="p">)</span>
@@ -2455,29 +2554,29 @@ Zr3WPAAAAABJRU5ErkJggg==
 
 <span class="k">def</span> <span class="nf">print_cluster_details</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">centroids</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-        <span class="k">print</span> <span class="s2">"Cluster: {} size: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="p">))</span> 
+        <span class="k">print</span> <span class="s2">&quot;Cluster: {} size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="p">))</span> 
 
         
 <span class="k">def</span> <span class="nf">dump_cluster_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    @param clusters: dataframe</span>
 <span class="sd">    </span>
 <span class="sd">    Dump ponts of the cluster in csv file named as cluster_{#index}.csv</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clusters</span> <span class="o">=</span> <span class="n">aggregate_cluster_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"cluster_{}.csv"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"{},{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cluster_{}.csv&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;{},{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]))</span>
             
 <span class="k">def</span> <span class="nf">aggregate_cluster_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper methods to aggregate the cluster points based on the label index.</span>
 <span class="sd">    </span>
 <span class="sd">    @param df: List of points or datapoints</span>
 <span class="sd">    @param labels: Cluster index list for each element in points.</span>
 
 <span class="sd">    @retrun List of cluster points, indexed with cluster index.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">clusters</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
@@ -2487,47 +2586,47 @@ Zr3WPAAAAABJRU5ErkJggg==
     
 
 <span class="k">def</span> <span class="nf">get_outliers_and_strip_cluster</span><span class="p">(</span><span class="n">cluster_points</span><span class="p">,</span> <span class="n">centroid</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Apply ODIN algorithm to identify anomalies in the cluster and</span>
 <span class="sd">    strip it.</span>
 <span class="sd">    </span>
 <span class="sd">    Anomaly detection rule:- </span>
 <span class="sd">    </span>
-<span class="sd">    sqrt(point^2 - centroid^2) / max(points) > T === True then it's an anomaly.</span>
+<span class="sd">    sqrt(point^2 - centroid^2) / max(points) &gt; T === True then it&#39;s an anomaly.</span>
 <span class="sd">    </span>
 <span class="sd">    @param cluster_points: List of points in this cluster.</span>
 <span class="sd">    @param centroid: centroid of the cluster.</span>
 <span class="sd">    @return: outliers, new_cluster</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">d_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">distance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">centroid</span><span class="p">)</span>
                          <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">cluster_points</span><span class="p">])</span>
     <span class="n">d_max</span> <span class="o">=</span> <span class="n">d_vector</span><span class="o">.</span><span class="n">max</span><span class="p">();</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">distance</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_max</span>
                          <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">cluster_points</span><span class="p">])</span>
 <span class="c1">#     print data.min(), d_max</span>
-    <span class="n">outliers</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">distance</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_max</span> <span class="o">></span> <span class="n">T</span><span class="p">,</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">distance</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_max</span> <span class="o">&gt;</span> <span class="n">T</span><span class="p">,</span>
                       <span class="n">cluster_points</span><span class="p">)</span>
-    <span class="n">new_cluster</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">distance</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_max</span> <span class="o"><=</span> <span class="n">T</span><span class="p">,</span>
+    <span class="n">new_cluster</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">distance</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">/</span> <span class="n">d_max</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">,</span>
                          <span class="n">cluster_points</span><span class="p">)</span>
-<span class="c1">#     print "Outlier size", outliers.shape</span>
-<span class="c1">#     print "New Cluster size: ", new_cluster.shape</span>
-<span class="c1">#     print "Original cluster size: ", len(cluster_points)</span>
+<span class="c1">#     print &quot;Outlier size&quot;, outliers.shape</span>
+<span class="c1">#     print &quot;New Cluster size: &quot;, new_cluster.shape</span>
+<span class="c1">#     print &quot;Original cluster size: &quot;, len(cluster_points)</span>
     
     <span class="k">return</span> <span class="n">outliers</span><span class="p">,</span> <span class="n">new_cluster</span>
 
 
 <span class="k">def</span> <span class="nf">run_outlier_removal_clustering</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">max_iteration</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run ORC Outlier removal clustering on the datapoints.</span>
 <span class="sd">    </span>
 <span class="sd">    Clustering Algorithm - KMean</span>
 <span class="sd">    Outlier removal Algorithm - ODIN a Knn based outlier detection.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">orc_model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">MAX_ITER</span><span class="p">)</span>
     <span class="n">OUTLIERS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iteration</span><span class="p">):</span>
         <span class="c1"># Iteration.</span>
-        <span class="c1">#print "\n\n[{}] ===> Data before clustering: {}, Anomaly: {}".format(</span>
+        <span class="c1">#print &quot;\n\n[{}] ===&gt; Data before clustering: {}, Anomaly: {}&quot;.format(</span>
         <span class="c1">#iteration, df.shape, len(OUTLIERS))</span>
         <span class="n">orc_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="n">orc_model</span><span class="o">.</span><span class="n">labels_</span>
@@ -2537,7 +2636,7 @@ Zr3WPAAAAABJRU5ErkJggg==
 
         <span class="n">NEW_CLUSTER</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">CLUSTER</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-            <span class="c1">#print "Cluster: {} size: {}".format(index, len(cluster))</span>
+            <span class="c1">#print &quot;Cluster: {} size: {}&quot;.format(index, len(cluster))</span>
             <span class="n">outlier</span><span class="p">,</span> <span class="n">new_cluster</span> <span class="o">=</span> <span class="n">get_outliers_and_strip_cluster</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span>
                                                                   <span class="n">centroids</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 
@@ -2561,38 +2660,46 @@ Zr3WPAAAAABJRU5ErkJggg==
 <span class="c1"># Dump the final cluster and anomalies into csv file.</span>
 <span class="n">print_cluster_details</span><span class="p">(</span><span class="n">aggregate_cluster_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">orc_model</span><span class="o">.</span><span class="n">labels_</span><span class="p">),</span>
                       <span class="n">orc_model</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">"Total anomalies: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span>
-<span class="k">print</span> <span class="s2">"Exported the cluster and anomalies into csv files"</span>
+<span class="k">print</span> <span class="s2">&quot;Total anomalies: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span>
+<span class="k">print</span> <span class="s2">&quot;Exported the cluster and anomalies into csv files&quot;</span>
 <span class="n">dump_cluster_points</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">orc_model</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"anomalies.csv"</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"{},{}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">outliers</span><span class="p">]))</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;anomalies.csv&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;{},{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">outliers</span><span class="p">]))</span>
     
 
 <span class="c1"># Plot the Original and new cluster after anomaly removal.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">colormap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'lime'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">]</span>
+<span class="n">colormap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./2d-cluster.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./2d-cluster.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Without clustering"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Without clustering&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">_kmean</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">_kmean</span><span class="o">.</span><span class="n">labels_</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"KMean Clustering"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KMean Clustering&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">orc_model</span><span class="o">.</span><span class="n">labels_</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"ORC clustering"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ORC clustering&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Cluster: 0 size: 315
 Cluster: 1 size: 308
@@ -2602,12 +2709,27 @@ Exported the cluster and anomalies into csv files
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.text.text at 0x7fae378e1050></pre>
+<pre>&lt;matplotlib.text.Text at 0x7fae378e1050&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAAEKCAYAAAAPY6NUAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8VEXXx38n20s2nVBFOtKL0qRJUUQUrCCIioggoqiP
@@ -3804,29 +3926,36 @@ PmnQ8eobhXg8Ho/H4/F4PGk0FIuFx+PxeDwej8fTIPAC2ePxeDwej8fjScMLZI/H4/F4PB6PJw0v
 kD0ej8fj8Xg8njS8QPZ4PB6Px+PxeNLwAtnj8Xg8Ho/H40nDC2SPx+PxeDwejycNL5A9Ho/H4/F4
 PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 ">
-</img></div>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There is no much importance to the colouring rather than visual purpose. Kmean does the clustering randomly it may label one cluster into different index when we try multiple times.</p>
+
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="How-I-generated-this-sample-cluster-data.">How I generated this sample cluster data.<a class="anchor-link" href="#How-I-generated-this-sample-cluster-data.">¶</a></h3>
+<h3 id="How-I-generated-this-sample-cluster-data.">How I generated this sample cluster data.<a class="anchor-link" href="#How-I-generated-this-sample-cluster-data.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
@@ -3834,19 +3963,37 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
                   <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                   <span class="n">center_box</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
                   <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.collections.pathcollection at 0x7fae37788d10></pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x7fae37788d10&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXMAAAEACAYAAABBDJb9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4VEXbh++zu9maXkgoodfQe5Gq9CYKqNiQbgNFRRQU
@@ -4872,38 +5019,49 @@ eJsIIeoB3YCzQohT6N4346SUu/I3snfGUGCVEMIAuA58mNPGStGQQqFQFALKsnEKhUJRCCjJXKFQ
 KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
 5wAAAABJRU5ErkJggg==
 ">
-</img></div>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># How to save the data smaples into csv file.</span>
 
 <span class="n">_d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">_d</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'x'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">]</span>
-<span class="n">_d</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"./2d-cluster_new.csv"</span><span class="p">)</span>
-<span class="c1">#_d = pd.read_csv("./2d-cluster.csv", index_col=0)</span>
+<span class="n">_d</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">_d</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./2d-cluster_new.csv&quot;</span><span class="p">)</span>
+<span class="c1">#_d = pd.read_csv(&quot;./2d-cluster.csv&quot;, index_col=0)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h3><p>ORC algorithm effectively trims the outliers from the cluster data vectors. The accuracy of this model varies on data set, so accordingly we need to tune the parameters.</p>
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h3><p>ORC algorithm effectively trims the outliers from the cluster data vectors. The accuracy of this model varies on data set, so accordingly we need to tune the parameters.</p>
+
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -4920,6 +5078,7 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
