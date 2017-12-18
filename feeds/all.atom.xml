@@ -8,7 +8,7 @@ plugin managers available now are well fit to address these problems. So here
 I'm logging the cosmetic and plugin changes done on my latest vim environment.&lt;/p&gt;
 &lt;div class="section" id="setup-vim-configurations"&gt;
 &lt;h2&gt;Setup Vim configurations&lt;/h2&gt;
-&lt;img alt="vim-setup" class="align-left" src="images/setup-vim.gif" style="width: 100%; height: 400px;" /&gt;
+&lt;img alt="vim-setup" class="align-left" src="/images/setup-vim.gif" style="width: 100%; height: 400px;" /&gt;
 &lt;p&gt;The commands shown in this gif are given bellow.&lt;/p&gt;
 &lt;p&gt;For all plugins go to &lt;a class="reference external" href="https://vimawesome.com"&gt;https://vimawesome.com&lt;/a&gt; site.&lt;/p&gt;
 &lt;/div&gt;
@@ -99,8 +99,7 @@ Plug &lt;span class="s1"&gt;&amp;#39;altercation/vim-colors-solarized&amp;#39;&l
 ln -s ~/Dotfiles/vim-files/vim ~/.vim
 ln -s ~/Dotfiles/vim-files/vimrc ~/.vimrc
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now ready to install all plugins with single command &lt;cite&gt;:PlugInstall&lt;/cite&gt;. See bellow
-highlight.&lt;/p&gt;
+&lt;p&gt;Now ready to install all plugins with single command &lt;cite&gt;:PlugInstall&lt;/cite&gt; from vim.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="possible-errors"&gt;
 &lt;h2&gt;Possible errors&lt;/h2&gt;
@@ -6652,7 +6651,7 @@ only to make it suitable for most of the programming languages.&lt;/p&gt;
 &lt;p&gt;The installation and configuration setups are being described at the end,
 if you want to take a look at it, go here &lt;a class="reference internal" href="#setup-vim-from-scratch"&gt;Setup Vim from Scratch&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Update Dec-18-2017&lt;/p&gt;
+&lt;p&gt;Update on Dec-18-2017&lt;/p&gt;
 &lt;p&gt;The plugin and vim environment got new changes. I captured it
 on a separate blog (&lt;a class="reference external" href="http://haridas.in/vim-upgrade-2017.html"&gt;http://haridas.in/vim-upgrade-2017.html&lt;/a&gt;).
 Please follow new blog entry now on.&lt;/p&gt;

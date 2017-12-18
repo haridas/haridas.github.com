@@ -135,8 +135,7 @@ How to setup this Environment.
     ln -s ~/Dotfiles/vim-files/vim ~/.vim
     ln -s ~/Dotfiles/vim-files/vimrc ~/.vimrc
 
-Now ready to install all plugins with single command `:PlugInstall`. See bellow
-highlight.
+Now ready to install all plugins with single command `:PlugInstall` from vim.
 
 
 Possible errors
