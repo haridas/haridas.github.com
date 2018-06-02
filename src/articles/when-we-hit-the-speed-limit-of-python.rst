@@ -68,7 +68,7 @@ You can see the `stackOverflow post`_, I explained more technical
 details on the SO question, please have a look on it to get more details about
 the issue and sample tcpdump trace file to see what was happened on the network.
 
-.. _`stackOverflow post`: http://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected
+.. _`stackOverflow post`: https://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected
 
 
 The problem on the python side is that,  it's a single threaded server which
@@ -137,7 +137,7 @@ Update (02-May-2014):-
 Please check out this `reddit`_ discussion about this post, which give you more
 insight into the problem and possible solutions.
 
-.. _`reddit`: http://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y
+.. _`reddit`: https://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y
 
 Update ( 03-May-2014):-
 
@@ -534,5 +534,5 @@ You can get the above code from this `github repository`_.
 references
 ----------
 
-1. http://linux.die.net/man/2/sendmsg 
+1. https://linux.die.net/man/2/sendmsg 
 2. $ man socket

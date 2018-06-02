@@ -23,7 +23,7 @@ About this blog
 This blog was created using `Pelican`_ static site generator. To know more about
 this blog, read this `entry`_.
 
-.. _LinkedIn: http://in.linkedin.com/pub/haridas-n/19/95/825
-.. _Twitter: http://twitter.com/#!/haridas_n
-.. _entry: http://haridas.in/wordpress-blog-migrated-to-pelican.html
-.. _Pelican: http://blog.getpelican.com/ 
+.. _LinkedIn: https://in.linkedin.com/pub/haridas-n/19/95/825
+.. _Twitter: https://twitter.com/#!/haridas_n
+.. _entry: https://haridas.in/wordpress-blog-migrated-to-pelican.html
+.. _Pelican: https://blog.getpelican.com/ 

@@ -11,7 +11,7 @@ To follow this article the reader should at least have a basic idea of how to us
 Vim and its command modes. Or if you are new to Vim, you can `read`_ my first blog to 
 know how I came in to Vim and its fundamental differences with other editors.
 
-.. _read: http://haridas.in/how-i-came-in-to-vim.html
+.. _read: https://haridas.in/how-i-came-in-to-vim.html
 
 Here I'm trying to explain how to make the Vim more productive by adding some extra
 features through Vim plugins. After this setup the Vim would have most of the
@@ -25,7 +25,7 @@ if you want to take a look at it, go here `Setup Vim from Scratch`_.
     Update on Dec-18-2017
 
     The plugin and vim environment got new changes. I captured it
-    on a separate blog (http://haridas.in/vim-upgrade-2017.html).
+    on a separate blog (https://haridas.in/vim-upgrade-2017.html).
     Please follow new blog entry now on.
 
     Support for vim environment specified in this blog entry is deprecated now.
@@ -600,8 +600,8 @@ Back to `Topics`_
 
     Please check the comments from `Hacker News`_ and `Reddit`_ also.
 
-    .. _`Hacker News`: http://news.ycombinator.com/item?id=4370175
-    .. _`Reddit`: http://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/
+    .. _`Hacker News`: https://news.ycombinator.com/item?id=4370175
+    .. _`Reddit`: https://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/
 
 **Update 2**:
 

@@ -31,7 +31,7 @@ record but your camera datetime is wrong you are still facing this problem.&lt;/
 &lt;p&gt;So how we edit the EXIF meta data so that while uploading google photos will
 order it correctly.&lt;/p&gt;
 &lt;p&gt;Luckily we have set of utilities available to edit EXIF tags in an image.
-&lt;a class="reference external" href="http://www.exiv2.org/"&gt;exiv2&lt;/a&gt; is the one of it.&lt;/p&gt;
+&lt;a class="reference external" href="https://www.exiv2.org/"&gt;exiv2&lt;/a&gt; is the one of it.&lt;/p&gt;
 &lt;p&gt;It's available on all platforms. Lets install and checkout some samples.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install exiv2
 &lt;/pre&gt;&lt;/div&gt;

@@ -566,7 +566,7 @@ please check out the co library's github page for more examples.&lt;/p&gt;
 &lt;div class="section" id="references"&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://2ality.com/2015/03/es6-generators.html"&gt;http://2ality.com/2015/03/es6-generators.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://2ality.com/2015/03/es6-generators.html"&gt;https://2ality.com/2015/03/es6-generators.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://www.promisejs.org/"&gt;https://www.promisejs.org/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/"&gt;https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://promisesaplus.com/"&gt;https://promisesaplus.com/&lt;/a&gt;&lt;/li&gt;
@@ -683,7 +683,7 @@ in your vimrc file.&lt;/p&gt;
 &lt;div class="section" id="reference"&gt;
 &lt;h2&gt;Reference&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="http://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
@@ -712,7 +712,7 @@ Python's memory manager abstract the &lt;cite&gt;malloc&lt;/cite&gt; call and pr
 release the memory back to the OS when an object goes out of scope in python
 program. Instead it keeps this memory for future reuse.&lt;/p&gt;
 &lt;p&gt;The python garbage collector does reclaim memory back into OS if it meet certain
-criteria  - Please read this &lt;a class="reference external" href="http://www.evanjones.ca/memoryallocator/"&gt;article&lt;/a&gt; for more information about python's
+criteria  - Please read this &lt;a class="reference external" href="https://www.evanjones.ca/memoryallocator/"&gt;article&lt;/a&gt; for more information about python's
 memory allocation policies.&lt;/p&gt;
 &lt;p&gt;We won't come across this problem if our system has enough RAM and peak memory
 usage of the program comes under the RAM size. We usually start worrying about the
@@ -760,9 +760,9 @@ have any questions or suggestion please put it on the comment section bellow.&lt
 &lt;div class="section" id="references"&gt;
 &lt;h2&gt;References&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://deeplearning.net/software/theano/tutorial/python-memory-management.html"&gt;http://deeplearning.net/software/theano/tutorial/python-memory-management.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://www.evanjones.ca/memoryallocator/"&gt;http://www.evanjones.ca/memoryallocator/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://arctrix.com/nas/python/gc/"&gt;http://arctrix.com/nas/python/gc/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://deeplearning.net/software/theano/tutorial/python-memory-management.html"&gt;https://deeplearning.net/software/theano/tutorial/python-memory-management.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.evanjones.ca/memoryallocator/"&gt;https://www.evanjones.ca/memoryallocator/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://arctrix.com/nas/python/gc/"&gt;https://arctrix.com/nas/python/gc/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/2/c-api/memory.html"&gt;https://docs.python.org/2/c-api/memory.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -821,7 +821,7 @@ of TCP socket completely, only reading few bytes (300B to 10KB) at a time.
 So which causing the Python server to send receive window size flag of TCP
 protocol as ZERO for multiple times In the heavy traffic period.
 This might triggering this issue. That was the idea I got from the stack Overflow.&lt;/p&gt;
-&lt;p&gt;You can see the &lt;a class="reference external" href="http://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected"&gt;stackOverflow post&lt;/a&gt;, I explained more technical
+&lt;p&gt;You can see the &lt;a class="reference external" href="https://stackoverflow.com/questions/22142730/tcp-connection-reset-by-peer-and-transport-end-point-is-not-connected"&gt;stackOverflow post&lt;/a&gt;, I explained more technical
 details on the SO question, please have a look on it to get more details about
 the issue and sample tcpdump trace file to see what was happened on the network.&lt;/p&gt;
 &lt;p&gt;The problem on the python side is that,  it's a single threaded server which
@@ -877,7 +877,7 @@ could have handled this situation if the traffic spikes some times only - In
 our case that was the situation. Python couldn't have done it if the rate of
 server is more than the rate at which Python can clear the socket backlog.&lt;/p&gt;
 &lt;p&gt;Update (02-May-2014):-&lt;/p&gt;
-&lt;p&gt;Please check out this &lt;a class="reference external" href="http://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y"&gt;reddit&lt;/a&gt; discussion about this post, which give you more
+&lt;p&gt;Please check out this &lt;a class="reference external" href="https://www.reddit.com/r/Python/comments/24jaxr/what_happens_when_we_hit_the_speed_limit_of_python/#ch7rd9y"&gt;reddit&lt;/a&gt; discussion about this post, which give you more
 insight into the problem and possible solutions.&lt;/p&gt;
 &lt;p&gt;Update ( 03-May-2014):-&lt;/p&gt;
 &lt;/div&gt;
@@ -1258,7 +1258,7 @@ $ sudo tcpdump -i any port &lt;span class="m"&gt;8000&lt;/span&gt;
 &lt;div class="section" id="references"&gt;
 &lt;h2&gt;references&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://linux.die.net/man/2/sendmsg"&gt;http://linux.die.net/man/2/sendmsg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://linux.die.net/man/2/sendmsg"&gt;https://linux.die.net/man/2/sendmsg&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -1473,14 +1473,14 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;p&gt;Let me know your views about these points through comment.&lt;/p&gt;
 &lt;p&gt;Reference :&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks"&gt;http://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks"&gt;https://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </content></entry><entry><title>Vim as your IDE</title><link href="http://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:/vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
-Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
+Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
-Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="http://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
+Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors.&lt;/p&gt;
 &lt;p&gt;Here I'm trying to explain how to make the Vim more productive by adding some extra
 features through Vim plugins. After this setup the Vim would have most of the
@@ -1492,7 +1492,7 @@ if you want to take a look at it, go here &lt;a class="reference internal" href=
 &lt;blockquote&gt;
 &lt;p&gt;Update on Dec-18-2017&lt;/p&gt;
 &lt;p&gt;The plugin and vim environment got new changes. I captured it
-on a separate blog (&lt;a class="reference external" href="http://haridas.in/vim-upgrade-2017.html"&gt;http://haridas.in/vim-upgrade-2017.html&lt;/a&gt;).
+on a separate blog (&lt;a class="reference external" href="https://haridas.in/vim-upgrade-2017.html"&gt;https://haridas.in/vim-upgrade-2017.html&lt;/a&gt;).
 Please follow new blog entry now on.&lt;/p&gt;
 &lt;p&gt;Support for vim environment specified in this blog entry is deprecated now.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1895,7 +1895,7 @@ I hope you understood my feeling. :)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update 1&lt;/strong&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Aug-20-2012&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Please check the comments from &lt;a class="reference external" href="http://news.ycombinator.com/item?id=4370175"&gt;Hacker News&lt;/a&gt; and &lt;a class="reference external" href="http://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/"&gt;Reddit&lt;/a&gt; also.&lt;/p&gt;
+&lt;p&gt;Please check the comments from &lt;a class="reference external" href="https://news.ycombinator.com/item?id=4370175"&gt;Hacker News&lt;/a&gt; and &lt;a class="reference external" href="https://www.reddit.com/r/programming/comments/y21ey/this_is_the_most_comprehensible_guide_ive_seen/"&gt;Reddit&lt;/a&gt; also.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Update 2&lt;/strong&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2021,13 +2021,13 @@ different Scripting and Programming languages, that eventually turned me to a Pr
 &lt;p&gt;When I was started to working as a Django developer I used to work with Eclipse with
 python binding. At these times I very rarely used the Vim editor, most of time
 I was engaged in Eclipse editor. Then I moved to another company as
-a Python and Django backend developer, there I met &lt;a class="reference external" href="http://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; My Team
+a Python and Django backend developer, there I met &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; My Team
 Lead and a Big fan of Vim, He already using Vim as his main editor and he encouraged me and others to use
 the Vim editor. But for few weeks I didn't mind it, and was worked with eclipse
 itself.&lt;/p&gt;
 &lt;p&gt;Finally one day evening I realized the fact that why the Vim gets this much interest
 among programmers and other hackers. That was a sudden move, with in that day
-Itself I learned the basic navigation key bindings and &lt;a class="reference external" href="http://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
+Itself I learned the basic navigation key bindings and &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
 me to setup the Vim as a general IDE for all my works. After that we together
 working and learning to improve the Vim skills every day and I'm enjoying the
 facts that I'm using it for my project works right after the first day of my
@@ -2067,9 +2067,9 @@ operations.Programmers are always doing it.&lt;/p&gt;
 other editors when you are working with Gnu/Linux. Mac and Windows also got Vim
 editors so just download it and give a try.
 Also you can integrate the Vim key bindings with all major IDE's like
-&lt;a class="reference external" href="http://www.viplugin.com/viplugin/"&gt;Eclipse&lt;/a&gt;, &lt;a class="reference external" href="http://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329"&gt;Visual Studio&lt;/a&gt;, etc..&lt;/p&gt;
+&lt;a class="reference external" href="https://www.viplugin.com/viplugin/"&gt;Eclipse&lt;/a&gt;, &lt;a class="reference external" href="https://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329"&gt;Visual Studio&lt;/a&gt;, etc..&lt;/p&gt;
 &lt;p&gt;Also the vim keyboard bindings for navigation are also being used with web
-browsers(&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb"&gt;Chrome&lt;/a&gt;, &lt;a class="reference external" href="http://www.vimperator.org/vimperator"&gt;Firefox&lt;/a&gt;), and even you can use this key bindings with
+browsers(&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb"&gt;Chrome&lt;/a&gt;, &lt;a class="reference external" href="https://www.vimperator.org/vimperator"&gt;Firefox&lt;/a&gt;), and even you can use this key bindings with
 OS command prompt.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="light-weight-fast-and-highly-configurable"&gt;
@@ -2082,13 +2082,13 @@ under the user home directory. And of course Vim is very fast.&lt;/p&gt;
 and key bindings that can  be understood after using it for a while,But the
 basic shortcuts required to get start with Vim is very simple.
 We will learn new and new keyboard bindings through out the life span :).&lt;/p&gt;
-&lt;p&gt;You can have a look at this &lt;a class="reference external" href="http://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/"&gt;Article&lt;/a&gt; which describes how the Vim key bindings
+&lt;p&gt;You can have a look at this &lt;a class="reference external" href="https://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/"&gt;Article&lt;/a&gt; which describes how the Vim key bindings
 became integral part of our life ;).&lt;/p&gt;
 &lt;p&gt;My Vim Story-2 blog entry will come soon which describe the details how to
 setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;Till then... Bye :)&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
-&lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="http://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="https://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="http://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:/wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
@@ -2123,13 +2123,13 @@ enables easy version controlling.&lt;/li&gt;
 &lt;p&gt;Next challenge that I faced was the selection of one static site generator from
 bunch of choice. There are lot of them are implemented in
 Python or Ruby. I was searched for few days to come up with a suitable one.
-Finally I picked up a Python based engine &lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; as my favorite. It doesn't
+Finally I picked up a Python based engine &lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; as my favorite. It doesn't
 mean that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
 &lt;p&gt;Here is the list of few major static site generators that I went through as
 part of the selection process.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="jekyll"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Jekyll is a Ruby based system developed at github.com and it is very commonly
 used in Ruby world. I tried to use it because of its native github
 support, but finally I realized that we can do the same thing with other site
@@ -2140,14 +2140,14 @@ generators, And other problems that I found on Jekyll was,&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="hyde"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="http://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Hyde is a  Python based static site generator like Jekyll but less complex.
 But Hyde lacks good documentation, and mainly a way to migrate from other
 blog engines. I can see that the project getting more interest recently.
 I hope it will get in to good position very soon.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pelican"&gt;
-&lt;h2&gt;&lt;a class="reference external" href="http://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;After checking different static site generators I was very confused with
 different types of static site generators that I came across. Finally I got the
 one I'm looking for, Pelican (Another Python based static site generator.). The
@@ -2451,7 +2451,7 @@ will come soon.&lt;/p&gt;
 Message passing data structures, Actually this application is a demo app
 and I want to test the use of Websoxket with RabbitMQ. I'm looking
 forward to develop a Realtime API's using this architectures. Google app
-engine or other similar platforms( &lt;a class="reference external" href="http://code.google.com/p/typhoonae/"&gt;Typhoonae&lt;/a&gt;) using Websocket server
+engine or other similar platforms( &lt;a class="reference external" href="https://code.google.com/p/typhoonae/"&gt;Typhoonae&lt;/a&gt;) using Websocket server
 similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time

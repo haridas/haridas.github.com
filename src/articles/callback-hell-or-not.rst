@@ -368,7 +368,7 @@ please check out the co library's github page for more examples.
 References
 ----------
 
-1. http://2ality.com/2015/03/es6-generators.html
+1. https://2ality.com/2015/03/es6-generators.html
 2. https://www.promisejs.org/
 3. https://blog.risingstack.com/node-js-at-scale-understanding-node-js-event-loop/
 4. https://promisesaplus.com/

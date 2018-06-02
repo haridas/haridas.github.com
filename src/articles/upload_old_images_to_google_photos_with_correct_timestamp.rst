@@ -41,7 +41,7 @@ order it correctly.
 Luckily we have set of utilities available to edit EXIF tags in an image.
 `exiv2`_ is the one of it.
 
-.. _`exiv2`: http://www.exiv2.org/
+.. _`exiv2`: https://www.exiv2.org/
 
 
 It's available on all platforms. Lets install and checkout some samples.

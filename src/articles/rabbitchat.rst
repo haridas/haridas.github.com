@@ -55,4 +55,4 @@ Web application development.
 
 
 .. _`https://github.com/haridas/RabbitChat`: https://github.com/haridas/RabbitChat
-.. _Typhoonae: http://code.google.com/p/typhoonae/
+.. _Typhoonae: https://code.google.com/p/typhoonae/

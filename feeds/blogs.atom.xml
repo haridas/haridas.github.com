@@ -5046,7 +5046,7 @@ be we can consider it as a web framework :).&lt;/p&gt;
 &lt;p&gt;Usually to package the servlets and filters, there is web.xml file, it
 does the url routing logic, and the filter ordering, this is kinda configuration
 files in different frameworks, but it's in xml ;).&lt;/p&gt;
-&lt;p&gt;Another interesting thing is &lt;a class="reference external" href="http://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html"&gt;web-fragment.xml&lt;/a&gt;. This is really good feature
+&lt;p&gt;Another interesting thing is &lt;a class="reference external" href="https://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html"&gt;web-fragment.xml&lt;/a&gt;. This is really good feature
 which we leveraged to build a micro web framework with default routes ( /admin,
 /health, /doc etc) and supplied to developers as jar file. You can call this as
 a micro web framework which can be used in the micro service development
@@ -5061,7 +5061,7 @@ libraries already implemented in google guice DI so we didn't have much choice.&
 &lt;p&gt;The thing I liked about the DI is its magics. How it wire the actual
 implementation classes to the interfaces. There are standard set of annotations
 defined for DI purpose, &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt; defines it, You can import it from the
-package &lt;a class="reference external" href="http://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html"&gt;javax.inject&lt;/a&gt;. Currently most of the DI
+package &lt;a class="reference external" href="https://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html"&gt;javax.inject&lt;/a&gt;. Currently most of the DI
 implementations supports JSR-330, and it's recommended to stick to JSR-330 while
 using injections in our code so that we can easily switch the actual DI engine
 based on application requirements.&lt;/p&gt;
@@ -5085,7 +5085,7 @@ test methods. You can test each and very part of your application using
 Junit and some mocking library. We tested entire micro service from the
 servelet filter level.&lt;/p&gt;
 &lt;p&gt;Logging library got much more flexibility, and python's logging library was
-designed after this one. I liked the design of &lt;a class="reference external" href="http://www.slf4j.org/"&gt;slf4j&lt;/a&gt; how easily we can
+designed after this one. I liked the design of &lt;a class="reference external" href="https://www.slf4j.org/"&gt;slf4j&lt;/a&gt; how easily we can
 configure the backends and its logging behaviors via xml configurations. Slf4j
 is the another example of standard Interface which keeps the logging API common
 across multiple logging frameworks ( log4j, logback and java.util.logging).&lt;/p&gt;
@@ -5100,8 +5100,8 @@ war files into its ROOT folder.&lt;/p&gt;
 more modular and service oriented platform. You can release you project as jar
 file with some version details ( As the standard jar doesn't have any notion of
 version). We can expose our application interfaces as services to
-other teams, they can consume it easily. I tried few POCs with the &lt;a class="reference external" href="http://karaf.apache.org/index.html"&gt;apache
-karaf&lt;/a&gt; and &lt;a class="reference external" href="http://karaf.apache.org/projects.html#cellar"&gt;karaf celler&lt;/a&gt; to know more of it.&lt;/p&gt;
+other teams, they can consume it easily. I tried few POCs with the &lt;a class="reference external" href="https://karaf.apache.org/index.html"&gt;apache
+karaf&lt;/a&gt; and &lt;a class="reference external" href="https://karaf.apache.org/projects.html#cellar"&gt;karaf celler&lt;/a&gt; to know more of it.&lt;/p&gt;
 &lt;p&gt;I felt OSGi gives all the tools required to go with SOA based microservice
 application development. Apache karaf team call their platform as polymorphic
 container it can run OSGi bundles, war, jar, spring etc.&lt;/p&gt;

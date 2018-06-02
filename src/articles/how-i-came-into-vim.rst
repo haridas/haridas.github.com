@@ -116,12 +116,12 @@ Till then... Bye :)
 EDIT:
 
 Finished the second part of my Vim blog - `How to setup Vim as your IDE 
-<http://haridas.in/vim-as-your-ide.html>`_
+<https://haridas.in/vim-as-your-ide.html>`_
 
-.. _@Satyajit Ranjeev: http://twitter.com/satyajitranjeev
-.. _Eclipse: http://www.viplugin.com/viplugin/
-.. _Visual Studio: http://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329
+.. _@Satyajit Ranjeev: https://twitter.com/satyajitranjeev
+.. _Eclipse: https://www.viplugin.com/viplugin/
+.. _Visual Studio: https://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329
 .. _Chrome: https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb
-.. _Firefox: http://www.vimperator.org/vimperator 
-.. _Article: http://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/
+.. _Firefox: https://www.vimperator.org/vimperator 
+.. _Article: https://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/
 

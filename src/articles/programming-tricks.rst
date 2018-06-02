@@ -204,5 +204,5 @@ Let me know your views about these points through comment.
 
 Reference :
 
-1. http://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks
-2. http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/
+1. https://stackoverflow.com/questions/328976/thorough-use-of-if-statements-or-try-catch-blocks
+2. https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/

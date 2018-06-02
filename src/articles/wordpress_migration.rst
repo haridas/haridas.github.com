@@ -93,8 +93,8 @@ Currently I hosted this site under Github, you can `fork`_ this project and give
 a fresh try to see how quickly you can setup a blog.
 
 
-.. _Pelican: http://pelican.notmyidea.org/
-.. _Hyde: http://hyde.github.com
-.. _Jekyll: http://jekyllrb.com/
+.. _Pelican: https://pelican.notmyidea.org/
+.. _Hyde: https://hyde.github.com
+.. _Jekyll: https://jekyllrb.com/
 .. _fork: https://github.com/haridas/haridas.github.com
 

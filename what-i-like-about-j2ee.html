@@ -13,13 +13,13 @@
     <!-- Google Fonts -->
 
     <!--
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
     -->
 
-    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://haridas.in/theme/css/pure.css">
 
     <link rel="stylesheet" href="http://haridas.in/theme/css/pygments.css">
@@ -88,11 +88,11 @@
                         </p>
 
 
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
     Tweet
 </a>
 
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
 
 <!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-size="medium"></div>
@@ -101,7 +101,7 @@
 <script type="text/javascript">
   (function() {
        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-           po.src = 'https://apis.google.com/js/platform.js';
+           po.src = 'httpss://apis.google.com/js/platform.js';
                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                  })();
 </script>                        <p class="post-date">
@@ -165,7 +165,7 @@ be we can consider it as a web framework :).</p>
 <p>Usually to package the servlets and filters, there is web.xml file, it
 does the url routing logic, and the filter ordering, this is kinda configuration
 files in different frameworks, but it's in xml ;).</p>
-<p>Another interesting thing is <a class="reference external" href="http://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html">web-fragment.xml</a>. This is really good feature
+<p>Another interesting thing is <a class="reference external" href="https://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html">web-fragment.xml</a>. This is really good feature
 which we leveraged to build a micro web framework with default routes ( /admin,
 /health, /doc etc) and supplied to developers as jar file. You can call this as
 a micro web framework which can be used in the micro service development
@@ -180,7 +180,7 @@ libraries already implemented in google guice DI so we didn't have much choice.<
 <p>The thing I liked about the DI is its magics. How it wire the actual
 implementation classes to the interfaces. There are standard set of annotations
 defined for DI purpose, <a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330">JSR-330</a> defines it, You can import it from the
-package <a class="reference external" href="http://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html">javax.inject</a>. Currently most of the DI
+package <a class="reference external" href="https://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html">javax.inject</a>. Currently most of the DI
 implementations supports JSR-330, and it's recommended to stick to JSR-330 while
 using injections in our code so that we can easily switch the actual DI engine
 based on application requirements.</p>
@@ -204,7 +204,7 @@ test methods. You can test each and very part of your application using
 Junit and some mocking library. We tested entire micro service from the
 servelet filter level.</p>
 <p>Logging library got much more flexibility, and python's logging library was
-designed after this one. I liked the design of <a class="reference external" href="http://www.slf4j.org/">slf4j</a> how easily we can
+designed after this one. I liked the design of <a class="reference external" href="https://www.slf4j.org/">slf4j</a> how easily we can
 configure the backends and its logging behaviors via xml configurations. Slf4j
 is the another example of standard Interface which keeps the logging API common
 across multiple logging frameworks ( log4j, logback and java.util.logging).</p>
@@ -219,8 +219,8 @@ war files into its ROOT folder.</p>
 more modular and service oriented platform. You can release you project as jar
 file with some version details ( As the standard jar doesn't have any notion of
 version). We can expose our application interfaces as services to
-other teams, they can consume it easily. I tried few POCs with the <a class="reference external" href="http://karaf.apache.org/index.html">apache
-karaf</a> and <a class="reference external" href="http://karaf.apache.org/projects.html#cellar">karaf celler</a> to know more of it.</p>
+other teams, they can consume it easily. I tried few POCs with the <a class="reference external" href="https://karaf.apache.org/index.html">apache
+karaf</a> and <a class="reference external" href="https://karaf.apache.org/projects.html#cellar">karaf celler</a> to know more of it.</p>
 <p>I felt OSGi gives all the tools required to go with SOA based microservice
 application development. Apache karaf team call their platform as polymorphic
 container it can run OSGi bundles, war, jar, spring etc.</p>
@@ -265,8 +265,8 @@ communication protocol ( http / thrift / protocol buffer etc ).</p>
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
         </div>
     </div>
@@ -281,8 +281,8 @@ communication protocol ( http / thrift / protocol buffer etc ).</p>
                 <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
         &ndash;
         &copy; HN &ndash;
-        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
+        <i> <a href="httpss://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
 </footer>            </div>
 
     </div>
@@ -313,7 +313,7 @@ communication protocol ( http / thrift / protocol buffer etc ).</p>
     </script>
     <!--
     <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        var gaJsHost = (("httpss:" == document.location.protocol) ? "httpss://ssl." : "https://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script type="text/javascript">
@@ -332,7 +332,7 @@ communication protocol ( http / thrift / protocol buffer etc ).</p>
 
     (function() {
      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     ga.src = ('httpss:' == document.location.protocol ? 'httpss://ssl' : 'https://www') + '.google-analytics.com/ga.js';
          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
 

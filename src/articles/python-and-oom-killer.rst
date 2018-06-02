@@ -36,7 +36,7 @@ The python garbage collector does reclaim memory back into OS if it meet certain
 criteria  - Please read this `article`_ for more information about python's
 memory allocation policies.
 
-.. _`article`: http://www.evanjones.ca/memoryallocator/
+.. _`article`: https://www.evanjones.ca/memoryallocator/
 
 
 We won't come across this problem if our system has enough RAM and peak memory
@@ -96,7 +96,7 @@ have any questions or suggestion please put it on the comment section bellow.
 References
 ----------
 
-1. http://deeplearning.net/software/theano/tutorial/python-memory-management.html
-2. http://www.evanjones.ca/memoryallocator/
-3. http://arctrix.com/nas/python/gc/
+1. https://deeplearning.net/software/theano/tutorial/python-memory-management.html
+2. https://www.evanjones.ca/memoryallocator/
+3. https://arctrix.com/nas/python/gc/
 4. https://docs.python.org/2/c-api/memory.html

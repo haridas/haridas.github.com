@@ -87,7 +87,7 @@ a micro web framework which can be used in the micro service development
 environment where the number of routes in a particular service going to be very
 minimal.
 
-.. _`web-fragment.xml`: http://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html
+.. _`web-fragment.xml`: https://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html
 
 
 Dependency Injection
@@ -118,7 +118,7 @@ I will stick to google guice if third party libraries are already making use of
 it, if that's not your case then, going with CDI is best for the future support and platform
 compatibility across J2EE environment.
 
-.. _`javax.inject`: http://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html
+.. _`javax.inject`: https://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html
 
 
 Unit Testing and Logging libraries
@@ -135,7 +135,7 @@ configure the backends and its logging behaviors via xml configurations. Slf4j
 is the another example of standard Interface which keeps the logging API common
 across multiple logging frameworks ( log4j, logback and java.util.logging).
 
-.. _`slf4j`: http://www.slf4j.org/
+.. _`slf4j`: https://www.slf4j.org/
 
 Servlet Containers and OSGi
 ---------------------------
@@ -158,8 +158,8 @@ I felt OSGi gives all the tools required to go with SOA based microservice
 application development. Apache karaf team call their platform as polymorphic
 container it can run OSGi bundles, war, jar, spring etc.
 
-.. _`apache karaf`: http://karaf.apache.org/index.html
-.. _`karaf celler`: http://karaf.apache.org/projects.html#cellar
+.. _`apache karaf`: https://karaf.apache.org/index.html
+.. _`karaf celler`: https://karaf.apache.org/projects.html#cellar
 
 Java community
 --------------

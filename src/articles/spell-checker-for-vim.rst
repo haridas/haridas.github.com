@@ -86,4 +86,4 @@ Reference
 ---------
 1. `Learn Vim The Hardway`_
 
-.. _`Learn Vim The Hardway`: http://learnvimscriptthehardway.stevelosh.com/
+.. _`Learn Vim The Hardway`: https://learnvimscriptthehardway.stevelosh.com/
