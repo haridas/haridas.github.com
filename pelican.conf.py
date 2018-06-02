@@ -6,7 +6,7 @@ SITENAME = u"HN"
 # Don't, change the current URL scheme.
 #SITEURL = os.path.dirname(__file__)
 #
-SITEURL = 'http://haridas.in'
+SITEURL = 'https://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
