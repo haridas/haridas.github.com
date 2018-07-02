@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0530</lastBuildDate><item><title>Bind With Promise</title><link>https://haridas.in/bind-with-promise.html</link><description>&lt;p&gt;&lt;cite&gt;bind&lt;/cite&gt; function in js is an interesting function that does behave like a wrapper function,
-which make the function bound with wrapper function. This wrapper function helps to
-do call the target function with in custom contexts with arguments.
-Bind act similar to the decorators in python, as in decorator …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Thu, 21 Dec 2017 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2017-12-21:/bind-with-promise.html</guid><category>nodejs</category><category>promise</category><category>bind</category></item><item><title>Vim Upgrade 2017</title><link>https://haridas.in/vim-upgrade-2017.html</link><description>&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0530</lastBuildDate><item><title>Bind With Promise</title><link>https://haridas.in/bind-with-promise.html</link><description>&lt;div id="preamble"&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;code&gt;bind&lt;/code&gt; function in js is an interesting function that does behave
+like a wrapper function, which make the function bound with wrapper function. This wrapper function helps to call the target function with in custom context and arguments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Bind act similar to the decorators in python, as in decorator also …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Thu, 21 Dec 2017 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2017-12-21:/bind-with-promise.html</guid><category>nodejs</category><category>promise</category><category>bind</category></item><item><title>Vim Upgrade 2017</title><link>https://haridas.in/vim-upgrade-2017.html</link><description>&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
 </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Mon, 18 Dec 2017 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</guid><category>vim</category></item><item><title>Is callback really a bad thing ? It isn't.</title><link>https://haridas.in/is-callback-really-a-bad-thing-it-isnt.html</link><description>&lt;p&gt;TL;DR version&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol class="arabic simple"&gt;

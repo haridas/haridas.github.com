@@ -1,0 +1,112 @@
+Bind With Promise
+=================
+
+:title: Bind With Promise
+:date: 21-12-2017
+:category: blog
+:tags: nodejs,promise,bind
+
+
+`bind` function in js is an interesting function that does behave 
+like a wrapper function, which make the function bound with wrapper function. This wrapper function helps to call the target function with in custom context and arguments.
+
+Bind act similar to the decorators in python, as in decorator also there is wrapper function which intercept the target function. But here the `bind` is kinda black box we  can't get custom behavior from it, nevertheless the standard nature of what bind provide is what needed in the `javascript` async execution environment.
+
+Javascript is known to be called as Lisp like functional behavior exposed via C like syntax. The functions in js can run in any context, that context decides the `this` argument, here the `bind` give the power to dynamically change the execution context of a function.
+
+I came across with bind more when working with the promise, 
+where we chain the operations using multiple functions. 
+
+
+Let me show the use of bind with an example.
+
+NOTE: Updated on 2/Jul/2018, with better and simple examples.
+
+
+```js
+class Context {
+    constructor(test) {
+        this.defaultAction = "print";
+    }
+
+    doAction(taskName) {
+        console.log("Executing default action: ", this.defaultAction)
+    }
+}
+
+function doAction(actName, arg2, arg3) {
+    console.log("this context class: ", this);
+    console.log("arg1: actName = ", actName);
+    console.log("arg2: arg2 = ", arg2);
+    console.log("arg3: arg3 = ", arg3);
+    
+    if (this.doAction)
+        this.doAction(actName)
+    else
+        console.log("Global this context..");
+}
+
+```
+
+=== With `this` context
+
+```js
+var ctx = new Context(33)
+console.log("method: ", ctx.defaultAction)
+var doact = doAction.bind(ctx, 'save-to-file');
+doact('arg2', 'arg3');
+
+```
+
+Here the `ctx` object will act as `this` inside the `doAction` method.
+
+=== Without `this` context
+
+When calling `bind` method, pass the `null` object to it, so obvisouly
+`this` gets null object, and won't have much role when actual method
+is being invoked.
+
+```js
+var doact = doAction.bind(null, 'save-to-file');
+doact('arg2', 'arg3');
+```
+
+=== With Promise
+
+How's it helpful in the promise chain ?
+
+Promise chain that follows the `Promise/A+` convention have the following
+structure,
+
+```js
+
+function handleResult(arg, result) {
+    // body
+}
+
+function sendNotification(channel, message) {
+    // body
+}
+
+returnPromiseObj(arg1)
+    .then(handleResult.bind(customCtx, someArg))
+    .then(sendNotification.bind(slackCtx, channel))
+```
+
+Here we are attaching partially filled methods `handleResult`,
+and `sendNotification` with their custom context `this` object, so
+that the promise chain will take care the result propagation properly.
+
+Take away
+---------
+
+1. `bind` can be used to partially fill the arguments ( Term for this in functional programming is 'currying')
+2. Can inject custom `this` context rather than the default global `this` or from current runtime context.
+3. Really helpful with the `Promise` based programming and other cases via `currying`.
+
+
+Reference 
+---------
+
+1. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind
+

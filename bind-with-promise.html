@@ -111,123 +111,151 @@
                         </p>
                 </header>
             </section>
-            <p><cite>bind</cite> function in js is an interesting function that does behave like a wrapper function,
-which make the function bound with wrapper function. This wrapper function helps to
-do call the target function with in custom contexts with arguments.
-Bind act similar to the decorators in python, as in decorator also there is wrapper
-function which intercept the target function. But here the <cite>bind</cite> is kinda black box
-we  can't get custom behavior from it, nevertheless the standard nature of what
-bind provide is what needed in the <cite>javascript</cite> async execution environment.</p>
-<p>Javascript is known to be called as Lisp like functional behavior exposed via C like
-syntax. The functions in js can run in any context, that context decides the <cite>this</cite>
-argument, here the <cite>bind</cite> give the power to dynamically change the execution
-context of a function.</p>
-<p>I came across with bind more when working with the promise, where we chain the
-operations using multiple functions.</p>
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>bind</code> function in js is an interesting function that does behave
+like a wrapper function, which make the function bound with wrapper function. This wrapper function helps to call the target function with in custom context and arguments.</p>
+</div>
+<div class="paragraph">
+<p>Bind act similar to the decorators in python, as in decorator also there is wrapper function which intercept the target function. But here the <code>bind</code> is kinda black box we  can&#8217;t get custom behavior from it, nevertheless the standard nature of what bind provide is what needed in the <code>javascript</code> async execution environment.</p>
+</div>
+<div class="paragraph">
+<p>Javascript is known to be called as Lisp like functional behavior exposed via C like syntax. The functions in js can run in any context, that context decides the <code>this</code> argument, here the <code>bind</code> give the power to dynamically change the execution context of a function.</p>
+</div>
+<div class="paragraph">
+<p>I came across with bind more when working with the promise,
+where we chain the operations using multiple functions.</p>
+</div>
+<div class="paragraph">
 <p>Let me show the use of bind with an example.</p>
-<p><cite>request_handler.js</cite></p>
-<div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Updated on 2/Jul/2018, with better and simple examples.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">class Context {
+    constructor(test) {
+        this.defaultAction = "print";
+    }
 
-<span class="kr">class</span> <span class="nx">Authenticator</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
-    <span class="p">}</span>
+    doAction(taskName) {
+        console.log("Executing default action: ", this.defaultAction)
+    }
+}
 
-    <span class="nx">authenticate</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Does some logic based on the authentication.</span>
-        <span class="c1">// throw Exception if auth fails.</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">resolve</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+function doAction(actName, arg2, arg3) {
+    console.log("this context class: ", this);
+    console.log("arg1: actName = ", actName);
+    console.log("arg2: arg2 = ", arg2);
+    console.log("arg3: arg3 = ", arg3);
 
-<span class="kr">class</span> <span class="nx">HandleRequest</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="p">}</span>
+    if (this.doAction)
+        this.doAction(actName)
+    else
+        console.log("Global this context..");
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_with_code_this_code_context">With <code>this</code> context</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">var ctx = new Context(33)
+console.log("method: ", ctx.defaultAction)
+var doact = doAction.bind(ctx, 'save-to-file');
+doact('arg2', 'arg3');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here the <code>ctx</code> object will act as <code>this</code> inside the <code>doAction</code> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_without_code_this_code_context">Without <code>this</code> context</h3>
+<div class="paragraph">
+<p>When calling <code>bind</code> method, pass the <code>null</code> object to it, so obvisouly
+<code>this</code> gets null object, and won&#8217;t have much role when actual method
+is being invoked.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">var doact = doAction.bind(null, 'save-to-file');
+doact('arg2', 'arg3');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_with_promise">With Promise</h3>
+<div class="paragraph">
+<p>How&#8217;s it helpful in the promise chain ?</p>
+</div>
+<div class="paragraph">
+<p>Promise chain that follows the <code>Promise/A+</code> convention have the following
+structure,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-js" data-lang="js">function handleResult(arg, result) {
+    // body
+}
 
-    <span class="nx">handle</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">header</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this object: &#39;</span> <span class="o">+</span> <span class="k">this</span> <span class="o">+</span> <span class="s2">&quot; result: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">resolve</span><span class="p">({</span><span class="s1">&#39;body&#39;</span><span class="o">:</span> <span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;content-type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">});</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+function sendNotification(channel, message) {
+    // body
+}
 
-
-<span class="kd">var</span> <span class="nx">auth</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Authenticator</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;basic&#39;</span><span class="p">});</span>
-<span class="kd">var</span> <span class="nx">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HandleRequest</span><span class="p">();</span>
-
-<span class="c1">//console.log(auth, handler);</span>
-
-<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;method&#39;</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
-<span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span> <span class="s1">&#39;Basic dweDasdfesdDDa==&#39;</span><span class="p">}</span>
-
-<span class="nx">auth</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="nx">headers</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">handler</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">headers</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;request successful..&quot;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">200</span><span class="p">;</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Some exception in the chain. Return 500 status.</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;request failed..&quot;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">500</span><span class="p">;</span>
-    <span class="p">});</span>
-</pre></div>
-<p>Just execute the code and see the result.</p>
-<div class="highlight"><pre><span></span>$ node request_handler.js
-this object: <span class="o">[</span>object Object<span class="o">]</span> result: <span class="nb">true</span>
-request successful..
-</pre></div>
-<p>The example shows simple http request handling with authentication. We chained
-the request process using promise for easiness. If you noticed here the request
-handlers are all return standard promise objects, the final orchestration code
-will chain it together with error handling.</p>
-<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">handler</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">headers</span><span class="p">))</span>
-</pre></div>
-<dl class="docutils">
-<dt>Bind function pass the arguments to target function in order they are bound to it.</dt>
-<dd><cite>.bind</cite> func syntax,</dd>
-</dl>
-<div class="highlight"><pre><span></span><span class="nx">fun</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">[,</span> <span class="nx">arg1</span><span class="p">[,</span> <span class="nx">arg2</span><span class="p">[,</span> <span class="p">...]]])</span>
-</pre></div>
-<p>As you know that <cite>.then</cite> method tasks a callback with single argument. When the
-previous promise is resolved, the result will be passed that single callback argument.
-With this in mind if you check the method <cite>handler.handle</cite>, this function takes
-two arguments and also works with its on <cite>this</cite> context. Here is where the <cite>bind</cite>
-help us to partially fill the required arguments before hand and then use that
-partially function with <cite>.then</cite> clause.</p>
-<p>If you check the function arguments, we already expecting the <cite>result</cite>
-argument. And the <cite>this</cite> object inside the <cite>handle</cite> function now resolved to
-the actual <cite>HandleRequest</cite> object that we created.</p>
-<div class="highlight"><pre><span></span><span class="nx">handle</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">header</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this object: &#39;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; result: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
-    <span class="p">...</span>
-</pre></div>
-<p>We can bind <cite>this</cite> object as <cite>null</cite> if we want, so that the function work without
-any external context with it.</p>
-<div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">handler</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">headers</span><span class="p">))</span>
-</pre></div>
-<p>If you want to see this behavior without promise chain, check bellow example for
-pure use of bind.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">wrappedHandler</span> <span class="o">=</span> <span class="nx">handler</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">headers</span><span class="p">);</span>
-    <span class="nx">wrappedHandler</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
-</pre></div>
-<p>This is actually happening inside the promise. Here the <cite>wrappedHandler</cite> function is called as Bound function.</p>
-<div class="section" id="take-away">
-<h2>Take away</h2>
-<ol class="arabic simple">
-<li><cite>bind</cite> can be used to partially fill the arguments ( Term for this in functional programming is 'currying')</li>
-<li>Can inject custom <cite>this</cite> context rather than the default global <cite>this</cite> or from current runtime context.</li>
-<li>Really helpful with the <cite>Promise</cite> based programming and other cases via <cite>currying</cite>.</li>
+returnPromiseObj(arg1)
+    .then(handleResult.bind(customCtx, someArg))
+    .then(sendNotification.bind(slackCtx, channel))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we are attaching partially filled methods <code>handleResult</code>,
+and <code>sendNotification</code> with their custom context <code>this</code> object, so
+that the promise chain will take care the result propagation properly.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_take_away">Take away</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>bind</code> can be used to partially fill the arguments ( Term for this in functional programming is <em>currying</em>)</p>
+</li>
+<li>
+<p>Can inject custom <code>this</code> context rather than the default global <code>this</code> or from current runtime context.</p>
+</li>
+<li>
+<p>Really helpful with the <code>Promise</code> based programming and other cases via <code>currying</code>.</p>
+</li>
 </ol>
 </div>
-<div class="section" id="reference">
-<h2>Reference</h2>
-<ol class="arabic simple">
-<li><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind</a></li>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reference">Reference</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind" class="bare">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind</a></p>
+</li>
 </ol>
+</div>
+</div>
 </div>
 
             <a href="#" class="go-top">Go Top</a>
