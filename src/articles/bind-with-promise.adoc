@@ -1,6 +1,6 @@
 Bind With Promise
 =================
-
+:source-highlighter: highlightjs
 :title: Bind With Promise
 :date: 21-12-2017
 :category: blog
