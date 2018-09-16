@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>How to put Encrypted Contents on Cloud Storages // all posts // HN </title>
+
+
+    <!-- Google Fonts -->
+
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pure.css">
+
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pygments.css">
+
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="/Users/haridas/Projects/personal/github/haridas.github.com/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="/Users/haridas/Projects/personal/github/haridas.github.com">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/programming.html">Programming
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/ml.html">DataScience
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/security.html">Security
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/devops.html">Devops
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/pages/about-me.html">About
+                                            </a>
+                                        </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">How to put Encrypted Contents on Cloud Storages</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/security.html">security</a>
+                                <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/server.html">server</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Fri 27 July 2012
+                        </p>
+                </header>
+            </section>
+            <p>There is a plenty of cloud storage services out there for free.
+It's very convenient and flexible that we can sync our local files with
+remote storage. For simple and non-sensitive contents this  is very useful.
+But we know that the contents on the net are being open. There is a chance for
+those contents will get read by others.</p>
+<p>I use Dropbox with my Debian machine to sync my local documents.
+But I'm worried about putting some of my documents on the cloud after
+knowing that there is a chance of breach. Because of that I avoided putting
+those contents on my cloud storage. Later I figured out that we can
+put an encrypted contents. I tried to use GPG and other methods to encrypt
+the contents and putting them on cloud. But those are all requires lot of work to
+push contents each time. GPG mainly used for transferring encrypted contents
+between sender and receiver, so that is not the good solution. We required
+a method to add the encrypted documents only to our cloud storage and the same
+time we want to access the actual copy of the document on our machine.</p>
+<p>Then I saw options for the ecrypted file systems like <strong>ecryptfs</strong>,
+<strong>encfs</strong> are available under Linux file systems. Which provide
+good flexibility that I required, and it only required pain of one time setup.</p>
+<p><em>encfs</em> is a User space filesystem, but the <em>ecryptfs</em> is working in the kernel space,
+because of that ecryptfs is little difficult to setup. But ecryptfs is faster
+and more secure than the encfs. Both of them using a passphrase as the initial
+key to do all the encryption and decryption, we can keep this
+passphrase with other file systems or even in external storage device, This is like
+normal password required to initiate the encryption or decryption.</p>
+<p>Here I'm explaining how to use the ecryptfs,</p>
+<p>First install the packages required,</p>
+<p>From root user follow these commands.</p>
+<div class="highlight"><pre><span></span><span class="gp">#</span>apt-get install ecryptfs-utils
+<span class="gp">#</span>modprobe cryptfs
+</pre></div>
+<p>I'm using Dropbox as my cloud storage. So inside your drobox folder just create
+one folder named Encrypted.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/Dropbox/Encrypted
+<span class="gp">$</span> mkdir ~/SecureDropbox
+</pre></div>
+<p>We are going to keep our documents under the ~/SecureDropbox folder, and the
+ecryptfs will generate the corresponding encrypted files on the
+~/Dropbox/Encrypted folder. So Dropbox only see this Encrypted files.</p>
+<p>Actually in terms of ecryptfs the ~/Dropbox/Encrypted act as an encrypted
+file system partition(like /dev/sda5) and the ~/SecureDrobox act as the mount
+point where we can see the actual content of the files, we require the proper
+passphrase to mount the encrypted file system to local folder.This mounting and
+creation of the encrypted file system is explained bellow.</p>
+<p>To mount the encrypted device to the mount point, use the normal mount command
+with ecryptfs as its filesystem. This step ask for set of questions.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Mount command requires root privilage.</span>
+mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+</pre></div>
+<p>Check this console page to see the complete list of commands required to finish
+the mounting operation.</p>
+<img alt="" src="/images/encryption-3.jpg" style="width: 100%;" />
+<p>Now check the filesystem to see whether the encrypted filesystem got mounted
+to the mount point, use df command.</p>
+<div class="highlight"><pre><span></span><span class="gp">#</span> df -h
+</pre></div>
+<p>So if there is no error, you can now check for the file encryption by directly
+adding one text file in to <cite>/home/haridas/SecureDropbox</cite>, immediately you can see
+the encrypted file with the same name under <cite>/home/haridas/Dropbox/Encrypted</cite>.
+Try out this.</p>
+<p>So we are done with the keeping only the encrypted files under Dropbox folder.
+So don't need to worry about the sensitive documents. But one thing is that in
+order to decrypt the files from other machines, you required the passphrase and
+other machines should support the ecryptfs. You can't us mobile
+devices to view the encrypted content.</p>
+<p>We need to mount the ecryptefs filesystem in the boot time to avoid that step
+every time. That requires passphrase, and set of other configurations, that was
+done while mounting the file system initially. We can pass this automatically by
+putting it in a <cite>.ecryptfsrc</cite> file under root home directory. So at boot time
+we can see system can read it.</p>
+<p>The <cite>/root/.ecryptfsrc</cite> file should have the following lines</p>
+<div class="highlight"><pre><span></span>key=passphrase:passphrase_passwd_file=/home/haridas/.ecryptfs/.secret-passphrase.txt
+ecryptfs_sig=b2f118ee01beb78b
+ecryptfs_cipher=aes
+ecryptfs_key_bytes=32
+ecryptfs_passthrough=n
+ecryptfs_enable_filename_crypto=n
+</pre></div>
+<p>After creating /root/.ecryptfsrc file, add the following line to <cite>/etc/fstab</cite>
+to automount at boot time.</p>
+<div class="highlight"><pre><span></span><span class="sr">/home/</span>haridas<span class="sr">/Dropbox/</span>Encrypted <span class="sr">/home/</span>haridas/SecureDropbox  ecryptfs
+defaults <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+<p>The passphrase is the important thing that you have to keep in your machine or
+with external disk. Make sure that the passphrase is available to the system
+when you are trying to mount it in the booting time itself.</p>
+<p>Keep the passphrase safe !. Which determines the strength of your encryption.</p>
+<p>Enjoy.</p>
+<dl class="docutils">
+<dt>NOTE:</dt>
+<dd>Please check the comments by &quot;Jean-Sébastien Iker&quot;, He suggested a good
+alternative of encrypting entire home directory using the inbuilt tool
+available with the ecryptfs utils package. sdfasd</dd>
+</dl>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

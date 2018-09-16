@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - devops</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/" rel="alternate"></link><link href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/devops.atom.xml" rel="self"></link><id>/Users/haridas/Projects/personal/github/haridas.github.com/</id><updated>2018-10-09T00:00:00+05:30</updated><entry><title>Format NTFS to ExtFat on Mac</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/format-ntfs-to-extfat-on-mac.html" rel="alternate"></link><published>2018-10-09T00:00:00+05:30</published><updated>2018-10-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2018-10-09:/Users/haridas/Projects/personal/github/haridas.github.com/format-ntfs-to-extfat-on-mac.html</id><summary type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_format_ntfs_to_extfat_on_mac"&gt;Format NTFS to ExtFat on Mac&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Mac support for the NTFS filesystem isn&amp;#8217;t that great,
+and mac native apps doesn&amp;#8217;t support the NTFS disks ( eg; Photo app ).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;I want to backup my original RAW photos shot from &lt;code&gt;SONY A6000&lt;/code&gt; camera
+into a disk, as i&amp;#8217;m using Photos …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_format_ntfs_to_extfat_on_mac"&gt;Format NTFS to ExtFat on Mac&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Mac support for the NTFS filesystem isn&amp;#8217;t that great,
+and mac native apps doesn&amp;#8217;t support the NTFS disks ( eg; Photo app ).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;I want to backup my original RAW photos shot from &lt;code&gt;SONY A6000&lt;/code&gt; camera
+into a disk, as i&amp;#8217;m using Photos app to manage the images, it would be nice
+if I can export the Photos library directly from the external HDD. Photos
+app does support this option, only problem was it requires compatible
+file system. So I picked the &lt;code&gt;ExtFAT&lt;/code&gt; as this one is more supported across the
+different Operating systems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Lets see How we can&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;fdisk -l
+
+diskformat command doesn't have option format&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="devops"></category></entry></feed>

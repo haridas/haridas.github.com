@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - blogs</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/" rel="alternate"></link><link href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/blogs.atom.xml" rel="self"></link><id>/Users/haridas/Projects/personal/github/haridas.github.com/</id><updated>2016-07-25T00:00:00+05:30</updated><entry><title>What I Like about J2EE</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2016-07-25:/Users/haridas/Projects/personal/github/haridas.github.com/what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
+chance to work with the latest technologies in SOA environment. From that experience
+I just want to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
+chance to work with the latest technologies in SOA environment. From that experience
+I just want to put down some points that I liked about java, as I'm coming
+from other languages I felt few things are interesting to me.&lt;/p&gt;
+&lt;div class="section" id="interfaces"&gt;
+&lt;h2&gt;Interfaces&lt;/h2&gt;
+&lt;p&gt;As a Object oriented language it doesn't have multiple inheritance, but it
+provides Interfaces. If you check java libraries there are lot of standard
+interfaces reused from Java language. Also J2EE provides lot of standard
+interfaces to the application or product developers to come up with their on
+implementation.&lt;/p&gt;
+&lt;p&gt;May be key example for this would be the Servlet interface in J2EE. If you see Servlet
+containers(Jetty, Tomcat), it comes with its own implementation of the
+&lt;cite&gt;HttpServletRequest&lt;/cite&gt; and &lt;cite&gt;HttpServletResponse&lt;/cite&gt;, all these implementation follows
+standard interface given by the J2EE. What it means is we develop our application
+independent of servlet container implementation or we can run the web application
+on any servlet container as it should be.&lt;/p&gt;
+&lt;p&gt;Interfaces are good for more disciplined and consistent software development.
+I think the current Oracle vs Google fight is because of this standard interfaces.
+Google doesn't want to change the interface to make it look like another cousin
+language.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="standards"&gt;
+&lt;h2&gt;Standards&lt;/h2&gt;
+&lt;p&gt;Most of the mainstream languages got their own feature addition process to
+propose feature requests for the language. For java it called JSR ( Java
+Specification Request). Here goes all the initial design proposals and drafting
+of the specification and mostly it follows a reference implementation of the new specification.
+I'm curious to see the final implementation of following JSR, and other interesting JSRs.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=369"&gt;JSR-369&lt;/a&gt;: Servlet 4.0 with http2 support ( Under review stage)&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=311"&gt;JSR-311&lt;/a&gt;: JAX-RS Java Restful web service specification. Reference
+implementation &lt;a class="reference external" href="https://jersey.java.net/"&gt;Jersy&lt;/a&gt;&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=370"&gt;JSR-370&lt;/a&gt;: JAX-RS 2.1 New specification to get HTTP2, non blocking I/O and etc.&lt;/dt&gt;
+&lt;dd&gt;This will really make the JAX-RS more powerful and widespread.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt;: Defines the standard annotations for dependency injection, &amp;#64;Inject, &amp;#64;Named,
+&amp;#64;Provider, &amp;#64;Singleton and &amp;#64;Qualifier and how it should behave.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=229"&gt;JSR-229&lt;/a&gt;: J2EE standard Dependency injection engine, supports the JSR-330
+convention.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="servlets-servlet-filters-and-web-fragment-for-micro-service-development"&gt;
+&lt;h2&gt;Servlets, servlet filters and web-fragment for Micro service development&lt;/h2&gt;
+&lt;p&gt;I got surprised by the flexibility of these standard interfaces supplied by the
+J2EE. It's more than enough to develop a web service or web framework from the
+ground up without much boiler plate codes. Assume if you want to do some request
+response validation via swagger schema, it's much simple by adding a servlet
+filter for it and wrapper classes to intercept the response stream.&lt;/p&gt;
+&lt;p&gt;I worked with MVC frameworks which uses a concept called middleware to intercept the
+request/response flow before actual processing, I felt the servlet filter acts the same role
+in J2EE platform. I agree the fact that J2EE is a Java plus lot of libraries, may
+be we can consider it as a web framework :).&lt;/p&gt;
+&lt;p&gt;Usually to package the servlets and filters, there is web.xml file, it
+does the url routing logic, and the filter ordering, this is kinda configuration
+files in different frameworks, but it's in xml ;).&lt;/p&gt;
+&lt;p&gt;Another interesting thing is &lt;a class="reference external" href="https://www.oracle.com/technetwork/articles/javaee/javaee6overview-part2-136353.html"&gt;web-fragment.xml&lt;/a&gt;. This is really good feature
+which we leveraged to build a micro web framework with default routes ( /admin,
+/health, /doc etc) and supplied to developers as jar file. You can call this as
+a micro web framework which can be used in the micro service development
+environment where the number of routes in a particular service going to be very
+minimal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="dependency-injection"&gt;
+&lt;h2&gt;Dependency Injection&lt;/h2&gt;
+&lt;p&gt;DI was the one area I spend most of my time. I integrated libraries which comes with
+DI support into our application. Mainly I used google guice because those
+libraries already implemented in google guice DI so we didn't have much choice.&lt;/p&gt;
+&lt;p&gt;The thing I liked about the DI is its magics. How it wire the actual
+implementation classes to the interfaces. There are standard set of annotations
+defined for DI purpose, &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt; defines it, You can import it from the
+package &lt;a class="reference external" href="https://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html"&gt;javax.inject&lt;/a&gt;. Currently most of the DI
+implementations supports JSR-330, and it's recommended to stick to JSR-330 while
+using injections in our code so that we can easily switch the actual DI engine
+based on application requirements.&lt;/p&gt;
+&lt;p&gt;As described above &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=330"&gt;JSR-330&lt;/a&gt; defines the annotations that can be used to tag the
+injection behavior across the code. Google guice, CDI, and Dagger are the few
+famous Dependency Injection library. In which CDI is the standard implementation comes
+with J2EE and described in &lt;a class="reference external" href="https://www.jcp.org/en/jsr/detail?id=229"&gt;JSR-229&lt;/a&gt;. Looks like most of the servlet containers
+are now support CDI by default. But I felt like CDI is bit more
+magic than google guice. Google guice does the manual bindings by default and
+it's more explicitly but CDI does the auto scan across the class path to find
+the implementations and targets on which it can be injected.&lt;/p&gt;
+&lt;p&gt;I will stick to google guice if third party libraries are already making use of
+it, if that's not your case then, going with CDI is best for the future support and platform
+compatibility across J2EE environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unit-testing-and-logging-libraries"&gt;
+&lt;h2&gt;Unit Testing and Logging libraries&lt;/h2&gt;
+&lt;p&gt;One of my favorite libraries in Java. New annotation based Test methods are
+far easier to write. The test runner automatically knows the Test classes and
+test methods. You can test each and very part of your application using
+Junit and some mocking library. We tested entire micro service from the
+servelet filter level.&lt;/p&gt;
+&lt;p&gt;Logging library got much more flexibility, and python's logging library was
+designed after this one. I liked the design of &lt;a class="reference external" href="https://www.slf4j.org/"&gt;slf4j&lt;/a&gt; how easily we can
+configure the backends and its logging behaviors via xml configurations. Slf4j
+is the another example of standard Interface which keeps the logging API common
+across multiple logging frameworks ( log4j, logback and java.util.logging).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="servlet-containers-and-osgi"&gt;
+&lt;h2&gt;Servlet Containers and OSGi&lt;/h2&gt;
+&lt;p&gt;There are lot of of servlet container implementations exists,
+famous one are Jetty and Tomcat. Jetty is small and more easy to embedded
+in your code. Most of the servlet containers are do auto reload if we place the
+war files into its ROOT folder.&lt;/p&gt;
+&lt;p&gt;Apart from the standard servlet containers, I liked the concept of &lt;a class="reference external" href="https://www.osgi.org/"&gt;OSGi&lt;/a&gt;. OSGi is
+more modular and service oriented platform. You can release you project as jar
+file with some version details ( As the standard jar doesn't have any notion of
+version). We can expose our application interfaces as services to
+other teams, they can consume it easily. I tried few POCs with the &lt;a class="reference external" href="https://karaf.apache.org/index.html"&gt;apache
+karaf&lt;/a&gt; and &lt;a class="reference external" href="https://karaf.apache.org/projects.html#cellar"&gt;karaf celler&lt;/a&gt; to know more of it.&lt;/p&gt;
+&lt;p&gt;I felt OSGi gives all the tools required to go with SOA based microservice
+application development. Apache karaf team call their platform as polymorphic
+container it can run OSGi bundles, war, jar, spring etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="java-community"&gt;
+&lt;h2&gt;Java community&lt;/h2&gt;
+&lt;p&gt;Java community is huge and vast with around 2 decades of experience and maturity
+in the tools and platforms build on it. And the new language upgrades catching
+up with the new trends in computer language arena.  eg: Java8 got lambdas,
+functional stream processing APIs etc. And interestingly java9 comes with a REPL.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;People who says about java is verbose and rigid compared to
+other languages. But I would say that verbosity thing can be easily overcome
+by using a good IDE. Regarding the flexibility it's purely with the product
+design. I mostly see development flows like this, develop the initial product using any of
+the language that you are comfortable with, if the situation arises for more scalability /
+reliability / speed you can switch to java or other static languages.
+If you consider the SOA platforms this isn't required at all, create your
+microservice using the tool or language which fits best on top of a standard
+communication protocol ( http / thrift / protocol buffer etc ).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References:-&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://techsticles.blogspot.in/2016/07/oracle-and-fall-of-java-ee.html?utm_content=bufferf1a2e&amp;amp;utm_medium=social&amp;amp;utm_source=linkedin.com&amp;amp;utm_campaign=buffer"&gt;Oracle and Fall of J2EE&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content><category term="j2ee"></category><category term="java8"></category></entry></feed>

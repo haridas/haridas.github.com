@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Format NTFS to ExtFat on Mac // all posts // HN </title>
+
+
+    <!-- Google Fonts -->
+
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pure.css">
+
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pygments.css">
+
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="/Users/haridas/Projects/personal/github/haridas.github.com/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="/Users/haridas/Projects/personal/github/haridas.github.com">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/programming.html">Programming
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/ml.html">DataScience
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/security.html">Security
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/devops.html">Devops
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/pages/about-me.html">About
+                                            </a>
+                                        </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Format NTFS to ExtFat on Mac</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/devops.html">devops</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/devops.html">devops</a> &middot; Tue 09 October 2018
+                        </p>
+                </header>
+            </section>
+            <div class="sect1">
+<h2 id="_format_ntfs_to_extfat_on_mac">Format NTFS to ExtFat on Mac</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mac support for the NTFS filesystem isn&#8217;t that great,
+and mac native apps doesn&#8217;t support the NTFS disks ( eg; Photo app ).</p>
+</div>
+<div class="paragraph">
+<p>I want to backup my original RAW photos shot from <code>SONY A6000</code> camera
+into a disk, as i&#8217;m using Photos app to manage the images, it would be nice
+if I can export the Photos library directly from the external HDD. Photos
+app does support this option, only problem was it requires compatible
+file system. So I picked the <code>ExtFAT</code> as this one is more supported across the
+different Operating systems.</p>
+</div>
+<div class="paragraph">
+<p>Lets see How we can</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">fdisk -l
+
+diskformat command doesn't have option format</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

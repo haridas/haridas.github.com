@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>playing with timezone using pytz // all posts // HN </title>
+
+
+    <!-- Google Fonts -->
+
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pure.css">
+
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pygments.css">
+
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="/Users/haridas/Projects/personal/github/haridas.github.com/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="/Users/haridas/Projects/personal/github/haridas.github.com">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/programming.html">Programming
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/ml.html">DataScience
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/security.html">Security
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/devops.html">Devops
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/pages/about-me.html">About
+                                            </a>
+                                        </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">playing with timezone using pytz</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/python.html">python</a>
+                                <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/pytz.html">pytz</a>
+                                <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/timezone.html">timezone</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/blog.html">blog</a> &middot; Wed 11 May 2011
+                        </p>
+                </header>
+            </section>
+            <p>World Timezone Image from www.physicalgeography.net</p>
+<img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" />
+<p>When we develop web applications some times we need multiple timezone
+support. If we don’t have any previous experience then it might be a
+tough and confusing job. Here I will help you to get some basics of
+Timezone conversion.</p>
+<p>I have been used timezone with django application, but the concept is
+same for all languages.So here I will explain things using python
+timezone module &quot;pytz&quot;. You have to install this module first into your
+system by using &quot;easy_install&quot;</p>
+<p>Install python timezone module.</p>
+<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install pytz
+</pre></div>
+<p>This python module support all major timezones and it helps to convert
+date and time in one timezone to any other timezones.You can use the
+human readable tiemzone names in pytz module to represent the local
+timezones.( like Asia/Kolkata, Europe/Paris, EST etc. ).</p>
+<p>When we deal with multiple timezone in our application, we might have
+backend database where we store these date and time informations. Most
+databases are support UTC as it's the common timezone format. And it's
+better to keep a unique timezone information when saving the date and
+time in database and database engines not going to support all timezone
+formats directly. So we need to stick with commonly used <strong>UTC/GMT</strong>
+(Coordinated Universal Time) timezone format , it also helps to remove
+the daylight saving issues.</p>
+<p>Here is the strategies used in web applications with multiple timezone
+support :-</p>
+<ol class="arabic simple">
+<li>Save Date and Time information’s in database as UTC format.</li>
+<li>Convert the UTC time to corresponding local timezones, based on the
+user request and location.</li>
+<li>We take local timezone information from browser or user select a
+timezone form the list of timezones that supported by our
+application. We can collect this information easily with the help of
+Javascript.</li>
+</ol>
+<p>Bellow I'm explaining some real scenarios where we need to change time
+zone information's from UTC to local and vice versa,</p>
+<div class="section" id="saving-date-and-time-in-database">
+<h2><strong>1. Saving Date and Time in Database :-</strong></h2>
+<p>We always save date and time information in database as UTC standard.
+In django/Rails or other Framworks we have an option to set Projects
+default tiemzone as UTC. So in our database the time and date are always
+in UTC. If above methods are not working for your application you
+manually need to convert the local system time into UTC format and then
+save it. Below code sample explain things more clearly,</p>
+<div class="highlight"><pre><span></span><span class="go">haridas@haridas-debian:~$ python</span>
+<span class="go">Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)</span>
+<span class="go">[GCC 4.4.5] on linux2</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c1">#Get local system time and</span>
+<span class="go">    date.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system</span>
+<span class="go">datetime.datetime(2011, 5, 7, 9, 42, 23, 751976)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1"># utcnow() function</span>
+<span class="go">     give the UTC time of current local time.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c1"># But this date tupple doesn&#39;t have the timezone</span>
+<span class="go">      information.</span>
+<span class="go">      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive</span>
+<span class="go">     representation(Date object without Timezone information.)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span><span class="o">.</span><span class="n">tzinfo</span> <span class="c1">#This output None value or nothing.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local_system_utc</span><span class="p">)</span> <span class="c1">#Adding</span>
+<span class="go">     timezone information to &quot;local_system_utc&quot;</span>
+
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span>
+<span class="go">     datetime.datetime(2011, 5, 7, 5, 42, 49, 253618, tzinfo=&lt;UTC&gt;) #you can</span>
+<span class="go">     see the tzinfo variable included with the datetime tuple.</span>
+<span class="go">     #But when saving UTC time inside DB you can use naive representation of</span>
+<span class="go">     datetime object in UTC.</span>
+<span class="go">     #You can do the tzinfo addition when retrieving the time from DB.</span>
+</pre></div>
+<p>By this way we can save time and date in Database even-though users are
+from different timezone. We need to consider them only when retrieving
+the time object from database, ie; we need to convert our UTC time to
+user specific timezone. So this conversion is only for view purpose.</p>
+</div>
+<div class="section" id="converstion-from-utc-to-localtime">
+<h2><strong>2. Converstion from UTC to localtime</strong></h2>
+<p>We need to convert UTC times to corresponding user timezone, follow the
+bellow method,</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1">#Our UTC naive time from DB,</span>
+<span class="go">   for the time being here I&#39;m taking it as current system UTC time..</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
+<span class="go">    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive</span>
+<span class="go">   form.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;Europe/Paris&#39;</span><span class="p">)</span> <span class="c1">#Our Local timezone, to</span>
+<span class="go">   which we want to convert the UTC time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">now_utc</span><span class="p">)</span> <span class="c1">#Add Timezone information to</span>
+<span class="go">   UTC time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
+<span class="go">datetime.datetime(2011, 5, 9, 6, 36, 39, 883479, tzinfo=&lt;UTC&gt;) # The</span>
+<span class="go">   full datetime tuple</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="o">=</span> <span class="n">now_utc</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">local</span>\<span class="n">_tz</span><span class="p">)</span> <span class="c1"># Convert to local</span>
+<span class="go">   time.</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_time</span> <span class="c1">#Current local time in Paris</span>
+<span class="go">datetime.datetime(2011, 5, 9, 8, 36, 39, 883479, tzinfo=&lt;DstTzInfo</span>
+<span class="go">   &#39;Europe/Paris&#39; CEST+2:00:00 DST&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="manage-browser-local-time-at-server">
+<h2><strong>3. Manage Browser Local Time at Server</strong></h2>
+<p>Rather than just conversion of UTC time, some times we need to fetch
+records from the Database in between particular interval of local time
+time, for eg; From 07:00 Morning to 22:30 Evening of local time. Here
+our data is in UTC format, so we need to get the corresponding UTC time
+of these local time interval and then search the DB, you can follow
+bellow method,</p>
+<ol class="arabic simple">
+<li>From browser you will get time in epoch format (A unique number to
+represent a particular time) or in string format ie; Y-M-D-H-M-S</li>
+<li>Convert this epoch time to python UTC time.</li>
+<li>Then search the Database.</li>
+</ol>
+<p>You can reconstruct the javascrpt string format of the date in to
+python date object by,</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)</span>
+<span class="go">    datetime.datetime(2011, 6, 7, 10, 26, 45)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_date</span> <span class="o">=</span>
+<span class="go">   datetime.datetime(year=2011,month=6,day=7,hour=10,minute=26,second=45)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">#From DB we will get the corresponding users timezone information , for</span>
+<span class="go">   eg; we can take &#39;America/Chicago&#39; as our local timezone.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timezone</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local</span>\<span class="n">_date</span><span class="p">,</span><span class="ow">is</span>\<span class="n">_dst</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span>
+<span class="go">datetime.datetime(2011, 6, 7, 10, 26, 45, tzinfo=&lt;DstTzInfo</span>
+<span class="go">   &#39;America/Chicago&#39; CDT-1 day, 19:00:00 DST&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">#Now you have standard localtime and it can be easily converted to the</span>
+<span class="go">   UTC and then do the Database search and other things.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_utc</span> <span class="o">=</span> <span class="n">local_std</span>\<span class="n">_date</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_utc</span>
+<span class="go">datetime.datetime(2011, 6, 7, 15, 26, 45, tzinfo=&lt;UTC&gt;)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
