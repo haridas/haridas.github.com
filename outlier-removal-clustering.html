@@ -13,15 +13,14 @@
     <!-- Google Fonts -->
 
     <!--
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
     -->
 
-    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
-    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
 
     <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
 
@@ -57,6 +56,26 @@
 
 
                                         <p class="links">
+                                            <a href="https://haridas.in/category/programming.html">Programming
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="https://haridas.in/category/data-science.html">Data-Science
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="https://haridas.in/category/security.html">Security
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="https://haridas.in/category/devops.html">Devops
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="https://haridas.in/pages/github-gists.html">Gists
+                                            </a>
+                                        </p>
+                                        <p class="links">
                                             <a href="https://haridas.in/pages/about-me.html">About
                                             </a>
                                         </p>
@@ -90,11 +109,11 @@
                         </p>
 
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
     Tweet
 </a>
 
-<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
 <!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-size="medium"></div>
@@ -107,7 +126,7 @@
                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
                  })();
 </script>                        <p class="post-date">
-                            in <a href="https://haridas.in/category/blogs.html">blogs</a> &middot; Sun 04 September 2016
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Sun 04 September 2016
                         </p>
                 </header>
             </section>
@@ -116,9 +135,124 @@
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -197,12 +331,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -215,27 +357,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -431,7 +585,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -441,11 +597,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -693,6 +862,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -731,7 +903,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -853,6 +1025,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -869,16 +1045,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -894,6 +1078,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -944,8 +1133,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1084,16 +1280,14 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Outlier-Removal-Clustering">Outlier Removal Clustering<a class="anchor-link" href="#Outlier-Removal-Clustering">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Outlier Removal Clustering ( ORC ) is a improved version of KMean with outlier removal in each iteration. As we all know that KMean is more sensitive with outliers, and might result into local optimal centroids. For unsupervised clustering KMean is the mainly used algorithm because which is very effective as well as easy to implement. For data which has lot of outliers still works well with KMean if we add outlier removal mechanism in each iteration of the KMean clustering. ORC is the name of the algorithm. This will ensure the centroid calculation won't be skewed by the points far away from the cluster centroid.</p>
 <p><strong>Lets start with understanding the data</strong></p>
@@ -1120,7 +1314,7 @@ h6:hover .anchor-link {
 <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1130,7 +1324,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -1197,8 +1391,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Lets-see-the-data-distribution-in-terms-of-historgram">Lets see the data distribution in terms of historgram<a class="anchor-link" href="#Lets-see-the-data-distribution-in-terms-of-historgram">&#182;</a></h3><p>It clearly shows the points not in normal distribution as expected, so we have multiple clusters that we can isolate from this data.</p>
 
@@ -1215,7 +1408,7 @@ h6:hover .anchor-link {
 <span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1225,7 +1418,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -1238,7 +1431,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1251,7 +1444,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1369,7 +1562,8 @@ CkREJ7Ap+d+G8v96ve0w3whMlfTR5IPfCfSzg7yutxj68XXghuRs6f8B/qLgenpzG/ADSW3AdqAu
 X+A9BPW5+f594CPAI+XXN09ExAXFllTWKCdnSjoOOAtok7Sa8t/6ioj4l2Ira2gXAwskDQdeAGYV
 XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 4mAwM7MUB4OZmaX8fyDb/LPL+OUeAAAAAElFTkSuQmCC
-">
+"
+>
 </div>
 
 </div>
@@ -1379,8 +1573,7 @@ XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Plot-it-on-2D-plane">Plot it on 2D plane<a class="anchor-link" href="#Plot-it-on-2D-plane">&#182;</a></h3><p>Here comes the easy way to see the natural clusters in the data. As currently our data is in 2d it's pretty straight forward to identify the natural clusters by ploting it.</p>
 
@@ -1397,7 +1590,7 @@ XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1407,7 +1600,7 @@ XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -1420,7 +1613,7 @@ XE9KRKyStAhYDbybfL+5r3V8gpuZmaU08lCSmZnlwMFgZmYpDgYzM0txMJiZWYqDwczMUhwMZmaW
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1752,7 +1945,8 @@ bfgsgN9RSn0FwGsANswN44DYeMPX3wZQAPBHpiL050k+3t8mNYfkPyilDkJHBY0AOEtyI0VH/GMA
 Pw7gK0qpS9D3zBGS/6m/LdtUHILOyvcAfA3AB/vcntyQrCqlPgfgEoBr5t8zzbaXZChBEIQhZlDc
 NYIgCEIPEJEXBEEYYkTkBUEQhhgReUEQhCFGRF4QBGGIEZEXBEEYYkTkBUEQhhgReUEQhCHm/wcQ
 G8zD1Ch+pwAAAABJRU5ErkJggg==
-">
+"
+>
 </div>
 
 </div>
@@ -1762,8 +1956,7 @@ G8zD1Ch+pwAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Lets-cluter-the-points-with-KMean">Lets cluter the points with KMean<a class="anchor-link" href="#Lets-cluter-the-points-with-KMean">&#182;</a></h3><p>As we know above that we can give the number cluster as 3 while applying the KMean algorithm. We are using <code>sklearn</code> library here, also plotting the final clusters by applying different color to each clusters.</p>
 
@@ -1791,7 +1984,7 @@ G8zD1Ch+pwAAAABJRU5ErkJggg==
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1801,7 +1994,7 @@ G8zD1Ch+pwAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -1814,7 +2007,7 @@ G8zD1Ch+pwAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -2485,7 +2678,8 @@ Y2nkwnHYzuSbsBp4RUQ+BKqAiDlgLkOJvK+vy4FY4A/BGaELVfX77kZqmKrWishDOL2CPMAqVY2k
 3hHDgbuBD0XkfZxjZqGqvutusv9XZuGMyo8B/grc53KekKlqkYhsAt4HqoN/rmxoeRsMZYwxUay9
 NNcYY4xpA1bkjTEmilmRN8aYKGZF3hhjopgVeWOMiWJW5I0xJopZkTfGmChmRd4YY6LY/wGYoMif
 Zr3WPAAAAABJRU5ErkJggg==
-">
+"
+>
 </div>
 
 </div>
@@ -2495,8 +2689,7 @@ Zr3WPAAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="KMean-with-Outlier-removal-(ORC)">KMean with Outlier removal (ORC)<a class="anchor-link" href="#KMean-with-Outlier-removal-(ORC)">&#182;</a></h3><p>From the initial test it's known that the clusters are overlapping, so the KMean iterations are giving consistent centroid selection. But it's pretty clear that due to the anomalies around the cluster the cluster centroids are bit deviated to accommodate these points. On the plot it's clear that, we can remove it out still we will get the same cluster with more clear boundaries.</p>
 <p>The method has following steps:-</p>
@@ -2688,7 +2881,7 @@ Zr3WPAAAAABJRU5ErkJggg==
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ORC clustering&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2698,7 +2891,7 @@ Zr3WPAAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -2713,7 +2906,7 @@ Exported the cluster and anomalies into csv files
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -2726,7 +2919,7 @@ Exported the cluster and anomalies into csv files
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -3926,7 +4119,8 @@ TI1ZTwzHdpgLYVfAnpSpgSTNMcY8DLyJbdbxJjAuU+NtA409XiHDMVvX8Qo7TMz6eK2Zxh6zfo7d
 PmnQ8eobhXg8Ho/H4/F4PGk0FIuFx+PxeDwej8fTIPAC2ePxeDwej8fjScMLZI/H4/F4PB6PJw0v
 kD0ej8fj8Xg8njS8QPZ4PB6Px+PxeNLwAtnj8Xg8Ho/H40nDC2SPx+PxeDwejycNL5A9Ho/H4/F4
 PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
-">
+"
+>
 </div>
 
 </div>
@@ -3936,8 +4130,7 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There is no much importance to the colouring rather than visual purpose. Kmean does the clustering randomly it may label one cluster into different index when we try multiple times.</p>
 
@@ -3945,8 +4138,7 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-I-generated-this-sample-cluster-data.">How I generated this sample cluster data.<a class="anchor-link" href="#How-I-generated-this-sample-cluster-data.">&#182;</a></h3>
 </div>
@@ -3967,7 +4159,7 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3977,7 +4169,7 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -3990,7 +4182,7 @@ PJ40/h+/3oFW6YYPagAAAABJRU5ErkJggg==
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -5019,7 +5211,8 @@ BSSju8oqSJYCS4QQZ4EUoMC8Of5PQSzwmgOogT1CCIBgKeVH+RtSzqSUGUKIwehm4ugBi6WUOc5I
 eJsIIeoB3YCzQohT6N4346SUu/I3snfGUGCVEMIAuA58mNPGStGQQqFQFALKsnEKhUJRCCjJXKFQ
 KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
 5wAAAABJRU5ErkJggg==
-">
+"
+>
 </div>
 
 </div>
@@ -5041,14 +5234,13 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
 <span class="c1">#_d = pd.read_csv(&quot;./2d-cluster.csv&quot;, index_col=0)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h3><p>ORC algorithm effectively trims the outliers from the cluster data vectors. The accuracy of this model varies on data set, so accordingly we need to tune the parameters.</p>
 
@@ -5101,8 +5293,8 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
         </div>
     </div>
@@ -5118,7 +5310,7 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
         &ndash;
         &copy; HN &ndash;
         <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
-        for <a href="https://blog.getpelican.com/">Pelican</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
 </footer>            </div>
 
     </div>
@@ -5149,7 +5341,7 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
     </script>
     <!--
     <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "https://www.");
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script type="text/javascript">
@@ -5168,7 +5360,7 @@ KAoBJZkrFApFIaAkc4VCoSgElGSuUCgUhYCSzBUKhaIQUJK5QqFQFAJKMlcoFIpC4H+h65w+skKA
 
     (function() {
      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
 

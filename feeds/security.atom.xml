@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - security</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/" rel="alternate"></link><link href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/security.atom.xml" rel="self"></link><id>/Users/haridas/Projects/personal/github/haridas.github.com/</id><updated>2018-09-17T00:00:00+05:30</updated><entry><title>Https for your blog</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/https-for-your-blog.html" rel="alternate"></link><published>2018-09-17T00:00:00+05:30</published><updated>2018-09-17T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2018-09-17:/Users/haridas/Projects/personal/github/haridas.github.com/https-for-your-blog.html</id><summary type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_setup_https_for_your_blog"&gt;Setup HTTPS for your blog&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There are multiple way to enable &lt;code&gt;https&lt;/code&gt; for your site, and it&amp;#8217;s purely free of cost. This is possible
+because of the community effort by &lt;code&gt;letsencrypt&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;I&amp;#8217;m hosting my blog with &lt;code&gt;github pages&lt;/code&gt;, so recently
+github itself startered providing https certificates
+for all …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_setup_https_for_your_blog"&gt;Setup HTTPS for your blog&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There are multiple way to enable &lt;code&gt;https&lt;/code&gt; for your site, and it&amp;#8217;s purely free of cost. This is possible
+because of the community effort by &lt;code&gt;letsencrypt&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;I&amp;#8217;m hosting my blog with &lt;code&gt;github pages&lt;/code&gt;, so recently
+github itself startered providing https certificates
+for all github page sites.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If this isn&amp;#8217;t your option, another option is hosting your DNS with cloudflare.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Cloudflare got tone of advanced features for any type of websites. Most of
+these fatures aren&amp;#8217;t usable for static blogs though, but we could make use
+of the free certificates and http &amp;#8594; https redirect option along with the
+DNS zone record hosting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Does this really required to server the static and open content via &lt;code&gt;http&lt;/code&gt; ?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="literalblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;It's highly recommended to follow the latest web standards. HTTP/2 is the the new version http which only works on TLS enabled mode. This means enabling the https helps to ensure your site futurestic as well as protect against standard atacks.&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Ddos Attack ?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="literalblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;All services are prone to this attack, but the service providers can detect
+the DDOS early itself so that it can take actions like blocking connections
+and etc. If you are hosting yur site on a well known servie providers like
+Cloudera, Github, Godady, AWS etc, they already have mechanisms to mitigate
+the DDOS attck.&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="https"></category><category term="dns"></category><category term="ddos"></category></entry></feed>
