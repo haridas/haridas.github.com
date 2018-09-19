@@ -2,7 +2,7 @@ Upload old images into google photos with correct timestamp
 ###########################################################
 
 :date: 2016-01-08 16:29
-:catogory: blog
+:catogory: devops
 :tags: sync, photo
 
 

@@ -1,7 +1,7 @@
 How to use Python Virtualenv and Ruby Version Manager
 #####################################################
 :date: 2011-08-31 06:20
-:category: blog
+:category: programming
 :tags: python,ruby
 
 First thing I want tell you that here I'm not comparing these two tools

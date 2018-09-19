@@ -1,7 +1,7 @@
 Spell Checker for Vim
 #####################
 :date: 2015-06-28
-:category: blog
+:category: programming
 :tags: vim
 
 

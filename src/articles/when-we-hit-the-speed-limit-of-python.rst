@@ -1,6 +1,6 @@
 What happens when we hit the speed limit of python
 ==================================================
-:category: blog
+:category: programming
 :date: 10-04-2014
 :tags: python,networking,tcp
 

@@ -2,7 +2,7 @@ What I Like about J2EE
 ======================
 
 :date: 2016-07-25
-:category: blogs
+:category: programming
 :tags: j2ee,java8
 
 

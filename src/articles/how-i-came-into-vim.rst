@@ -1,6 +1,6 @@
 My Vim Story - 1
 ================
-:category: blog
+:category: programming
 :tags: linux,vim,editor
 :date: 2012-05-27 16:30
 :title: How I came in to Vim

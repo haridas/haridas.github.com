@@ -30,6 +30,11 @@ REVERSE_ARCHIVE_ORDER = True
 # Other menu items
 MENUITEMS = [
     #('Archives', 'archives.html'),
+    ('Programming', 'category/programming.html'),
+    ('Data-Science', 'category/data-science.html'),
+    ('Security', 'category/security.html'),
+    ('Devops', 'category/devops.html'),
+    ('Gists', 'pages/github-gists.html'),
     ('About', 'pages/about-me.html'),
 ]
 

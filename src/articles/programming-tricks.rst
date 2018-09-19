@@ -1,6 +1,6 @@
 Some Programming Strategies
 ===========================
-:category: blog
+:category: programming
 :date: 26-01-2013
 :title: Some Programming Strategies
 

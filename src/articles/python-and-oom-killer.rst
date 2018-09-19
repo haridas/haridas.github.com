@@ -1,7 +1,7 @@
 Python and OOM Killer
 =====================
 
-:category: blog
+:category: programming
 :tags: python,oom,celery
 :date: 2014-10-04
 

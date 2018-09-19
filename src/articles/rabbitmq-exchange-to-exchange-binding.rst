@@ -2,7 +2,7 @@ RabbitMQ's Exchange-to-Exchange binding
 =======================================
 
 :date: 30-04-2014
-:category: blog
+:category: programming
 :tags: amqp,rabbitmq
 
 I'm a long time user of RabbitMQ for different type of tasks

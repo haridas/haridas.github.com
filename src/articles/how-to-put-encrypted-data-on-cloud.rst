@@ -1,6 +1,6 @@
 How to put Encrypted Contents on Cloud Storages
 ===============================================
-:category: blog
+:category: devops
 :tags: security,server
 :date: 27-07-2012
 

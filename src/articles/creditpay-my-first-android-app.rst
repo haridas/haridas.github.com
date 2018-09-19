@@ -2,7 +2,7 @@ Creditpay My First app in playstore !
 =====================================
 
 :date: 20-04-2017
-:category: blog
+:category: programming
 :tags: android,firebase
 
 

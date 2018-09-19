@@ -1,7 +1,7 @@
 Find the Absolute path in Shell Script
 ######################################
 :date: 2011-11-19 06:01
-:category: blog
+:category: devops
 :tags: server admin,shell
 
 This is a simple shell script snippet to get the full absolute path of

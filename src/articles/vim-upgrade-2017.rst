@@ -5,7 +5,7 @@ Vim Upgrade 2017
 :tags: vim
 :slug: vim-upgrade-2017
 :summary: Vim upgrade with new set of plugins.
-:category: blog
+:category: programming
 
 After using vim for few years the main difficulties I have with my current
 pathogen based vim plugin environment is, it's bit difficult to re-produce a

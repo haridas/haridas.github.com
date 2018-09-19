@@ -1,7 +1,7 @@
 Programming Vs. Scripting.
 ##########################
 :date: 2010-09-28 09:21
-:category: blog
+:category: programming
 :tags: programming,scripting
 
 

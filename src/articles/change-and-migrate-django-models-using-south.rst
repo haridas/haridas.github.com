@@ -1,7 +1,7 @@
 Change and Migrate Django Models using South
 ############################################
 :date: 2011-06-17 10:41
-:category: blog
+:category: programming
 :tags: python,django,south
 
 .. image:: /images/south.png

@@ -1,7 +1,7 @@
 playing with timezone using pytz
 ################################
 :date: 2011-05-11 04:15
-:category: blog
+:category: programming
 :tags: python,pytz,timezone
 
 World Timezone Image from www.physicalgeography.net

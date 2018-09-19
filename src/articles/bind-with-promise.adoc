@@ -3,7 +3,7 @@ Bind With Promise
 
 :title: Bind With Promise
 :date: 21-12-2017
-:category: blog
+:category: programming
 :tags: nodejs,promise,bind
 
 

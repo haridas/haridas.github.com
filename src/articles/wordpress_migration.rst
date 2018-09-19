@@ -1,7 +1,7 @@
 Wordpress blog migrated to Pelican
 ==================================
 :tags: wordpress,pelican,python
-:category: blog
+:category: programming
 :date: 2012-05-07 13:33
 
 

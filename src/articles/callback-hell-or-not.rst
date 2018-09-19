@@ -2,7 +2,7 @@ Is callback really a bad thing ? It isn't.
 ==========================================
 
 :date: 05-1-2017
-:category: blog
+:category: programming
 :tags: node,callback,promise
 
 

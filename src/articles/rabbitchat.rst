@@ -1,7 +1,7 @@
 RabbitChat - Web based chat system
 ##################################
 :date: 2011-07-28 12:10
-:category: blog
+:category: programming
 :tags: programming,python,Server Architecture
 
 
