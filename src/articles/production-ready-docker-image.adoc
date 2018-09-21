@@ -1,5 +1,3 @@
-== Production ready docker images
-
 :title: Production ready docker images
 :category: devops
 :tags: docker, security
