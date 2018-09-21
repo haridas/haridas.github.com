@@ -1,5 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2017-12-21T00:00:00+05:30</updated><entry><title>Bind With Promise</title><link href="https://haridas.in/bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-21:/bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/" rel="alternate"></link><link href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/hn.atom.xml" rel="self"></link><id>/Users/haridas/Projects/personal/github/haridas.github.com/</id><updated>2018-09-19T00:00:00+05:30</updated><entry><title>Production ready docker images</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2018-09-19:/Users/haridas/Projects/personal/github/haridas.github.com/production-ready-docker-images.html</id><summary type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_production_ready_docker_images"&gt;Production ready docker images&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Docker is a de facto standard across all the software development pipeline.
+Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
+for the development phase, but taking the docker into production level involves
+bunch security concerts. Here I&amp;#8217;m …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
+&lt;h2 id="_production_ready_docker_images"&gt;Production ready docker images&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Docker is a de facto standard across all the software development pipeline.
+Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
+for the development phase, but taking the docker into production level involves
+bunch security concerts. Here I&amp;#8217;m explaining few important points that need to be
+taken care when packaging the docker for production environments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Most of the docker based project comes with their own &lt;code&gt;Dockerfile&lt;/code&gt;, so that the
+project can be packaged and shipped in Docker image format. There are multiple
+benefits doing this way,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Easy to package any application into fully isolated docker image.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Best tooling around the docker makes it simpler to manage docker images and
+containers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker container provides clean OS Process level isolation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Control the resource usage of docker container via restricting CPU and Memory
+conception.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Build once deploy many principle, this ensures clean release management.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Above listed are well known facts with the docker containers. But when we move into
+production environments there are not that well discussed facts about the docker
+which surely compromise the security of the production environments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The main points that need to be taken care when packaging and deploying docker
+are,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure Docker images are build in trusted environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Docker container processes shouldn&amp;#8217;t run in root privilege.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Enable all the host level securities and firewall setup. eg; SELinux&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Principle of least privilege&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_secure_docker_images"&gt;Secure Docker images&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When creating docker images follow these steps to ensure the security of the
+docker images.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_make_use_of_user_keyword_in_dockerfile"&gt;Make use of USER keyword in Dockerfile&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This will ensure the docker container process won&amp;#8217;t run in root user mode or
+with UID 0. If we aren&amp;#8217;t setup the non-root user with in the image then the
+docker container run with UID 0 by default. This means even the normal user
+who runs the docker gets the root level privileges on the host machine, and
+the docker container can modify contents in host /etc folder if wants.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To illustrate this, Just pull a &lt;code&gt;ubuntu&lt;/code&gt; image from dockerhub and test,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;$ docker run -it --rm -v /etc:/host-etc ubuntu:latest bash
+(inside-docker-root)# rm /host-etc/hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here we can remove the file from host etc folder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We can run the container with given &lt;code&gt;uid:gid&lt;/code&gt; pair at container startup time. This
+is a simple way to restrict the privilege of processes running inside the docker.
+But main downside for this method is that the user has to make sure
+docker isn&amp;#8217;t started with root privilege, the image itself isn&amp;#8217;t internally equipped
+with the non-root user privilege. Because of this reason this method isn&amp;#8217;t recommended
+for the production environments. For testing purpose this is a good option.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;$ docker run -it --rm --user 1000:1000 -v /etc:/hostEtc ubuntu:latest bash
+(uid-1000) $ rm /hostEtc/hosts&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Lets see how we can embedded this restriction when we creating the docker image
+itself. See a sample Dockerfile definition for the same.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# Dockerfile example
+FROM ubuntu:18.04
+
+ENV APP_USER=docker_app
+
+# Create user
+RUN useradd --user-group --create-home --shell /bin/bash \
+    --comment "Docker image user" $APP_USER
+
+# Add user to sudoers ( OPTIONAL, Disable it in production environments )
+RUN yum install -y sudo gettext wget telnet net-tools python-setuptools &amp;amp;&amp;amp; \
+    echo "$APP_USER ALL=(ALL) NOPASSWD: ALL" &amp;gt;&amp;gt; /etc/sudoers
+
+USER $APP_USER
+WORKDIR /home/$APP_USER&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you build the docker image from this custom Dockerfile, which enforce the container
+process to run with privilege of user named &lt;code&gt;docker_app&lt;/code&gt;. This is enforced by the
+keyword &lt;code&gt;USER&lt;/code&gt; in Dockerfile, it to switches the default docker user (root)
+to the custom username or uid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;docker build . -t ubuntu-custom
+docker run -it --rm ubuntu-custom /bin/bash
+(docker_app)$&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_enable_user_namespace"&gt;Enable user namespace&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This is the most secured method to secure the docker container from privileged
+access issues. This guarantees that irrespective what the Dockerfile author does,
+user namespace ensure the docker container processes never run with uid 0.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Username space does this by the help of UID mapping at host machine level, and this
+is enabled with the &lt;code&gt;dockerd&lt;/code&gt; docker daemon side. That means only the admin with full
+host machine access can configure the docker daemon to run with user namespace enabled
+mode.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock important"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Important&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+To enable this feature you need docker version 1.13 or above,
+and Linux kernel supports this featuer from version 3.11 and above.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Configuration at the system level is trivial one,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Change the &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; as below,&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-json" data-lang="json"&gt;{
+    "userns-remap": "host-user1"
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Ensuer &lt;code&gt;host-user1&lt;/code&gt; exists in Host machine.
+. Create subuid and subgid mapping file, as bellow&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;#UID mapping
+$ cat /etc/subuid
+host-user1:231072:65536
+
+#GID mapping
+$ cat /etc/subgid
+host-user1:231072:65536&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The above UID and GID mapping files configure the offset of USER ids used inside
+the docker container. ie; If UID inside the docker is 0 ( root ), then it gets
+mapped UID 231072 (231072 + 0 = 231072) in host machine. This offset helps to
+ensure the UID never be root uid 0. This is the same case for GID also.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+When doing this mapping we generally pick a higher number for the UID and GUID which are
+not generally used on the host machine. Both UID and GID are 32-bit number, so
+we can pick higher range for the docker users.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_supply_secrets_and_configurations_via_tmpfs"&gt;Supply secrets and configurations via tmpfs&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Generally the secrets are stored in a volume or folder and attached to the docker
+via volume mounting. In case of configuration it&amp;#8217;s fine to pass them via
+environment variables. Application should careful with the secrets,
+as it shouldn&amp;#8217;t accidentally write the secrets into log files and send out in
+plain text format to other components.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you are using the Docker container managers like &lt;code&gt;kubernetes&lt;/code&gt;, &lt;code&gt;swarm&lt;/code&gt; etc then
+they comes with the secret management facilities by default. Please make use of it
+if you are using any of these tools. For the plain Docker running scenario the
+admin has to take care the volume mounting securely making use of &lt;code&gt;tmpfs&lt;/code&gt; and
+a custom volume driver which bridges the connection between secret storage and docker
+container. One example for this is Hashicorp Vault.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock important"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Important&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Making use of Hashicorp Vault with custom volume driver is neat method
+to share the secrets and configuration securely.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_unless_required_dont_use_cmd_in_dockerfile"&gt;Unless required don&amp;#8217;t use CMD in Dockerfile&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This isn&amp;#8217;t that critical, but still a best practice to avoid unnecessary arguments
+passing via command line when running the docker container.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Making a container immutable is ideal option, ie; it doesn&amp;#8217;t take any extra
+command line arguments at run time. If it required any configuration values read
+from the Environment variables and use volumes for secret management.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To enforce this, use only &lt;code&gt;ENTRYPOINT&lt;/code&gt; in Dockerfile.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-text" data-lang="text"&gt;ENTRYPOINT ['python', '/web.py', '--port=5000', '--host=0.0.0.0']&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_enable_linux_security_modules_like_selinux"&gt;Enable Linux Security Modules like SELinux.&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This should be done in all cases to ensure only authorized operations happens in
+Kernel and user space level. SELinux ensure interaction between all type of
+resources ( file, socket, pid, port kernel objects, etc..) and process is in check.
+SELinux uses Mandatory access control ( MAC ), this means all the interaction
+between the resource and process need to be defined in the selinux policy, No other
+interaction happens across the system.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Selinux or similar system level security tools based on Linux Security Module
+provides general security for the host machine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="docker"></category><category term="security"></category></entry><entry><title>Bind With Promise</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2017-12-21:/Users/haridas/Projects/personal/github/haridas.github.com/bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;code&gt;bind&lt;/code&gt; function in js is an interesting function that does behave
@@ -152,7 +454,7 @@ that the promise chain will take care the result propagation properly.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+</content><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2017-12-18:/Users/haridas/Projects/personal/github/haridas.github.com/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;After using vim for few years the main difficulties I have with my current
 pathogen based vim plugin environment is, it's bit difficult to re-produce a
 fresh setup on new machine, managing gitmodules is dirty thing and adding new
@@ -269,7 +571,7 @@ get a fresh vim version or ensure vim got latest ruby bindings.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://vimawesome.com"&gt;https://vimawesome.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="vim"></category></entry><entry><title>Is callback really a bad thing ? It isn't.</title><link href="https://haridas.in/is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><updated>2017-05-01T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-05-01:/is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
+</content><category term="vim"></category></entry><entry><title>Is callback really a bad thing ? It isn't.</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><updated>2017-05-01T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2017-05-01:/Users/haridas/Projects/personal/github/haridas.github.com/is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Fix the callback signature, like callback(err, obj),&lt;/li&gt;
@@ -605,7 +907,7 @@ please check out the co library's github page for more examples.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/tj/co"&gt;https://github.com/tj/co&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="https://haridas.in/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><updated>2017-04-20T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-04-20:/creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
+</content><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><updated>2017-04-20T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2017-04-20:/Users/haridas/Projects/personal/github/haridas.github.com/creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
 It's simple app which helps to recommend a credit card for use on a particular day.&lt;/p&gt;
 &lt;p&gt;Right now the UX is very simple, but included the following features,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -653,7 +955,7 @@ sorting it out based on the score of each card.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;If you guys interested, give a try and let me know your feedbacks.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
-</content><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="https://haridas.in/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-07-25:/what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+</content><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2016-07-25:/Users/haridas/Projects/personal/github/haridas.github.com/what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
 and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
 chance to work with the latest technologies in SOA environment. From that experience
 I just want to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
@@ -797,7 +1099,7 @@ communication protocol ( http / thrift / protocol buffer etc ).&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://techsticles.blogspot.in/2016/07/oracle-and-fall-of-java-ee.html?utm_content=bufferf1a2e&amp;amp;utm_medium=social&amp;amp;utm_source=linkedin.com&amp;amp;utm_campaign=buffer"&gt;Oracle and Fall of J2EE&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="https://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:/upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+</content><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:None,2016-01-08:/Users/haridas/Projects/personal/github/haridas.github.com/upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
 another backup location. Google photos was the excellege option as I'm
 using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -947,7 +1249,7 @@ if __name__ == "__main__":
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="https://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:/spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+</content><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2015-06-28:/Users/haridas/Projects/personal/github/haridas.github.com/spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
 spell checker tool, but it's little cumbersome to use. I use vim for
 most of the purposes like,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -1012,7 +1314,7 @@ in your vimrc file.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="https://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+</content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2014-10-04:/Users/haridas/Projects/personal/github/haridas.github.com/python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
 the OS's Out Of Memory Killer. OOM Killer does this to
 reclaim the memory for OS, since there is no enough RAM space …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
@@ -1092,7 +1394,7 @@ have any questions or suggestion please put it on the comment section bellow.&lt
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/2/c-api/memory.html"&gt;https://docs.python.org/2/c-api/memory.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="https://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+</content><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2014-10-04:/Users/haridas/Projects/personal/github/haridas.github.com/what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.&lt;/p&gt;
 &lt;p&gt;We are using python for network programming, specifically a TCP client/server
@@ -1588,7 +1890,7 @@ $ sudo tcpdump -i any port &lt;span class="m"&gt;8000&lt;/span&gt;
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="https://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:/rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+</content><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2014-04-30:/Users/haridas/Projects/personal/github/haridas.github.com/rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
 like chat system, worker queue, logging etc. But lately I was looking for an
 option to track all messages passing through set of exchanges without
 interfering those exchanges. The need for it's that I want to analyze the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
@@ -1622,7 +1924,7 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
 &lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 100%;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
-</content><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="https://haridas.in/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:/some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+</content><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2013-01-26:/Users/haridas/Projects/personal/github/haridas.github.com/some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
@@ -1803,7 +2105,7 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;li&gt;&lt;a class="reference external" href="https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content></entry><entry><title>Vim as your IDE</title><link href="https://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:/vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+</content></entry><entry><title>Vim as your IDE</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2012-11-08:/Users/haridas/Projects/personal/github/haridas.github.com/vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
@@ -2232,7 +2534,7 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="https://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:None,2012-07-27:/Users/haridas/Projects/personal/github/haridas.github.com/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
@@ -2328,7 +2630,7 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</content><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</content><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:None,2012-05-27:/Users/haridas/Projects/personal/github/haridas.github.com/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
@@ -2416,7 +2718,7 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="https://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="https://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:/wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:None,2012-05-07:/Users/haridas/Projects/personal/github/haridas.github.com/wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
@@ -2491,7 +2793,7 @@ select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</content><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:None,2011-11-19:/Users/haridas/Projects/personal/github/haridas.github.com/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -2537,7 +2839,7 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-</content><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="https://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+</content><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:None,2011-08-31:/Users/haridas/Projects/personal/github/haridas.github.com/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
@@ -2736,7 +3038,7 @@ version.&lt;/p&gt;
 ruby.&lt;/p&gt;
 &lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="https://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+</content><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:None,2011-07-28:/Users/haridas/Projects/personal/github/haridas.github.com/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
 Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
@@ -2782,7 +3084,7 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</content><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="https://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+</content><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:None,2011-06-17:/Users/haridas/Projects/personal/github/haridas.github.com/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -2858,7 +3160,7 @@ steps,&lt;/p&gt;
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</content><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="https://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+</content><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:None,2011-05-11:/Users/haridas/Projects/personal/github/haridas.github.com/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
@@ -3024,7 +3326,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="https://haridas.in/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:/programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+</content><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="/Users/haridas/Projects/personal/github/haridas.github.com/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:None,2010-09-28:/Users/haridas/Projects/personal/github/haridas.github.com/programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term

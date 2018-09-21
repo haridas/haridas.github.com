@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="/Users/haridas/Projects/personal/github/haridas.github.com/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Production ready docker images // all posts // HN </title>
+
+
+    <!-- Google Fonts -->
+
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,300|Roboto:400,300,300italic,400italic,700,500|Open+Sans:400,400italic,600|Source+Sans+Pro:400,300italic,300,400italic,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|Inconsolata|Source+Code+Pro:400,300,500|Ubuntu+Mono:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif|PT+Sans|Libre+Baskerville|Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora|Slabo+27px' rel='stylesheet' type='text/css'>
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pure.css">
+
+    <link rel="stylesheet" href="/Users/haridas/Projects/personal/github/haridas.github.com/theme/css/pygments.css">
+
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="/Users/haridas/Projects/personal/github/haridas.github.com/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="/Users/haridas/Projects/personal/github/haridas.github.com">HN</a></h1>
+
+
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/programming.html">Programming
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/data-science.html">Data-Science
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/security.html">Security
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/devops.html">Devops
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/pages/github-gists.html">Gists
+                                            </a>
+                                        </p>
+                                        <p class="links">
+                                            <a href="/Users/haridas/Projects/personal/github/haridas.github.com/pages/about-me.html">About
+                                            </a>
+                                        </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="http://in.linkedin.com/pub/haridas-n/19/95/825">
+                                                <img src="/Users/haridas/Projects/personal/github/haridas.github.com/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Production ready docker images</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/docker.html">docker</a>
+                                <a class="post-category" href="/Users/haridas/Projects/personal/github/haridas.github.com/tag/security.html">security</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="/Users/haridas/Projects/personal/github/haridas.github.com/category/devops.html">devops</a> &middot; Wed 19 September 2018
+                        </p>
+                </header>
+            </section>
+            <div class="sect1">
+<h2 id="_production_ready_docker_images">Production ready docker images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker is a de facto standard across all the software development pipeline.
+Very few and legacy systems aren&#8217;t using dockers. Docker is very easy to starts with
+for the development phase, but taking the docker into production level involves
+bunch security concerts. Here I&#8217;m explaining few important points that need to be
+taken care when packaging the docker for production environments.</p>
+</div>
+<div class="paragraph">
+<p>Most of the docker based project comes with their own <code>Dockerfile</code>, so that the
+project can be packaged and shipped in Docker image format. There are multiple
+benefits doing this way,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Easy to package any application into fully isolated docker image.</p>
+</li>
+<li>
+<p>Best tooling around the docker makes it simpler to manage docker images and
+containers.</p>
+</li>
+<li>
+<p>Docker container provides clean OS Process level isolation.</p>
+</li>
+<li>
+<p>Control the resource usage of docker container via restricting CPU and Memory
+conception.</p>
+</li>
+<li>
+<p>Build once deploy many principle, this ensures clean release management.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Above listed are well known facts with the docker containers. But when we move into
+production environments there are not that well discussed facts about the docker
+which surely compromise the security of the production environments.</p>
+</div>
+<div class="paragraph">
+<p>The main points that need to be taken care when packaging and deploying docker
+are,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure Docker images are build in trusted environment.</p>
+</li>
+<li>
+<p>Docker container processes shouldn&#8217;t run in root privilege.</p>
+</li>
+<li>
+<p>Enable all the host level securities and firewall setup. eg; SELinux</p>
+</li>
+<li>
+<p>Principle of least privilege</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_secure_docker_images">Secure Docker images</h3>
+<div class="paragraph">
+<p>When creating docker images follow these steps to ensure the security of the
+docker images.</p>
+</div>
+<div class="sect3">
+<h4 id="_make_use_of_user_keyword_in_dockerfile">Make use of USER keyword in Dockerfile</h4>
+<div class="paragraph">
+<p>This will ensure the docker container process won&#8217;t run in root user mode or
+with UID 0. If we aren&#8217;t setup the non-root user with in the image then the
+docker container run with UID 0 by default. This means even the normal user
+who runs the docker gets the root level privileges on the host machine, and
+the docker container can modify contents in host /etc folder if wants.</p>
+</div>
+<div class="paragraph">
+<p>To illustrate this, Just pull a <code>ubuntu</code> image from dockerhub and test,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ docker run -it --rm -v /etc:/host-etc ubuntu:latest bash
+(inside-docker-root)# rm /host-etc/hosts</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we can remove the file from host etc folder.</p>
+</div>
+<div class="paragraph">
+<p>We can run the container with given <code>uid:gid</code> pair at container startup time. This
+is a simple way to restrict the privilege of processes running inside the docker.
+But main downside for this method is that the user has to make sure
+docker isn&#8217;t started with root privilege, the image itself isn&#8217;t internally equipped
+with the non-root user privilege. Because of this reason this method isn&#8217;t recommended
+for the production environments. For testing purpose this is a good option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ docker run -it --rm --user 1000:1000 -v /etc:/hostEtc ubuntu:latest bash
+(uid-1000) $ rm /hostEtc/hosts</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lets see how we can embedded this restriction when we creating the docker image
+itself. See a sample Dockerfile definition for the same.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Dockerfile example
+FROM ubuntu:18.04
+
+ENV APP_USER=docker_app
+
+# Create user
+RUN useradd --user-group --create-home --shell /bin/bash \
+    --comment "Docker image user" $APP_USER
+
+# Add user to sudoers ( OPTIONAL, Disable it in production environments )
+RUN yum install -y sudo gettext wget telnet net-tools python-setuptools &amp;&amp; \
+    echo "$APP_USER ALL=(ALL) NOPASSWD: ALL" &gt;&gt; /etc/sudoers
+
+USER $APP_USER
+WORKDIR /home/$APP_USER</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you build the docker image from this custom Dockerfile, which enforce the container
+process to run with privilege of user named <code>docker_app</code>. This is enforced by the
+keyword <code>USER</code> in Dockerfile, it to switches the default docker user (root)
+to the custom username or uid.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker build . -t ubuntu-custom
+docker run -it --rm ubuntu-custom /bin/bash
+(docker_app)$</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enable_user_namespace">Enable user namespace</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the most secured method to secure the docker container from privileged
+access issues. This guarantees that irrespective what the Dockerfile author does,
+user namespace ensure the docker container processes never run with uid 0.</p>
+</div>
+<div class="paragraph">
+<p>Username space does this by the help of UID mapping at host machine level, and this
+is enabled with the <code>dockerd</code> docker daemon side. That means only the admin with full
+host machine access can configure the docker daemon to run with user namespace enabled
+mode.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+To enable this feature you need docker version 1.13 or above,
+and Linux kernel supports this featuer from version 3.11 and above.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Configuration at the system level is trivial one,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change the <code>/etc/docker/daemon.json</code> as below,</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "userns-remap": "host-user1"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ensuer <code>host-user1</code> exists in Host machine.
+. Create subuid and subgid mapping file, as bellow</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#UID mapping
+$ cat /etc/subuid
+host-user1:231072:65536
+
+#GID mapping
+$ cat /etc/subgid
+host-user1:231072:65536</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above UID and GID mapping files configure the offset of USER ids used inside
+the docker container. ie; If UID inside the docker is 0 ( root ), then it gets
+mapped UID 231072 (231072 + 0 = 231072) in host machine. This offset helps to
+ensure the UID never be root uid 0. This is the same case for GID also.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+When doing this mapping we generally pick a higher number for the UID and GUID which are
+not generally used on the host machine. Both UID and GID are 32-bit number, so
+we can pick higher range for the docker users.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_supply_secrets_and_configurations_via_tmpfs">Supply secrets and configurations via tmpfs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generally the secrets are stored in a volume or folder and attached to the docker
+via volume mounting. In case of configuration it&#8217;s fine to pass them via
+environment variables. Application should careful with the secrets,
+as it shouldn&#8217;t accidentally write the secrets into log files and send out in
+plain text format to other components.</p>
+</div>
+<div class="paragraph">
+<p>If you are using the Docker container managers like <code>kubernetes</code>, <code>swarm</code> etc then
+they comes with the secret management facilities by default. Please make use of it
+if you are using any of these tools. For the plain Docker running scenario the
+admin has to take care the volume mounting securely making use of <code>tmpfs</code> and
+a custom volume driver which bridges the connection between secret storage and docker
+container. One example for this is Hashicorp Vault.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Making use of Hashicorp Vault with custom volume driver is neat method
+to share the secrets and configuration securely.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unless_required_dont_use_cmd_in_dockerfile">Unless required don&#8217;t use CMD in Dockerfile</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This isn&#8217;t that critical, but still a best practice to avoid unnecessary arguments
+passing via command line when running the docker container.</p>
+</div>
+<div class="paragraph">
+<p>Making a container immutable is ideal option, ie; it doesn&#8217;t take any extra
+command line arguments at run time. If it required any configuration values read
+from the Environment variables and use volumes for secret management.</p>
+</div>
+<div class="paragraph">
+<p>To enforce this, use only <code>ENTRYPOINT</code> in Dockerfile.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">ENTRYPOINT ['python', '/web.py', '--port=5000', '--host=0.0.0.0']</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enable_linux_security_modules_like_selinux">Enable Linux Security Modules like SELinux.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This should be done in all cases to ensure only authorized operations happens in
+Kernel and user space level. SELinux ensure interaction between all type of
+resources ( file, socket, pid, port kernel objects, etc..) and process is in check.
+SELinux uses Mandatory access control ( MAC ), this means all the interaction
+between the resource and process need to be defined in the selinux policy, No other
+interaction happens across the system.</p>
+</div>
+<div class="paragraph">
+<p>Selinux or similar system level security tools based on Linux Security Module
+provides general security for the host machine.</p>
+</div>
+</div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="http://in.linkedin.com/pub/haridas-n/19/95/825"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
