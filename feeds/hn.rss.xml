@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0530</lastBuildDate><item><title>Production ready docker images</title><link>https://haridas.in/production-ready-docker-images.html</link><description>&lt;div class="sect1"&gt;
-&lt;h2 id="_production_ready_docker_images"&gt;Production ready docker images&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
+<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0530</lastBuildDate><item><title>Production ready docker images</title><link>https://haridas.in/production-ready-docker-images.html</link><description>&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
-bunch security concerts. Here I&amp;#8217;m …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Wed, 19 Sep 2018 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2018-09-19:/production-ready-docker-images.html</guid><category>docker</category><category>security</category></item><item><title>Bind With Promise</title><link>https://haridas.in/bind-with-promise.html</link><description>&lt;div id="preamble"&gt;
+bunch security concerts. Here I&amp;#8217;m explaining few important points …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Wed, 19 Sep 2018 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2018-09-19:/production-ready-docker-images.html</guid><category>docker</category><category>security</category></item><item><title>Bind With Promise</title><link>https://haridas.in/bind-with-promise.html</link><description>&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;code&gt;bind&lt;/code&gt; function in js is an interesting function that does behave

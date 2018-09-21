@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - devops</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/devops.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-09-19T00:00:00+05:30</updated><entry><title>Production ready docker images</title><link href="https://haridas.in/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19:/production-ready-docker-images.html</id><summary type="html">&lt;div class="sect1"&gt;
-&lt;h2 id="_production_ready_docker_images"&gt;Production ready docker images&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - devops</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/devops.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-09-19T00:00:00+05:30</updated><entry><title>Production ready docker images</title><link href="https://haridas.in/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19:/production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
-bunch security concerts. Here I&amp;#8217;m …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="sect1"&gt;
-&lt;h2 id="_production_ready_docker_images"&gt;Production ready docker images&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
+bunch security concerts. Here I&amp;#8217;m explaining few important points …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
@@ -142,8 +136,6 @@ to the custom username or uid.&lt;/p&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;docker build . -t ubuntu-custom
 docker run -it --rm ubuntu-custom /bin/bash
 (docker_app)$&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
