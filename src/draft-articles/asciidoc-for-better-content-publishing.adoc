@@ -1,0 +1,23 @@
+== Asciidoc for better content publishing
+:category: programming
+:title: Asciidoc for better content publishing
+:date: 19-09-2018
+:tags: asciidoc,blog
+
+
+When I started this blog using the pelican, I was extensively using the RestText
+to write the blogs using Text editors like vim. This year I came to know that
+we got another text formatting language called asciidoc. Which seems very promising
+compared to others like rest and md file. Asciidoc comes with lot of features
+and extensibility and tooling support to make the content to generated to html, pdf
+or LatEX formats. The rich formatting language is simpler compares to the rest formatting,
+and we can use the asciidoc to write books, as it provides all required constructs
+required to do all levels of writing.
+
+Here I'm explaining how I used the asciidoc with my blog and introducing tooling around
+the ascidoc fomats.
+
+=== Asciidoc for pelican
+
+
+===

@@ -1,0 +1,190 @@
+== Production ready docker images
+
+:title: Production ready docker images
+:category: devops
+:tags: docker, security
+:date: 19-09-2018
+
+
+Docker is a de facto standard across all the software development pipeline.
+Very few and legacy systems aren't using dockers. Docker is very easy to starts with
+for the development phase, but taking the docker into production level involves
+bunch security concerts. Here I'm explaining few important points that need to be
+taken care when packaging the docker for production environments.
+
+Most of the docker based project comes with their own `Dockerfile`, so that the
+project can be packaged and shipped in Docker image format. There are multiple 
+benefits doing this way,
+
+1. Easy to package any application into fully isolated docker image.
+2. Best tooling around the docker makes it simpler to manage docker images and 
+   containers.
+3. Docker container provides clean OS Process level isolation.
+4. Control the resource usage of docker container via restricting CPU and Memory 
+   conception.
+5. Build once deploy many principle, this ensures clean release management.
+
+Above listed are well known facts with the docker containers. But when we move into
+production environments there are not that well discussed facts about the docker
+which surely compromise the security of the production environments.
+
+The main points that need to be taken care when packaging and deploying docker
+are,
+
+1. Ensure Docker images are build in trusted environment.
+2. Docker container processes shouldn't run in root privilege.
+3. Enable all the host level securities and firewall setup. eg; SELinux
+4. Principle of least privilege
+
+=== Secure Docker images
+
+When creating docker images follow these steps to ensure the security of the
+docker images.
+
+==== Make use of USER keyword in Dockerfile
+
+This will ensure the docker container process won't run in root user mode or
+with UID 0. If we aren't setup the non-root user with in the image then the
+docker container run with UID 0 by default. This means even the normal user
+who runs the docker gets the root level privileges on the host machine, and
+the docker container can modify contents in host /etc folder if wants.
+
+To illustrate this, Just pull a `ubuntu` image from dockerhub and test,
+
+```bash
+$ docker run -it --rm -v /etc:/host-etc ubuntu:latest bash
+(inside-docker-root)# rm /host-etc/hosts
+```
+Here we can remove the file from host etc folder.
+
+We can run the container with given `uid:gid` pair at container startup time. This 
+is a simple way to restrict the privilege of processes running inside the docker.
+But main downside for this method is that the user has to make sure
+docker isn't started with root privilege, the image itself isn't internally equipped 
+with the non-root user privilege. Because of this reason this method isn't recommended
+for the production environments. For testing purpose this is a good option.
+
+```bash
+$ docker run -it --rm --user 1000:1000 -v /etc:/hostEtc ubuntu:latest bash
+(uid-1000) $ rm /hostEtc/hosts
+```
+
+Lets see how we can embedded this restriction when we creating the docker image
+itself. See a sample Dockerfile definition for the same.
+
+```bash
+# Dockerfile example
+FROM ubuntu:18.04
+
+ENV APP_USER=docker_app
+
+# Create user
+RUN useradd --user-group --create-home --shell /bin/bash \
+    --comment "Docker image user" $APP_USER
+
+# Add user to sudoers ( OPTIONAL, Disable it in production environments )
+RUN yum install -y sudo gettext wget telnet net-tools python-setuptools && \
+    echo "$APP_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+USER $APP_USER
+WORKDIR /home/$APP_USER
+```
+
+If you build the docker image from this custom Dockerfile, which enforce the container
+process to run with privilege of user named `docker_app`. This is enforced by the
+keyword `USER` in Dockerfile, it to switches the default docker user (root) 
+to the custom username or uid.
+
+```bash
+docker build . -t ubuntu-custom
+docker run -it --rm ubuntu-custom /bin/bash
+(docker_app)$ 
+```
+== Enable user namespace
+
+This is the most secured method to secure the docker container from privileged
+access issues. This guarantees that irrespective what the Dockerfile author does,
+user namespace ensure the docker container processes never run with uid 0.
+
+Username space does this by the help of UID mapping at host machine level, and this
+is enabled with the `dockerd` docker daemon side. That means only the admin with full
+host machine access can configure the docker daemon to run with user namespace enabled
+mode.
+
+IMPORTANT: To enable this feature you need docker version 1.13 or above, 
+and Linux kernel supports this featuer from version 3.11 and above.
+
+Configuration at the system level is trivial one,
+
+. Change the `/etc/docker/daemon.json` as below,
+
+```json
+{
+    "userns-remap": "host-user1"
+}
+```
+Ensuer `host-user1` exists in Host machine.
+. Create subuid and subgid mapping file, as bellow
+
+```bash
+#UID mapping
+$ cat /etc/subuid
+host-user1:231072:65536
+
+#GID mapping
+$ cat /etc/subgid
+host-user1:231072:65536
+```
+The above UID and GID mapping files configure the offset of USER ids used inside
+the docker container. ie; If UID inside the docker is 0 ( root ), then it gets 
+mapped UID 231072 (231072 + 0 = 231072) in host machine. This offset helps to
+ensure the UID never be root uid 0. This is the same case for GID also.
+
+NOTE: When doing this mapping we generally pick a higher number for the UID and GUID which are
+not generally used on the host machine. Both UID and GID are 32-bit number, so
+we can pick higher range for the docker users.
+
+== Supply secrets and configurations via tmpfs
+
+Generally the secrets are stored in a volume or folder and attached to the docker
+via volume mounting. In case of configuration it's fine to pass them via
+environment variables. Application should careful with the secrets,
+as it shouldn't accidentally write the secrets into log files and send out in 
+plain text format to other components.
+
+If you are using the Docker container managers like `kubernetes`, `swarm` etc then
+they comes with the secret management facilities by default. Please make use of it
+if you are using any of these tools. For the plain Docker running scenario the
+admin has to take care the volume mounting securely making use of `tmpfs` and
+a custom volume driver which bridges the connection between secret storage and docker
+container. One example for this is Hashicorp Vault.
+
+IMPORTANT: Making use of Hashicorp Vault with custom volume driver is neat method
+to share the secrets and configuration securely.
+
+== Unless required don't use CMD in Dockerfile
+
+This isn't that critical, but still a best practice to avoid unnecessary arguments
+passing via command line when running the docker container.
+
+Making a container immutable is ideal option, ie; it doesn't take any extra
+command line arguments at run time. If it required any configuration values read
+from the Environment variables and use volumes for secret management.
+
+To enforce this, use only `ENTRYPOINT` in Dockerfile.
+
+```text
+ENTRYPOINT ['python', '/web.py', '--port=5000', '--host=0.0.0.0']
+```
+
+== Enable Linux Security Modules like SELinux.
+
+This should be done in all cases to ensure only authorized operations happens in
+Kernel and user space level. SELinux ensure interaction between all type of
+resources ( file, socket, pid, port kernel objects, etc..) and process is in check.
+SELinux uses Mandatory access control ( MAC ), this means all the interaction
+between the resource and process need to be defined in the selinux policy, No other
+interaction happens across the system.
+
+Selinux or similar system level security tools based on Linux Security Module 
+provides general security for the host machine.

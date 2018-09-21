@@ -27,13 +27,14 @@ IPYTHON_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__),
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
 
+CATEGORY_SAVE_AS='{slug}.html'
 # Other menu items
 MENUITEMS = [
     #('Archives', 'archives.html'),
-    ('Programming', 'category/programming.html'),
-    ('Data-Science', 'category/data-science.html'),
-    ('Security', 'category/security.html'),
-    ('Devops', 'category/devops.html'),
+    ('Programming', 'programming.html'),
+    ('Data-Science', 'data-science.html'),
+    ('Security', 'security.html'),
+    ('Devops', 'devops.html'),
     ('Gists', 'pages/github-gists.html'),
     ('About', 'pages/about-me.html'),
 ]
