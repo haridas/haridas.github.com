@@ -4,9 +4,9 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-#SITEURL = 'http://localhost:8000'
+SITEURL = 'http://localhost:8000'
 #
-SITEURL = 'https://haridas.in'
+#SITEURL = 'https://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
@@ -29,9 +29,10 @@ REVERSE_ARCHIVE_ORDER = True
 
 # Properly resolve the URLs for each articles. THere is no nesting all the
 # blog entries are kept on the top level itself.
-CATEGORY_SAVE_AS='{slug}.html'
-CATEGORY_URL='{slug}.html'
+CATEGORY_SAVE_AS='category/{slug}.html'
+CATEGORY_URL='category/{slug}.html'
 TAG_URL='tag/{slug}.html'
+TAG_SAVE_AS='tag/{slug}.html'
 ARTICLE_URL='/{slug}.html'
 
 # Other menu items
