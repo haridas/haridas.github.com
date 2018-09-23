@@ -4,7 +4,7 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-#SITEURL = os.path.dirname(__file__)
+#SITEURL = 'http://localhost:8000'
 #
 SITEURL = 'https://haridas.in'
 
@@ -27,7 +27,13 @@ IPYTHON_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__),
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
 
+# Properly resolve the URLs for each articles. THere is no nesting all the
+# blog entries are kept on the top level itself.
 CATEGORY_SAVE_AS='{slug}.html'
+CATEGORY_URL='{slug}.html'
+TAG_URL='tag/{slug}.html'
+ARTICLE_URL='/{slug}.html'
+
 # Other menu items
 MENUITEMS = [
     #('Archives', 'archives.html'),
