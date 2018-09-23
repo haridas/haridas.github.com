@@ -4,9 +4,9 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don't, change the current URL scheme.
-SITEURL = 'http://localhost:8000'
+#SITEURL = 'http://localhost:8000'
 #
-#SITEURL = 'https://haridas.in'
+SITEURL = 'https://haridas.in'
 
 TIMEZONE = 'Asia/Kolkata'
 DEFAULT_LANG = 'en'
