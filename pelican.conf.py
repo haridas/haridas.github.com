@@ -40,9 +40,9 @@ MENUITEMS = [
     #('Archives', 'archives.html'),
     ('Programming', 'category/programming.html'),
     ('Data-Science', 'category/data-science.html'),
-    ('Security', 'category/security.html'),
+    ('Security', 'tag/security.html'),
     ('Devops', 'category/devops.html'),
-    ('Gists', 'pages/github-gists.html'),
+    ('Gists', 'https://gist.github.com/haridas'),
     ('About', 'pages/about-me.html'),
 ]
 
