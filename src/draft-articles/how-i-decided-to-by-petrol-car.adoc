@@ -1,10 +1,11 @@
-=== Why I bought petrol car intead of Diesel car.
+=== Why I bought petrol car
 :title: Petrol vs Diesal car
 :tags: analytics,car,ipython
 :date: 12-09-2018
 :category: data-science
 :tags: data,analysis
 
+This blog discusses
 This blog is purely about the fule consumption and car usage, not about
 car performances and mechanical comparision.
 

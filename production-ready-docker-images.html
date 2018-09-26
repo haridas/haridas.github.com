@@ -43,30 +43,30 @@
                                 <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
 
 
-                                        <p class="links">
-                                            <a href="https://haridas.in/category/programming.html">Programming
-                                            </a>
-                                        </p>
-                                        <p class="links">
-                                            <a href="https://haridas.in/category/data-science.html">Data-Science
-                                            </a>
-                                        </p>
-                                        <p class="links">
-                                            <a href="https://haridas.in/category/security.html">Security
-                                            </a>
-                                        </p>
-                                        <p class="links">
-                                            <a href="https://haridas.in/category/devops.html">Devops
-                                            </a>
-                                        </p>
-                                        <p class="links">
-                                            <a href="https://haridas.in/pages/github-gists.html">Gists
-                                            </a>
-                                        </p>
-                                        <p class="links">
-                                            <a href="https://haridas.in/pages/about-me.html">About
-                                            </a>
-                                        </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://gist.github.com/haridas">Gists
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About
+                                                </a>
+                                            </p>
                                 <p class="social">
                                         <a href="http://twitter.com/haridas_n">
                                                 <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
@@ -175,14 +175,15 @@ are,</p>
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="_secure_docker_images">Secure Docker images</h3>
+<div class="sect1">
+<h2 id="_secure_docker_images">Secure Docker images</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When creating docker images follow these steps to ensure the security of the
 docker images.</p>
 </div>
-<div class="sect3">
-<h4 id="_make_use_of_user_keyword_in_dockerfile">Make use of USER keyword in Dockerfile</h4>
+<div class="sect2">
+<h3 id="_make_use_of_user_keyword_in_dockerfile">Make use of USER keyword in Dockerfile</h3>
 <div class="paragraph">
 <p>This will ensure the docker container process won&#8217;t run in root user mode or
 with UID 0. If we aren&#8217;t setup the non-root user with in the image then the
@@ -250,6 +251,7 @@ to the custom username or uid.</p>
 <pre class="highlight"><code class="language-bash" data-lang="bash">docker build . -t ubuntu-custom
 docker run -it --rm ubuntu-custom /bin/bash
 (docker_app)$</code></pre>
+</div>
 </div>
 </div>
 </div>

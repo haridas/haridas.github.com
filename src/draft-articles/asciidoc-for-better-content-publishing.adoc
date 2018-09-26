@@ -5,11 +5,15 @@
 :tags: asciidoc,blog
 
 
-When I started this blog using the pelican, I was extensively using the RestText
-to write the blogs using Text editors like vim. This year I came to know that
-we got another text formatting language called asciidoc. Which seems very promising
-compared to others like rest and md file. Asciidoc comes with lot of features
-and extensibility and tooling support to make the content to generated to html, pdf
+When I started this blog using the pelican, I was extensively using the RstText
+to write the blogs using Text editors like vim. This year I came to know about
+asciidoc. Which seems very promising compared to others like rst and markdown file format.
+Asciidoc comes with lot of features and extensibility and tooling support 
+to wirte and publish it on different mediums like, HTML, PDF, LatEx etc.
+The theme support is more coprehensive with asciidoc environment, which helps 
+formatting the content neatly with less effort compared to Rst and Markdown.
+
+the content to generated to html, pdf
 or LatEX formats. The rich formatting language is simpler compares to the rest formatting,
 and we can use the asciidoc to write books, as it provides all required constructs
 required to do all levels of writing.
@@ -17,7 +21,15 @@ required to do all levels of writing.
 Here I'm explaining how I used the asciidoc with my blog and introducing tooling around
 the ascidoc fomats.
 
+This and last few blogs are written on asciidoc format now, please verify the
+actual text format from github project.
+
 === Asciidoc for pelican
+
+It's pretty easy to use the asciidoc with pelican by using this plugin asciidoc_reader.
+
+To setup the plugin, 
+
 
 
 ===

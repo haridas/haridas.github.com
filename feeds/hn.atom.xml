@@ -61,14 +61,15 @@ are,&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_secure_docker_images"&gt;Secure Docker images&lt;/h3&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_secure_docker_images"&gt;Secure Docker images&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;When creating docker images follow these steps to ensure the security of the
 docker images.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="_make_use_of_user_keyword_in_dockerfile"&gt;Make use of USER keyword in Dockerfile&lt;/h4&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_make_use_of_user_keyword_in_dockerfile"&gt;Make use of USER keyword in Dockerfile&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This will ensure the docker container process won&amp;#8217;t run in root user mode or
 with UID 0. If we aren&amp;#8217;t setup the non-root user with in the image then the
@@ -136,6 +137,7 @@ to the custom username or uid.&lt;/p&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;docker build . -t ubuntu-custom
 docker run -it --rm ubuntu-custom /bin/bash
 (docker_app)$&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

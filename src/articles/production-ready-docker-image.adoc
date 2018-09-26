@@ -34,12 +34,12 @@ are,
 3. Enable all the host level securities and firewall setup. eg; SELinux
 4. Principle of least privilege
 
-=== Secure Docker images
+== Secure Docker images
 
 When creating docker images follow these steps to ensure the security of the
 docker images.
 
-==== Make use of USER keyword in Dockerfile
+=== Make use of USER keyword in Dockerfile
 
 This will ensure the docker container process won't run in root user mode or
 with UID 0. If we aren't setup the non-root user with in the image then the
