@@ -12,7 +12,7 @@ refer it in future. I hope some of this would be helpful to others.
 Contact Informations
 -------------------- 
 
- 1. `hn at haridas.in`
+ 1. Email: hn at haridas.in
  2. `LinkedIn`_
  3. `Twitter`_
  4. Skype Id - haridas.in
@@ -23,7 +23,7 @@ About this blog
 This blog was created using `Pelican`_ static site generator. To know more about
 this blog, read this `entry`_.
 
-.. _LinkedIn: https://in.linkedin.com/pub/haridas-n/19/95/825
+.. _LinkedIn: https://linkedin.com/in/haridasn
 .. _Twitter: https://twitter.com/#!/haridas_n
 .. _entry: https://haridas.in/wordpress-blog-migrated-to-pelican.html
 .. _Pelican: https://blog.getpelican.com/ 

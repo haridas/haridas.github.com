@@ -84,7 +84,7 @@ SOCIAL = (
     ('Twitter', 'images/tt.svg', 'http://twitter.com/haridas_n', ('48', '48')),
     ('Github', 'images/github.svg', 'http://github.com/haridas', ('45', '45')),
     ('Linkedin', 'images/linkedin.svg',
-     'http://in.linkedin.com/pub/haridas-n/19/95/825', ('48', '48'))
+     'https://linkedin.com/in/haridasn', ('48', '48'))
 )
 
 ARTICLE_EXCLUDES = ['templates', 'pages', 'draft-articles']
