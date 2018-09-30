@@ -43,7 +43,8 @@ MENUITEMS = [
     ('Security', 'tag/security.html'),
     ('Devops', 'category/devops.html'),
     ('Gists', 'https://gist.github.com/haridas'),
-    ('About', 'pages/about-me.html'),
+    ('About Me', 'pages/about-me.html'),
+    ('Resume', 'resume.pdf')
 ]
 
 # COVER_IMG_URL = "./images/Photz057.jpg"
