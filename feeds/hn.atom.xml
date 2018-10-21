@@ -1,5 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-09-19T00:00:00+05:30</updated><entry><title>Production ready docker images</title><link href="https://haridas.in//production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19://production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-10-19T00:00:00+05:30</updated><entry><title>Differential Equations Needed for ML</title><link href="https://haridas.in//differential-equations-needed-for-ml.html" rel="alternate"></link><published>2018-10-19T00:00:00+05:30</published><updated>2018-10-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-10-19://differential-equations-needed-for-ml.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;In this post I want to include basic derivaties and primitive building blocks required
+from calculus for the model optimization. These are commonly used, but after some
+time I&amp;#8217;m losing grip of these basics, so I want to keep it one place for future
+references.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_standard_functions_and_its_derivatives"&gt;Standard functions and its …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;In this post I want to include basic derivaties and primitive building blocks required
+from calculus for the model optimization. These are commonly used, but after some
+time I&amp;#8217;m losing grip of these basics, so I want to keep it one place for future
+references.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_standard_functions_and_its_derivatives"&gt;Standard functions and its derivatives&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-basic-derivatives.png" alt="Basic Derivatives"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_sigmoid_activation_function"&gt;Sigmoid activation function&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Sigmoid helps to bring the inputs between [0, 1], used most of the classification
+problems. eg; regression, neural network etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-sigmoid-derivative.png" alt="math sigmoid derivative"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_tanh_activation_function"&gt;Tanh activation function&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Speciality of tanh function is it brings the inputs into [-1, 1], some cases this
+range is important especially RNN, where the model want to selectively forget things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-tanh-derivative.png" alt="math tanh derivative"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_relu"&gt;Relu&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Widely used activation function in Neural network and CNN models. This activation
+function helps the Deep learning jump in multiple domains. As early days getting a
+proper activation function was really restricting complex neural network architectures.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-relu-derivative.png" alt="math relu derivative"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_leaky_relu"&gt;Leaky Relu&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Improved version of Relu which reduces the chance of vanishing gradient issue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-leaky-relu-derivative.png" alt="math leaky relu derivative"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_softmax"&gt;Softmax&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Used mainly as last layer in nerual network. This function helps to bring all activations
+from previous layer into probability values. Because of this property this function
+used most of the classification problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-softmax-derivative-1.png" alt="math softmax derivative 1"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-softmax-derivative-2.png" alt="math softmax derivative 2"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_cross_entropy_loss_function"&gt;Cross entropy loss function&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Objective function used in neural network or classification problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="/images/math-entropy-loss-derivative.png" alt="math entropy loss derivative"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_partial_derviative"&gt;Partial Derviative&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This concept are learned in undergrad courses. All ML problems are finally comes to
+numerical optimization problem. Derivatives plays a method to optimize the parameters
+of the function. We required partial derivatives to find derivative of multi-varite
+equations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The key idea is, at every step we calculate the derivative of one-dimention or
+(one variable) keeping all other variables constant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+The math equetions are created using &lt;a href="https://www.mathcha.io" class="bare"&gt;https://www.mathcha.io&lt;/a&gt; online editor.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_references"&gt;References&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf" class="bare"&gt;https://cs224d.stanford.edu/lectures/CS224d-Lecture6.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Production ready docker images</title><link href="https://haridas.in//production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19://production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
