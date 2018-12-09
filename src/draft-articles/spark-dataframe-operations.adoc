@@ -1,0 +1,25 @@
+:title: Apache Spark DataFrame filtering
+:date: 12-08-2018
+:category: datascience
+
+
+val vocabDist = spark.read
+    .format("json")
+    .option("mergeSchema", "true")
+    .load("/mnt/all_models/run-26-nov-2018-clean-vocab-50k-4m/model/topic-description"
+
+```scala
+vocabDist
+    .filter($"topic" === 0)
+    .select("term")
+    .filter(x => x.toString.stripMargin.length == 3)
+    .count()
+```
+
+// Find minimal value of data frame.
+vocabDist
+    .filter($"topic" === 0)
+    .select("term")
+    .map(x => x.toString.length)
+    .agg(min("value"))
+    .show()

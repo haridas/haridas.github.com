@@ -1,0 +1,100 @@
+:title: Apache Toree notebook for Spark
+:date: 09-Dec-2018
+:tags: apache-spark,apache-toree
+:category: data-science
+
+Apache Toree is a jupyter kernel. It runs the spark application in client mode, 
+so that we can interact with the application via console. By enabling this in 
+standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
+via this we get all the flexibility of the jupyter notebook. Toree notebook supports
+pyspark and R also with special magic constructs.
+
+Here I'm explaining how we can install and configure toree for spark based testing
+environment.
+
+== How to configure toree with default jupyter notebook
+
+```bash
+# Current latest version, pick the 
+pip install toree==0.3.0
+jupyter toree install --user --spark_home=/mnt/haridas/packages/spark-2.1.2-bin-hadoop2.7
+```
+
+To confirm the new kernel got installed to jupyter correctly,
+
+```bash
+jupyter kernelspec list
+
+Available kernels:
+  apache_toree_scala    /home/haridas/.local/share/jupyter/kernels/apache_toree_scala
+  python3               /home/haridas/ENV3/share/jupyter/kernels/python3
+```
+
+If above commands ran successful then we are good to go with running new kernel
+with jupyter web UI or on the console mode.
+
+== Access the Toree via jupyter
+
+=== Notebook mode
+
+```bash
+jupyter notebook --no-browser --ip 0.0.0.0 --port 8080
+```
+Go to browser on this jupyter application, when creating the new notebook, you
+can now have option to create toree notebook also along with python standard notebook
+type.
+
+=== Console mode
+
+Sometime you might need to directly work on small scripts ore test few things against
+spark cluster or checking the scala magics ;)
+
+Make use of the console version jupyter with the new kernel. Now you get the standard
+ipython like console via that we can interact with the spark cluster or write scala
+codes.
+
+```
+jupyter console --kernel=apache_toree_scala
+```
+
+== Customie toree configuration
+
+Default settings of the spark application is very minimal, which may be not enough
+to test with big files or make use of the available resources in your machine. To
+do that you need to update the default configurations.
+
+By default spark and driver program make uses only 1GB of heap size, and number
+of executors will be 1.
+
+To change the configuration it's pretty easy, you can check the available options
+from  `spark-submit --help` command, and pass them on bellow environment variable
+before running the toree notebook.
+
+When picking options from `spark-submit` ensure your cluster is of type standalone,
+or standalone-cluster-mode or yarn cluster mode. The options are bit different between
+the cluster managers.
+
+```bash
+export SPARK_OPTS="--jars /home/haridas/custom1.jar:/home/haridas/custom2.jar \
+    --driver-memory=5g \
+    --executor-memory=5g \
+    --num-executors 3"
+jupyter console --kernel=apache_toree_scala
+```
+
+== Connect Toree with remote spark cluster
+
+Here only we only need to make use of the spark-submit arguments.
+```bash
+export SPARK_OPTS="--master spark://<host>:7077 ..."
+```
+
+
+Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !
+
+== Reference
+
+1. https://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-app-models/
+2. `spark-submit --help` command.
+3. https://toree.apache.org/
+4. https://github.com/apache/incubator-toree/blob/master/etc/examples/notebooks/magic-tutorial.ipynb

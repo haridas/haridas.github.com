@@ -1,0 +1,20 @@
+:title: Why Normalize data 
+:category: data-science
+:tags: ml,preprocessing
+:date: 22-10-2018
+
+
+
+This is pretty basic question all asks who are working in machine learning problems.
+We need to properly understand the intutition behind it, Here i'm trying to explain 
+why we need to normalize the data set before training the machine learning models.
+
+All know that machine learning models are does nuemerical optimization to maximize
+the likelyhood function for the given set of data set. So the calculation around
+this is involves numbers only, and models doesn't care the unit of the data, only the
+maginitude of the data.
+
+References:
+
+1. https://en.wikipedia.org/wiki/Feature_scaling
+
