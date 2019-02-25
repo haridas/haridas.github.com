@@ -4,6 +4,9 @@
 :date: 22-10-2018
 
 
+Desclaimer:- These are my intutitions around this topic, some are I learned, and
+some are my thoughts on the same topic. If something isn't inline with the expectation
+please sent me a note.
 
 This is pretty basic question all asks who are working in machine learning problems.
 We need to properly understand the intutition behind it, Here i'm trying to explain 
@@ -14,7 +17,33 @@ the likelyhood function for the given set of data set. So the calculation around
 this is involves numbers only, and models doesn't care the unit of the data, only the
 maginitude of the data.
 
+Most of the objective functions are revolve around the probabilistic modeling, and the
+central limit theory says with enough number of sample size most of the data samples
+tend towards the normal distribution. The numerical optimiation frameworks used in
+mathematics relay on this ( for best case scenario ).
+
+Information theory based entropy function is being used as a standard objective function
+in deep learning problems. Bringing all the maginitude betweens 0-1 is pretty 
+common with this scnario to measure things in probabilistic terms.
+
+
+New notes - 11-Jan-2019
+
+1. Min-max vs z-score
+2. Comparing probability distributions
+3. Distribution with fixed min max like images 0-255 case min-max is good option.
+4. Box-cox normalizer ie; IRQ normalizer.
+5. Use of batch normalization helps to further deepen the DL networks without 
+   any the overfitting issues.
+6. Regression problems vs classification problems
+7. Data types - how it veries can decide how we can normalize the sample.
+
+Based on the objective function and the output distribution that we are dealing,
+we can make use of the normaliztion.
+
 References:
 
 1. https://en.wikipedia.org/wiki/Feature_scaling
+2. https://www.researchgate.net/post/What_are_the_best_normalization_methods_Z-Score_Min-Max_etc_How_would_you_choose_a_data_normalization_method
+3. https://arxiv.org/abs/1502.03167
 

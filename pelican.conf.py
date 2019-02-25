@@ -62,12 +62,13 @@ MARKUP = ('md', 'ipynb', 'rst', 'adoc')
 ASCIIDOC_CMD = 'asciidoctor'
 ASCIIDOC_OPTIONS = []
 ASCIIDOC_BACKEND = 'html5'
-PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), './plugins'),)
+PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), './pelican-plugins'),)
 # plugins.
 PLUGINS = [
     "pelican_gist",
-    "ipynb.markup",
-    "asciidoc_reader.asciidoc_reader"
+    "pelican-ipynb.markup",
+    "asciidoc_reader.asciidoc_reader",
+    "render_math"
 ]
 
 # Blogroll

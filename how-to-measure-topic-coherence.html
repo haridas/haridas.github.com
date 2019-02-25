@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>How to Measure Topic Coherence // all posts // HN </title>
+
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://gist.github.com/haridas">Gists
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">How to Measure Topic Coherence</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/lda.html">LDA</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Tue 26 February 2019
+                        </p>
+                </header>
+            </section>
+            <p>Unsupervised topic modeling algorithms like LDA and NMF produces list of
+vocabularies for each topic after the training. These vocabs help human
+to assign the subject information of the topic model. So how we measure the
+quality of these topic words ?, this problem has to be
+addressed in unsupervised topic clustering algorithms like LDA / NMF to
+understand models are improving or not.</p>
+<p>It's always a challenge to qualitatively measure the goodness of the words
+produced by each topic. Usually we take top 10 words ( It's recommended to keep
+the top n word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
+and come up with a topic name using these words)</p>
+<p>The methods discussed here are the standard coherence evaluation metrics, based
+on Frequentest probabilistic evaluation, TF-IDF, Word2Vec and SVD based
+methods, over the top-n words of each topic and the input corpus given into the
+LDA model.</p>
+<p>The probabilistic models generally measure the co-occurrence of the top-n topic
+words in the actual input corpus and the coherence value will be good if the
+co-occurrence measure from the top-n words will be higher. See more details of
+each method and its conventions used.</p>
+<blockquote>
+<p>All unsupervised topic clustering algorithms have to address this point before
+going into production, ie; how much usable the topics produced by a given
+method, can human can interpret the meanings of topic and describe the topic
+using top N words ( eg N = 10 ).</p>
+</blockquote>
+<p>Based on this <a href="https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf">paper</a> - coherence evaluation can be structured into
+4 stages,</p>
+<ol>
+<li>Segmentation of word subsets</li>
+<li>Probability Estimation</li>
+<li>Confirmation Measure</li>
+<li>Aggregation</li>
+</ol>
+<h3>1. Segmentation of word subsets</h3>
+<p>In this stage we split the top-n words into pairs, we can do this in multiple
+ways to support the Boolean document counting or sliding window based counting
+discussed in next sections.</p>
+<h3>2. Probability Estimation methods</h3>
+<p><div>
+$$
+ </p>
+<div class="math">\begin{array}{l}
+ \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
+ count\ only\ onces\ in\ a\ given\ document.\\
+ \mathcal{P}_{bp} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ paragraph\ estimation,\
+ counts\ the\ occurrences\ on\ every\ paragraph.\\
+ \mathcal{P}_{bs} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ sentence\ estimation,\
+ counts\ on\ occurrences\ on\ every\ sentences\ wise.\\
+ \mathcal{P}_{sw} \ \ \ \ \ \ \ \ \ =\ \ Sliding\ window\ estimation,\ here\ a\
+ window\ of\ size\ N\ has\ been\ used\ to\ move\\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ over\ the\ document\ and\ each\
+ window\ is\ considered\ a\ virtual\ document,\ and\\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\ \mathcal{P}_{bd} \ counts\
+ on\ each\ windows.\\
+ \\
+ \ P( w_{j} ,\ w_{i}) =\ \ \ \ \#documents\ ( w_{j} ,\ w_{i}) \ co-occures\ /\
+ \#\ total\ number\ of\ documents.\\
+ \ P( w_{j}) \ \ \ \ \ \ =\ \ \ \ \ \#documents\ w_{j} \ occures\ /\ \#\ total\
+ number\ of\ documents\\
+ \\
+ The\ denominators\ /\ normalization\ term\ of\ the\ joint\ and\ marginal\
+ probability\ can\ be\ different\\
+ based\ on\ the\ method\ used\ for\ estimate\ the\ same.\ Above\ one\ is\ used\
+ if\ \mathcal{P}_{bd} \ is\ the\ estimation\ used.\\
+ \\
+ For\ other\ estimation\ types\ like\ \mathcal{P}_{np} \ we\ use\ \#\ total\
+ number\ of\ paragraph\ as\ the\ normalisation\ term.
+ \end{array}</div>
+<p>$$
+</div></p>
+<h3>3. Confirmation Measures</h3>
+<p>In this phase the actual scoring function is defined, which make uses any of
+the segmentation or probabilistic measuring methods described above. Lets see
+some of the widely used coherence measuring methods.</p>
+<h5>3.1 UMass</h5>
+<p>UMass is the simplest method of all mentioned bellow and compute time is least among
+all others.</p>
+<div>
+$$
+ \begin{array}{l}
+C_{UMass} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i})}\right)\\
+\\
+N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+\\
+Here\ the\ P( w_{j} ,\ w_{i}) \ co-occurrence\ is\ calculated\ by\ using\ \ \mathcal{P}_{bd} \ \ method\ mentioned\ above.\ \\
+\ \ 
+\end{array}
+$$
+</div>
+
+<h5>3.2 UCI</h5>
+<p>Slightly improved version of UMass, and applying the sliding window based probabilistic
+measure.</p>
+<div>
+$$
+ \begin{array}{l}
+C_{UCI} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i}) \ P( w_{j})}\right)\\
+\\
+N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+\\
+Here\ the\ co-occurrence\ is\ calculated\ by\ applying\ the\ sliding\ window\ over\ the\\
+text\ document.
+\end{array}
+$$
+</div>
+
+<h5>3.3 NPMI - Normalized Point-wise Mutual Information</h5>
+<p>Measuring the co-occurrence of words as the name suggest. This one is improved version
+of PMI, by applying a added normalisation to PMI.</p>
+<div>
+$$
+
+ \begin{array}{l}
+ N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+ \\
+ C_{NPMI} \ =\ \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\
+ -1}_{i=1}\left( \ \dfrac{\left(\dfrac{log\ ( P( w_{j} ,w_{i})) \ +\ \epsilon
+ }{P( w_{j}) \ P( w_{i})}\right)}{-\ log( P( w_{j} ,\ w_{i})) \ +\ \epsilon
+ }\right)\\
+ \\
+ P( w_{j} ,\ w_{i}) \ =\ Frequency\ of\ these\ two\ tokens\ co-occurrence\ on\
+ the\ input\ datasets.\ \\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Here\ we\ apply\ \mathcal{P}_{sw}
+ \ method.
+ \end{array}
+$$
+</div>
+
+<p>Outside this 4 stage framework, there are multiple coherence measures available,
+we can fit those measures along with above mentioned coherence measuring
+framework; even though some parts aren't relevant in some cases. Few of those
+measures are listed bellow,</p>
+<h4>3.4 Word2Vec based similarity score</h4>
+<p>Here we are making use of the semantic meanings of each words on word2vec vector 
+space and finding the cosine similarity between two word vectors.</p>
+<div>
+$$
+\displaystyle \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ similarity( wvi,\ wvj)
+$$
+</div>
+
+<h4>3.5 TF-IDF based improvement for UMass method</h4>
+<p>Here instead of measuring co-occurrence of two words across the documents, measure
+its relevance using tf-idf calculation.</p>
+<div>
+$$
+ \begin{array}{l}
+c( t,\ W_{t}) \ -\ Topic\ t\ is\ characterized\ by\ its\ set\ of\ top\ W_{t} \ words.\\
+\\
+c_{tf-idf}( t,\ W_{t}) \ =\ \sum _{w_{1} ,w_{2} \ \in \ W_{t}} log\ \left(\dfrac{\sum _{d:\ w_{1} ,w_{w} \ \in \ d}( tf-idf( w_{1} ,\ d) \ \times \ tf-idf( w_{2} ,\ d) \ +\ \epsilon )}{\sum _{d:\ w_{1} \ \in \ d} tf-idf( w_{1} ,\ d)}\right)\\
+Where;\\
+\\
+a) \ tf-idf( w_{1} ,\ d) \ =\ tf( w,\ d) \ \times \ idf( w) \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \dfrac{1}{2} \ \dfrac{f( w,\ d)}{max\ _{w^{*} \ \in \ d} \ f\left( \ w^{*} ,\ d\right)} \ \ \times \ log\ (\dfrac{|D|}{|\{d\ \in \ D:\ w\ \in \ d\} |}\\
+b) \ f( w,\ d) \ =\ Frequency\ of\ word\ w\ in\ document\ d.\\
+c) \ max\ _{w^{*} \ \in \ d} \ f\left( \ w^{*} ,\ d\right) \ =\ Normalise\ it\ with\ max\ frequency\ of\ word\ on\ that\ same\ document.\\
+d) \ w^{*} \ \ \neq \ \ w
+\end{array}
+$$
+</div>
+
+<h4>3.6 TBuckets</h4>
+<blockquote>
+<p>"we aim at measuring the quality of a single topic and propose a novel approach - TBuckets,
+which groups a topic’s words into thematic groups (which we call buckets).
+The intuition is that if a single large bucket is obtained from a topic, the topic carries a single coherent theme"</p>
+</blockquote>
+<p>Refer <a href="http://www.aclweb.org/anthology/E17-2070">paper</a></p>
+<div>
+$$
+ \begin{array}{l}
+A\ =\ U{\textstyle \sum V^{T} \ \ \ ;\ SVD\ of\ the\ Matrix\ A}\\
+\\
+\\
+A=\ N\ \times \ D\\
+\\
+Where:\ N\ \rightarrow \ top\ N\ words\ from\ topic\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ D\ \rightarrow \ Dimention\ of\ word\ embeddings.\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ A\ \rightarrow \ Word2Vec\ vectors\ for\ top\ N\ words\ of\ a\ topic.\\
+\\
+\sum \ \rightarrow \ Captures\ the\ different\ theme\ on\ same\ cluster\ with\ top\ N\ words.\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ These\ are\ the\ Buckets\ in\ TBucket\ algorithm.\\
+\\
+Eg;\ If\ we\ take\ top\ 10\ words\ from\ a\ topic,\ we\ can\ bucket\ them\ under\ major\ categories\ like\\
+\ \ \ \ \ \ T_{1} \ =\ \{\ aircraft( 5) ,\ footwear\ ( \ 3) ,\ beverage( 2) \ \} \ \ \\
+\ \ \ \ \ \ Higher\ the\ size\ of\ the\ bucket\ compared\ to\ others,\ model\ done\ better\ on\ topic\ identification.\\
+\\
+To\ allocate\ the\ word\ vectors\ under\ these\ buckets\ ( \ eigenvectors\ ) ,\ instead\ of\ naive\ assignment,\\
+use\ Interger\ Linear\ Programming\ or\ Linear\ optimization\ to\ get\ better\ allocation\ and\ reduce\ the\\
+fragmentation.
+\end{array}
+$$
+</div>
+
+<h3>4. Aggregation strategies</h3>
+<p>All the coherence measures discussed till now mainly deals with per topic level,
+to aggregate the measure for the entire model we need to aggregate all the topic 
+level scores in to one. Common method applied here is arithmetic mean of topic level
+coherence score. Or other type of statistical summary like std or median etc.</p>
+<hr/>
+
+<h3>Jaccard Similarity Measure for Model</h3>
+<p>All the above mentioned measuring mechanisms discuss about coherence of
+individual topic and then we are applying standard aggregation over these scores
+via simple arithmetic mean. Is there any measure the quality of all the topics
+or relationships between them ?</p>
+<p>The Jaccard Similarity between topics helps to understand how the topics are
+dependent each other. If the similarity is higher means topics are very
+dependent each other, otherwise topics are discussing about similar domain ( eg;
+automobile ). The key thing to care is, there is know good setting for this
+value, it's purely set based on the business requirement and nature of the data.</p>
+<div>
+$$
+ \begin{array}{l}
+K\ =\ \#Topics\\
+\\
+MPJ_{m,\ k} \ =\ \dfrac{1}{^{K} C_{2}} \ \sum ^{K}_{j=2} \ \sum ^{j\ -1}_{i=1} \ \left( \ \dfrac{TD_{i} \ \cap \ TD_{j}}{TD_{i} \ \cup \ TD_{j}}\right)
+\end{array}
+
+$$
+</div>
+
+<p>Thank you, That's all for now. Hope these heuristics helped you to understand your models well.</p>
+<div class="highlight"><pre><span></span><span class="n">NOTE</span><span class="o">:</span> <span class="n">This</span> <span class="n">blog</span> <span class="n">entry</span> <span class="n">was</span> <span class="n">orginally</span> <span class="n">published</span> <span class="n">at</span> <span class="n">https</span><span class="o">://</span><span class="n">labs</span><span class="o">.</span><span class="na">imaginea</span><span class="o">.</span><span class="na">com</span><span class="sr">/post/how-to-measure-topic-coherence/</span>
+<span class="n">Location</span><span class="o">,</span> <span class="n">and</span> <span class="n">republished</span> <span class="n">here</span> <span class="k">with</span> <span class="n">permission</span><span class="o">.</span>
+</pre></div>
+
+
+<h2>References</h2>
+<h6>1. https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf</h6>
+<h6>2. TBuckets paper http://www.aclweb.org/anthology/E17-2070</h6>
+<h6>3. http://www.cs.loyola.edu/~binkley/papers/icpc14-lda.pdf</h6>
+<h6>4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html</h6>
+<h6>5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3</h6>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

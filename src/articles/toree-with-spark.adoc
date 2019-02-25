@@ -88,9 +88,56 @@ Here only we only need to make use of the spark-submit arguments.
 ```bash
 export SPARK_OPTS="--master spark://<host>:7077 ..."
 ```
+== Write SQL/python/R on the same toree notebook
+
+By making use of the special magic types you can run the any of these codes that 
+is supported by the spark execution environment.
+
+https://datasciencemadesimpler.wordpress.com/tag/toree/
 
 
 Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !
+
+== Pyspark as ipython
+
+```bash
+export SPARK_HOME=/mnt/haridas/RPX/packages/spark-2.4.0-bin-hadoop2.7
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='console'
+
+
+pyspark
+```
+Now the pyspark uses the jupyter console interface, works with 
+
+== Start spark workers in standalone mode with multiple worker per node.
+
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html
+
+
+Standalone mode, 
+
+1. worker can have multiple executor.
+2. Worker is like node manager in yarn.
+3. We can set worker max core and memory usage setting.
+4. When defining the spark application via spark-shell or so, define the executor
+   memory and cores.
+	
+	eg; worker-1 has 10 core and 20gb memory
+	
+	When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
+
+```
+spark-submit --execture-cores 1 --executor-memory 2g --master <url>
+```
+
+
+
+
+
+
 
 == Reference
 

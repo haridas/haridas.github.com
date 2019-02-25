@@ -2,11 +2,22 @@
 :date: 12-08-2018
 :category: datascience
 
+=== Read the partitioned json files from disk
 
 val vocabDist = spark.read
     .format("json")
     .option("mergeSchema", "true")
     .load("/mnt/all_models/run-26-nov-2018-clean-vocab-50k-4m/model/topic-description"
+
+applicable to all types of files supported 
+
+=== Save partitioned files into a single file.
+
+Here we are merging all the partitions into one file and dumping it into 
+the disk, most cases this happens at the driver node, so be care ful the sie of
+data set that you are dealing with. Otherwise the driver node may go out of memory.
+
+spark.coaleace(1).write
 
 ```scala
 vocabDist
@@ -23,3 +34,45 @@ vocabDist
     .map(x => x.toString.length)
     .agg(min("value"))
     .show()
+
+== Mapping and Map Partition
+
+== Filtering
+=== Filtering a DataFrame column of type Seq[String]
+
+val dataPqFiltered = dataPq.selectExpr("length(abstract_html_strip) as doc_len", "*").filter("doc_len > 3")
+
+Filter a column with custom regex.
+
+val tokenFilter = udf((arr: Seq[String]) => arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
+val tokenCounter = udf((arr: Seq[String]) => arr.length))
+
+
+val tokenSamples = dataPqCleaned.withColumn("tokenFiltered",
+                                            tokenCounter(tokenFilter(dataPqCleaned("abstract_tokenized"))))
+
+==== Sum a column elements
+DataFrame.select(sum($"tokenFiltered")).show()
+Other function exmples are "avg", "std" etc.. Refer org.apache.spark.sql.functions._
+
+
+=== Remove unicode characters from tokens
+
+val tokenFilterFlat = udf((arr: Seq[String]) => arr.flatMap(
+    "\\w+-\\w+|\\w+-|\\w+".r.findAllIn(_)).filter(_.length > 3))
+
+val tokenFilter = udf((arr: Seq[String]) => arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
+val tokenCounter = udf((arr: Seq[String]) => arr.length)
+val minLengthFilter = udf((arr: Seq[String]) => arr.filter(_.length > 3))
+
+=== Connecting to jdbc with partition by integer column
+
+data_query = "(select * from analyst_etl_app.pat_cluster_abstract_view_rd_253 limit 100000)data"
+pat_ids=spark.read.jdbc(url = src_jdbcUrl,
+                        table = data_query,
+                        lowerBound = 1,
+                        column = 'pat_id',
+                        upperBound = 603442,
+                        numPartitions = 3,
+                        properties = src_conn_prop)
+

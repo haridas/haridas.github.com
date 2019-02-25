@@ -239,8 +239,82 @@ jupyter console --kernel=apache_toree_scala</code></pre>
 <pre class="highlight"><code class="language-bash" data-lang="bash">export SPARK_OPTS="--master spark://&lt;host&gt;:7077 ..."</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_write_sqlpythonr_on_the_same_toree_notebook">Write SQL/python/R on the same toree notebook</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By making use of the special magic types you can run the any of these codes that
+is supported by the spark execution environment.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://datasciencemadesimpler.wordpress.com/tag/toree/" class="bare">https://datasciencemadesimpler.wordpress.com/tag/toree/</a></p>
+</div>
 <div class="paragraph">
 <p>Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pyspark_as_ipython">Pyspark as ipython</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">export SPARK_HOME=/mnt/haridas/RPX/packages/spark-2.4.0-bin-hadoop2.7
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='console'
+
+
+pyspark</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the pyspark uses the jupyter console interface, works with</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_spark_workers_in_standalone_mode_with_multiple_worker_per_node">Start spark workers in standalone mode with multiple worker per node.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare">https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html</a></p>
+</div>
+<div class="paragraph">
+<p>Standalone mode,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>worker can have multiple executor.</p>
+</li>
+<li>
+<p>Worker is like node manager in yarn.</p>
+</li>
+<li>
+<p>We can set worker max core and memory usage setting.</p>
+</li>
+<li>
+<p>When defining the spark application via spark-shell or so, define the executor
+memory and cores.</p>
+<div class="literalblock">
+<div class="content">
+<pre>eg; worker-1 has 10 core and 20gb memory</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>When submitting the job to get 10 executor with 1 cpu and 2gb ram each,</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>spark-submit --execture-cores 1 --executor-memory 2g --master &lt;url&gt;</code></pre>
+</div>
 </div>
 </div>
 </div>

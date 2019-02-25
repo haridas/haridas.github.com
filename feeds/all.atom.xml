@@ -1,5 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-12-09T00:00:00+05:30</updated><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in//apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div class="paragraph"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-02-26T10:20:00+05:30</updated><entry><title>How to Measure Topic Coherence</title><link href="https://haridas.in//how-to-measure-topic-coherence.html" rel="alternate"></link><published>2019-02-26T10:20:00+05:30</published><updated>2019-02-26T10:20:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-02-26://how-to-measure-topic-coherence.html</id><summary type="html">&lt;p&gt;Unsupervised topic modeling algorithms like LDA and NMF produces list of
+vocabularies for each topic after the training. These vocabs help human
+to assign the subject information of the topic model. So how we measure the
+quality of these topic words ?, this problem has to be
+addressed in unsupervised topic …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Unsupervised topic modeling algorithms like LDA and NMF produces list of
+vocabularies for each topic after the training. These vocabs help human
+to assign the subject information of the topic model. So how we measure the
+quality of these topic words ?, this problem has to be
+addressed in unsupervised topic clustering algorithms like LDA / NMF to
+understand models are improving or not.&lt;/p&gt;
+&lt;p&gt;It's always a challenge to qualitatively measure the goodness of the words
+produced by each topic. Usually we take top 10 words ( It's recommended to keep
+the top n word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
+and come up with a topic name using these words)&lt;/p&gt;
+&lt;p&gt;The methods discussed here are the standard coherence evaluation metrics, based
+on Frequentest probabilistic evaluation, TF-IDF, Word2Vec and SVD based
+methods, over the top-n words of each topic and the input corpus given into the
+LDA model.&lt;/p&gt;
+&lt;p&gt;The probabilistic models generally measure the co-occurrence of the top-n topic
+words in the actual input corpus and the coherence value will be good if the
+co-occurrence measure from the top-n words will be higher. See more details of
+each method and its conventions used.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;All unsupervised topic clustering algorithms have to address this point before
+going into production, ie; how much usable the topics produced by a given
+method, can human can interpret the meanings of topic and describe the topic
+using top N words ( eg N = 10 ).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Based on this &lt;a href="https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf"&gt;paper&lt;/a&gt; - coherence evaluation can be structured into
+4 stages,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Segmentation of word subsets&lt;/li&gt;
+&lt;li&gt;Probability Estimation&lt;/li&gt;
+&lt;li&gt;Confirmation Measure&lt;/li&gt;
+&lt;li&gt;Aggregation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;1. Segmentation of word subsets&lt;/h3&gt;
+&lt;p&gt;In this stage we split the top-n words into pairs, we can do this in multiple
+ways to support the Boolean document counting or sliding window based counting
+discussed in next sections.&lt;/p&gt;
+&lt;h3&gt;2. Probability Estimation methods&lt;/h3&gt;
+&lt;p&gt;&lt;div&gt;
+$$
+ &lt;/p&gt;
+&lt;div class="math"&gt;\begin{array}{l}
+ \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
+ count\ only\ onces\ in\ a\ given\ document.\\
+ \mathcal{P}_{bp} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ paragraph\ estimation,\
+ counts\ the\ occurrences\ on\ every\ paragraph.\\
+ \mathcal{P}_{bs} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ sentence\ estimation,\
+ counts\ on\ occurrences\ on\ every\ sentences\ wise.\\
+ \mathcal{P}_{sw} \ \ \ \ \ \ \ \ \ =\ \ Sliding\ window\ estimation,\ here\ a\
+ window\ of\ size\ N\ has\ been\ used\ to\ move\\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ over\ the\ document\ and\ each\
+ window\ is\ considered\ a\ virtual\ document,\ and\\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\ \mathcal{P}_{bd} \ counts\
+ on\ each\ windows.\\
+ \\
+ \ P( w_{j} ,\ w_{i}) =\ \ \ \ \#documents\ ( w_{j} ,\ w_{i}) \ co-occures\ /\
+ \#\ total\ number\ of\ documents.\\
+ \ P( w_{j}) \ \ \ \ \ \ =\ \ \ \ \ \#documents\ w_{j} \ occures\ /\ \#\ total\
+ number\ of\ documents\\
+ \\
+ The\ denominators\ /\ normalization\ term\ of\ the\ joint\ and\ marginal\
+ probability\ can\ be\ different\\
+ based\ on\ the\ method\ used\ for\ estimate\ the\ same.\ Above\ one\ is\ used\
+ if\ \mathcal{P}_{bd} \ is\ the\ estimation\ used.\\
+ \\
+ For\ other\ estimation\ types\ like\ \mathcal{P}_{np} \ we\ use\ \#\ total\
+ number\ of\ paragraph\ as\ the\ normalisation\ term.
+ \end{array}&lt;/div&gt;
+&lt;p&gt;$$
+&lt;/div&gt;&lt;/p&gt;
+&lt;h3&gt;3. Confirmation Measures&lt;/h3&gt;
+&lt;p&gt;In this phase the actual scoring function is defined, which make uses any of
+the segmentation or probabilistic measuring methods described above. Lets see
+some of the widely used coherence measuring methods.&lt;/p&gt;
+&lt;h5&gt;3.1 UMass&lt;/h5&gt;
+&lt;p&gt;UMass is the simplest method of all mentioned bellow and compute time is least among
+all others.&lt;/p&gt;
+&lt;div&gt;
+$$
+ \begin{array}{l}
+C_{UMass} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i})}\right)\\
+\\
+N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+\\
+Here\ the\ P( w_{j} ,\ w_{i}) \ co-occurrence\ is\ calculated\ by\ using\ \ \mathcal{P}_{bd} \ \ method\ mentioned\ above.\ \\
+\ \ 
+\end{array}
+$$
+&lt;/div&gt;
+
+&lt;h5&gt;3.2 UCI&lt;/h5&gt;
+&lt;p&gt;Slightly improved version of UMass, and applying the sliding window based probabilistic
+measure.&lt;/p&gt;
+&lt;div&gt;
+$$
+ \begin{array}{l}
+C_{UCI} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i}) \ P( w_{j})}\right)\\
+\\
+N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+\\
+Here\ the\ co-occurrence\ is\ calculated\ by\ applying\ the\ sliding\ window\ over\ the\\
+text\ document.
+\end{array}
+$$
+&lt;/div&gt;
+
+&lt;h5&gt;3.3 NPMI - Normalized Point-wise Mutual Information&lt;/h5&gt;
+&lt;p&gt;Measuring the co-occurrence of words as the name suggest. This one is improved version
+of PMI, by applying a added normalisation to PMI.&lt;/p&gt;
+&lt;div&gt;
+$$
+
+ \begin{array}{l}
+ N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+ \\
+ C_{NPMI} \ =\ \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\
+ -1}_{i=1}\left( \ \dfrac{\left(\dfrac{log\ ( P( w_{j} ,w_{i})) \ +\ \epsilon
+ }{P( w_{j}) \ P( w_{i})}\right)}{-\ log( P( w_{j} ,\ w_{i})) \ +\ \epsilon
+ }\right)\\
+ \\
+ P( w_{j} ,\ w_{i}) \ =\ Frequency\ of\ these\ two\ tokens\ co-occurrence\ on\
+ the\ input\ datasets.\ \\
+ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Here\ we\ apply\ \mathcal{P}_{sw}
+ \ method.
+ \end{array}
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Outside this 4 stage framework, there are multiple coherence measures available,
+we can fit those measures along with above mentioned coherence measuring
+framework; even though some parts aren't relevant in some cases. Few of those
+measures are listed bellow,&lt;/p&gt;
+&lt;h4&gt;3.4 Word2Vec based similarity score&lt;/h4&gt;
+&lt;p&gt;Here we are making use of the semantic meanings of each words on word2vec vector 
+space and finding the cosine similarity between two word vectors.&lt;/p&gt;
+&lt;div&gt;
+$$
+\displaystyle \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ similarity( wvi,\ wvj)
+$$
+&lt;/div&gt;
+
+&lt;h4&gt;3.5 TF-IDF based improvement for UMass method&lt;/h4&gt;
+&lt;p&gt;Here instead of measuring co-occurrence of two words across the documents, measure
+its relevance using tf-idf calculation.&lt;/p&gt;
+&lt;div&gt;
+$$
+ \begin{array}{l}
+c( t,\ W_{t}) \ -\ Topic\ t\ is\ characterized\ by\ its\ set\ of\ top\ W_{t} \ words.\\
+\\
+c_{tf-idf}( t,\ W_{t}) \ =\ \sum _{w_{1} ,w_{2} \ \in \ W_{t}} log\ \left(\dfrac{\sum _{d:\ w_{1} ,w_{w} \ \in \ d}( tf-idf( w_{1} ,\ d) \ \times \ tf-idf( w_{2} ,\ d) \ +\ \epsilon )}{\sum _{d:\ w_{1} \ \in \ d} tf-idf( w_{1} ,\ d)}\right)\\
+Where;\\
+\\
+a) \ tf-idf( w_{1} ,\ d) \ =\ tf( w,\ d) \ \times \ idf( w) \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \dfrac{1}{2} \ \dfrac{f( w,\ d)}{max\ _{w^{*} \ \in \ d} \ f\left( \ w^{*} ,\ d\right)} \ \ \times \ log\ (\dfrac{|D|}{|\{d\ \in \ D:\ w\ \in \ d\} |}\\
+b) \ f( w,\ d) \ =\ Frequency\ of\ word\ w\ in\ document\ d.\\
+c) \ max\ _{w^{*} \ \in \ d} \ f\left( \ w^{*} ,\ d\right) \ =\ Normalise\ it\ with\ max\ frequency\ of\ word\ on\ that\ same\ document.\\
+d) \ w^{*} \ \ \neq \ \ w
+\end{array}
+$$
+&lt;/div&gt;
+
+&lt;h4&gt;3.6 TBuckets&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"we aim at measuring the quality of a single topic and propose a novel approach - TBuckets,
+which groups a topic’s words into thematic groups (which we call buckets).
+The intuition is that if a single large bucket is obtained from a topic, the topic carries a single coherent theme"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Refer &lt;a href="http://www.aclweb.org/anthology/E17-2070"&gt;paper&lt;/a&gt;&lt;/p&gt;
+&lt;div&gt;
+$$
+ \begin{array}{l}
+A\ =\ U{\textstyle \sum V^{T} \ \ \ ;\ SVD\ of\ the\ Matrix\ A}\\
+\\
+\\
+A=\ N\ \times \ D\\
+\\
+Where:\ N\ \rightarrow \ top\ N\ words\ from\ topic\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ D\ \rightarrow \ Dimention\ of\ word\ embeddings.\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ A\ \rightarrow \ Word2Vec\ vectors\ for\ top\ N\ words\ of\ a\ topic.\\
+\\
+\sum \ \rightarrow \ Captures\ the\ different\ theme\ on\ same\ cluster\ with\ top\ N\ words.\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ These\ are\ the\ Buckets\ in\ TBucket\ algorithm.\\
+\\
+Eg;\ If\ we\ take\ top\ 10\ words\ from\ a\ topic,\ we\ can\ bucket\ them\ under\ major\ categories\ like\\
+\ \ \ \ \ \ T_{1} \ =\ \{\ aircraft( 5) ,\ footwear\ ( \ 3) ,\ beverage( 2) \ \} \ \ \\
+\ \ \ \ \ \ Higher\ the\ size\ of\ the\ bucket\ compared\ to\ others,\ model\ done\ better\ on\ topic\ identification.\\
+\\
+To\ allocate\ the\ word\ vectors\ under\ these\ buckets\ ( \ eigenvectors\ ) ,\ instead\ of\ naive\ assignment,\\
+use\ Interger\ Linear\ Programming\ or\ Linear\ optimization\ to\ get\ better\ allocation\ and\ reduce\ the\\
+fragmentation.
+\end{array}
+$$
+&lt;/div&gt;
+
+&lt;h3&gt;4. Aggregation strategies&lt;/h3&gt;
+&lt;p&gt;All the coherence measures discussed till now mainly deals with per topic level,
+to aggregate the measure for the entire model we need to aggregate all the topic 
+level scores in to one. Common method applied here is arithmetic mean of topic level
+coherence score. Or other type of statistical summary like std or median etc.&lt;/p&gt;
+&lt;hr/&gt;
+
+&lt;h3&gt;Jaccard Similarity Measure for Model&lt;/h3&gt;
+&lt;p&gt;All the above mentioned measuring mechanisms discuss about coherence of
+individual topic and then we are applying standard aggregation over these scores
+via simple arithmetic mean. Is there any measure the quality of all the topics
+or relationships between them ?&lt;/p&gt;
+&lt;p&gt;The Jaccard Similarity between topics helps to understand how the topics are
+dependent each other. If the similarity is higher means topics are very
+dependent each other, otherwise topics are discussing about similar domain ( eg;
+automobile ). The key thing to care is, there is know good setting for this
+value, it's purely set based on the business requirement and nature of the data.&lt;/p&gt;
+&lt;div&gt;
+$$
+ \begin{array}{l}
+K\ =\ \#Topics\\
+\\
+MPJ_{m,\ k} \ =\ \dfrac{1}{^{K} C_{2}} \ \sum ^{K}_{j=2} \ \sum ^{j\ -1}_{i=1} \ \left( \ \dfrac{TD_{i} \ \cap \ TD_{j}}{TD_{i} \ \cup \ TD_{j}}\right)
+\end{array}
+
+$$
+&lt;/div&gt;
+
+&lt;p&gt;Thank you, That's all for now. Hope these heuristics helped you to understand your models well.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;NOTE&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="n"&gt;was&lt;/span&gt; &lt;span class="n"&gt;orginally&lt;/span&gt; &lt;span class="n"&gt;published&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="n"&gt;labs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;imaginea&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;com&lt;/span&gt;&lt;span class="sr"&gt;/post/how-to-measure-topic-coherence/&lt;/span&gt;
+&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;republished&lt;/span&gt; &lt;span class="n"&gt;here&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;permission&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;h6&gt;1. https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf&lt;/h6&gt;
+&lt;h6&gt;2. TBuckets paper http://www.aclweb.org/anthology/E17-2070&lt;/h6&gt;
+&lt;h6&gt;3. http://www.cs.loyola.edu/~binkley/papers/icpc14-lda.pdf&lt;/h6&gt;
+&lt;h6&gt;4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html&lt;/h6&gt;
+&lt;h6&gt;5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3&lt;/h6&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="LDA"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in//apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application in client mode,
 so that we can interact with the application via console. By enabling this in
 standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
@@ -121,8 +412,82 @@ jupyter console --kernel=apache_toree_scala&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_OPTS="--master spark://&amp;lt;host&amp;gt;:7077 ..."&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_write_sqlpythonr_on_the_same_toree_notebook"&gt;Write SQL/python/R on the same toree notebook&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By making use of the special magic types you can run the any of these codes that
+is supported by the spark execution environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://datasciencemadesimpler.wordpress.com/tag/toree/" class="bare"&gt;https://datasciencemadesimpler.wordpress.com/tag/toree/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_pyspark_as_ipython"&gt;Pyspark as ipython&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_HOME=/mnt/haridas/RPX/packages/spark-2.4.0-bin-hadoop2.7
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='console'
+
+
+pyspark&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Now the pyspark uses the jupyter console interface, works with&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_start_spark_workers_in_standalone_mode_with_multiple_worker_per_node"&gt;Start spark workers in standalone mode with multiple worker per node.&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare"&gt;https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Standalone mode,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;worker can have multiple executor.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Worker is like node manager in yarn.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We can set worker max core and memory usage setting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When defining the spark application via spark-shell or so, define the executor
+memory and cores.&lt;/p&gt;
+&lt;div class="literalblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;eg; worker-1 has 10 core and 20gb memory&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="literalblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;When submitting the job to get 10 executor with 1 cpu and 2gb ram each,&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code&gt;spark-submit --execture-cores 1 --executor-memory 2g --master &amp;lt;url&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
