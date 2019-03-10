@@ -1,0 +1,50 @@
+:toc:
+:numbered:
+
+= Run spacy jobs on spark using pyspark
+
+
+== spacy multi-processing cababilities
+
+This feature included with spacy to speed up the pipeline processing
+and making use of multiple core available on the machine.
+
+But this feature not be a good candidate for execute with spark environment.
+
+
+== Spark cluster configuration for spacy
+
+
+1. worker - 1 with 1 cpu core, and 5 gb or so ram.
+2. executor - 1, uses full resources of worker.
+3. Spacy pipeline with multi-processing support.
+
+Even if we don't enable `nlp.pipe` api, after first document processing, the nlp object goes into multip processing mode, it may be a bug on the spacy side; I couldn't find any option to disable the multi processing option on spacy. Because of this we have to take care at the spark side to avoid running multiple executor
+per node and ensure the executor won't use more
+than one cpu core to avoid spark side optimization
+by spwaning more threads if cores are available for executor.
+
+== Run spark with below configuration
+
+=== master
+
+```bash
+./sbin/start-master
+```
+
+=== slave 1
+```bash
+./sbin/start-slave.sh -c 1 -m 5g spark://<master-hostname>:7077
+```
+
+IMPORTANT: Here we are setting spark worker to use only one CPU, this
+means spark can launch one executor with 1 CPU, as with spacy workload
+main computation happening at python side, and spacy brings the multiprocessing 
+outside the spark framework.
+
+
+== Spark with external libraries
+
+The libraries used with spark 
+
+== 
