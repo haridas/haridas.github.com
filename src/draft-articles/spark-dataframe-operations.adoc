@@ -97,6 +97,11 @@ doc_features
    .show()
 ```
 
+== string => array<string> conversion
+
+```scala
+df.select("column").as[String].map(x => Seq(x.toString))
+```
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html
