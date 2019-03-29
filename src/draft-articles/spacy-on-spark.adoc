@@ -3,6 +3,15 @@
 
 = Run spacy jobs on spark using pyspark
 
+Spacy is a state-of-the-art NLP library in Python, which provides a lot of 
+tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
+models for Tagging, NER and related operations.
+
+Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+we mostely need accurate POS tagging and chunking features when working with
+NLP problems, which spark libraries aren't close to spacy. Those cases we need to
+relay on spacy.
+
 
 == spacy multi-processing cababilities
 
