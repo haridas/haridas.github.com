@@ -102,6 +102,22 @@ doc_features
 ```scala
 df.select("column").as[String].map(x => Seq(x.toString))
 ```
+
+== A crazy string collection and groupby
+
+```scala
+dataset_sample
+    .select("chunks").as[Array[String]]
+    .collect
+    .flatten
+    .distinct
+    .map(x => x.split(" ").length)
+    .zipWithIndex
+    .groupBy(_._1)
+    .map { case (k, v) => (k, v.size) }
+    .toArray
+    .sortBy(_._1)
+```
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html
