@@ -118,6 +118,21 @@ dataset_sample
     .toArray
     .sortBy(_._1)
 ```
+
+== Pyspark doesn't support all the datatpes.
+
+Example 1:
+
+```text
+    arrs = [create_array(s, t) for s, t in series]
+  File "/home/ubuntu/spark-2.4.0-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/serializers.py", line 251, in create_array
+    return pa.Array.from_pandas(s, mask=mask, type=t)
+  File "pyarrow/array.pxi", line 531, in pyarrow.lib.Array.from_pandas
+  File "pyarrow/array.pxi", line 171, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 80, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
+pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<item: int32>> conversion. 
+```
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html
