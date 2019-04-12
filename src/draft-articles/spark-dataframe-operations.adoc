@@ -22,7 +22,7 @@ applicable to all types of files supported
 === Save partitioned files into a single file.
 
 Here we are merging all the partitions into one file and dumping it into 
-the disk, most cases this happens at the driver node, so be care ful the sie of
+the disk, this happens at the driver node, so be careful with sie of
 data set that you are dealing with. Otherwise the driver node may go out of memory.
 
 spark.coaleace(1).write
@@ -43,7 +43,6 @@ vocabDist
     .show()
 
 ```
-== Mapping and Map Partition
 
 == Filtering
 === Filtering a DataFrame column of type Seq[String]
@@ -81,12 +80,26 @@ val minLengthFilter = udf((arr: Seq[String]) => arr.filter(_.length > 3))
 
 === Connecting to jdbc with partition by integer column
 
-```scala
-data_query = "(select * from analyst_etl_app.reporting limit 100000)data"
-pat_ids=spark.read.jdbc(url = src_jdbcUrl,
+When using the spark to read data from the SQL database and then do the
+other pipeline processing on it, it's recommended to partition the data
+according to the natural segments in the data, or at least on a integer
+column, so that spark can fire multiple sql quries to read data from SQL
+server and operate on it separately, the results are going to the spark
+partition.
+
+
+Bellow commands are in pyspark, but the APIs are same for scala version also.
+
+```python
+jdbc_url = 
+src_conn_prop =  {
+}
+
+data_query = "(select * from reporting limit 100000)data"
+pat_ids=spark.read.jdbc(url = jdbc_url,
                         table = data_query,
                         lowerBound = 1,
-                        column = 'pat_id',
+                        column = "report_id",
                         upperBound = 603442,
                         numPartitions = 3,
                         properties = src_conn_prop)
@@ -104,7 +117,7 @@ doc_features
    .show()
 ```
 
-== string => array<string> conversion
+== "string => array<string>" conversion
 
 ```scala
 df.select("column").as[String].map(x => Seq(x.toString))
@@ -135,7 +148,7 @@ dataset_sample
 export AWS_SECRET_KEY=
 export AWS_ACCESS_KEY=
 
-spark-shell --packages org.apache.hadoop:hadoop-aws:2.7.7
+spark-shell --packages org.apache.hadoop:hadoop-aws:2.7.7 --master <master-url>
 
 import com.amazonaws.auth._
 val envReader = new EnvironmentVariableCredentialsProvider()
@@ -153,9 +166,23 @@ since spark 2.4.x comes with default hadoop jars of version 2.7.x.
 
 ```bash
 
+// Configure the spark to read from s3. Ensure the 
+// aws config file is set at ~/.aws/config path.
+import com.amazonaws.auth.profile.ProfilesConfigFile
+
+val profileReader = new ProfilesConfigFile().getCredentials("default")
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", profileReader.getAWSAccessKeyId)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", profileReader.getAWSSecretKey)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+
 ```
 
 == Pyspark doesn't support all the datatpes.
+
+When using the `arrow` to transport data between jvm to python memory, arrow may throw
+bellow error if the types aren't compatible to existing convertors. The fixes may be come
+in future on the arrow's project. I'm keeping this here to know that how the pyspark gets 
+data from jvm and what are those things can go wrong on that process.
 
 Example 1:
 
@@ -169,6 +196,8 @@ Example 1:
   File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
 pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<item: int32>> conversion. 
 ```
+
+NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html
