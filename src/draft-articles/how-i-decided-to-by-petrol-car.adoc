@@ -5,6 +5,21 @@
 :category: data-science
 :tags: data,analysis
 
+This one is long pending blog entry, I bought a car around 10 month back.
+When I was planning to buy this car, I was alrady using another petrol car
+`Maruthi Suzuki Baleno Alpha Petrol` edition. Based on my monthly usage I came
+to the conculsion that buying a petrol car is best for my requirement. Let's see
+what are the datapoints helped me to reach that decision.
+
+Desclaimer: I'm not a car geek, just an user with 2+ years of experience in maintaining
+a car.
+
+My friends suggested me to buy diesal car, as its provides more milege and power,
+but there is a price difference between petrol car vs diesal car. This up-front
+cost when buying a diesal car really worth it or not is another question.
+
+Diesal car
+
 This blog discusses
 This blog is purely about the fule consumption and car usage, not about
 car performances and mechanical comparision.
