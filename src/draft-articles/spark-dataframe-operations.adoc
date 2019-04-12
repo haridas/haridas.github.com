@@ -1,6 +1,8 @@
 :title: Apache Spark pipeline cheat sheet for scala and pyspark
 :date: 12-08-2018
 :category: datascience
+:toc:
+:numbered:
 
 
 This page contains a bunch of spark pipeline transformation methods, which
