@@ -1,6 +1,13 @@
-:title: Apache Spark DataFrame filtering
+:title: Apache Spark pipeline cheat sheet for scala and pyspark
 :date: 12-08-2018
 :category: datascience
+
+
+This page contains a bunch of spark pipeline transformation methods, which
+we can use for different problems. Use this as a quick cheat cheat on how we can
+do particular operation on spark dataframe or pyspark.
+
+NOTE: This codes are tested on `spark-2.4.x` version.
 
 === Read the partitioned json files from disk
 
@@ -117,6 +124,35 @@ dataset_sample
     .map { case (k, v) => (k, v.size) }
     .toArray
     .sortBy(_._1)
+```
+
+== How to access AWS s3 on spark-shell or pyspark
+
+=== Supply the aws credentials via environment variable
+
+```bash
+// Export these two envs before running `spark-shell`.
+export AWS_SECRET_KEY=
+export AWS_ACCESS_KEY=
+
+spark-shell --packages org.apache.hadoop:hadoop-aws:2.7.7
+
+import com.amazonaws.auth._
+val envReader = new EnvironmentVariableCredentialsProvider()
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", envReader.getCredentials().getAWSAccessKeyId)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", envReader.getCredentials().getAWSSecretKey)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+
+```
+
+=== Supply the credentials via default aws ~/.aws/config file
+
+Recent versions of `awscli` expect its configurations are kept under `~/.aws/credentials` file,
+but old versions look at `~/.aws/config` path. The spark 2.4.x version now looks at the `~/.aws/config` location
+since spark 2.4.x comes with default hadoop jars of version 2.7.x.
+
+```bash
+
 ```
 
 == Pyspark doesn't support all the datatpes.
