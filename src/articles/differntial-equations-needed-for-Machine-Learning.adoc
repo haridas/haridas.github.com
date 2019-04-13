@@ -12,7 +12,25 @@ references.
 
 == Standard functions and its derivatives
 
-image::/images/math-basic-derivatives.png[Basic Derivatives]
+<div>
+$$
+
+ \begin{array}{l}
+\ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ \frac{1}{x} \ =\ -\frac{1}{x^{2}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ log( x) \ =\ \frac{1}{x} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\frac{\DifferentialD }{\DifferentialD x} \ e^{x} \ =e^{x} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ f( x) g( x) \ =\ f( x) \ \frac{\DifferentialD }{\DifferentialD x} \ g( x) \ +\ g( x) \ \frac{\DifferentialD }{\DifferentialD x} \ f( x) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\\
+\ \frac{\DifferentialD }{\DifferentialD x} \ \ \frac{f( x)}{g( x)} \ =\ \ \ \ \ \frac{f^{`}( x) \ g( x) \ -\ f( x) \ g^{`}( x)}{g( x)^{2}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\\
+\ \ {\textstyle Where\ f^{`}( x) \ =\ \frac{\DifferentialD }{\DifferentialD x} \ f( x) \ \ \&\ g^{`}( x) \ =\ \frac{\DifferentialD }{\DifferentialD x} \ g( x)}
+\end{array}
+
+$$
+</div>
 
 == Sigmoid activation function
 

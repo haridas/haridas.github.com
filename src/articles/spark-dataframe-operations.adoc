@@ -200,6 +200,28 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<ite
 ```
 
 NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
+
+=== Spark cluster standalone cluster manager
+
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html
+
+
+Standalone mode, 
+
+1. worker can have multiple executor.
+2. Worker is like node manager in yarn.
+3. We can set worker max core and memory usage setting.
+4. When defining the spark application via spark-shell or so, define the executor
+   memory and cores.
+	
+	eg; worker-1 has 10 core and 20gb memory
+	
+	When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
+
+```
+spark-submit --execture-cores 1 --executor-memory 2g --master <url>
+```
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html

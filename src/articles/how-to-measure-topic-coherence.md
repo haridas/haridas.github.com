@@ -48,6 +48,7 @@ discussed in next sections.
 ### 2. Probability Estimation methods
 <div>
 $$
+
  \begin{array}{l}
  \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
  count\ only\ onces\ in\ a\ given\ document.\\
