@@ -1,0 +1,5 @@
+statistics 
+
+== Measure the similarity of two proabilistic distributions
+Hellinger distance
+Bhatachariya distance

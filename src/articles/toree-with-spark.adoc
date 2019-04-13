@@ -2,6 +2,8 @@
 :date: 09-Dec-2018
 :tags: apache-spark,apache-toree
 :category: data-science
+:toc:
+:numbered:
 
 Apache Toree is a jupyter kernel. It runs the spark application in client mode, 
 so that we can interact with the application via console. By enabling this in 
@@ -12,7 +14,7 @@ pyspark and R also with special magic constructs.
 Here I'm explaining how we can install and configure toree for spark based testing
 environment.
 
-== How to configure toree with default jupyter notebook
+=== Configure toree with jupyter notebook
 
 ```bash
 # Current latest version, pick the 
@@ -33,9 +35,9 @@ Available kernels:
 If above commands ran successful then we are good to go with running new kernel
 with jupyter web UI or on the console mode.
 
-== Access the Toree via jupyter
+=== Access the Toree on jupyter
 
-=== Notebook mode
+==== Notebook mode
 
 ```bash
 jupyter notebook --no-browser --ip 0.0.0.0 --port 8080
@@ -44,7 +46,7 @@ Go to browser on this jupyter application, when creating the new notebook, you
 can now have option to create toree notebook also along with python standard notebook
 type.
 
-=== Console mode
+==== Console mode
 
 Sometime you might need to directly work on small scripts ore test few things against
 spark cluster or checking the scala magics ;)
@@ -57,7 +59,7 @@ codes.
 jupyter console --kernel=apache_toree_scala
 ```
 
-== Customie toree configuration
+==== Customize toree configuration
 
 Default settings of the spark application is very minimal, which may be not enough
 to test with big files or make use of the available resources in your machine. To
@@ -82,13 +84,45 @@ export SPARK_OPTS="--jars /home/haridas/custom1.jar:/home/haridas/custom2.jar \
 jupyter console --kernel=apache_toree_scala
 ```
 
-== Connect Toree with remote spark cluster
+To save the spark options permanently for the given toree kernel, we can use the
+kernel  configuration file to update the same.
+
+```bash
+# List available jupyter kernels
+
+(ENV3)$ jupyter kernelspec list
+Available kernels:
+  apache_toree_scala    /home/ubuntu/.local/share/jupyter/kernels/apache_toree_scala
+  python3               /home/ubuntu/ENV3/share/jupyter/kernels/python3
+
+
+# Edit the `apache_toree_scala` 's kernel.json file
+```
+
+Open `/home/ubuntu/.local/share/jupyter/kernels/apache_toree_scala/kernel.json`
+
+```json
+{
+    ...
+
+    "env": {
+        "__TOREE_SPARK_OPTS__": "--master spark://<ip>:7077 --executor-cores 1 ..."
+     }
+     ...
+}
+```
+
+Once the `kernel.json` updated with the spark configuration, when we start a 
+toree notebook it automatically uses this `SPARK_OPTS`.
+ 
+
+=== Connect Toree with remote spark cluster
 
 Here only we only need to make use of the spark-submit arguments.
 ```bash
 export SPARK_OPTS="--master spark://<host>:7077 ..."
 ```
-== Write SQL/python/R on the same toree notebook
+=== Write SQL/python/R on the same toree notebook
 
 By making use of the special magic types you can run the any of these codes that 
 is supported by the spark execution environment.
@@ -98,10 +132,15 @@ https://datasciencemadesimpler.wordpress.com/tag/toree/
 
 Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !
 
-== Pyspark as ipython
+=== Pyspark on ipython console
+
+Here we are accessing the spark via python interface without toree kernel support,
+`pyspark` library provide all the necessary tooling to start the driver program
+and py4j services. Use this if you want to interact with python without toree
+kernel.
 
 ```bash
-export SPARK_HOME=/mnt/haridas/RPX/packages/spark-2.4.0-bin-hadoop2.7
+export SPARK_HOME=/mnt/spark-2.4.0-bin-hadoop2.7
 export PATH=$SPARK_HOME/bin:$PATH
 export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS='console'
@@ -109,34 +148,8 @@ export PYSPARK_DRIVER_PYTHON_OPTS='console'
 
 pyspark
 ```
-Now the pyspark uses the jupyter console interface, works with 
-
-== Start spark workers in standalone mode with multiple worker per node.
-
-
-https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html
-
-
-Standalone mode, 
-
-1. worker can have multiple executor.
-2. Worker is like node manager in yarn.
-3. We can set worker max core and memory usage setting.
-4. When defining the spark application via spark-shell or so, define the executor
-   memory and cores.
-	
-	eg; worker-1 has 10 core and 20gb memory
-	
-	When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
-
-```
-spark-submit --execture-cores 1 --executor-memory 2g --master <url>
-```
-
-
-
-
-
+Now the pyspark uses the jupyter console interface, and we get the native console
+interface instead of web-console, some cases backend console is better.
 
 
 == Reference
