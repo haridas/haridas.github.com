@@ -1,15 +1,16 @@
-:title: Apache Spark pipeline cheat sheet for scala and pyspark
+:title: Apache Spark cheat sheet for scala and pyspark
 :date: 12-08-2018
-:category: datascience
+:category: data-science
 :toc:
 :numbered:
 
 
 This page contains a bunch of spark pipeline transformation methods, which
-we can use for different problems. Use this as a quick cheat cheat on how we can
+we can use for different problems. Use this as a quick cheat on how we can
 do particular operation on spark dataframe or pyspark.
 
-NOTE: This codes are tested on `spark-2.4.x` version.
+NOTE: This code snippets are tested on `spark-2.4.x` version, mostly work on
+`spark-2.3.x` also, but not sure about older versions.
 
 === Read the partitioned json files from disk
 
@@ -27,9 +28,21 @@ Here we are merging all the partitions into one file and dumping it into
 the disk, this happens at the driver node, so be careful with sie of
 data set that you are dealing with. Otherwise the driver node may go out of memory.
 
-spark.coaleace(1).write
+
+Use `coaleace` method to adjust the partition size of RDD based on our needs.
 
 ```scala
+
+spark.coaleace(1)
+    .write
+    .json("/mnt/test.json")
+
+```
+
+=== Filter rows which meets particular criteria
+
+```scala
+
 vocabDist
     .filter($"topic" === 0)
     .select("term")
@@ -46,16 +59,18 @@ vocabDist
 
 ```
 
-== Filtering
 === Filtering a DataFrame column of type Seq[String]
 
 ```scala
+
 val dataPqFiltered = dataPq
     .selectExpr("length(abstract_html_strip) as doc_len", "*")
     .filter("doc_len > 3")
+```
 
-Filter a column with custom regex.
+=== Filter a column with custom regex and udf
 
+```scala
 val tokenFilter = udf((arr: Seq[String]) => arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
 val tokenCounter = udf((arr: Seq[String]) => arr.length))
 
@@ -63,12 +78,18 @@ val tokenCounter = udf((arr: Seq[String]) => arr.length))
 val tokenSamples = dataPqCleaned
     .withColumn("tokenFiltered",tokenCounter(tokenFilter(dataPqCleaned("abstract_tokenized"))))
 ```
-==== Sum a column elements
-DataFrame.select(sum($"tokenFiltered")).show()
-Other function exmples are "avg", "std" etc.. Refer org.apache.spark.sql.functions._
 
+=== Sum a column elements
+
+```scala
+DataFrame.select(sum($"tokenFiltered")).show()
+Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functions._
+```
 
 === Remove unicode characters from tokens
+
+Some time we only need to work with the ascii text, so it's better to clean out
+other chars.
 
 ```scala
 val tokenFilterFlat = udf((arr: Seq[String]) => arr.flatMap(
@@ -93,12 +114,13 @@ partition.
 Bellow commands are in pyspark, but the APIs are same for scala version also.
 
 ```python
-jdbc_url = 
+jdbc_url = "jdbc://..."
 src_conn_prop =  {
+    //
 }
 
 data_query = "(select * from reporting limit 100000)data"
-pat_ids=spark.read.jdbc(url = jdbc_url,
+report_ids = spark.read.jdbc(url = jdbc_url,
                         table = data_query,
                         lowerBound = 1,
                         column = "report_id",
@@ -110,6 +132,18 @@ pat_ids=spark.read.jdbc(url = jdbc_url,
 
 === Parse nested json data
 
+This will be very helpful when working with `pyspark` and want to pass very
+nested json data between JVM and Python processes. Lately spark community relay on
+apache arrow project to avoid multiple serialization / deserialization costs when
+sending data from java memory to python memory or vice versa.
+
+
+So to process the inner objects you can make use of this `getItem` method
+to filter out required parts of the object and pass it over to python memory via
+arrow. In future arrow might support arbitrary nested data, but right now it won't
+support complex nested formats. General recommended option is go without nesting.
+
+
 ```spark
 doc_features
    .select($"features".getItem("values").alias("vocab_count"))
@@ -119,13 +153,18 @@ doc_features
    .show()
 ```
 
-== "string => array<string>" conversion
+=== "string => array<string>" conversion
+
+Type annotation `.as[String]` avoid implicite conversion assumed.
 
 ```scala
-df.select("column").as[String].map(x => Seq(x.toString))
+    df.select("column").as[String].map(x => Seq(x.toString))
 ```
 
-== A crazy string collection and groupby
+=== A crazy string collection and groupby
+
+This is a stream of operation on a column of type `Array[String]` and collect
+the tokens and count the ngram distribution over all the tokens.
 
 ```scala
 dataset_sample
@@ -141,9 +180,16 @@ dataset_sample
     .sortBy(_._1)
 ```
 
-== How to access AWS s3 on spark-shell or pyspark
+=== How to access AWS s3 on spark-shell or pyspark
 
-=== Supply the aws credentials via environment variable
+Most of the time we might required a cloud storage provider like s3 / gs etc, to
+read and write the data for processing, very few keeps in-house hdfs to handle the data
+themself, but for majority I think cloud storage easy to start with and don't need
+to bother about the size limitations.
+
+Here is the quick snippet to connect with s3.
+
+==== Supply the aws credentials via environment variable
 
 ```bash
 // Export these two envs before running `spark-shell`.
@@ -160,10 +206,10 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 
 ```
 
-=== Supply the credentials via default aws ~/.aws/config file
+==== Supply the credentials via default aws ~/.aws/config file
 
 Recent versions of `awscli` expect its configurations are kept under `~/.aws/credentials` file,
-but old versions look at `~/.aws/config` path. The spark 2.4.x version now looks at the `~/.aws/config` location
+but old versions looks at `~/.aws/config` path, spark 2.4.x version now looks at the `~/.aws/config` location
 since spark 2.4.x comes with default hadoop jars of version 2.7.x.
 
 ```bash
@@ -179,10 +225,10 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 
 ```
 
-== Pyspark doesn't support all the datatpes.
+=== Pyspark doesn't support all the data types.
 
 When using the `arrow` to transport data between jvm to python memory, arrow may throw
-bellow error if the types aren't compatible to existing convertors. The fixes may be come
+bellow error if the types aren't compatible to existing converters. The fixes may be come
 in future on the arrow's project. I'm keeping this here to know that how the pyspark gets 
 data from jvm and what are those things can go wrong on that process.
 
@@ -199,17 +245,15 @@ Example 1:
 pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<item: int32>> conversion. 
 ```
 
-NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
 
-=== Spark cluster standalone cluster manager
-
+=== Work with spark standalone cluster manager
 
 https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html
 
 
 Standalone mode, 
 
-1. worker can have multiple executor.
+1. Worker can have multiple executor.
 2. Worker is like node manager in yarn.
 3. We can set worker max core and memory usage setting.
 4. When defining the spark application via spark-shell or so, define the executor
@@ -222,6 +266,13 @@ Standalone mode,
 ```
 spark-submit --execture-cores 1 --executor-memory 2g --master <url>
 ```
+
+NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
+
+=== Updates
+
+1. Initial posting.
+
 == References
 
 1. https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html
