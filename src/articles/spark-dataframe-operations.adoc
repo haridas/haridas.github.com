@@ -1,6 +1,7 @@
 :title: Apache Spark cheat sheet for scala and pyspark
-:date: 12-08-2018
+:date: 15-04-2019
 :category: data-science
+:tags: spark,dataframe,pyspark
 :toc:
 :numbered:
 
@@ -222,6 +223,26 @@ val profileReader = new ProfilesConfigFile().getCredentials("default")
 spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", profileReader.getAWSAccessKeyId)
 spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", profileReader.getAWSSecretKey)
 spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+
+```
+=== Set spark scratch space or tmp directory correctly
+This might require when working with huge dataset and your machine can't hold them
+all in memory for a given pipeline steps, those cases the data will be spilled over
+to disk, and saved in tmp directory.
+
+Set bellow properties to ensure, you have enough space in tmp location.
+
+```text
+#vim ./conf/spark-defaults.conf
+
+...
+spark.local.dir   /mnt/spark-tmp
+spark.executor.extraJavaOptions /mnt/spark-tmp
+spark.driver.extraJavaOptions /mnt/spark-tmp
+
+...
+
+
 
 ```
 

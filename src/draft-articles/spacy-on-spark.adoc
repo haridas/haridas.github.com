@@ -16,6 +16,21 @@ we mostely need accurate POS tagging and chunking features when working with
 NLP problems, which spark libraries aren't close to spacy. Those cases we need to
 relay on spacy.
 
+=== Pyspark architecture
+
+image:[]()
+
+The spark worker doesn't control much other than starting the python worker
+process and control whether python worker need to be restarted on every job or
+not.
+
+=== Ensure the spacy models are serializable
+
+Here the models can't be serialised at the driver side and ship it to worker and
+load it back, So we need to ensure only at the runtime the models are really gets
+loaded into the worker memory.
+
+=== Worker process management
 
 == spacy multi-processing cababilities
 
@@ -32,10 +47,13 @@ But this feature not be a good candidate for execute with spark environment.
 2. executor - 1, uses full resources of worker.
 3. Spacy pipeline with multi-processing support.
 
-Even if we don't enable `nlp.pipe` api, after first document processing, the nlp object goes into multip processing mode, it may be a bug on the spacy side; I couldn't find any option to disable the multi processing option on spacy. Because of this we have to take care at the spark side to avoid running multiple executor
-per node and ensure the executor won't use more
-than one cpu core to avoid spark side optimization
-by spwaning more threads if cores are available for executor.
+Even if we don't enable `nlp.pipe` api, after first document processing, 
+the nlp object goes into multip processing mode, it may be a bug on the spacy 
+side; I couldn't find any option to disable the multi processing option on spacy.
+Because of this we have to take care at the spark side to avoid running multiple
+executor per node and ensure the executor won't use more than one cpu core to
+avoid spark side optimization by spwaning more threads if cores are available
+for executor.
 
 == Run spark with below configuration
 
@@ -55,9 +73,45 @@ means spark can launch one executor with 1 CPU, as with spacy workload
 main computation happening at python side, and spacy brings the multiprocessing 
 outside the spark framework.
 
+=== Check the python processes ran by each spark worker
+
+```bash
+
+On a 8 core machine, if we configured it in 
+
+Standalone cluster manager settings, 
+
+ubuntu@ip-10-50-168-159:/mnt/input/coherence_eval$ pstree -asp | grep pyspark
+  |   |   |-python,29960 -m pyspark.daemon
+  |   |   |   `-python,29987 -m pyspark.daemon
+  |   |   |-python,29973 -m pyspark.daemon
+  |   |   |   `-python,30018 -m pyspark.daemon
+  |   |   |-python,29975 -m pyspark.daemon
+  |   |   |   `-python,30032 -m pyspark.daemon
+  |   |   |-python,29978 -m pyspark.daemon
+  |   |   |   `-python,30042 -m pyspark.daemon
+  |   |   |-python,28303 -m pyspark.daemon
+  |   |   |   `-python,28801 -m pyspark.daemon
+  |   |   |-python,28651 -m pyspark.daemon
+  |   |   |   `-python,29146 -m pyspark.daemon
+  |   |   |-python,29962 -m pyspark.daemon
+  |   |   |   `-python,30017 -m pyspark.daemon
+  |   |   |-python,29972 -m pyspark.daemon
+  |   |   |   `-python,30036 -m pyspark.daemon
+          |-grep,30082 --color=auto pyspark
+
+```
+
+For  `Yarn` or `Kubernetes` cluster manager this problem won't happen as both
+will restrict the system view to application restricted similar to VMs with the
+help of `cggroup` and `namespace` feature.
+
 
 == Spark with external libraries
 
 The libraries used with spark 
 
 == 
+
+=== References
+1. Holden repository

@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Sun, 09 Dec 2018 00:00:00 +0530</lastBuildDate><item><title>Apache Toree notebook for Spark</title><link>https://haridas.in//apache-toree-notebook-for-spark.html</link><description>&lt;div class="paragraph"&gt;
-&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application in client mode,
-so that we can interact with the application via console. By enabling this in
-standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
-via this we get all the flexibility of …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 09 Dec 2018 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</guid><category>apache-spark</category><category>apache-toree</category></item><item><title>Differential Equations Needed for ML</title><link>https://haridas.in//differential-equations-needed-for-ml.html</link><description>&lt;div class="paragraph"&gt;
+<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Mon, 15 Apr 2019 00:00:00 +0530</lastBuildDate><item><title>Apache Spark cheat sheet for scala and pyspark</title><link>https://haridas.in//apache-spark-cheat-sheet-for-scala-and-pyspark.html</link><description>&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;6. Sum a column elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;7 …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Mon, 15 Apr 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-04-15://apache-spark-cheat-sheet-for-scala-and-pyspark.html</guid><category>spark</category><category>dataframe</category><category>pyspark</category></item><item><title>Apache Toree notebook for Spark</title><link>https://haridas.in//apache-toree-notebook-for-spark.html</link><description>&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_access_the_toree_on_jupyter"&gt;2. Access the Toree on jupyter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_connect_toree_with_remote_spark_cluster"&gt;3. Connect Toree with remote spark cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_write_sqlpythonr_on_the_same_toree_notebook"&gt;4. Write SQL/python/R on the same toree notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_pyspark_on_ipython_console"&gt;5. Pyspark on ipython console&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_reference"&gt;6. Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 09 Dec 2018 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</guid><category>apache-spark</category><category>apache-toree</category></item><item><title>Differential Equations Needed for ML</title><link>https://haridas.in//differential-equations-needed-for-ml.html</link><description>&lt;div class="paragraph"&gt;
 &lt;p&gt;In this post I want to include basic derivaties and primitive building blocks required
 from calculus for the model optimization. These are commonly used, but after some
 time I&amp;#8217;m losing grip of these basics, so I want to keep it one place for future
