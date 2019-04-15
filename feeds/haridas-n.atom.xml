@@ -41,8 +41,7 @@ ways to support the Boolean document counting or sliding window based counting
 discussed in next sections.&lt;/p&gt;
 &lt;h3&gt;2. Probability Estimation methods&lt;/h3&gt;
 &lt;p&gt;&lt;div&gt;
-$$
- &lt;/p&gt;
+$$&lt;/p&gt;
 &lt;div class="math"&gt;\begin{array}{l}
  \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
  count\ only\ onces\ in\ a\ given\ document.\\

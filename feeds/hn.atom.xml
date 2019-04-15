@@ -1,165 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2018-12-09T00:00:00+05:30</updated><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in//apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application in client mode,
-so that we can interact with the application via console. By enabling this in
-standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
-via this we get all the flexibility of …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application in client mode,
-so that we can interact with the application via console. By enabling this in
-standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
-via this we get all the flexibility of the jupyter notebook. Toree notebook supports
-pyspark and R also with special magic constructs.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-04-15T00:00:00+05:30</updated><entry><title>Apache Spark cheat sheet for scala and pyspark</title><link href="https://haridas.in//apache-spark-cheat-sheet-for-scala-and-pyspark.html" rel="alternate"></link><published>2019-04-15T00:00:00+05:30</published><updated>2019-04-15T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-04-15://apache-spark-cheat-sheet-for-scala-and-pyspark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;6. Sum a column elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;7 …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;6. Sum a column elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;7. Remove unicode characters from tokens&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_connecting_to_jdbc_with_partition_by_integer_column"&gt;8. Connecting to jdbc with partition by integer column&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_parse_nested_json_data"&gt;9. Parse nested json data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_string_arraystring_conversion"&gt;10. "string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_a_crazy_string_collection_and_groupby"&gt;11. A crazy string collection and groupby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;12. How to access AWS s3 on spark-shell or pyspark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_set_spark_scratch_space_or_tmp_directory_correctly"&gt;13. Set spark scratch space or tmp directory correctly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_pyspark_doesnt_support_all_the_data_types"&gt;14. Pyspark doesn&amp;#8217;t support all the data types.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_work_with_spark_standalone_cluster_manager"&gt;15. Work with spark standalone cluster manager&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_updates"&gt;16. Updates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_references"&gt;17. References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Here I&amp;#8217;m explaining how we can install and configure toree for spark based testing
-environment.&lt;/p&gt;
+&lt;p&gt;This page contains a bunch of spark pipeline transformation methods, which
+we can use for different problems. Use this as a quick cheat on how we can
+do particular operation on spark dataframe or pyspark.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_how_to_configure_toree_with_default_jupyter_notebook"&gt;How to configure toree with default jupyter notebook&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# Current latest version, pick the
-pip install toree==0.3.0
-jupyter toree install --user --spark_home=/mnt/haridas/packages/spark-2.1.2-bin-hadoop2.7&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To confirm the new kernel got installed to jupyter correctly,&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;jupyter kernelspec list
-
-Available kernels:
-  apache_toree_scala    /home/haridas/.local/share/jupyter/kernels/apache_toree_scala
-  python3               /home/haridas/ENV3/share/jupyter/kernels/python3&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If above commands ran successful then we are good to go with running new kernel
-with jupyter web UI or on the console mode.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_access_the_toree_via_jupyter"&gt;Access the Toree via jupyter&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_notebook_mode"&gt;Notebook mode&lt;/h3&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;jupyter notebook --no-browser --ip 0.0.0.0 --port 8080&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Go to browser on this jupyter application, when creating the new notebook, you
-can now have option to create toree notebook also along with python standard notebook
-type.&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+This code snippets are tested on &lt;code&gt;spark-2.4.x&lt;/code&gt; version, mostly work on
+&lt;code&gt;spark-2.3.x&lt;/code&gt; also, but not sure about older versions.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_console_mode"&gt;Console mode&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Sometime you might need to directly work on small scripts ore test few things against
-spark cluster or checking the scala magics ;)&lt;/p&gt;
+&lt;h3 id="_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-spark" data-lang="spark"&gt;val vocabDist = spark.read
+    .format("json")
+    .option("mergeSchema", "true")
+    .load("/mnt/all_models/run-26-nov-2018-clean-vocab-50k-4m/model/topic-description"&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Make use of the console version jupyter with the new kernel. Now you get the standard
-ipython like console via that we can interact with the spark cluster or write scala
-codes.&lt;/p&gt;
+&lt;p&gt;applicable to all types of files supported&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here we are merging all the partitions into one file and dumping it into
+the disk, this happens at the driver node, so be careful with sie of
+data set that you are dealing with. Otherwise the driver node may go out of memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Use &lt;code&gt;coaleace&lt;/code&gt; method to adjust the partition size of RDD based on our needs.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code&gt;jupyter console --kernel=apache_toree_scala&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;spark.coaleace(1)
+    .write
+    .json("/mnt/test.json")&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_customie_toree_configuration"&gt;Customie toree configuration&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Default settings of the spark application is very minimal, which may be not enough
-to test with big files or make use of the available resources in your machine. To
-do that you need to update the default configurations.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;By default spark and driver program make uses only 1GB of heap size, and number
-of executors will be 1.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To change the configuration it&amp;#8217;s pretty easy, you can check the available options
-from  &lt;code&gt;spark-submit --help&lt;/code&gt; command, and pass them on bellow environment variable
-before running the toree notebook.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;When picking options from &lt;code&gt;spark-submit&lt;/code&gt; ensure your cluster is of type standalone,
-or standalone-cluster-mode or yarn cluster mode. The options are bit different between
-the cluster managers.&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_OPTS="--jars /home/haridas/custom1.jar:/home/haridas/custom2.jar \
-    --driver-memory=5g \
-    --executor-memory=5g \
-    --num-executors 3"
-jupyter console --kernel=apache_toree_scala&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;vocabDist
+    .filter($"topic" === 0)
+    .select("term")
+    .filter(x =&amp;gt; x.toString.stripMargin.length == 3)
+    .count()
+
+// Find minimal value of data frame.
+vocabDist
+    .filter($"topic" === 0)
+    .select("term")
+    .map(x =&amp;gt; x.toString.length)
+    .agg(min("value"))
+    .show()&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_connect_toree_with_remote_spark_cluster"&gt;Connect Toree with remote spark cluster&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Here only we only need to make use of the spark-submit arguments.&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_OPTS="--master spark://&amp;lt;host&amp;gt;:7077 ..."&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;val dataPqFiltered = dataPq
+    .selectExpr("length(abstract_html_strip) as doc_len", "*")
+    .filter("doc_len &amp;gt; 3")&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_write_sqlpythonr_on_the_same_toree_notebook"&gt;Write SQL/python/R on the same toree notebook&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;By making use of the special magic types you can run the any of these codes that
-is supported by the spark execution environment.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://datasciencemadesimpler.wordpress.com/tag/toree/" class="bare"&gt;https://datasciencemadesimpler.wordpress.com/tag/toree/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_pyspark_as_ipython"&gt;Pyspark as ipython&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_HOME=/mnt/haridas/RPX/packages/spark-2.4.0-bin-hadoop2.7
-export PATH=$SPARK_HOME/bin:$PATH
-export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
-export PYSPARK_DRIVER_PYTHON_OPTS='console'
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;val tokenFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
+val tokenCounter = udf((arr: Seq[String]) =&amp;gt; arr.length))
 
 
-pyspark&lt;/code&gt;&lt;/pre&gt;
+val tokenSamples = dataPqCleaned
+    .withColumn("tokenFiltered",tokenCounter(tokenFilter(dataPqCleaned("abstract_tokenized"))))&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_sum_a_column_elements"&gt;6. Sum a column elements&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;DataFrame.select(sum($"tokenFiltered")).show()
+Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functions._&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_remove_unicode_characters_from_tokens"&gt;7. Remove unicode characters from tokens&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Some time we only need to work with the ascii text, so it&amp;#8217;s better to clean out
+other chars.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;val tokenFilterFlat = udf((arr: Seq[String]) =&amp;gt; arr.flatMap(
+    "\\w+-\\w+|\\w+-|\\w+".r.findAllIn(_)).filter(_.length &amp;gt; 3))
+
+val tokenFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
+val tokenCounter = udf((arr: Seq[String]) =&amp;gt; arr.length)
+val minLengthFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.length &amp;gt; 3))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_connecting_to_jdbc_with_partition_by_integer_column"&gt;8. Connecting to jdbc with partition by integer column&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When using the spark to read data from the SQL database and then do the
+other pipeline processing on it, it&amp;#8217;s recommended to partition the data
+according to the natural segments in the data, or at least on a integer
+column, so that spark can fire multiple sql quries to read data from SQL
+server and operate on it separately, the results are going to the spark
+partition.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Now the pyspark uses the jupyter console interface, works with&lt;/p&gt;
+&lt;p&gt;Bellow commands are in pyspark, but the APIs are same for scala version also.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;jdbc_url = "jdbc://..."
+src_conn_prop =  {
+    //
+}
+
+data_query = "(select * from reporting limit 100000)data"
+report_ids = spark.read.jdbc(url = jdbc_url,
+                        table = data_query,
+                        lowerBound = 1,
+                        column = "report_id",
+                        upperBound = 603442,
+                        numPartitions = 3,
+                        properties = src_conn_prop)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="_start_spark_workers_in_standalone_mode_with_multiple_worker_per_node"&gt;Start spark workers in standalone mode with multiple worker per node.&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_parse_nested_json_data"&gt;9. Parse nested json data&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This will be very helpful when working with &lt;code&gt;pyspark&lt;/code&gt; and want to pass very
+nested json data between JVM and Python processes. Lately spark community relay on
+apache arrow project to avoid multiple serialization / deserialization costs when
+sending data from java memory to python memory or vice versa.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;So to process the inner objects you can make use of this &lt;code&gt;getItem&lt;/code&gt; method
+to filter out required parts of the object and pass it over to python memory via
+arrow. In future arrow might support arbitrary nested data, but right now it won&amp;#8217;t
+support complex nested formats. General recommended option is go without nesting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-spark" data-lang="spark"&gt;doc_features
+   .select($"features".getItem("values").alias("vocab_count"))
+   .select(size($"vocab_count").alias("unique_features"))
+   .groupBy("unique_features")
+   .count()
+   .show()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_string_arraystring_conversion"&gt;10. "string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Type annotation &lt;code&gt;.as[String]&lt;/code&gt; avoid implicite conversion assumed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;    df.select("column").as[String].map(x =&amp;gt; Seq(x.toString))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_a_crazy_string_collection_and_groupby"&gt;11. A crazy string collection and groupby&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a stream of operation on a column of type &lt;code&gt;Array[String]&lt;/code&gt; and collect
+the tokens and count the ngram distribution over all the tokens.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;dataset_sample
+    .select("chunks").as[Array[String]]
+    .collect
+    .flatten
+    .distinct
+    .map(x =&amp;gt; x.split(" ").length)
+    .zipWithIndex
+    .groupBy(_._1)
+    .map { case (k, v) =&amp;gt; (k, v.size) }
+    .toArray
+    .sortBy(_._1)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;12. How to access AWS s3 on spark-shell or pyspark&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Most of the time we might required a cloud storage provider like s3 / gs etc, to
+read and write the data for processing, very few keeps in-house hdfs to handle the data
+themself, but for majority I think cloud storage easy to start with and don&amp;#8217;t need
+to bother about the size limitations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here is the quick snippet to connect with s3.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_supply_the_aws_credentials_via_environment_variable"&gt;12.1. Supply the aws credentials via environment variable&lt;/h4&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;// Export these two envs before running `spark-shell`.
+export AWS_SECRET_KEY=
+export AWS_ACCESS_KEY=
+
+spark-shell --packages org.apache.hadoop:hadoop-aws:2.7.7 --master &amp;lt;master-url&amp;gt;
+
+import com.amazonaws.auth._
+val envReader = new EnvironmentVariableCredentialsProvider()
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", envReader.getCredentials().getAWSAccessKeyId)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", envReader.getCredentials().getAWSSecretKey)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_supply_the_credentials_via_default_aws_awsconfig_file"&gt;12.2. Supply the credentials via default aws ~/.aws/config file&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Recent versions of &lt;code&gt;awscli&lt;/code&gt; expect its configurations are kept under &lt;code&gt;~/.aws/credentials&lt;/code&gt; file,
+but old versions looks at &lt;code&gt;~/.aws/config&lt;/code&gt; path, spark 2.4.x version now looks at the &lt;code&gt;~/.aws/config&lt;/code&gt; location
+since spark 2.4.x comes with default hadoop jars of version 2.7.x.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;// Configure the spark to read from s3. Ensure the
+// aws config file is set at ~/.aws/config path.
+import com.amazonaws.auth.profile.ProfilesConfigFile
+
+val profileReader = new ProfilesConfigFile().getCredentials("default")
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", profileReader.getAWSAccessKeyId)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", profileReader.getAWSSecretKey)
+spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_set_spark_scratch_space_or_tmp_directory_correctly"&gt;13. Set spark scratch space or tmp directory correctly&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This might require when working with huge dataset and your machine can&amp;#8217;t hold them
+all in memory for a given pipeline steps, those cases the data will be spilled over
+to disk, and saved in tmp directory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Set bellow properties to ensure, you have enough space in tmp location.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-text" data-lang="text"&gt;#vim ./conf/spark-defaults.conf
+
+...
+spark.local.dir   /mnt/spark-tmp
+spark.executor.extraJavaOptions /mnt/spark-tmp
+spark.driver.extraJavaOptions /mnt/spark-tmp
+
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_pyspark_doesnt_support_all_the_data_types"&gt;14. Pyspark doesn&amp;#8217;t support all the data types.&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When using the &lt;code&gt;arrow&lt;/code&gt; to transport data between jvm to python memory, arrow may throw
+bellow error if the types aren&amp;#8217;t compatible to existing converters. The fixes may be come
+in future on the arrow&amp;#8217;s project. I&amp;#8217;m keeping this here to know that how the pyspark gets
+data from jvm and what are those things can go wrong on that process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Example 1:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-text" data-lang="text"&gt;    arrs = [create_array(s, t) for s, t in series]
+  File "/home/ubuntu/spark-2.4.0-bin-hadoop2.7/python/lib/pyspark.zip/pyspark/serializers.py", line 251, in create_array
+    return pa.Array.from_pandas(s, mask=mask, type=t)
+  File "pyarrow/array.pxi", line 531, in pyarrow.lib.Array.from_pandas
+  File "pyarrow/array.pxi", line 171, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 80, in pyarrow.lib._ndarray_to_array
+  File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
+pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;list&amp;lt;item: int32&amp;gt;&amp;gt; conversion.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_work_with_spark_standalone_cluster_manager"&gt;15. Work with spark standalone cluster manager&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare"&gt;https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -169,7 +346,7 @@ pyspark&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;worker can have multiple executor.&lt;/p&gt;
+&lt;p&gt;Worker can have multiple executor.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Worker is like node manager in yarn.&lt;/p&gt;
@@ -198,10 +375,251 @@ memory and cores.&lt;/p&gt;
 &lt;pre class="highlight"&gt;&lt;code&gt;spark-submit --execture-cores 1 --executor-memory 2g --master &amp;lt;url&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+This page will be updaed as and when I see some reusable snippet of code for spark operations
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_updates"&gt;16. Updates&lt;/h3&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Initial posting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
-&lt;h2 id="_reference"&gt;Reference&lt;/h2&gt;
+&lt;h2 id="_references"&gt;17. References&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html" class="bare"&gt;https://docs.databricks.com/spark/latest/dataframes-datasets/complex-nested-data.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="spark"></category><category term="dataframe"></category><category term="pyspark"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in//apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_access_the_toree_on_jupyter"&gt;2. Access the Toree on jupyter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_connect_toree_with_remote_spark_cluster"&gt;3. Connect Toree with remote spark cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_write_sqlpythonr_on_the_same_toree_notebook"&gt;4. Write SQL/python/R on the same toree notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_pyspark_on_ipython_console"&gt;5. Pyspark on ipython console&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_reference"&gt;6. Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="toc" class="toc"&gt;
+&lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
+&lt;ul class="sectlevel2"&gt;
+&lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_access_the_toree_on_jupyter"&gt;2. Access the Toree on jupyter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_connect_toree_with_remote_spark_cluster"&gt;3. Connect Toree with remote spark cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_write_sqlpythonr_on_the_same_toree_notebook"&gt;4. Write SQL/python/R on the same toree notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_pyspark_on_ipython_console"&gt;5. Pyspark on ipython console&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_reference"&gt;6. Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Apache Toree is a jupyter kernel. It runs the spark application in client mode,
+so that we can interact with the application via console. By enabling this in
+standard jupyter notebook we can easily connect with any spark cluster or standalone servers,
+via this we get all the flexibility of the jupyter notebook. Toree notebook supports
+pyspark and R also with special magic constructs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here I&amp;#8217;m explaining how we can install and configure toree for spark based testing
+environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# Current latest version, pick the
+pip install toree==0.3.0
+jupyter toree install --user --spark_home=/mnt/haridas/packages/spark-2.1.2-bin-hadoop2.7&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To confirm the new kernel got installed to jupyter correctly,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;jupyter kernelspec list
+
+Available kernels:
+  apache_toree_scala    /home/haridas/.local/share/jupyter/kernels/apache_toree_scala
+  python3               /home/haridas/ENV3/share/jupyter/kernels/python3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If above commands ran successful then we are good to go with running new kernel
+with jupyter web UI or on the console mode.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_access_the_toree_on_jupyter"&gt;2. Access the Toree on jupyter&lt;/h3&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_notebook_mode"&gt;2.1. Notebook mode&lt;/h4&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;jupyter notebook --no-browser --ip 0.0.0.0 --port 8080&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Go to browser on this jupyter application, when creating the new notebook, you
+can now have option to create toree notebook also along with python standard notebook
+type.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_console_mode"&gt;2.2. Console mode&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Sometime you might need to directly work on small scripts ore test few things against
+spark cluster or checking the scala magics ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Make use of the console version jupyter with the new kernel. Now you get the standard
+ipython like console via that we can interact with the spark cluster or write scala
+codes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code&gt;jupyter console --kernel=apache_toree_scala&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_customize_toree_configuration"&gt;2.3. Customize toree configuration&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Default settings of the spark application is very minimal, which may be not enough
+to test with big files or make use of the available resources in your machine. To
+do that you need to update the default configurations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By default spark and driver program make uses only 1GB of heap size, and number
+of executors will be 1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To change the configuration it&amp;#8217;s pretty easy, you can check the available options
+from  &lt;code&gt;spark-submit --help&lt;/code&gt; command, and pass them on bellow environment variable
+before running the toree notebook.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When picking options from &lt;code&gt;spark-submit&lt;/code&gt; ensure your cluster is of type standalone,
+or standalone-cluster-mode or yarn cluster mode. The options are bit different between
+the cluster managers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_OPTS="--jars /home/haridas/custom1.jar:/home/haridas/custom2.jar \
+    --driver-memory=5g \
+    --executor-memory=5g \
+    --num-executors 3"
+jupyter console --kernel=apache_toree_scala&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To save the spark options permanently for the given toree kernel, we can use the
+kernel  configuration file to update the same.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# List available jupyter kernels
+
+(ENV3)$ jupyter kernelspec list
+Available kernels:
+  apache_toree_scala    /home/ubuntu/.local/share/jupyter/kernels/apache_toree_scala
+  python3               /home/ubuntu/ENV3/share/jupyter/kernels/python3
+
+
+# Edit the `apache_toree_scala` 's kernel.json file&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Open &lt;code&gt;/home/ubuntu/.local/share/jupyter/kernels/apache_toree_scala/kernel.json&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-json" data-lang="json"&gt;{
+    ...
+
+    "env": {
+        "__TOREE_SPARK_OPTS__": "--master spark://&amp;lt;ip&amp;gt;:7077 --executor-cores 1 ..."
+     }
+     ...
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Once the &lt;code&gt;kernel.json&lt;/code&gt; updated with the spark configuration, when we start a
+toree notebook it automatically uses this &lt;code&gt;SPARK_OPTS&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_connect_toree_with_remote_spark_cluster"&gt;3. Connect Toree with remote spark cluster&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here only we only need to make use of the spark-submit arguments.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_OPTS="--master spark://&amp;lt;host&amp;gt;:7077 ..."&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_write_sqlpythonr_on_the_same_toree_notebook"&gt;4. Write SQL/python/R on the same toree notebook&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By making use of the special magic types you can run the any of these codes that
+is supported by the spark execution environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://datasciencemadesimpler.wordpress.com/tag/toree/" class="bare"&gt;https://datasciencemadesimpler.wordpress.com/tag/toree/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Thats all for now, have fun with spark cluster and get the same flexibility of ipython notebook !&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_pyspark_on_ipython_console"&gt;5. Pyspark on ipython console&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here we are accessing the spark via python interface without toree kernel support,
+&lt;code&gt;pyspark&lt;/code&gt; library provide all the necessary tooling to start the driver program
+and py4j services. Use this if you want to interact with python without toree
+kernel.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;export SPARK_HOME=/mnt/spark-2.4.0-bin-hadoop2.7
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_DRIVER_PYTHON=/home/haridas/ENV3/bin/jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='console'
+
+
+pyspark&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Now the pyspark uses the jupyter console interface, and we get the native console
+interface instead of web-console, some cases backend console is better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_reference"&gt;6. Reference&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
@@ -237,10 +655,30 @@ references.&lt;/p&gt;
 &lt;div class="sect1"&gt;
 &lt;h2 id="_standard_functions_and_its_derivatives"&gt;Standard functions and its derivatives&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
-&lt;div class="imageblock"&gt;
-&lt;div class="content"&gt;
-&lt;img src="/images/math-basic-derivatives.png" alt="Basic Derivatives"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&amp;lt;div&amp;gt;
+$$&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class="literalblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt; \begin{array}{l}
+\ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ \frac{1}{x} \ =\ -\frac{1}{x^{2}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ log( x) \ =\ \frac{1}{x} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\frac{\DifferentialD }{\DifferentialD x} \ e^{x} \ =e^{x} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \frac{\DifferentialD }{\DifferentialD x} \ \ f( x) g( x) \ =\ f( x) \ \frac{\DifferentialD }{\DifferentialD x} \ g( x) \ +\ g( x) \ \frac{\DifferentialD }{\DifferentialD x} \ f( x) \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\\
+\ \frac{\DifferentialD }{\DifferentialD x} \ \ \frac{f( x)}{g( x)} \ =\ \ \ \ \ \frac{f^{`}( x) \ g( x) \ -\ f( x) \ g^{`}( x)}{g( x)^{2}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \\
+\\
+\ \ {\textstyle Where\ f^{`}( x) \ =\ \frac{\DifferentialD }{\DifferentialD x} \ f( x) \ \ \&amp;amp;\ g^{`}( x) \ =\ \frac{\DifferentialD }{\DifferentialD x} \ g( x)}
+\end{array}&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;$$
+&amp;lt;/div&amp;gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
