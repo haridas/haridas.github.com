@@ -1,4 +1,4 @@
-=== Why I bought petrol car
+=== Petrol Car vs Diesal Car
 :title: Petrol vs Diesal car
 :tags: analytics,car,ipython
 :date: 12-09-2018
