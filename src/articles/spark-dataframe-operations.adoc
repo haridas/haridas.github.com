@@ -3,8 +3,6 @@
 :category: data-science
 :tags: spark,dataframe,pyspark
 :toc:
-:numbered:
-
 
 This page contains a bunch of spark pipeline transformation methods, which
 we can use for different problems. Use this as a quick cheat on how we can
@@ -43,7 +41,6 @@ spark.coaleace(1)
 === Filter rows which meets particular criteria
 
 ```scala
-
 vocabDist
     .filter($"topic" === 0)
     .select("term")
@@ -52,12 +49,41 @@ vocabDist
 
 // Find minimal value of data frame.
 vocabDist
-    .filter($"topic" === 0)
+    .filter("topic == 0")
     .select("term")
     .map(x => x.toString.length)
     .agg(min("value"))
     .show()
+```
 
+=== Map with case class
+
+Use case class if you want to map on multiple column with complex 
+data structure.
+
+```scala
+
+case class Person(name: String, address: Array[String])
+
+// Use the case-class to get the more controll on the types when
+// Filtering the dataFrames.
+val personDf
+	.select("name", "address")
+	.as[Person]
+	.map(p => (p.name, p.address[0]))
+	.toDF("name", "primary_address")
+
+```
+
+=== Use selectExpr to access inner attributes
+
+Provide easily access the nested datastructures like `json` and filter them
+using the any existing udfs, or use your udf to get more flexibility here.
+
+```scala
+// Select only those documents which has some features in it.
+doc.selectExpr("doc_id", "size(features.values) as feature_size")
+ .where("feature_size > 0")
 ```
 
 === Filtering a DataFrame column of type Seq[String]
