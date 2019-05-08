@@ -1,3 +1,6 @@
 # Keep up with latest version always.
 pelican
 markdown
+bs4
+jupyter
+nbconvert
