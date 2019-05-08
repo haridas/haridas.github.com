@@ -4,3 +4,7 @@
 drafts/
 hn-theme
 plugins/
+pelican-plugins
+.*
+!.gitmodule
+!.gitignore
