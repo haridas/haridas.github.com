@@ -2,11 +2,12 @@ About Me
 ########
 :date: 2010-09-22 12:17
 
-Hello, I'm a Developer from India. Interested in different domains like,
-Web application development, SOA, Machine Learning, Distributed systems and Devop.
+Hello, I'm a Software Developer from India, always keen to know what's happening
+under the hood. Working on SOA, AI solution development, API development, Devops.
+Check my resume for more details - https://haridas.in/resume.pdf
 
-This is my personal blog to dump my thoughts, so I can
-refer it in future. I hope some of this would be helpful to others.
+Here I'm brain dump some of my work related exploration, so I can
+refer it in future, hope some of this would be helpful to others.
 
 
 Contact Informations
