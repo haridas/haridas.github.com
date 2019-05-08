@@ -9,7 +9,7 @@ git submodule update --init
 # Initialize the submodules and clean it.
 git clone https://github.com/getpelican/pelican-plugins
 cd pelican-plugins
-git submodule --init
-git submodule update pelican-ipynb
-git submodule update render_math
+git submodule init
+git submodule update pelican-ipynb --remote remote
+git submodule update pelican-gist --remote remote
 
