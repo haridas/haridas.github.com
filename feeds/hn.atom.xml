@@ -1,33 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-04-15T00:00:00+05:30</updated><entry><title>Apache Spark cheat sheet for scala and pyspark</title><link href="https://haridas.in//apache-spark-cheat-sheet-for-scala-and-pyspark.html" rel="alternate"></link><published>2019-04-15T00:00:00+05:30</published><updated>2019-04-15T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-04-15://apache-spark-cheat-sheet-for-scala-and-pyspark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-05-16T00:00:00+05:30</updated><entry><title>Run spacy jobs on Apache Spark</title><link href="https://haridas.in/run-spacy-jobs-on-apache-spark.html" rel="alternate"></link><published>2019-05-16T00:00:00+05:30</published><updated>2019-05-16T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-05-16:/run-spacy-jobs-on-apache-spark.html</id><summary type="html">&lt;div id="preamble"&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
+tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
+models for Tagging, NER and related operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+we mostly need accurate POS tagging and …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="preamble"&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
+tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
+models for Tagging, NER and related operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+we mostly need accurate POS tagging and chunking features when working with
+NLP problems, which spark libraries aren&amp;#8217;t close to spacy. Those cases we need to
+relay on spacy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_pyspark_architecture"&gt;Pyspark architecture&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A quick brief about the pyspark architecture, Bellow image shows that the workers
+spawn python process to run the pyspark jobs; which are written in python and all
+necessary python ML libraries like sklearn, numpy, spacy etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="imageblock"&gt;
+&lt;div class="content"&gt;
+&lt;img src="http://i.imgur.com/YlI8AqEl.png" alt="Pyspark Architecture"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The spark worker doesn&amp;#8217;t control much other than starting the python worker
+process and control whether python worker need to be restarted on every job or
+not.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_main_challenges_when_using_spacy_models_with_pyspark"&gt;Main challenges when using spacy models with pyspark&lt;/h3&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;How to skip spacy model serialization&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spacy&amp;#8217;s inbuilt multi-processing feature may bite you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;How we can manage the worker process management.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Usually when we submit spark jobs to the spark &lt;code&gt;driver&lt;/code&gt; compiles it and optimize the
+pipeline. The final plan of the pipeline is split across the &lt;code&gt;executors&lt;/code&gt; based on
+the DAG of data flow defined on the pipeline. Here the spark executors does the
+actual work, where the driver program sends out the relevant codes to executes
+at executor side. This is being done by serializing the relevant parts of the
+pipeline.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;One thing to ensure is our program is serializable ( Source code, classes and objects ).
+Otherwise spark fails to execute the pipeline.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_how_to_skip_spacy_model_serialization"&gt;How to skip spacy model serialization&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;How we ensure this is by avoiding the scenario of serializing the spacy&amp;#8217;s inbuilt
+trained binary models. How we do that ?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Pyspark uses &lt;code&gt;PickleSerializer&lt;/code&gt; to serialize the python objects, but spacy models
+aren&amp;#8217;t serialisable using &lt;code&gt;PickleSerializer&lt;/code&gt; which is trigger the issue when we
+load the spacy model first and then refer in worker code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_this_code_will_fail"&gt;This code will fail&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here we simply loading the spacy object at driver side itself, when the python modules
+are getting loaded, which demands the pickling for the spacy objects. Which eventually
+fails when ship it to the worker side.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;SPACY_MODEL = spacy.load("en_core_web_lg")&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_working_version"&gt;Working Version&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here we are wrapping the spacy model under a lazy function, which will ensure
+the model won&amp;#8217;t get loaded until it&amp;#8217;s really required&amp;#8201;&amp;#8212;&amp;#8201;which is actually required
+when the executor runs this code with partitioned dataset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;# Here we are not loading the model at the loading time, only the worker code
+# will invoke this routine and gets the spacy object. Which means we are loading
+# new spacy models on every executors.
+SPACY_MODEL = None
+def get_spacy_model():
+    global SPACY_MODEL
+    if not SPACY_MODEL:
+       _model = spacy.load("en_core_web_lg")
+    SPACY_MODEL = _model
+    return SPACY_MODEL&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;At driver side we won&amp;#8217;t load the spacy model, instead ensure they are loaded lazily at
+executor side.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here the models can&amp;#8217;t be serialised at the driver side and ship it to worker and
+load it back, So we need to ensure only at the runtime the models are really gets
+loaded into the worker memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_full_version_of_using_spacy_on_spark"&gt;Full version of using spacy on spark&lt;/h4&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;ubuntu@ip-10-50-168-159:~$
+import os
+import spacy
+import pandas as pd
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+from pyspark.sql.types import StringType, ArrayType
+
+
+SPACY_MODEL = None
+def get_spacy_model():
+    global SPACY_MODEL
+    if not SPACY_MODEL:
+       _model = spacy.load("en_core_web_lg")
+       # FIX https://github.com/explosion/spaCy/issues/922
+       _model.vocab.add_flag(
+           lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS,
+           spacy.attrs.IS_STOP
+       )
+
+    SPACY_MODEL = _model
+    return SPACY_MODEL
+
+
+os.environ["PYSPARK_SUBMIT_ARGS"]  = "--master local[*] \
+        --executor-cores 1 \
+        --executor-memory 5g \
+        --driver-memory 5g \
+        pyspark-shell"
+
+os.environ["SPARK_HOME"] = "/home/ubuntu/spark-2.4.0-bin-hadoop2.7"
+os.environ["PYSPARK_PYTHON"] = "/home/ubuntu/ENV3/bin/python"
+
+spark = SparkSession \
+        .builder \
+        .appName("test-spacy-on-spark") \
+        .getOrCreate()
+
+# Enable the arrow based udf calls or data transfer between python and jvm.
+spark.conf.set("spark.sql.execution.arrow.enabled", "true")
+spark.conf.set("spark.python.worker.reuse", "true")
+spark.conf.set("spark.python.worker.memory", "2g")
+#
+# Simple UDF function which uses the spacy model to evaluate your create
+#
+@pandas_udf(returnType=ArrayType(StringType()), functionType=PandasUDFType.SCALAR)
+def tokenize_and_clean(documents):
+    spacy_model = get_spacy_model()
+    docs = spacy_model.pipe(documents)
+    tokens = [[tok.lemma_ for tok in doc if not tok.is_stop and tok.text]
+              for doc in docs]
+    tokens_series = pd.Series(tokens)
+    return tokens_series
+
+
+data = spark.read.option("header", True).csv("/mnt/input/dataset.csv")
+
+#import pdb; pdb.set_trace()
+print(data.printSchema())
+data = data.repartition(5)
+data1 = data.withColumn("tokens", tokenize_and_clean("abstracts"))
+
+
+print(data1.select("tokens").show())&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_spacy_multi_processing_capabilities"&gt;Spacy multi-processing capabilities&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This feature included with spacy to speed up the pipeline processing
+and making use of multiple core available on the machine. If you are not careful
+with this configuration then spark executors won&amp;#8217;t control the python daemon behavior
+of forking processes internally, which leads into over utilization of resource, and
+low throughput.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Bellow code ensures the spacy will dispatch the different documents into available
+cores to finish the spacy pipeline operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;nlp = spacy.load("en_core_web_lg")
+
+docs = nlp.pipe(raw_docs)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you are enabling this, then your spark configuration shouldn&amp;#8217;t control the
+worker cores, instead each worker/executor uses only 1 core and leave the remaining
+cores for python workers, which is an good option here.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_master"&gt;master&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;./sbin/start-master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_slave_1"&gt;slave 1&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;./sbin/start-slave.sh -c 1 -m 5g spark://&amp;lt;master-hostname&amp;gt;:7077&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock important"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Important&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Here we are setting spark worker to use only one CPU, this
+means spark can launch one executor with 1 CPU, as with spacy workload
+main computation happening at python side, and spacy brings the multiprocessing
+outside the spark framework.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_check_the_python_processes_ran_by_each_spark_worker"&gt;Check the python processes ran by each spark worker&lt;/h3&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;On a 8 core machine, above standalone cluster configuration,
+
+$ pstree -aup | grep pyspark
+      |       |   |-python,32602 -m pyspark.daemon
+      |       |   |   |-python,32608 -m pyspark.daemon
+      |       |   |   |-python,32609 -m pyspark.daemon
+      |       |   |   |-python,32614 -m pyspark.daemon
+      |       |   |   `-python,32616 -m pyspark.daemon
+      |       |   |   |-python,32601 -m pyspark.daemon
+      |       |   |   |-python,32607 -m pyspark.daemon
+      |       |   |   |-python,32612 -m pyspark.daemon
+      |       |   |   `-python,32615 -m pyspark.daemon
+      |   |-grep,1487 --color=auto pyspark
+
+PID 32602 -&amp;gt; The master python job which interact with the spark executor to fetch data
+Other PIDs are the spacy workers launched, default behavior is one worker per cpu core.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Suppose we ran the apache spark worker with 8 core, and allocated 1 CPU for each executor,
+then it will fork 8x8 = 64 python processes to do the task, in place of 8 process.
+Which will degrade pipeline performance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For  &lt;code&gt;Yarn&lt;/code&gt; or &lt;code&gt;Kubernetes&lt;/code&gt; cluster manager this problem won&amp;#8217;t happen as both
+will restrict the system view to application restricted&amp;#8201;&amp;#8212;&amp;#8201;similar to VMs; with the
+help of Control Group (&lt;code&gt;cgroup&lt;/code&gt;) and &lt;code&gt;namespace&lt;/code&gt; features. So the spark executor
+or the python worker won&amp;#8217;t see entire CPU / RAM for utilization, they gets it by
+the allocation specified based on the container spec on both Yarn and Kubernetes
+environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_takeaway"&gt;Takeaway&lt;/h3&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure you are writing spark pipeline with serialisable objects, or do lazy
+evaluation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Be careful when using the external libraries like spacy, which may bring its own
+multiprocessing feature, which will result in overloading the system with spark
+executor configuration.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the different cluster manager other than standalone one to get more control
+over allocating resources to the executors.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_references"&gt;References&lt;/h3&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Holden&amp;#8217;s blog - &lt;a href="https://blog.dominodatalab.com/making-pyspark-work-spacy-overcoming-serialization-errors/" class="bare"&gt;https://blog.dominodatalab.com/making-pyspark-work-spacy-overcoming-serialization-errors/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="bigdata"></category><category term="nlp"></category><category term="spark"></category></entry><entry><title>Apache Spark cheat sheet for scala and pyspark</title><link href="https://haridas.in/apache-spark-cheat-sheet-for-scala-and-pyspark.html" rel="alternate"></link><published>2019-04-15T00:00:00+05:30</published><updated>2019-04-15T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-04-15:/apache-spark-cheat-sheet-for-scala-and-pyspark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
-&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;6. Sum a column elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;7 …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="toc" class="toc"&gt;
+&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;Sum …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
-&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;6. Sum a column elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;7. Remove unicode characters from tokens&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_connecting_to_jdbc_with_partition_by_integer_column"&gt;8. Connecting to jdbc with partition by integer column&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_parse_nested_json_data"&gt;9. Parse nested json data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_string_arraystring_conversion"&gt;10. "string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_a_crazy_string_collection_and_groupby"&gt;11. A crazy string collection and groupby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;12. How to access AWS s3 on spark-shell or pyspark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_set_spark_scratch_space_or_tmp_directory_correctly"&gt;13. Set spark scratch space or tmp directory correctly&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_pyspark_doesnt_support_all_the_data_types"&gt;14. Pyspark doesn&amp;#8217;t support all the data types.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_work_with_spark_standalone_cluster_manager"&gt;15. Work with spark standalone cluster manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_updates"&gt;16. Updates&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_references"&gt;17. References&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;Sum a column elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;Remove unicode characters from tokens&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_connecting_to_jdbc_with_partition_by_integer_column"&gt;Connecting to jdbc with partition by integer column&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_parse_nested_json_data"&gt;Parse nested json data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_string_arraystring_conversion"&gt;"string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_a_crazy_string_collection_and_groupby"&gt;A crazy string collection and groupby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;How to access AWS s3 on spark-shell or pyspark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_set_spark_scratch_space_or_tmp_directory_correctly"&gt;Set spark scratch space or tmp directory correctly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_pyspark_doesnt_support_all_the_data_types"&gt;Pyspark doesn&amp;#8217;t support all the data types.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_work_with_spark_standalone_cluster_manager"&gt;Work with spark standalone cluster manager&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_updates"&gt;Updates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
@@ -49,7 +372,7 @@ This code snippets are tested on &lt;code&gt;spark-2.4.x&lt;/code&gt; version, m
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_read_the_partitioned_json_files_from_disk"&gt;1. Read the partitioned json files from disk&lt;/h3&gt;
+&lt;h3 id="_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-spark" data-lang="spark"&gt;val vocabDist = spark.read
@@ -63,7 +386,7 @@ This code snippets are tested on &lt;code&gt;spark-2.4.x&lt;/code&gt; version, m
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_save_partitioned_files_into_a_single_file"&gt;2. Save partitioned files into a single file.&lt;/h3&gt;
+&lt;h3 id="_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Here we are merging all the partitions into one file and dumping it into
 the disk, this happens at the driver node, so be careful with sie of
@@ -81,7 +404,7 @@ data set that you are dealing with. Otherwise the driver node may go out of memo
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_filter_rows_which_meets_particular_criteria"&gt;3. Filter rows which meets particular criteria&lt;/h3&gt;
+&lt;h3 id="_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;vocabDist
@@ -92,7 +415,7 @@ data set that you are dealing with. Otherwise the driver node may go out of memo
 
 // Find minimal value of data frame.
 vocabDist
-    .filter($"topic" === 0)
+    .filter("topic == 0")
     .select("term")
     .map(x =&amp;gt; x.toString.length)
     .agg(min("value"))
@@ -101,7 +424,41 @@ vocabDist
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_filtering_a_dataframe_column_of_type_seqstring"&gt;4. Filtering a DataFrame column of type Seq[String]&lt;/h3&gt;
+&lt;h3 id="_map_with_case_class"&gt;Map with case class&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Use case class if you want to map on multiple column with complex
+data structure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;case class Person(name: String, address: Array[String])
+
+// Use the case-class to get the more controll on the types when
+// Filtering the dataFrames.
+val personDf
+	.select("name", "address")
+	.as[Person]
+	.map(p =&amp;gt; (p.name, p.address[0]))
+	.toDF("name", "primary_address")&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Provide easily access the nested datastructures like &lt;code&gt;json&lt;/code&gt; and filter them
+using the any existing udfs, or use your udf to get more flexibility here.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;// Select only those documents which has some features in it.
+doc.selectExpr("doc_id", "size(features.values) as feature_size")
+ .where("feature_size &amp;gt; 0")&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="_filtering_a_dataframe_column_of_type_seqstring"&gt;Filtering a DataFrame column of type Seq[String]&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;val dataPqFiltered = dataPq
@@ -111,7 +468,7 @@ vocabDist
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_filter_a_column_with_custom_regex_and_udf"&gt;5. Filter a column with custom regex and udf&lt;/h3&gt;
+&lt;h3 id="_filter_a_column_with_custom_regex_and_udf"&gt;Filter a column with custom regex and udf&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;val tokenFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.matches("\\w+-\\w+|\\w+-|\\w+")))
@@ -124,7 +481,7 @@ val tokenSamples = dataPqCleaned
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_sum_a_column_elements"&gt;6. Sum a column elements&lt;/h3&gt;
+&lt;h3 id="_sum_a_column_elements"&gt;Sum a column elements&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;DataFrame.select(sum($"tokenFiltered")).show()
@@ -133,7 +490,7 @@ Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_remove_unicode_characters_from_tokens"&gt;7. Remove unicode characters from tokens&lt;/h3&gt;
+&lt;h3 id="_remove_unicode_characters_from_tokens"&gt;Remove unicode characters from tokens&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Some time we only need to work with the ascii text, so it&amp;#8217;s better to clean out
 other chars.&lt;/p&gt;
@@ -150,7 +507,7 @@ val minLengthFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.length &amp;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_connecting_to_jdbc_with_partition_by_integer_column"&gt;8. Connecting to jdbc with partition by integer column&lt;/h3&gt;
+&lt;h3 id="_connecting_to_jdbc_with_partition_by_integer_column"&gt;Connecting to jdbc with partition by integer column&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;When using the spark to read data from the SQL database and then do the
 other pipeline processing on it, it&amp;#8217;s recommended to partition the data
@@ -181,7 +538,7 @@ report_ids = spark.read.jdbc(url = jdbc_url,
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_parse_nested_json_data"&gt;9. Parse nested json data&lt;/h3&gt;
+&lt;h3 id="_parse_nested_json_data"&gt;Parse nested json data&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This will be very helpful when working with &lt;code&gt;pyspark&lt;/code&gt; and want to pass very
 nested json data between JVM and Python processes. Lately spark community relay on
@@ -206,7 +563,7 @@ support complex nested formats. General recommended option is go without nesting
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_string_arraystring_conversion"&gt;10. "string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/h3&gt;
+&lt;h3 id="_string_arraystring_conversion"&gt;"string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Type annotation &lt;code&gt;.as[String]&lt;/code&gt; avoid implicite conversion assumed.&lt;/p&gt;
 &lt;/div&gt;
@@ -217,7 +574,7 @@ support complex nested formats. General recommended option is go without nesting
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_a_crazy_string_collection_and_groupby"&gt;11. A crazy string collection and groupby&lt;/h3&gt;
+&lt;h3 id="_a_crazy_string_collection_and_groupby"&gt;A crazy string collection and groupby&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This is a stream of operation on a column of type &lt;code&gt;Array[String]&lt;/code&gt; and collect
 the tokens and count the ngram distribution over all the tokens.&lt;/p&gt;
@@ -239,7 +596,7 @@ the tokens and count the ngram distribution over all the tokens.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;12. How to access AWS s3 on spark-shell or pyspark&lt;/h3&gt;
+&lt;h3 id="_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;How to access AWS s3 on spark-shell or pyspark&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Most of the time we might required a cloud storage provider like s3 / gs etc, to
 read and write the data for processing, very few keeps in-house hdfs to handle the data
@@ -250,7 +607,7 @@ to bother about the size limitations.&lt;/p&gt;
 &lt;p&gt;Here is the quick snippet to connect with s3.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect3"&gt;
-&lt;h4 id="_supply_the_aws_credentials_via_environment_variable"&gt;12.1. Supply the aws credentials via environment variable&lt;/h4&gt;
+&lt;h4 id="_supply_the_aws_credentials_via_environment_variable"&gt;Supply the aws credentials via environment variable&lt;/h4&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;// Export these two envs before running `spark-shell`.
@@ -268,7 +625,7 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect3"&gt;
-&lt;h4 id="_supply_the_credentials_via_default_aws_awsconfig_file"&gt;12.2. Supply the credentials via default aws ~/.aws/config file&lt;/h4&gt;
+&lt;h4 id="_supply_the_credentials_via_default_aws_awsconfig_file"&gt;Supply the credentials via default aws ~/.aws/config file&lt;/h4&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Recent versions of &lt;code&gt;awscli&lt;/code&gt; expect its configurations are kept under &lt;code&gt;~/.aws/credentials&lt;/code&gt; file,
 but old versions looks at &lt;code&gt;~/.aws/config&lt;/code&gt; path, spark 2.4.x version now looks at the &lt;code&gt;~/.aws/config&lt;/code&gt; location
@@ -289,7 +646,7 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_set_spark_scratch_space_or_tmp_directory_correctly"&gt;13. Set spark scratch space or tmp directory correctly&lt;/h3&gt;
+&lt;h3 id="_set_spark_scratch_space_or_tmp_directory_correctly"&gt;Set spark scratch space or tmp directory correctly&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This might require when working with huge dataset and your machine can&amp;#8217;t hold them
 all in memory for a given pipeline steps, those cases the data will be spilled over
@@ -312,7 +669,7 @@ spark.driver.extraJavaOptions /mnt/spark-tmp
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_pyspark_doesnt_support_all_the_data_types"&gt;14. Pyspark doesn&amp;#8217;t support all the data types.&lt;/h3&gt;
+&lt;h3 id="_pyspark_doesnt_support_all_the_data_types"&gt;Pyspark doesn&amp;#8217;t support all the data types.&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;When using the &lt;code&gt;arrow&lt;/code&gt; to transport data between jvm to python memory, arrow may throw
 bellow error if the types aren&amp;#8217;t compatible to existing converters. The fixes may be come
@@ -336,7 +693,7 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_work_with_spark_standalone_cluster_manager"&gt;15. Work with spark standalone cluster manager&lt;/h3&gt;
+&lt;h3 id="_work_with_spark_standalone_cluster_manager"&gt;Work with spark standalone cluster manager&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare"&gt;https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -389,7 +746,7 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_updates"&gt;16. Updates&lt;/h3&gt;
+&lt;h3 id="_updates"&gt;Updates&lt;/h3&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
@@ -399,7 +756,7 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
-&lt;h2 id="_references"&gt;17. References&lt;/h2&gt;
+&lt;h2 id="_references"&gt;References&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
@@ -410,7 +767,7 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="spark"></category><category term="dataframe"></category><category term="pyspark"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in//apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09://apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+</content><category term="spark"></category><category term="dataframe"></category><category term="pyspark"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in/apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09:/apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
@@ -639,7 +996,7 @@ interface instead of web-console, some cases backend console is better.&lt;/p&gt
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="apache-spark"></category><category term="apache-toree"></category></entry><entry><title>Differential Equations Needed for ML</title><link href="https://haridas.in//differential-equations-needed-for-ml.html" rel="alternate"></link><published>2018-10-19T00:00:00+05:30</published><updated>2018-10-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-10-19://differential-equations-needed-for-ml.html</id><summary type="html">&lt;div class="paragraph"&gt;
+</content><category term="apache-spark"></category><category term="apache-toree"></category></entry><entry><title>Differential Equations Needed for ML</title><link href="https://haridas.in/differential-equations-needed-for-ml.html" rel="alternate"></link><published>2018-10-19T00:00:00+05:30</published><updated>2018-10-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-10-19:/differential-equations-needed-for-ml.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;In this post I want to include basic derivaties and primitive building blocks required
 from calculus for the model optimization. These are commonly used, but after some
 time I&amp;#8217;m losing grip of these basics, so I want to keep it one place for future
@@ -810,7 +1167,7 @@ The math equetions are created using &lt;a href="https://www.mathcha.io" class="
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Production ready docker images</title><link href="https://haridas.in//production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19://production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
+</content><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Production ready docker images</title><link href="https://haridas.in/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19:/production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
@@ -1106,7 +1463,7 @@ provides general security for the host machine.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="docker"></category><category term="security"></category></entry><entry><title>Bind With Promise</title><link href="https://haridas.in//bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-21://bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
+</content><category term="docker"></category><category term="security"></category></entry><entry><title>Bind With Promise</title><link href="https://haridas.in/bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-21:/bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;code&gt;bind&lt;/code&gt; function in js is an interesting function that does behave
@@ -1259,7 +1616,7 @@ that the promise chain will take care the result propagation properly.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in//vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18://vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+</content><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;After using vim for few years the main difficulties I have with my current
 pathogen based vim plugin environment is, it's bit difficult to re-produce a
 fresh setup on new machine, managing gitmodules is dirty thing and adding new
@@ -1376,7 +1733,7 @@ get a fresh vim version or ensure vim got latest ruby bindings.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://vimawesome.com"&gt;https://vimawesome.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="vim"></category></entry><entry><title>Is callback really a bad thing ? It isn't.</title><link href="https://haridas.in//is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><updated>2017-05-01T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-05-01://is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
+</content><category term="vim"></category></entry><entry><title>Is callback really a bad thing ? It isn't.</title><link href="https://haridas.in/is-callback-really-a-bad-thing-it-isnt.html" rel="alternate"></link><published>2017-05-01T00:00:00+05:30</published><updated>2017-05-01T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-05-01:/is-callback-really-a-bad-thing-it-isnt.html</id><summary type="html">&lt;p&gt;TL;DR version&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Fix the callback signature, like callback(err, obj),&lt;/li&gt;
@@ -1712,7 +2069,7 @@ please check out the co library's github page for more examples.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://github.com/tj/co"&gt;https://github.com/tj/co&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="https://haridas.in//creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><updated>2017-04-20T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-04-20://creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
+</content><category term="node"></category><category term="callback"></category><category term="promise"></category></entry><entry><title>Creditpay My First app in playstore !</title><link href="https://haridas.in/creditpay-my-first-app-in-playstore.html" rel="alternate"></link><published>2017-04-20T00:00:00+05:30</published><updated>2017-04-20T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-04-20:/creditpay-my-first-app-in-playstore.html</id><summary type="html">&lt;p&gt;Yes, this is my first app in google play store. I created it my own needs.
 It's simple app which helps to recommend a credit card for use on a particular day.&lt;/p&gt;
 &lt;p&gt;Right now the UX is very simple, but included the following features,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -1760,7 +2117,7 @@ sorting it out based on the score of each card.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;If you guys interested, give a try and let me know your feedbacks.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
-</content><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="https://haridas.in//what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-07-25://what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
+</content><category term="android"></category><category term="firebase"></category></entry><entry><title>What I Like about J2EE</title><link href="https://haridas.in/what-i-like-about-j2ee.html" rel="alternate"></link><published>2016-07-25T00:00:00+05:30</published><updated>2016-07-25T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-07-25:/what-i-like-about-j2ee.html</id><summary type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
 and other languages like Nodejs, c++, go, c# etc. As a late starter I happy that  I got
 chance to work with the latest technologies in SOA environment. From that experience
 I just want to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I started with J2EE coding very late after coding for 6 years mainly in python
@@ -1904,7 +2261,7 @@ communication protocol ( http / thrift / protocol buffer etc ).&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://techsticles.blogspot.in/2016/07/oracle-and-fall-of-java-ee.html?utm_content=bufferf1a2e&amp;amp;utm_medium=social&amp;amp;utm_source=linkedin.com&amp;amp;utm_campaign=buffer"&gt;Oracle and Fall of J2EE&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="https://haridas.in//upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08://upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
+</content><category term="j2ee"></category><category term="java8"></category></entry><entry><title>Upload old images into google photos with correct timestamp</title><link href="https://haridas.in/upload-old-images-into-google-photos-with-correct-timestamp.html" rel="alternate"></link><published>2016-01-08T16:29:00+05:30</published><updated>2016-01-08T16:29:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2016-01-08:/upload-old-images-into-google-photos-with-correct-timestamp.html</id><summary type="html">&lt;p&gt;After my WD Pasport got corrupted, I had to back all my precious old photos into
 another backup location. Google photos was the excellege option as I'm
 using Android and uploading the photos to it. And it has multiple features like&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -2054,7 +2411,7 @@ if __name__ == "__main__":
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="https://haridas.in//spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2015-06-28://spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
+</content><category term="sync"></category><category term="photo"></category></entry><entry><title>Spell Checker for Vim</title><link href="https://haridas.in/spell-checker-for-vim.html" rel="alternate"></link><published>2015-06-28T00:00:00+05:30</published><updated>2015-06-28T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2015-06-28:/spell-checker-for-vim.html</id><summary type="html">&lt;p&gt;As a long time vim user I always have troubles with typos in vim. Vim has inbuilt
 spell checker tool, but it's little cumbersome to use. I use vim for
 most of the purposes like,&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -2119,7 +2476,7 @@ in your vimrc file.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="https://learnvimscriptthehardway.stevelosh.com/"&gt;Learn Vim The Hardway&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="https://haridas.in//python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04://python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
+</content><category term="vim"></category></entry><entry><title>Python and OOM Killer</title><link href="https://haridas.in/python-and-oom-killer.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/python-and-oom-killer.html</id><summary type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
 problem at least once. What happens is that python processes are getting killed by
 the OS's Out Of Memory Killer. OOM Killer does this to
 reclaim the memory for OS, since there is no enough RAM space …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Those who are working with python for few years might have encountered this
@@ -2199,7 +2556,7 @@ have any questions or suggestion please put it on the comment section bellow.&lt
 &lt;li&gt;&lt;a class="reference external" href="https://docs.python.org/2/c-api/memory.html"&gt;https://docs.python.org/2/c-api/memory.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="https://haridas.in//what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04://what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
+</content><category term="python"></category><category term="oom"></category><category term="celery"></category></entry><entry><title>What happens when we hit the speed limit of python</title><link href="https://haridas.in/what-happens-when-we-hit-the-speed-limit-of-python.html" rel="alternate"></link><published>2014-10-04T00:00:00+05:30</published><updated>2014-10-04T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-10-04:/what-happens-when-we-hit-the-speed-limit-of-python.html</id><summary type="html">&lt;p&gt;Python is a beautiful language but we know the limitations of the
 python compared with compiled language. So here I'm explaining a scenario
 where python was not the ideal choice.&lt;/p&gt;
 &lt;p&gt;We are using python for network programming, specifically a TCP client/server
@@ -2695,7 +3052,7 @@ $ sudo tcpdump -i any port &lt;span class="m"&gt;8000&lt;/span&gt;
 &lt;li&gt;$ man socket&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="https://haridas.in//rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-04-30://rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
+</content><category term="python"></category><category term="networking"></category><category term="tcp"></category></entry><entry><title>RabbitMQ's Exchange-to-Exchange binding</title><link href="https://haridas.in/rabbitmqs-exchange-to-exchange-binding.html" rel="alternate"></link><published>2014-04-30T00:00:00+05:30</published><updated>2014-04-30T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2014-04-30:/rabbitmqs-exchange-to-exchange-binding.html</id><summary type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
 like chat system, worker queue, logging etc. But lately I was looking for an
 option to track all messages passing through set of exchanges without
 interfering those exchanges. The need for it's that I want to analyze the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm a long time user of RabbitMQ for different type of tasks
@@ -2729,7 +3086,7 @@ time from the live system. After use we can remove those bindings.&lt;/li&gt;
 lines showing the exchange-to-exchange binding.&lt;/p&gt;
 &lt;img alt="Exchange-to-Exchange-Binding" class="align-left" src="/images/Exchange-to-Exchange-Binding.png" style="width: 100%;" /&gt;
 &lt;p&gt;Thank you.&lt;/p&gt;
-</content><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="https://haridas.in//some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2013-01-26://some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
+</content><category term="amqp"></category><category term="rabbitmq"></category></entry><entry><title>Some Programming Strategies</title><link href="https://haridas.in/some-programming-strategies.html" rel="alternate"></link><published>2013-01-26T00:00:00+05:30</published><updated>2013-01-26T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2013-01-26:/some-programming-strategies.html</id><summary type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
 every point of my programming life. This might looks like obvious to some but
 it was not in real life.&lt;/p&gt;
 &lt;p&gt;The code samples are in Python, But concepts are applicable to most of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here I want to share some of my thoughts that helps me to make good decisions in
@@ -2910,7 +3267,7 @@ such situations. For sure the good programming practices comes behind it.&lt;/p&
 &lt;li&gt;&lt;a class="reference external" href="https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/"&gt;https://eli.thegreenplace.net/2008/08/21/robust-exception-handling/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content></entry><entry><title>Vim as your IDE</title><link href="https://haridas.in//vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08://vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
+</content></entry><entry><title>Vim as your IDE</title><link href="https://haridas.in/vim-as-your-ide.html" rel="alternate"></link><published>2012-11-08T00:00:00+05:30</published><updated>2012-11-08T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-11-08:/vim-as-your-ide.html</id><summary type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
 know how I came in to Vim and its fundamental differences with other editors …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To follow this article the reader should at least have a basic idea of how to use
 Vim and its command modes. Or if you are new to Vim, you can &lt;a class="reference external" href="https://haridas.in/how-i-came-in-to-vim.html"&gt;read&lt;/a&gt; my first blog to
@@ -3339,7 +3696,7 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="https://haridas.in//how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27://how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="https://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
@@ -3435,7 +3792,7 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</content><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in//how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27://how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
+</content><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
 rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
 has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
 &lt;p&gt;I was started to use the Vim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
@@ -3523,7 +3880,7 @@ setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="https://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="https://haridas.in//wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07://wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+</content><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>Wordpress blog migrated to Pelican</title><link href="https://haridas.in/wordpress-blog-migrated-to-pelican.html" rel="alternate"></link><published>2012-05-07T13:33:00+05:30</published><updated>2012-05-07T13:33:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-07:/wordpress-blog-migrated-to-pelican.html</id><summary type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
@@ -3598,7 +3955,7 @@ select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
 a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in//find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19://find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</content><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -3644,7 +4001,7 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-</content><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="https://haridas.in//how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31://how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
+</content><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="https://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
@@ -3843,7 +4200,7 @@ version.&lt;/p&gt;
 ruby.&lt;/p&gt;
 &lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="https://haridas.in//rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28://rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
+</content><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="https://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
 Hight speed Python web framework. It uses Websoket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
@@ -3889,7 +4246,7 @@ similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
-</content><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="https://haridas.in//change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17://change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+</content><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="https://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
 &lt;p&gt;South is very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
@@ -3965,7 +4322,7 @@ steps,&lt;/p&gt;
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
-</content><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="https://haridas.in//playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11://playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+</content><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="https://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
 &lt;p&gt;When we develop web applications some times we need multiple timezone
 support. If we don’t have any previous experience then it might be a
@@ -4131,7 +4488,7 @@ python date object by,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-</content><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="https://haridas.in//programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2010-09-28://programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
+</content><category term="python"></category><category term="pytz"></category><category term="timezone"></category></entry><entry><title>Programming Vs. Scripting.</title><link href="https://haridas.in/programming-vs-scripting.html" rel="alternate"></link><published>2010-09-28T09:21:00+05:30</published><updated>2010-09-28T09:21:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2010-09-28:/programming-vs-scripting.html</id><summary type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When I was started to learn C programming language, I only know the term
