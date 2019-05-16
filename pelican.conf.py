@@ -26,7 +26,7 @@ IPYTHON_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__),
 
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
-
+#
 # Properly resolve the URLs for each articles. THere is no nesting all the
 # blog entries are kept on the top level itself.
 CATEGORY_SAVE_AS='category/{slug}.html'

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Run spacy jobs on Apache Spark // all posts // HN </title>
+
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://gist.github.com/haridas">Gists
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Run spacy jobs on Apache Spark</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/bigdata.html">bigdata</a>
+                                <a class="post-category" href="https://haridas.in/tag/nlp.html">nlp</a>
+                                <a class="post-category" href="https://haridas.in/tag/spark.html">spark</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Thu 16 May 2019
+                        </p>
+                </header>
+            </section>
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spacy is a state-of-the-art NLP library in Python, which provides a lot of
+tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
+models for Tagging, NER and related operations.</p>
+</div>
+<div class="paragraph">
+<p>Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+we mostly need accurate POS tagging and chunking features when working with
+NLP problems, which spark libraries aren&#8217;t close to spacy. Those cases we need to
+relay on spacy.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pyspark_architecture">Pyspark architecture</h3>
+<div class="paragraph">
+<p>A quick brief about the pyspark architecture, Bellow image shows that the workers
+spawn python process to run the pyspark jobs; which are written in python and all
+necessary python ML libraries like sklearn, numpy, spacy etc.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://i.imgur.com/YlI8AqEl.png" alt="Pyspark Architecture">
+</div>
+</div>
+<div class="paragraph">
+<p>The spark worker doesn&#8217;t control much other than starting the python worker
+process and control whether python worker need to be restarted on every job or
+not.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_main_challenges_when_using_spacy_models_with_pyspark">Main challenges when using spacy models with pyspark</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to skip spacy model serialization</p>
+</li>
+<li>
+<p>Spacy&#8217;s inbuilt multi-processing feature may bite you.</p>
+</li>
+<li>
+<p>How we can manage the worker process management.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Usually when we submit spark jobs to the spark <code>driver</code> compiles it and optimize the
+pipeline. The final plan of the pipeline is split across the <code>executors</code> based on
+the DAG of data flow defined on the pipeline. Here the spark executors does the
+actual work, where the driver program sends out the relevant codes to executes
+at executor side. This is being done by serializing the relevant parts of the
+pipeline.</p>
+</div>
+<div class="paragraph">
+<p>One thing to ensure is our program is serializable ( Source code, classes and objects ).
+Otherwise spark fails to execute the pipeline.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_skip_spacy_model_serialization">How to skip spacy model serialization</h3>
+<div class="paragraph">
+<p>How we ensure this is by avoiding the scenario of serializing the spacy&#8217;s inbuilt
+trained binary models. How we do that ?</p>
+</div>
+<div class="paragraph">
+<p>Pyspark uses <code>PickleSerializer</code> to serialize the python objects, but spacy models
+aren&#8217;t serialisable using <code>PickleSerializer</code> which is trigger the issue when we
+load the spacy model first and then refer in worker code.</p>
+</div>
+<div class="sect3">
+<h4 id="_this_code_will_fail">This code will fail</h4>
+<div class="paragraph">
+<p>Here we simply loading the spacy object at driver side itself, when the python modules
+are getting loaded, which demands the pickling for the spacy objects. Which eventually
+fails when ship it to the worker side.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">SPACY_MODEL = spacy.load("en_core_web_lg")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_working_version">Working Version</h4>
+<div class="paragraph">
+<p>Here we are wrapping the spacy model under a lazy function, which will ensure
+the model won&#8217;t get loaded until it&#8217;s really required&#8201;&#8212;&#8201;which is actually required
+when the executor runs this code with partitioned dataset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># Here we are not loading the model at the loading time, only the worker code
+# will invoke this routine and gets the spacy object. Which means we are loading
+# new spacy models on every executors.
+SPACY_MODEL = None
+def get_spacy_model():
+    global SPACY_MODEL
+    if not SPACY_MODEL:
+       _model = spacy.load("en_core_web_lg")
+    SPACY_MODEL = _model
+    return SPACY_MODEL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At driver side we won&#8217;t load the spacy model, instead ensure they are loaded lazily at
+executor side.</p>
+</div>
+<div class="paragraph">
+<p>Here the models can&#8217;t be serialised at the driver side and ship it to worker and
+load it back, So we need to ensure only at the runtime the models are really gets
+loaded into the worker memory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_full_version_of_using_spacy_on_spark">Full version of using spacy on spark</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">ubuntu@ip-10-50-168-159:~$
+import os
+import spacy
+import pandas as pd
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+from pyspark.sql.types import StringType, ArrayType
+
+
+SPACY_MODEL = None
+def get_spacy_model():
+    global SPACY_MODEL
+    if not SPACY_MODEL:
+       _model = spacy.load("en_core_web_lg")
+       # FIX https://github.com/explosion/spaCy/issues/922
+       _model.vocab.add_flag(
+           lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS,
+           spacy.attrs.IS_STOP
+       )
+
+    SPACY_MODEL = _model
+    return SPACY_MODEL
+
+
+os.environ["PYSPARK_SUBMIT_ARGS"]  = "--master local[*] \
+        --executor-cores 1 \
+        --executor-memory 5g \
+        --driver-memory 5g \
+        pyspark-shell"
+
+os.environ["SPARK_HOME"] = "/home/ubuntu/spark-2.4.0-bin-hadoop2.7"
+os.environ["PYSPARK_PYTHON"] = "/home/ubuntu/ENV3/bin/python"
+
+spark = SparkSession \
+        .builder \
+        .appName("test-spacy-on-spark") \
+        .getOrCreate()
+
+# Enable the arrow based udf calls or data transfer between python and jvm.
+spark.conf.set("spark.sql.execution.arrow.enabled", "true")
+spark.conf.set("spark.python.worker.reuse", "true")
+spark.conf.set("spark.python.worker.memory", "2g")
+#
+# Simple UDF function which uses the spacy model to evaluate your create
+#
+@pandas_udf(returnType=ArrayType(StringType()), functionType=PandasUDFType.SCALAR)
+def tokenize_and_clean(documents):
+    spacy_model = get_spacy_model()
+    docs = spacy_model.pipe(documents)
+    tokens = [[tok.lemma_ for tok in doc if not tok.is_stop and tok.text]
+              for doc in docs]
+    tokens_series = pd.Series(tokens)
+    return tokens_series
+
+
+data = spark.read.option("header", True).csv("/mnt/input/dataset.csv")
+
+#import pdb; pdb.set_trace()
+print(data.printSchema())
+data = data.repartition(5)
+data1 = data.withColumn("tokens", tokenize_and_clean("abstracts"))
+
+
+print(data1.select("tokens").show())</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_spacy_multi_processing_capabilities">Spacy multi-processing capabilities</h3>
+<div class="paragraph">
+<p>This feature included with spacy to speed up the pipeline processing
+and making use of multiple core available on the machine. If you are not careful
+with this configuration then spark executors won&#8217;t control the python daemon behavior
+of forking processes internally, which leads into over utilization of resource, and
+low throughput.</p>
+</div>
+<div class="paragraph">
+<p>Bellow code ensures the spacy will dispatch the different documents into available
+cores to finish the spacy pipeline operations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">nlp = spacy.load("en_core_web_lg")
+
+docs = nlp.pipe(raw_docs)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are enabling this, then your spark configuration shouldn&#8217;t control the
+worker cores, instead each worker/executor uses only 1 core and leave the remaining
+cores for python workers, which is an good option here.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_master">master</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./sbin/start-master</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_slave_1">slave 1</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">./sbin/start-slave.sh -c 1 -m 5g spark://&lt;master-hostname&gt;:7077</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Here we are setting spark worker to use only one CPU, this
+means spark can launch one executor with 1 CPU, as with spacy workload
+main computation happening at python side, and spacy brings the multiprocessing
+outside the spark framework.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_the_python_processes_ran_by_each_spark_worker">Check the python processes ran by each spark worker</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">On a 8 core machine, above standalone cluster configuration,
+
+$ pstree -aup | grep pyspark
+      |       |   |-python,32602 -m pyspark.daemon
+      |       |   |   |-python,32608 -m pyspark.daemon
+      |       |   |   |-python,32609 -m pyspark.daemon
+      |       |   |   |-python,32614 -m pyspark.daemon
+      |       |   |   `-python,32616 -m pyspark.daemon
+      |       |   |   |-python,32601 -m pyspark.daemon
+      |       |   |   |-python,32607 -m pyspark.daemon
+      |       |   |   |-python,32612 -m pyspark.daemon
+      |       |   |   `-python,32615 -m pyspark.daemon
+      |   |-grep,1487 --color=auto pyspark
+
+PID 32602 -&gt; The master python job which interact with the spark executor to fetch data
+Other PIDs are the spacy workers launched, default behavior is one worker per cpu core.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Suppose we ran the apache spark worker with 8 core, and allocated 1 CPU for each executor,
+then it will fork 8x8 = 64 python processes to do the task, in place of 8 process.
+Which will degrade pipeline performance.</p>
+</div>
+<div class="paragraph">
+<p>For  <code>Yarn</code> or <code>Kubernetes</code> cluster manager this problem won&#8217;t happen as both
+will restrict the system view to application restricted&#8201;&#8212;&#8201;similar to VMs; with the
+help of Control Group (<code>cgroup</code>) and <code>namespace</code> features. So the spark executor
+or the python worker won&#8217;t see entire CPU / RAM for utilization, they gets it by
+the allocation specified based on the container spec on both Yarn and Kubernetes
+environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_takeaway">Takeaway</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you are writing spark pipeline with serialisable objects, or do lazy
+evaluation.</p>
+</li>
+<li>
+<p>Be careful when using the external libraries like spacy, which may bring its own
+multiprocessing feature, which will result in overloading the system with spark
+executor configuration.</p>
+</li>
+<li>
+<p>Use the different cluster manager other than standalone one to get more control
+over allocating resources to the executors.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_references">References</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Holden&#8217;s blog - <a href="https://blog.dominodatalab.com/making-pyspark-work-spacy-overcoming-serialization-errors/" class="bare">https://blog.dominodatalab.com/making-pyspark-work-spacy-overcoming-serialization-errors/</a></p>
+</li>
+</ol>
+</div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

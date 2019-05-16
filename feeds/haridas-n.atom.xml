@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - Haridas N</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/haridas-n.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-02-26T10:20:00+05:30</updated><entry><title>How to Measure Topic Coherence</title><link href="https://haridas.in//how-to-measure-topic-coherence.html" rel="alternate"></link><published>2019-02-26T10:20:00+05:30</published><updated>2019-02-26T10:20:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-02-26://how-to-measure-topic-coherence.html</id><summary type="html">&lt;p&gt;Unsupervised topic modeling algorithms like LDA and NMF produces list of
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - Haridas N</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/haridas-n.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-02-26T10:20:00+05:30</updated><entry><title>How to Measure Topic Coherence</title><link href="https://haridas.in/how-to-measure-topic-coherence.html" rel="alternate"></link><published>2019-02-26T10:20:00+05:30</published><updated>2019-02-26T10:20:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-02-26:/how-to-measure-topic-coherence.html</id><summary type="html">&lt;p&gt;Unsupervised topic modeling algorithms like LDA and NMF produces list of
 vocabularies for each topic after the training. These vocabs help human
 to assign the subject information of the topic model. So how we measure the
 quality of these topic words ?, this problem has to be
@@ -250,10 +250,13 @@ $$
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -267,6 +270,7 @@ $$
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -287,9 +291,11 @@ $$
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="LDA"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in//outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04://outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;/script&gt;</content><category term="LDA"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
