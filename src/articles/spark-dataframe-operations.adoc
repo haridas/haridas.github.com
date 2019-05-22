@@ -75,6 +75,16 @@ val personDf
 
 ```
 
+OR using `Row` class.
+
+```
+import org.apache.spark.sql.Row
+val newDf = personDf.map { 
+	case Row(name: String, address: Array[String]) => (name, address[0])
+}.toDF("name", "primary_address")
+
+```
+
 === Use selectExpr to access inner attributes
 
 Provide easily access the nested datastructures like `json` and filter them
