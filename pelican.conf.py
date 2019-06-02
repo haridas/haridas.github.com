@@ -42,7 +42,7 @@ MENUITEMS = [
     ('Data-Science', 'category/data-science.html'),
     ('Security', 'tag/security.html'),
     ('Devops', 'category/devops.html'),
-    ('Gists', 'https://gist.github.com/haridas'),
+    ('Talks', 'pages/my-talks.html'),
     ('About Me', 'pages/about-me.html'),
     ('Resume', 'resume.pdf')
 ]
