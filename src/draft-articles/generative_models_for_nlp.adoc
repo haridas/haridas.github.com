@@ -1,0 +1,21 @@
+:title: Generative Model for NLP
+:daet:
+:category:
+
+
+This article isn't completely about the GAN ( Generative advesarial Network ),
+but more general concepts which are available in this space. GAN is one of the
+implementations of generative models. Also here we see how we can make use of
+generative models for NLP tasks.
+
+
+Common NLP tasks are:-
+
+- Text Classification
+- Clustering
+
+Generative models:-
+
+In common terms generative terms tries to learn the full joint distribution of 
+
+- LDA, Three layer bayesian mixture model
