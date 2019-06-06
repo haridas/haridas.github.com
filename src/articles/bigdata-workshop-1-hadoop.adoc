@@ -1,0 +1,287 @@
+:title: Bigdata Session 1 - Hadoop with docker
+:date: 02-June-2019
+:category: data-science
+:tags: hadoop,yarn,hdfs
+:numbered:
+
+
+This blog series includes 4 worshop session I conducted at Engieneering colleges 
+and in my office.
+
+Hadoop with docker is mainly usable for easy prototype and learning purpose, also
+it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+machines.
+
+1. Bigdata Session 1 - Apache Hadoop with docker <- ( You are here now )
+2. Bigdata Session 2 - Apache Spark on Apache Hadoop
+3. Bigdata Session 3 - Apache Drill
+4. Bigdata Session 4 - Apache Spark on Kubernetes
+
+== Hadoop Cluster
+
+Main motive of the session is how we can easily test the hadoop
+cluster and related tools locally or on a small cluster. We will setup the hadoop 
+in cluster mode. Hadoop cluster mode means, the individual components are runs
+separately on single machine on separate JVMs or running on multiple machines.
+
+Here we will use the docker based setup to quickly play with main
+features of hadoop.
+
+Main Hadoop services are:-
+
+1. namenode ( storage )
+2. datanode ( storage )
+3. resource manager ( computation )
+4. node manager ( computation )
+
+One hadoop cluster can formed by one namenode and multiple datanodes.
+The resource manager runs on same machine as namenode ( simpler setup).
+Responsibility of namenode is store metadata about distributed
+filesystem (hdfs). Datanode actually stores the data in blob form,
+and nodemanager will be running on each datanode to handle actual
+computation requests from resource manager.
+
+== Prerequisites
+As all cluster environments, network address resolution for each node is a key requirement
+for stable setup. Ideally a local DNS setup which permanently allocate a hostnames
+to all the nodes in the network. Or we can manually set the hostnames without DNS.
+
+NOTE: This material is verified on Mac and Ubuntu.
+
+=== JDK 1.8 
+
+NOTE: Not required if you try Docker based setup.
+
+Ensure you have jdk 1.8+ available on your machine, oracle jdk is
+recommended.
+
+
+=== Install Docker
+
+Ensue you have latest version of docker is setup on your laptop.
+
+Docker Version: `18.x.x`
+
+===== For Ubuntu / Debian machines
+
+Follow this link and install the docker with correct given bellow,
+
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+===== For Mac
+https://docs.docker.com/docker-for-mac/install/
+
+For other distros, please help yourself ;)
+
+
+=== Get hadoop docker image
+
+### From docker hub
+```bash
+docker pull haridasn/hadoop-2.8.5:latest
+```
+### Build the docker image locally (Optional)
+
+```bash
+git clone https://github.com/haridas/hadoop-env
+cd hadoop-env/docker
+docker build -t hadoop-2.8.5:latest
+```
+
+=== Set correct hostnames for multi-node cluster setup (Optional)
+
+NOTE: If you are setting the cluster on same machine with docker, you can skip this step.
+
+Each node in the host machine can reach each other using the hostname.
+
+Hadoop cluster setup using multiple physical machines.
+
+===== set hostnames correctly.
+
+All the nodes place the same set of values.
+
+```bash
+cat /etc/hosts
+master  <ip-address>
+node1
+node2
+node3
+..
+..
+```
+
+=====  Set the hostname of the machine to match this address.
+
+edit `/etc/hostname`
+edit `/etc/hosts` and replace any occurrence of old hostname with new one.
+
+=====  Update and check hostname changed correctly
+
+```bash
+sudo hostname <hostname>
+hostname
+```
+Cross check all the machines have correct set of hostnames before going to next
+step.
+
+== Setup cluster on single machine using docker
+
+We are using the docker container mainly for process isolation,
+for a simpler
+setup on single machine we make use of the same network stack as the host machine.
+
+=== Create a docker network
+For clean hostname resoluation under docker environment, we have
+to create a docker network; which will internally provide a DNS
+resoluation on the virtual network where all the containers reside.
+
+```bash
+docker network create hadoop-nw
+```
+
+We will use this network to launch all our container, which will
+internally allocate all the containers into this network. So we will
+get the hostname resoluation by default. For the non-docker deployment we have 
+to setup all these externally.
+
+=== Start namenode and resource Manager
+
+```
+docker run -it -d --name namenode --network hadoop-nw haridasn/hadoop-2.8.5:latest namenode
+
+# check container is running
+docker ps -a
+
+# Check container logs
+docker logs -f namenode
+
+```
+
+To get the `namenode` ip, attach to the namenode docker container,
+We need this for starting the datanodes.
+
+```bash
+docker exec -it namenode bash
+ifconfig
+```
+
+=== Start datanode and resource manager
+
+```bash
+docker run -it -d --name datanode1 \
+    --network hadoop-nw haridasn/hadoop-2.8.5:latest datanode <name-node-ip>
+
+docker ps -a
+
+docker logs -f datanode1
+
+.
+# If you want launch more datanodes.
+
+docker run -it -d --name datanode2 \
+    --network hadoop-nw haridasn/hadoop-2.8.5:latest datanode <name-node-ip>
+
+```
+
+### Get the client tools setup on another docker
+
+The `yarn`, `hdfs` clinet commands used to submit jobs and see the hdfs 
+files respectively are loaded in another docker. Lets use that as our workbench
+to play with our hadoop cluster.
+
+```bash
+
+# Start the docker container to test our cluster.
+docker run -it --rm --name hadoop-cli --network hadoop-nw haridasn/hadoop-cli:latest
+
+# Get the configuration from running nodes.
+docker cp namenode:/opt/hadoop/etc etc
+docker cp etc hadoop-cli:/opt/hadoop/
+```
+
+
+
+### Check hdfs
+```bash
+
+./bin/hdfs dfs -ls /
+
+# copy files into hdfs
+./bin/hdfs dfs -put /var/log/supervisor /logs
+./bin/hdfs dfs -put /etc/passwd /passwd
+
+# Copy files inside hdfs
+./bin/hdfs dfs -cp /passwd /passwdr
+
+```
+
+### Check Resource manager works fine
+
+```bash
+./bin/yarn jar `pwd`/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar
+pi 1 1
+
+./bin/yarn jar `pwd`/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.5.jar
+wordcount /logs/ /out/
+```
+
+== Other Bigdata tools on hadoop environment
+
+=== Pig
+
+A simpler command oriented interface to do the map-reduce jobs over
+hadoop cluster. You can think this as a bash scripting over hdfs
+and yarn map-reduce to quickly analyse data on hdfs.
+
+=====  Download and extract it
+
+```
+wget http://mirrors.estointernet.in/apache/pig/pig-0.17.0/pig-0.17.0.tar.gz
+```
+
+
+=====  Setup pig and configure it with hadoop cluster.
+
+
+```bash
+export PIG_HOME=<path-to-pig-home>
+export PATH=$PATH:$PIG_HOME/bin
+export PIG_CLASSPATH=<path-to-hadoop-conf-dir>
+
+pig
+```
+
+=====  Load some data into hdfs
+
+```bash
+./bin/hdfs dfs -mkdir /pig
+./bin/hdfs dfs -put pig/tutorial/data /pig/data
+```
+
+
+=====  Pig commandline tool
+
+
+```
+$ pig
+
+raw = LOAD '/pig/data/excite-small.log' USING PigStorage('\t') AS (user, time,query);
+
+user = filter raw by $2=='powwow.com';
+
+dump user
+
+```
+
+
+=== Hive
+
+SQL interface over hadoop system.
+
+http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz
+
+== Presentation
+
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/HKFon6Yn1cmXqa" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/haridasnss/bigdata-and-hadoop-with-docker" title="Bigdata and Hadoop with Docker" target="_blank">Bigdata and Hadoop with Docker</a> </strong> from <strong><a href="https://www.slideshare.net/haridasnss" target="_blank">haridasnss</a></strong> </div>
+++++

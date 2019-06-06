@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Thu, 16 May 2019 00:00:00 +0530</lastBuildDate><item><title>Run spacy jobs on Apache Spark</title><link>https://haridas.in/run-spacy-jobs-on-apache-spark.html</link><description>&lt;div id="preamble"&gt;
+<rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Sun, 02 Jun 2019 00:00:00 +0530</lastBuildDate><item><title>Bigdata Session 1 - Hadoop with docker</title><link>https://haridas.in/bigdata-session-1-hadoop-with-docker.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+and in my office.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Hadoop with docker is mainly usable for easy prototype and learning purpose, also
+it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+machines.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop with …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-1-hadoop-with-docker.html</guid><category>hadoop</category><category>yarn</category><category>hdfs</category></item><item><title>Bigdata Session 2 - Apache Spark</title><link>https://haridas.in/bigdata-session-2-apache-spark.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+and in my office.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This workshop we cover how spark internals works and how we can configure spark
+with apache yarn resource manager. I&amp;#8217;m using docker based setup for this
+workshop.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-2-apache-spark.html</guid><category>hadoop</category><category>spark</category><category>yarn</category></item><item><title>Bigdata Session 3 - Apache Drill</title><link>https://haridas.in/bigdata-session-3-apache-drill.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+colleges.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 2 - Apache Spark on Apache Hadoop&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 3 - Apache Drill &amp;#8592; ( You are here now )&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 4 - Apache Spark on Kubernetes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The workshop material also …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-3-apache-drill.html</guid><category>drill</category><category>yarn</category></item><item><title>Bigdata Session 4 - Apache Spark on Kubernetes</title><link>https://haridas.in/bigdata-session-4-apache-spark-on-kubernetes.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+colleges.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="olist arabic"&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 2 - Apache Spark on Apache Hadoop&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 3 - Apache Drill&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigdata Session 4 - Apache Spark on Kubernetes &amp;#8592; ( You are here now )&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="_spark_on_kubernetes"&gt;1. Spark on Kubernetes …&lt;/h2&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-4-apache-spark-on-kubernetes.html</guid><category>hadoop</category><category>spark</category><category>drill</category><category>kubernetes</category></item><item><title>Run spacy jobs on Apache Spark</title><link>https://haridas.in/run-spacy-jobs-on-apache-spark.html</link><description>&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
