@@ -1,0 +1,20 @@
+:title: My Talks
+:date: 17-May-2019
+:category: bigdata
+:tags: hadoop,spark,drill,kubernetes
+:numbered:
+
+All My recent talks and corresponding ppt links
+
+
+==== https://www.slideshare.net/PramatiConnect/document-clustering-using-lda-haridas-narayanaswamy-pramati[Document Clustering using LDA - Apr/2019]
+
+Session done as part of meetup.com https://www.meetup.com/Mixed-Nuts-at-Pramati/events/260500930/
+
+==== https://www.slideshare.net/haridasnss/apache-spark-on-kubernetes[Bigdata Workshop session 4 - Spark on Kubernetes (Mar/2019)]
+
+==== https://www.slideshare.net/haridasnss/apache-drill-scalable-sql-query-engine[Bigdata Workshop session 3 - Apache Drill (Mar/2019)]
+
+==== https://www.slideshare.net/haridasnss/apache-spark-on-hadoop-yarn-resource-manager[Bigdata Workshop session 2 - Apache Spark on Yarn (Mar/2019)]
+
+==== https://www.slideshare.net/haridasnss/bigdata-and-hadoop-with-docker[Bigdata Workshop session 1 - Apache Hadoop  (Mar/2019)]

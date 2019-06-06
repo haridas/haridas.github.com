@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Bigdata Session 2 - Apache Spark // all posts // HN </title>
+
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="http://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="http://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Bigdata Session 2 - Apache Spark</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/hadoop.html">hadoop</a>
+                                <a class="post-category" href="https://haridas.in/tag/spark.html">spark</a>
+                                <a class="post-category" href="https://haridas.in/tag/yarn.html">yarn</a>
+                        </p>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Sun 02 June 2019
+                        </p>
+                </header>
+            </section>
+            <div class="paragraph">
+<p>This blog series includes 4 worshop session I conducted at Engieneering colleges
+and in my office.</p>
+</div>
+<div class="paragraph">
+<p>This workshop we cover how spark internals works and how we can configure spark
+with apache yarn resource manager. I&#8217;m using docker based setup for this
+workshop.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Bigdata Session 1 - Apache Hadoop</p>
+</li>
+<li>
+<p>Bigdata Session 2 - Apache Spark on Apache Hadoop &#8592; ( You are here now )</p>
+</li>
+<li>
+<p>Bigdata Session 3 - Apache Drill</p>
+</li>
+<li>
+<p>Bigdata Session 4 - Apache Spark on Kubernetes</p>
+</li>
+</ol>
+</div>
+<div class="sect1">
+<h2 id="_apache_spark">1. Apache Spark</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spark is a general purpose distributed analytic engine.</p>
+</div>
+<div class="paragraph">
+<p>Spark can execute tasks in DAG with lazy evaluation for better query
+optimization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spark_cluster_modes">2. Spark cluster modes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spark can be deployed in cluster form to execute tasks across multiple machines.</p>
+</div>
+<div class="paragraph">
+<p>For this workshop we are covering the <strong>Spark over Yarn</strong> setup. Which
+is more scalable and has more cluster management options provided
+by Yarn resource manager.</p>
+</div>
+<div class="sect4">
+<h5 id="_standalone_cluster">Standalone cluster</h5>
+<div class="paragraph">
+<p>Run spark cluster without hadoop or any of the bellow mentioned
+cluster managers. Spark shipped with this Standalone default
+cluster manager. We can easily setup a spark cluster using this.</p>
+</div>
+<div class="paragraph">
+<p>Here we aren&#8217;t covering it, Yarn based cluster manager has more
+advanced features and resource controllers. We are focusing mainly
+Yarn based cluster manager here.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_spark_on_yarn">Spark on Yarn</h5>
+<div class="paragraph">
+<p>This document discuss more about how we handle the spark on Yarn
+clster. Please read futher to see more on it.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_spark_on_kubernetes">Spark on Kubernetes</h5>
+<div class="paragraph">
+<p>We will cover this on 4&#8217;th session of Bigdata workshop.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_spark_on_mesos">Spark on Mesos</h5>
+<div class="paragraph">
+<p>Mesos is another cluster resource manager like Yarn, we aren&#8217;t
+covering more on it here.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_spark_on_yarn">3. Setup Spark on Yarn</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_setup_hadoop_cluster">3.1. Setup Hadoop cluster</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Mac and Windows users has to provide enough memory and cpus to the docker
+daemon. On these machines the docker daemon runs under a virtual machine; the installer
+setup all these. The default size gives is around 2 cpu core and 2gb. Ensure you provision
+at least 5GB RAM and 3Core CPU for docker daemon to play around with bellow experiments.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We already covered this part, in our session 1. Lets add some extra
+memory constraints when launching the nodes to get more idea on how
+yarn manages the resources. Here we are exposing the required ports
+to host machine to see the Web interfaces of RN and HDFS.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Launch namenode with 2 core cpu, 2gb memory.
+#
+docker run -it -d --name namenode \
+    -p 8088:8088 \
+    -p 50070:50070 \
+    --memory 2g --cpus 2
+    --network hadoop-nw haridasn/hadoop-2.8.5 namenode
+#
+# 8088 - RN web interface
+# 50070 - HDFS web interface.
+#
+
+#
+# Datanode 1, 2
+
+docker run -it -d --name datanode1 \
+    --memory 2g --cpus 2 \
+    --network hadoop-nw haridasn/hadoop-2.8.5 datanode &lt;namenode-ip&gt;
+
+docker run -it -d --name datanode2 \
+    --memory 2g --cpus 2 \
+    --network hadoop-nw haridasn/hadoop-2.8.5 datanode &lt;namenode-ip&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the container memory allocation status using <code>docker stats</code> command.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_client_docker_container">3.2. Create a client docker container</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker run -it -d --name hadoop-cli --network hadoop-nw haridasn/hadoop-cli
+
+# Add the hadoop configuration to hadoop-client container.
+# You can skip this if you already done this.
+docker cp namenode:/opt/hadoop/etc .
+docker cp etc hadoop-cli:/opt/hadoop/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_spark_container">3.3. Run Spark Container</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">docker pull haridasn/spark-2.4.0
+
+docker run -it -d --name spark --network hadoop-nw haridasn/spark-2.4.0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connect_spark_with_yarn">3.4. Connect spark with Yarn</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Get the hadoop configurations.
+docker cp namenode:/opt/hadoop/etc .
+
+docker cp etc/hadoop spark:/opt/spark/hadoop-conf</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_spark_user_dir_in_hdfs">3.5. Create spark user dir in HDFS</h3>
+<div class="paragraph">
+<p>When connecting spark with YARN, you need a staging directory to manage the application
+details on the HDFS. The variable which manages this is <code>spark.yarn.stagingDir</code>.</p>
+</div>
+<div class="paragraph">
+<p>Create a directory under hdfs using the <code>hadoop-cli</code> hadoop client and ensure it got
+correct directory permissions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>docker exec -it hadoop-cli bash
+./bin/hdfs dfs -mkdir /user/spark
+./bin/hdfs dfs -chown spark:spark /user/spark
+./bin/hdfs dfs -ls /user/spark</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lets_play_on_spark">3.6. Lets play on spark</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code># Connect to the spark container to play with it.
+docker exec -it spark bash
+
+# Inside the spark docker
+#
+export HADOOP_CONF_DIR=/opt/hadoop-conf
+
+# Try on scala client.
+spark-shell --master yarn --deploy-mode client
+
+# Try on python client.
+pyspark --master yarn --deploy-mode client
+
+
+# connect via jupyter notebok, so we can use python to write
+# spark jobs via pyspark.
+jupyter notebook --no-browser --ip=0.0.0.0 --port 8090</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Checkout the command line options <code>pyspark --help</code> to know more options
+that we can try when submitting the jobs or running as client mode.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_the_full_cluster_health">3.7. View the full cluster health</h3>
+<div class="paragraph">
+<p>As we are running all the services via docker ensure that the containers are getting
+enough resources so that we can play with spark using some smaller size data set to
+under stand how the APIs and other features works in spark.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># To get the ideas about container resource consumption CPU/RAM/IO
+# Ensure you have enough left.
+docker stats</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test setup is worked well on:-</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">Test cluster setup on my laptop with 4 core CPU and 8GB memory.
+
+Allocated
+
+    5GB for docker daemon running on your laptop.
+    3 Core for docker daemon on your laptop.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My Setup:-</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/haridas/hadoop-env/master/tutorials/images/hadoop-spark-cluster.png" alt="Hadoop cluster image">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_submit_jobs_into_spark_cluster">3.8. Submit jobs into spark cluster</h3>
+<div class="paragraph">
+<p>Try more examples from this link: <a href="https://spark.apache.org/examples.html" class="bare">https://spark.apache.org/examples.html</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_presentation">3.9. Presentation</h3>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/iup0BsV0cNWjN0" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/haridasnss/apache-spark-on-hadoop-yarn-resource-manager" title="Apache spark on Hadoop Yarn Resource Manager" target="_blank">Apache spark on Hadoop Yarn Resource Manager</a> </strong> from <strong><a href="https://www.slideshare.net/haridasnss" target="_blank">haridasnss</a></strong> </div>
+</div>
+</div>
+</div>
+
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="http://twitter.com/haridas_n"> Twitter</a> |
+                <a href="http://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-23592173-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+    -->
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
