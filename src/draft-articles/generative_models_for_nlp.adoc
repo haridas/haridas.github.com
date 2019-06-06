@@ -19,3 +19,40 @@ Generative models:-
 In common terms generative terms tries to learn the full joint distribution of 
 
 - LDA, Three layer bayesian mixture model
+
+
+=== Side note:-
+Bayes theorm helps to go on imporove our understanding of particular system, starting
+from basic or or random guess.
+
+
+
+Here the components are:-
+
+1. Data source which gives the samples or we observe them. We don't know the internals
+    how the source producing this data.
+2. We want to build a model or system that mimic the source such that the new
+ system can mimic the source in reasonably well fashion or with acceptable error rate.
+
+3. It's almost imposible to get a system that fits 100% of the source , it may be
+  overfitting also due to under sampling.
+
+4. A system can be modeled using some mathematical model with set of parameters.
+
+5. The values of the parameters has to be found by training, by cross checking 
+   models prediction compared against the actual type of the dataset.
+
+6. Posterior distribution of each params such that that param increases the likelihood
+   of the our new system to predict the source in better confidence.
+
+7. Likelihood of the model is what we cross checking the models performance against
+   actual dataset.
+
+8. So find the posterior distribution over parameters which gives the best likelihood
+function, The posteriors are used as the steping stone for the next iteration of
+learning, as using the posterior as prior probability.
+
+
+
+Marginal probability > conditional probability > joint probabbility.
+
