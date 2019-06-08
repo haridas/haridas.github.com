@@ -95,6 +95,22 @@ using the any existing udfs, or use your udf to get more flexibility here.
 doc.selectExpr("doc_id", "size(features.values) as feature_size")
  .where("feature_size > 0")
 ```
+=== How to access RDD methods from pyspark side
+
+Using standard `RDD` operation via pyspark API isn't straight forward, to get that
+we need to invoke the `.rdd` to convert the DataFrame to support these features.
+
+For example here we are converting a sparse vector to dense and suming it in column wise.
+
+```python
+
+vocab_freq = countVector\
+    .select("features")\
+    .rdd\
+    .map(lambda x: SparseVector(x[0].size, x[0].indices, x[0].values).toArray())\
+    .reduce(lambda a, b: a + b)
+
+```
 
 === Filtering a DataFrame column of type Seq[String]
 
