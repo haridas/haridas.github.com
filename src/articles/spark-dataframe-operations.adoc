@@ -112,6 +112,19 @@ vocab_freq = countVector\
 
 ```
 
+*Pyspark Map on multiple columns*
+
+```python
+# Find document length.
+doc_lengths = countVector\
+    .selectExpr("doc_id", "features.indices as indicies", "features.values as feature_freq")\
+    .select("doc_id", "feature_freq")\
+    .rdd.map(lambda x: Row(doc_id=x[0], doc_length=sum(x[1])))\
+    .toDF()
+```
+
+
+
 === Filtering a DataFrame column of type Seq[String]
 
 ```scala
