@@ -53,7 +53,7 @@ PROFILE_IMG_URL = "images/profile_pic.jpg"
 # External services and Social medias.
 
 DISQUS_SITENAME = 'haridas'
-GITHUB_URL = 'http://github.com/haridas'
+GITHUB_URL = 'https://github.com/haridas'
 GOOGLE_ANALYTICS = 'UA-23592173-1'
 TWITTER_USERNAME = 'haridas_n'
 
@@ -83,8 +83,8 @@ LINKS = (
 #
 # FORMAT :- ( Label, logo, link, (width, height))
 SOCIAL = (
-    ('Twitter', 'images/tt.svg', 'http://twitter.com/haridas_n', ('48', '48')),
-    ('Github', 'images/github.svg', 'http://github.com/haridas', ('45', '45')),
+    ('Twitter', 'images/tt.svg', 'https://twitter.com/haridas_n', ('48', '48')),
+    ('Github', 'images/github.svg', 'https://github.com/haridas', ('45', '45')),
     ('Linkedin', 'images/linkedin.svg',
      'https://linkedin.com/in/haridasn', ('48', '48'))
 )

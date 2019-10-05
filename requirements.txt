@@ -4,3 +4,4 @@ markdown
 bs4
 jupyter
 nbconvert
+pelican_gist

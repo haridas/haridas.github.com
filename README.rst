@@ -31,6 +31,3 @@ https://github.com/haridas/haridas.github.com/blob/master/pelican.conf.py
 https://github.com/haridas/haridas.github.com/blob/master/Makefile
 
 .. _Themes: https://github.com/ametaireau/pelican-themes
-
-
-
