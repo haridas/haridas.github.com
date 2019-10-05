@@ -7,9 +7,12 @@ git submodule update --init
 
 # Clone the pelican plugin and only relevant submodules.
 # Initialize the submodules and clean it.
-git clone https://github.com/getpelican/pelican-plugins
-cd pelican-plugins
-git submodule init
-git submodule update pelican-ipynb --remote remote
-git submodule update pelican-gist --remote remote
+if [ ! -d pelican-plugins ]; then
+    git clone https://github.com/getpelican/pelican-plugins
+
+    cd pelican-plugins
+    git submodule init
+    git submodule update --remote pelican-ipynb
+    #git submodule update --remote pelican-gist
+fi
 
