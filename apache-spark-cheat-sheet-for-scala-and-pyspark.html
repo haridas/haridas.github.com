@@ -10,13 +10,14 @@
     <title>Apache Spark cheat sheet for scala and pyspark // all posts // HN </title>
 
 
-    <link href='http://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
     <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
 
     <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
     <script>
         $(document).ready(function(){
             $(".content").fitVids();
@@ -72,10 +73,10 @@
                                                 </a>
                                             </p>
                                 <p class="social">
-                                        <a href="http://twitter.com/haridas_n">
+                                        <a href="https://twitter.com/haridas_n">
                                                 <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
                                         </a>
-                                        <a href="http://github.com/haridas">
+                                        <a href="https://github.com/haridas">
                                                 <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
                                         </a>
                                         <a href="https://linkedin.com/in/haridasn">
@@ -101,11 +102,11 @@
                         </p>
 
 
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
     Tweet
 </a>
 
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
 
 <!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-size="medium"></div>
@@ -130,6 +131,7 @@
 <li><a href="#_filter_rows_which_meets_particular_criteria">Filter rows which meets particular criteria</a></li>
 <li><a href="#_map_with_case_class">Map with case class</a></li>
 <li><a href="#_use_selectexpr_to_access_inner_attributes">Use selectExpr to access inner attributes</a></li>
+<li><a href="#_how_to_access_rdd_methods_from_pyspark_side">How to access RDD methods from pyspark side</a></li>
 <li><a href="#_filtering_a_dataframe_column_of_type_seqstring">Filtering a DataFrame column of type Seq[String]</a></li>
 <li><a href="#_filter_a_column_with_custom_regex_and_udf">Filter a column with custom regex and udf</a></li>
 <li><a href="#_sum_a_column_elements">Sum a column elements</a></li>
@@ -235,6 +237,17 @@ val personDf
 	.toDF("name", "primary_address")</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>OR using <code>Row</code> class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>import org.apache.spark.sql.Row
+val newDf = personDf.map {
+	case Row(name: String, address: Array[String]) =&gt; (name, address[0])
+}.toDF("name", "primary_address")</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_use_selectexpr_to_access_inner_attributes">Use selectExpr to access inner attributes</h3>
@@ -247,6 +260,38 @@ using the any existing udfs, or use your udf to get more flexibility here.</p>
 <pre class="highlight"><code class="language-scala" data-lang="scala">// Select only those documents which has some features in it.
 doc.selectExpr("doc_id", "size(features.values) as feature_size")
  .where("feature_size &gt; 0")</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_access_rdd_methods_from_pyspark_side">How to access RDD methods from pyspark side</h3>
+<div class="paragraph">
+<p>Using standard <code>RDD</code> operation via pyspark API isn&#8217;t straight forward, to get that
+we need to invoke the <code>.rdd</code> to convert the DataFrame to support these features.</p>
+</div>
+<div class="paragraph">
+<p>For example here we are converting a sparse vector to dense and suming it in column wise.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">vocab_freq = countVector\
+    .select("features")\
+    .rdd\
+    .map(lambda x: SparseVector(x[0].size, x[0].indices, x[0].values).toArray())\
+    .reduce(lambda a, b: a + b)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Pyspark Map on multiple columns</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># Find document length.
+doc_lengths = countVector\
+    .selectExpr("doc_id", "features.indices as indicies", "features.values as feature_freq")\
+    .select("doc_id", "feature_freq")\
+    .rdd.map(lambda x: Row(doc_id=x[0], doc_length=sum(x[1])))\
+    .toDF()</code></pre>
 </div>
 </div>
 </div>
@@ -581,9 +626,8 @@ This page will be updaed as and when I see some reusable snippet of code for spa
             };
         </script>
 
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-        <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
     </div>
         </div>
     </div>
@@ -593,13 +637,13 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 
             <div class="container-footer">
 <footer class="footer">
-                <a href="http://twitter.com/haridas_n"> Twitter</a> |
-                <a href="http://github.com/haridas"> Github</a> |
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
                 <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
         &ndash;
         &copy; HN &ndash;
         <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
-        for <a href="http://blog.getpelican.com/">Pelican</a>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
 </footer>            </div>
 
     </div>
@@ -628,19 +672,6 @@ This page will be updaed as and when I see some reusable snippet of code for spa
             event.preventDefault();
         });
     </script>
-    <!--
-    <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        try {
-            var pageTracker = _gat._getTracker("UA-23592173-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-    </script>
-    -->
-
     <script type="text/javascript">
 
       var _gaq = _gaq || [];

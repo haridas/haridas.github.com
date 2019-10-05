@@ -85,9 +85,9 @@ we mostly need accurate POS tagging and …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt
 &lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_how_to_access_rdd_methods_from_pyspark_side"&gt;How to access RDD methods from pyspark side&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;Sum …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Mon, 15 Apr 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-04-15:/apache-spark-cheat-sheet-for-scala-and-pyspark.html</guid><category>spark</category><category>dataframe</category><category>pyspark</category></item><item><title>Apache Toree notebook for Spark</title><link>https://haridas.in/apache-toree-notebook-for-spark.html</link><description>&lt;div id="toc" class="toc"&gt;
+&lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;Filter …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Mon, 15 Apr 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-04-15:/apache-spark-cheat-sheet-for-scala-and-pyspark.html</guid><category>spark</category><category>dataframe</category><category>pyspark</category></item><item><title>Apache Toree notebook for Spark</title><link>https://haridas.in/apache-toree-notebook-for-spark.html</link><description>&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
