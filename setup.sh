@@ -3,7 +3,10 @@ brew install asciidoctor
 pip install -r requirements.txt
 
 # Theme setup
-git submodule update --init
+#git submodule update --init
+if [ ! -d src/templates/hn-theme ]; then
+    git clone https://github.com/haridas/hn-theme src/templates/hn-theme
+fi
 
 # Clone the pelican plugin and only relevant submodules.
 # Initialize the submodules and clean it.
