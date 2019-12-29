@@ -1,0 +1,16 @@
+:title: MLFlow vs Kubeflow
+:date: 12-02-2019
+
+== ML model lifecycle management
+
+MLFlow and Kubeflow are two main ML model management frameworks.
+
+
+
+== MLFlow main components
+
+=== MLFlow metrics server
+=== MLFlow Project
+=== MLFlow Models
+
+== Kubeflow
