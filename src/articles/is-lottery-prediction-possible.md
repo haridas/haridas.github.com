@@ -1,4 +1,4 @@
-Title: Can I predict winning lottery number
+Title: Can I predict the winning lottery numbers
 Date: 2019-12-29
 Category: data-science
 Tags: statistics,ml
@@ -26,7 +26,7 @@ This is my attempt to answer the questions that I had !
 
 ### Looking into the winning chances
 
-Let’s take one lottery series for this experiment. The lottery number has
+Let’s take one lottery series for this experiment, this lottery number has
 2 alphabet and 6 numbers, eg; AG389435. In this case how many unique lottery can
 be printed ?
 
