@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Can I predict winning lottery number // all posts // HN </title>
+
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="https://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="https://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Can I predict winning lottery number</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/statistics.html">statistics</a>
+                                <a class="post-category" href="https://haridas.in/tag/ml.html">ml</a>
+                        </p>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Sun 29 December 2019
+                        </p>
+                </header>
+            </section>
+            <p>This was one of the question asked by a colleague of mine who is new to the data
+analytics and Machine learning space. I had to tell him that this isn’t possible because
+data itself is not suitable to do any sort of valuable predictions. It usually
+take some time to get this intuition. Those who has
+statistics background can quickly catch-up, others has to put up extra effort to
+solidify these concepts.</p>
+<p>So, back to the question, can we build a model to predict lottery number
+?  short answer is NO, and long answer is NO :). Now you have to ask why !</p>
+<h3>Why this post ?</h3>
+<p>This question may be very trivial one for seasoned ML practitioner, but
+sometimes experienced one also misses the key basic concepts when it comes to
+how to deal with data and what data is good for particular problem.</p>
+<p>This is my attempt to answer the questions that I had !</p>
+<h3>Looking into the winning chances</h3>
+<p>Let’s take one lottery series for this experiment. The lottery number has
+2 alphabet and 6 numbers, eg; AG389435. In this case how many unique lottery can
+be printed ?</p>
+<div class="math">$$ 
+ \begin{array}{l}
+ Total\ number\ of\ lotteries\ for\ number\ sequence\ of\ form\
+ \mathbf{AB123456}\\
+ \\
+ =\ 26^{2} \ *\ 10\ ^{6} \ \\
+ =\ 676\ Million\\
+ \\
+ =\ Chance\ of\ winning\ for\ a\ person\ =\ \frac{1}{676\ Million} \ =\
+ \mathbf{1.47*10^{-9}}\\
+ \\
+ Here\ we\ are\ assuming\ equal\ chance\ for\ all\ to\ win,\ and\ the\ lottery\
+ system\ will\\
+ ensure\ this\ constrain.\\
+ \\
+ So\ winning\ probability/chance\ is\ \mathbf{0.000000147} \ \ or\ 1\ in\ 676\
+ Million
+ \end{array}
+$$</div>
+<p>To put this number in to a context, let's take another study done to identify the 
+cancer risk due to smoking <a href="https://www.ncbi.nlm.nih.gov/pubmed/21545200">[link]</a>, According to their study they 
+estimates 1 in 10 men and 1 in 8 women in India can expect develop cancer of any
+form, in their life span after the age of 35 year. This means getting cancer is
+way higher chance than winning a lottery.</p>
+<h3>Why am I saying lottery data isn't usable for any prediction</h3>
+<p>Because the lottery prediction is done using some random number generator (RNG),
+this means RNG ensures that every lottery purchased gets equal probability of
+winning, usually the odds of winning is above 1 in Million.
+And there won't be any relation between historical predicted number and the
+future numbers, because they are close to independent.
+So you can't find any relation from the historical winning numbers.</p>
+<p>If we are using some faulty RNG machine or RNG system with lesser entropy then 
+the results may be skewed, so we can see pattern in number prediction.</p>
+<p>So how few individuals broke the lottery system leaglly, below listed are the two
+instances people worked hard to increase their chance of winning, here also they
+aren't predicting the actual winning numbers, instead increasing the chance of
+winning probability of each lottery.</p>
+<ol>
+<li>
+<p><a href="https://www.youtube.com/watch?v=8rJw4BgPs4w">Michle Memorized live game patterns, video</a></p>
+<p><p>
+    <iframe width="200" height="100" src="https://www.youtube.com/embed/8rJw4BgPs4w"
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+    picture-in-picture" allowfullscreen></iframe>
+</p></p>
+<p>This story may come as holywood movie soon.</p>
+</li>
+<li>
+<p>Or you have to run a lottery syndicate to increase the chance of winning by
+   pooling the tickets from multiple contributors. Here is an interesting guy
+   who did this thing across the world. It's purely playing against odds by
+   purchasing more tickets.  </p>
+<p><p>
+   <iframe width="560" height="315"
+   src="https://www.youtube.com/embed/eOX7acjkGv0" frameborder="0"
+   allow="accelerometer; autoplay; encrypted-media; gyroscope;
+   picture-in-picture" allowfullscreen></iframe>
+   </p></p>
+</li>
+</ol>
+<h3>Does an ML model won’t predict the winning numbers at all ?</h3>
+<p>If you are run enough number of times, your model may predict right answers some
+times, so why are you saying ML model can’t predict correctly at all ?  We call
+a model doing good, when it produces predictions better than simple guessing.
+If your model prediction accuracy is close to any other simple guess work,
+then why do you need this ML model after all.</p>
+<p>The predictions are really based on known patterns. The patterns are coming out
+of data ( data may be image, sound, simple numbers any thing).</p>
+<h3>When can we do ML</h3>
+<p>We can do any sort of data analysis or prediction using statistical 
+methods only when the data has some repeating patterns or correlation or
+some inherent orders. </p>
+<p>eg; When you see a different types of cat, you can identify it as cat, how’s
+that working, when you look at it objectively there are some underlying order in
+their pixels and behaviors, and our brain maps those patterns of light signals
+to cat. And you can apply this same analogy ( similar technique ) to our ML
+models here, models learns to identify cat / dog by capturing this common patterns
+present in the data or image or video. If the data doesn’t bring this patterns,
+how can any system or our brain can identify a particular object ?</p>
+<h3>Similarities with Language Models</h3>
+<p>Number of sequences in lottery number can be treated as finite sequence.
+The random numbers from RNG usually pick random number from this finite sequence.
+Let's connect this to the Language models in NLP. NLP language models predict the next
+word from what ever it seen till now. If we take all the words in english
+dictionary, it comes around 171,476 words. If we arrange these words in
+particular order it forms valid sentence, ie; we can't put all combinations of
+words to form a valid sentence. This means there is fixed order of word
+sequence, this is what the NLP models learns internally via word co-occurrence
+and other methods.</p>
+<p>Now come back and see how sequence predicted by RNG for lottery has some common
+pattern ?, it shouldn't. So we can't find any sort of significant statistical
+correlation between two lottery numbers.</p>
+<h3>How click streams are helping for recommendation</h3>
+<p>This is an another way of pulling out data that has some meaning or patterns
+present in it. When you browse over any e-commerce site, for a given query your
+mouse movement leaving out some meaning about those items. They are related
+items !. So if you pull out the click stream done by an user for a session we
+can find the related items and using that data we can do recommendations for
+a given query.</p>
+<p>You can read more about this from this paper from <a href="https://astro.temple.edu/~tua95067/kdd2018.pdf">Airbnb</a></p>
+<p>I will be posting one more article to show how those individuals increased their
+chance of winning.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
