@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-12-29T00:00:00+05:30</updated><entry><title>Can I predict winning lottery number</title><link href="https://haridas.in/can-i-predict-winning-lottery-number.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-winning-lottery-number.html</id><summary type="html">&lt;p&gt;This was one of the question asked by a colleague of mine who is new to the data
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-12-29T00:00:00+05:30</updated><entry><title>Can I predict the winning lottery numbers</title><link href="https://haridas.in/can-i-predict-the-winning-lottery-numbers.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-the-winning-lottery-numbers.html</id><summary type="html">&lt;p&gt;This was one of the question asked by a colleague of mine who is new to the data
 analytics and Machine learning space. I had to tell him that this isn’t possible because
 data itself is not suitable to do any sort of valuable predictions. It usually
 take some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was one of the question asked by a colleague of mine who is new to the data
@@ -16,7 +16,7 @@ sometimes experienced one also misses the key basic concepts when it comes to
 how to deal with data and what data is good for particular problem.&lt;/p&gt;
 &lt;p&gt;This is my attempt to answer the questions that I had !&lt;/p&gt;
 &lt;h3&gt;Looking into the winning chances&lt;/h3&gt;
-&lt;p&gt;Let’s take one lottery series for this experiment. The lottery number has
+&lt;p&gt;Let’s take one lottery series for this experiment, this lottery number has
 2 alphabet and 6 numbers, eg; AG389435. In this case how many unique lottery can
 be printed ?&lt;/p&gt;
 &lt;div class="math"&gt;$$ 
