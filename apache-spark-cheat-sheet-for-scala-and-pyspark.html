@@ -144,7 +144,7 @@
 <li><a href="#_set_spark_scratch_space_or_tmp_directory_correctly">Set spark scratch space or tmp directory correctly</a></li>
 <li><a href="#_pyspark_doesnt_support_all_the_data_types">Pyspark doesn&#8217;t support all the data types.</a></li>
 <li><a href="#_work_with_spark_standalone_cluster_manager">Work with spark standalone cluster manager</a></li>
-<li><a href="#_updates">Updates</a></li>
+<li><a href="#_changelog">Changelog</a></li>
 <li><a href="#_references">References</a></li>
 </ul>
 </div>
@@ -535,6 +535,28 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &lt;list&
 <div class="paragraph">
 <p><a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare">https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html</a></p>
 </div>
+<div class="sect3">
+<h4 id="_start_the_spark_clustering_in_standalone_mode">Start the spark clustering in standalone mode</h4>
+<div class="paragraph">
+<p>Once you have downloaded the same version of the spark binary across the machines
+you can start the spark master and slave processes to form the standalone spark
+cluster. Or you could run both these services in same machine also.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">cd spark-&lt;version&gt;
+
+# Start the spark master process, provide the master configurations via
+# properties file or add it in default config file under the conf folder.
+./sbin/start-master.sh [--properties-file &lt;file&gt;]
+
+
+# Start slave services on each nodes where we want to run the slave and connect
+# All the slaves to master to form the cluster.
+#
+./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Standalone mode,</p>
 </div>
@@ -552,18 +574,14 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &lt;list&
 <li>
 <p>When defining the spark application via spark-shell or so, define the executor
 memory and cores.</p>
-<div class="literalblock">
-<div class="content">
-<pre>eg; worker-1 has 10 core and 20gb memory</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>When submitting the job to get 10 executor with 1 cpu and 2gb ram each,</pre>
-</div>
-</div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>eg; worker-1 has 10 core and 20gb memory</p>
+</div>
+<div class="paragraph">
+<p>When submitting the job to get 10 executor with 1 cpu and 2gb ram each,</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -583,12 +601,13 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 </table>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_updates">Updates</h3>
+<h3 id="_changelog">Changelog</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Initial posting.</p>
+<p>Added spark standalone commands.</p>
 </li>
 </ol>
 </div>

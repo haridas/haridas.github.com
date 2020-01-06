@@ -1324,7 +1324,7 @@ over allocating resources to the executors.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#_set_spark_scratch_space_or_tmp_directory_correctly"&gt;Set spark scratch space or tmp directory correctly&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_pyspark_doesnt_support_all_the_data_types"&gt;Pyspark doesn&amp;#8217;t support all the data types.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_work_with_spark_standalone_cluster_manager"&gt;Work with spark standalone cluster manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_updates"&gt;Updates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_changelog"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -1715,6 +1715,28 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare"&gt;https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_start_the_spark_clustering_in_standalone_mode"&gt;Start the spark clustering in standalone mode&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Once you have downloaded the same version of the spark binary across the machines
+you can start the spark master and slave processes to form the standalone spark
+cluster. Or you could run both these services in same machine also.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;cd spark-&amp;lt;version&amp;gt;
+
+# Start the spark master process, provide the master configurations via
+# properties file or add it in default config file under the conf folder.
+./sbin/start-master.sh [--properties-file &amp;lt;file&amp;gt;]
+
+
+# Start slave services on each nodes where we want to run the slave and connect
+# All the slaves to master to form the cluster.
+#
+./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Standalone mode,&lt;/p&gt;
 &lt;/div&gt;
@@ -1732,18 +1754,14 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;li&gt;
 &lt;p&gt;When defining the spark application via spark-shell or so, define the executor
 memory and cores.&lt;/p&gt;
-&lt;div class="literalblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre&gt;eg; worker-1 has 10 core and 20gb memory&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="literalblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre&gt;When submitting the job to get 10 executor with 1 cpu and 2gb ram each,&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;eg; worker-1 has 10 core and 20gb memory&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When submitting the job to get 10 executor with 1 cpu and 2gb ram each,&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1763,12 +1781,13 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_updates"&gt;Updates&lt;/h3&gt;
+&lt;h3 id="_changelog"&gt;Changelog&lt;/h3&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Initial posting.&lt;/p&gt;
+&lt;p&gt;Added spark standalone commands.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

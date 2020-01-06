@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-12-29T00:00:00+05:30</updated><entry><title>Can I predict the winning lottery numbers</title><link href="https://haridas.in/can-i-predict-the-winning-lottery-numbers.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-the-winning-lottery-numbers.html</id><summary type="html">&lt;p&gt;This was one of the question asked by a colleague of mine who is new to the data
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-12-29T00:00:00+05:30</updated><entry><title>Can I predict the winning lottery numbers</title><link href="https://haridas.in/can-i-predict-the-winning-lottery-numbers.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-the-winning-lottery-numbers.html</id><summary type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data
 analytics and Machine learning space. I had to tell him that this isn’t possible because
 data itself is not suitable to do any sort of valuable predictions. It usually
-take some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was one of the question asked by a colleague of mine who is new to the data
+takes some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data
 analytics and Machine learning space. I had to tell him that this isn’t possible because
 data itself is not suitable to do any sort of valuable predictions. It usually
-take some time to get this intuition. Those who has
-statistics background can quickly catch-up, others has to put up extra effort to
+takes some time to get this intuition. Those who has
+statistics background can quickly catch-up, others have to put up extra effort to
 solidify these concepts.&lt;/p&gt;
-&lt;p&gt;So, back to the question, can we build a model to predict lottery number
-?  short answer is NO, and long answer is NO :). Now you have to ask why !&lt;/p&gt;
+&lt;p&gt;So, back to the question, can we build a model to predict lottery numbers
+?  short answer is NO, and long answer is NO :). Now you have to ask why !&lt;/p&gt;
 &lt;h3&gt;Why this post ?&lt;/h3&gt;
 &lt;p&gt;This question may be very trivial one for seasoned ML practitioner, but
 sometimes experienced one also misses the key basic concepts when it comes to
@@ -38,9 +38,8 @@ be printed ?&lt;/p&gt;
  Million
  \end{array}
 $$&lt;/div&gt;
-&lt;p&gt;To put this number in to a context, let's take another study done to identify the 
-cancer risk due to smoking &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/21545200"&gt;[link]&lt;/a&gt;, According to their study they 
-estimates 1 in 10 men and 1 in 8 women in India can expect develop cancer of any
+&lt;p&gt;To put this number into context, let's take another study done to identify the cancer risk due to smoking &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/21545200"&gt;[link]&lt;/a&gt;, According to their study they
+estimates 1 in 10 men and 1 in 8 women in India can expect to develop cancer of any
 form, in their life span after the age of 35 year. This means getting cancer is
 way higher chance than winning a lottery.&lt;/p&gt;
 &lt;h3&gt;Why am I saying lottery data isn't usable for any prediction&lt;/h3&gt;
@@ -52,8 +51,8 @@ future numbers, because they are close to independent.
 So you can't find any relation from the historical winning numbers.&lt;/p&gt;
 &lt;p&gt;If we are using some faulty RNG machine or RNG system with lesser entropy then 
 the results may be skewed, so we can see pattern in number prediction.&lt;/p&gt;
-&lt;p&gt;So how few individuals broke the lottery system leaglly, below listed are the two
-instances people worked hard to increase their chance of winning, here also they
+&lt;p&gt;So how few individuals broke the lottery system legally, below listed are the two
+instances people worked hard to increase their chances of winning, here also they
 aren't predicting the actual winning numbers, instead increasing the chance of
 winning probability of each lottery.&lt;/p&gt;
 &lt;ol&gt;
@@ -68,9 +67,9 @@ winning probability of each lottery.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Or you have to run a lottery syndicate to increase the chance of winning by
-   pooling the tickets from multiple contributors. Here is an interesting guy
-   who did this thing across the world. It's purely playing against odds by
-   purchasing more tickets.  &lt;/p&gt;
+   pooling the tickets from multiple contributors. Here is an interesting guy
+   who did this thing across the world. It's purely playing against the odds by
+   purchasing more tickets.&lt;/p&gt;
 &lt;p&gt;&lt;p&gt;
    &lt;iframe width="560" height="315"
    src="https://www.youtube.com/embed/eOX7acjkGv0" frameborder="0"
@@ -91,7 +90,7 @@ of data ( data may be image, sound, simple numbers any thing).&lt;/p&gt;
 &lt;p&gt;We can do any sort of data analysis or prediction using statistical 
 methods only when the data has some repeating patterns or correlation or
 some inherent orders. &lt;/p&gt;
-&lt;p&gt;eg; When you see a different types of cat, you can identify it as cat, how’s
+&lt;p&gt;eg; When you see a different type of cat, you can identify it as cat, how’s
 that working, when you look at it objectively there are some underlying order in
 their pixels and behaviors, and our brain maps those patterns of light signals
 to cat. And you can apply this same analogy ( similar technique ) to our ML
@@ -102,10 +101,10 @@ how can any system or our brain can identify a particular object ?&lt;/p&gt;
 &lt;p&gt;Number of sequences in lottery number can be treated as finite sequence.
 The random numbers from RNG usually pick random number from this finite sequence.
 Let's connect this to the Language models in NLP. NLP language models predict the next
-word from what ever it seen till now. If we take all the words in english
+word from whatever it seen till now. If we take all the words in english
 dictionary, it comes around 171,476 words. If we arrange these words in
 particular order it forms valid sentence, ie; we can't put all combinations of
-words to form a valid sentence. This means there is fixed order of word
+words to form a valid sentence. This means there is a fixed order of word
 sequence, this is what the NLP models learns internally via word co-occurrence
 and other methods.&lt;/p&gt;
 &lt;p&gt;Now come back and see how sequence predicted by RNG for lottery has some common
@@ -115,12 +114,12 @@ correlation between two lottery numbers.&lt;/p&gt;
 &lt;p&gt;This is an another way of pulling out data that has some meaning or patterns
 present in it. When you browse over any e-commerce site, for a given query your
 mouse movement leaving out some meaning about those items. They are related
-items !. So if you pull out the click stream done by an user for a session we
+items !. So if you pull out the clickstream done by a user for a session we
 can find the related items and using that data we can do recommendations for
 a given query.&lt;/p&gt;
 &lt;p&gt;You can read more about this from this paper from &lt;a href="https://astro.temple.edu/~tua95067/kdd2018.pdf"&gt;Airbnb&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I will be posting one more article to show how those individuals increased their
-chance of winning.&lt;/p&gt;
+chances of winning.&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -1507,7 +1506,7 @@ over allocating resources to the executors.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#_set_spark_scratch_space_or_tmp_directory_correctly"&gt;Set spark scratch space or tmp directory correctly&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_pyspark_doesnt_support_all_the_data_types"&gt;Pyspark doesn&amp;#8217;t support all the data types.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_work_with_spark_standalone_cluster_manager"&gt;Work with spark standalone cluster manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_updates"&gt;Updates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_changelog"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_references"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -1898,6 +1897,28 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html" class="bare"&gt;https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_start_the_spark_clustering_in_standalone_mode"&gt;Start the spark clustering in standalone mode&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Once you have downloaded the same version of the spark binary across the machines
+you can start the spark master and slave processes to form the standalone spark
+cluster. Or you could run both these services in same machine also.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;cd spark-&amp;lt;version&amp;gt;
+
+# Start the spark master process, provide the master configurations via
+# properties file or add it in default config file under the conf folder.
+./sbin/start-master.sh [--properties-file &amp;lt;file&amp;gt;]
+
+
+# Start slave services on each nodes where we want to run the slave and connect
+# All the slaves to master to form the cluster.
+#
+./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Standalone mode,&lt;/p&gt;
 &lt;/div&gt;
@@ -1915,18 +1936,14 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;li&gt;
 &lt;p&gt;When defining the spark application via spark-shell or so, define the executor
 memory and cores.&lt;/p&gt;
-&lt;div class="literalblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre&gt;eg; worker-1 has 10 core and 20gb memory&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="literalblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre&gt;When submitting the job to get 10 executor with 1 cpu and 2gb ram each,&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;eg; worker-1 has 10 core and 20gb memory&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When submitting the job to get 10 executor with 1 cpu and 2gb ram each,&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1946,12 +1963,13 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_updates"&gt;Updates&lt;/h3&gt;
+&lt;h3 id="_changelog"&gt;Changelog&lt;/h3&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Initial posting.&lt;/p&gt;
+&lt;p&gt;Added spark standalone commands.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
