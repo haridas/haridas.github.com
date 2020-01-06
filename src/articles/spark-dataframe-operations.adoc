@@ -336,6 +336,27 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<ite
 
 https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-example-2-workers-on-1-node-cluster.html
 
+==== Start the spark clustering in standalone mode
+
+Once you have downloaded the same version of the spark binary across the machines
+you can start the spark master and slave processes to form the standalone spark
+cluster. Or you could run both these services in same machine also.
+
+```bash
+cd spark-<version>
+
+# Start the spark master process, provide the master configurations via
+# properties file or add it in default config file under the conf folder.
+./sbin/start-master.sh [--properties-file <file>]
+
+
+# Start slave services on each nodes where we want to run the slave and connect
+# All the slaves to master to form the cluster.
+#
+./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077
+
+```
+
 
 Standalone mode, 
 
@@ -344,10 +365,11 @@ Standalone mode,
 3. We can set worker max core and memory usage setting.
 4. When defining the spark application via spark-shell or so, define the executor
    memory and cores.
+
 	
-	eg; worker-1 has 10 core and 20gb memory
-	
-	When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
+eg; worker-1 has 10 core and 20gb memory
+
+When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
 
 ```
 spark-submit --execture-cores 1 --executor-memory 2g --master <url>
@@ -355,9 +377,9 @@ spark-submit --execture-cores 1 --executor-memory 2g --master <url>
 
 NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
 
-=== Updates
+=== Changelog
 
-1. Initial posting.
+1. Added spark standalone commands.
 
 == References
 
