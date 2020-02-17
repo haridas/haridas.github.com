@@ -1,24 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - Haridas N</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/haridas-n.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-12-29T00:00:00+05:30</updated><entry><title>Can I predict the winning lottery numbers</title><link href="https://haridas.in/can-i-predict-the-winning-lottery-numbers.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-the-winning-lottery-numbers.html</id><summary type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data
-analytics and Machine learning space. I had to tell him that this isn’t possible because
-data itself is not suitable to do any sort of valuable predictions. It usually
-takes some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data
-analytics and Machine learning space. I had to tell him that this isn’t possible because
-data itself is not suitable to do any sort of valuable predictions. It usually
-takes some time to get this intuition. Those who has
-statistics background can quickly catch-up, others have to put up extra effort to
-solidify these concepts.&lt;/p&gt;
-&lt;p&gt;So, back to the question, can we build a model to predict lottery numbers
-?  short answer is NO, and long answer is NO :). Now you have to ask why !&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN - Haridas N</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/haridas-n.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2020-02-27T00:00:00+05:30</updated><entry><title>Expected Value of Lottery Ticket</title><link href="https://haridas.in/expected-value-of-lottery-ticket.html" rel="alternate"></link><published>2020-02-27T00:00:00+05:30</published><updated>2020-02-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-02-27:/expected-value-of-lottery-ticket.html</id><summary type="html">&lt;p&gt;In my previous post I have explained how the lottery number system works and
+forecasting a winning number isn't possible with confidence greater than the
+random chance. This randomness of the data doesn't help us do any kinda
+analytic. Only thing that can be done is to verify the lottery …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In my previous post I have explained how the lottery number system works and
+forecasting a winning number isn't possible with confidence greater than the
+random chance. This randomness of the data doesn't help us do any kinda
+analytic. Only thing that can be done is to verify the lottery prediction
+doesn't have any skewness towards a particular set of numbers.&lt;/p&gt;
+&lt;p&gt;Considering randomness involved in the lottery system, still few people found
+a way to win the lottery with higher confidence level or they are sure that they
+can make profit out of the lottery. I showed a few such instances in my previous
+blog entry. In this blog let's dive into one such case more deeply and see how
+and what helped them exploit the lottery system.&lt;/p&gt;
+&lt;p&gt;In short they exploited the issues in Game Settings and make use of the Law of
+Large Numbers to maximize their profit.&lt;/p&gt;
+&lt;h3&gt;The game setting&lt;/h3&gt;
+&lt;p&gt;I'm taking a game named WINFALL played in the 2004 period in Michigan. Michigan
+State scrapped the previous game with this one to lure people to buy more
+lottery tickets. WINFALL offered better prize money for lower matching numbers
+and an option of distributing all prize money if the jackpot hits 5Million or
+above and nobody won the jackpot for the subsequent draw.&lt;/p&gt;
+&lt;p&gt;The game setting is:-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Players can select 6 numbers randomly from 1 to 49.&lt;/li&gt;
+&lt;li&gt;One lottery means this selected 6 numbers and costs $1&lt;/li&gt;
+&lt;li&gt;The lottery draw happens weekly twice, Wednesday and Saturday.&lt;/li&gt;
+&lt;li&gt;The Michigan lottery randomly picks 6 numbers as jackpot numbers on a particular
+    drawing day.&lt;/li&gt;
+&lt;li&gt;Anybody has these exact 6 numbers gets the full jackpot money.&lt;/li&gt;
+&lt;li&gt;Those who have fewer matches like, 3 matching numbers get 5 dollar, 4 matches
+    get 100 dollar and 5 matches get 2500 dollar.&lt;/li&gt;
+&lt;li&gt;When the jackpot crosses 5Million, and nobody gets the jackpot then the full
+   jackpot is distributed to all the lower matching lotteries. This means those
+   lower matching numbers get 10x more money. 3 number matches get 50 dollar,
+   4 number matches gets 1000 dollar and 5 number matches gets 25000 dollar.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The fact was most of the time nobody gets Jackpot, those cases lower matching
+numbers gets corresponding prize money. Obviously when the jackpot crosses
+5Million there will be high demand for tickets, because each 3 or higher match
+gets 10x more prize unless nobody gets the jackpot on that draw.&lt;/p&gt;
+&lt;p&gt;At this stage it looks like a standard lottery game played in those times. What
+you think about the weakness of this game and how people exploited it to win
+guaranteed profit out of this lottery game. The usual idea was the "lottery is
+a tax on poor people" and any person who knows the chance of winning won't go
+near the lottery games, including me :).&lt;/p&gt;
+&lt;p&gt;But what was the reason math geeks Selbee's and other MIT students see an
+opportunity here ?. They found a way to increase their chance of winning. See
+below to know how they cracked it.&lt;/p&gt;
+&lt;h3&gt;Your winning chances&lt;/h3&gt;
+&lt;p&gt;Let's see first what are the visible chances here to win a jackpot or other
+prizes. The game we are discussing is 6/49, which means pick 6 numbers from 1-49
+numbers. We need to know what is the chance of getting a jackpot or what's the
+chance of getting 3, 4 or 5 matching numbers when a lottery draw happens.&lt;/p&gt;
+&lt;h4&gt;Urn Model&lt;/h4&gt;
+&lt;p&gt;To easily model this, think of we have 49 balls which are labeled 1-49 in a Urn.
+Each lottery purchase means picking 6 balls from this Urn with replacement. Also
+think of the six numbers which are going to be picked for jackpot are colored in
+BLUE and all other balls are RED in color.&lt;/p&gt;
+&lt;p&gt;So when you buy a lottery ticket, what are the chances of getting blue balls
+? Getting 3 or more blue balls means corresponding prize waiting for you.&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{array}{l}
+Odds\ of\ getting\ no\ blue\ ball\ at\ all\ \ \ \ \ \ \ \ =\ \frac{^{6} C_{0}{}{}{} \times ^{43} C_{6}}{^{49} C_{6}} \ =\frac{6096454}{13983816} \ =\ 0.435\\
+\\
+Odds\ of\ getting\ 1\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{1}{}{}{} \times ^{43} C_{5}}{^{49} C_{6}} =\ \frac{5775588}{13983816} \ =\ 0.41\\
+\\
+Odds\ of\ getting\ 2\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{2}{}{}{} \times ^{43} C_{4}}{^{49} C_{6}} =\ \frac{1851150}{13983816} \ =0.13\\
+\\
+Odds\ of\ getting\ 3\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{3}{}{}{} \times ^{43} C_{3}}{^{49} C_{6}} \ =\ 0.017\ \\
+\\
+Odds\ of\ getting\ 4\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{4}{}{}{} \times ^{43} C_{2}}{^{49} C_{6}} \ =0.00096\\
+\\
+Odds\ of\ getting\ 5\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{5}{}{}{} \times ^{43} C_{1}}{^{49} C_{6}} \ =\ 1.844\ *\ 10^{-5}\\
+\\
+Odds\ of\ getting\ 6\ blue\ ball\ or\ Jackpot\ \ \ =\frac{^{6} C_{6}{}{}{} \times ^{43} C_{0}}{^{49} C_{6}} \ =\ 7.15\ *\ 10^{-8} \ \ 
+\end{array}
+$$&lt;/div&gt;
+&lt;p&gt;With the above chances if we buy a ticket on a normal drawing period, how much
+return can you expect ?&lt;/p&gt;
+&lt;p&gt;Matches and winning prize,&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Number of Match&lt;/th&gt;
+&lt;th&gt;Prize money($)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;2500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;2000000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Based on the above table and the chances of winning, calculate the expected
+prize money for a ticket.&lt;/p&gt;
+&lt;div class="math"&gt;\begin{array}{l}
+Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 5\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 100\ +\ 0.000018\ *\ 2500\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 2000000\\
+) \ \ \sim =\mathbf{\ 0.4}
+\end{array}&lt;/div&gt;
+&lt;p&gt;That means you get close to 40 cents for a dollar, that means if you play enough
+number of times with this prize money you lose 60 cents per dollar. Otherwise
+60% lose.&lt;/p&gt;
+&lt;p&gt;Till this it's a well known fact that lottery games are kinda a "tax on poor",
+always state make money out of it for sure. In the above case, The State makes
+approximately 60 cents for every ticket they sell.&lt;/p&gt;
+&lt;h2&gt;The loophole !&lt;/h2&gt;
+&lt;p&gt;As we saw in the Game Setting section, when the jackpot size reaches 5Million,
+the next draw will ensure the entire money will be rolled down to all other
+lower matching lotteries unless there is a jackpot winner.&lt;/p&gt;
+&lt;p&gt;The new prize money range, when Jackpot crosses 5 Million and nobody wins the
+jackpot on the following draw.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Number of Match&lt;/th&gt;
+&lt;th&gt;Prize money($)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;1000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;25000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;5000000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;With this scenario how much do you make when you buy a ticket ? Let's
+recalculate the new expected value of a ticket again.&lt;/p&gt;
+&lt;div class="math"&gt;\begin{array}{l}
+New\ Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 50\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 1000\ +\ 0.000018\ *\ 25000\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 5000000\\
+) \ \ \sim =\ \mathbf{2.615}
+\end{array}&lt;/div&gt;
+&lt;p&gt;Now for every dollar you make close to $2.6, ie; You can expect close to 260%
+profit. That means if you buy tickets when the jackpot reaches 5Million you get
+a very good return from it.&lt;/p&gt;
+&lt;p&gt;WAIT, this case, if you buy ONLY one ticket will it  ensure a return of 2.6
+dollar ? NO !. Why so, that’s where the real meaning of Expected Value comes in.
+To get close to the Expected Value, you have to sample enough times otherwise
+buy enough tickets. So overall return of all your tickets comes close to the
+expected value of 2.6 dollar per ticket.&lt;/p&gt;
+&lt;p&gt;So what these people have done is they purchased a large number of tickets with
+the help of their friends and partners. Even a few formed companies (Or lottery
+syndicate) that give shares if some pool in their cash. That's how players like
+Selbee's pooled enough money to purchase a lot of lotteries so that the overall
+return will be close to the expected value mentioned above. The summary is play
+in bulk and get far better ROI.&lt;/p&gt;
+&lt;p&gt;There are more different strategies used to maximize the return or ensure how
+fast we can converge to the expected value. I have attached few references,
+please read to get more background about it.&lt;/p&gt;
+&lt;h2&gt;Let's Implement it&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# prize money when we have n blue balls ? &lt;/span&gt;
+&lt;span class="n"&gt;prize_money&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2000000&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# When jackpot hits 5Millon or above.&lt;/span&gt;
+&lt;span class="c1"&gt;#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Probability of getting n blue ball ?&lt;/span&gt;
+&lt;span class="n"&gt;expected_win_prize&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+
+&lt;span class="n"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;prizes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;w_prob&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;comb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;comb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;comb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;#total+= w_prob&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Probability of getting {i} blue ball = {w_prob}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;expected_win_prize&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;w_prob&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;prize_money&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;w_prob&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;prizes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;prize_money&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;w_prob&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Expected winning prize of a single lottery is : {expected_win_prize}&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On Normal Drawing day the chances are listed below, &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# prize money when we have n blue balls ? 
+prize_money = {0: 0, 1: 0, 2: 0, 3: 5, 4: 100, 5: 2500, 6: 2000000 }
+
+Probability of getting 0 blue ball = 0.4359649755116915
+Probability of getting 1 blue ball = 0.4130194504847604
+Probability of getting 2 blue ball = 0.13237802900152576
+Probability of getting 3 blue ball = 0.017650403866870102
+Probability of getting 4 blue ball = 0.000968619724401408
+Probability of getting 5 blue ball = 1.8449899512407772e-05
+Probability of getting 6 blue ball = 7.151123842018516e-08
+
+Expected winning prize of a single lottery is : 0.37426121739588103
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the 5Millon Jackpot day, the chance of winning for a given ticket.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
+
+Probability of getting 0 blue ball = 0.4359649755116915
+Probability of getting 1 blue ball = 0.4130194504847604
+Probability of getting 2 blue ball = 0.13237802900152576
+Probability of getting 3 blue ball = 0.017650403866870102
+Probability of getting 4 blue ball = 0.000968619724401408
+Probability of getting 5 blue ball = 1.8449899512407772e-05
+Probability of getting 6 blue ball = 7.151123842018516e-08
+
+Expected winning price of a single lottery is : 2.669943597656033
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Checkout how the expected value changed. This was the key insight those people
+saw in the game and exploited. &lt;strong&gt;It's not that straight forward, higher expected
+value doesn't guarantee a profit of $2.45 for every $1 lottery ticket, that
+intuition comes only for those who have statistics background.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Expected value really means, by the &lt;a href="https://en.wikipedia.org/wiki/Law_of_large_numbers"&gt;Law of Large Number&lt;/a&gt; if we sample a random variable
+variable enough number of times the values of random variable will converge to
+its expected value or sample mean. Here how do we know how many samples to take
+from this random variable ? , That is only possible if we know full distribution
+properties of this random variable. Most of the cases that's not possible due to
+infinite possibilities, we have to stop the sampling somewhere with an
+acceptable error.&lt;/p&gt;
+&lt;p&gt;Instead of addressing it full proof, going with a large number of tickets or
+samples from the random variable is enough to make profit out of this game,
+that's what these players did. They did some tweaking to maximize their returns
+from their finite resources or purchasing power.&lt;/p&gt;
+&lt;p&gt;Here the random variable is a categorical variable with 7 values ( How many
+lottery numbers matched against the jackpot number ).&lt;/p&gt;
+&lt;h2&gt;How Michigan lottery fixed this problem&lt;/h2&gt;
+&lt;p&gt;The problem was with strictly following the rules of the game, they didn't take
+it seriously when bulk purchase of lottery happens across multiple stores. This
+game has an inherent nature like the demand can drive the volume of sale, which
+is exploited here to make the chances better for players like Selbee's and
+others.&lt;/p&gt;
+&lt;p&gt;Main things to control are,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Restricting bulk selling.&lt;/li&gt;
+&lt;li&gt;Closely monitoring sudden spike in selling volumes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;After the news came out they stopped this game and added more restrictions on
+the bulk purchases.&lt;/p&gt;
+&lt;p&gt;But some other States in the USA had similar lottery games and people like
+Selbee's exploited that chance also, But all of it eventually closed down after
+sighting these issues.&lt;/p&gt;
+&lt;p&gt;In either case the State doesn’t lose any money. Usually the State uses the
+profit from lottery games to do more social development.&lt;/p&gt;
+&lt;h2&gt;Kerala Lottery&lt;/h2&gt;
+&lt;p&gt;Kerala is one of the States in India, where the Government has been running the
+lottery since 1967. Till very recently a lot of private lotteries were present
+in the market. Currently the Government is fully controlling the system, no
+private parties can run a lottery.&lt;/p&gt;
+&lt;p&gt;From a quick look, above mentioned like mass lottery purchase isn't possible
+with Kerala Lottery, as here the lotteries are in printed form, and state only
+prints fixed number of tickets based on the previous selling trends. Also there
+are special serial numbers for each District in Kerala. Only possible issues are
+duplicate tickets and other similar fraudulent activities, which are easily
+identifiable.&lt;/p&gt;
+&lt;p&gt;Currently I'm picking up the probabilistic programming using pyro and edward,
+soon I will model this problem in probabilistic programming to validate the same
+by simulating the lottery game Coming soon.&lt;/p&gt;
+&lt;p&gt;NOTE: The entry was taken from its original &lt;a href="https://labs.imaginea.com/expected-value-of-lottery-ticket/"&gt;source&lt;/a&gt; and cross posted here.&lt;/p&gt;
+&lt;h1&gt;References&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262"&gt;http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf"&gt;https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf"&gt;http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Lottery_mathematics"&gt;https://en.wikipedia.org/wiki/Lottery_mathematics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=U7f8j3mVMbc"&gt;https://www.youtube.com/watch?v=U7f8j3mVMbc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://highline.huffingtonpost.com/articles/en/lotto-winners/"&gt;https://highline.huffingtonpost.com/articles/en/lotto-winners/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.keralalotery.in/p/kerala-lottery.html"&gt;http://www.keralalotery.in/p/kerala-lottery.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.in/How-Not-Be-Wrong-Mathematical/dp/0143127535"&gt;Book - How Not to be
+   Wrong&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="statistics"></category><category term="probability"></category></entry><entry><title>Can I predict the winning lottery numbers</title><link href="https://haridas.in/can-i-predict-the-winning-lottery-numbers.html" rel="alternate"></link><published>2019-12-29T00:00:00+05:30</published><updated>2019-12-29T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2019-12-29:/can-i-predict-the-winning-lottery-numbers.html</id><summary type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data 
+analytics and Machine learning space. I had to tell him that this isn’t possible 
+because data itself is not suitable to do any sort of valuable predictions.
+It usually takes some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was one of the questions asked by a colleague of mine who is new to the data 
+analytics and Machine learning space. I had to tell him that this isn’t possible 
+because data itself is not suitable to do any sort of valuable predictions.
+It usually takes some time to get this intuition. Those who have statistics
+background can quickly catch-up, others have to put up extra effort to solidify
+these concepts.&lt;/p&gt;
+&lt;p&gt;So, back to the question, can we build a model to predict lottery numbers ?
+The short answer is NO, and the long answer is NO :). Now you have to ask why !&lt;/p&gt;
 &lt;h3&gt;Why this post ?&lt;/h3&gt;
-&lt;p&gt;This question may be very trivial one for seasoned ML practitioner, but
+&lt;p&gt;This question may be a very trivial one for seasoned ML practitioners, but
 sometimes experienced one also misses the key basic concepts when it comes to
-how to deal with data and what data is good for particular problem.&lt;/p&gt;
-&lt;p&gt;This is my attempt to answer the questions that I had !&lt;/p&gt;
+how to deal with data and what data is good for a particular problem.
+This is my attempt to answer the questions that I had !&lt;/p&gt;
 &lt;h3&gt;Looking into the winning chances&lt;/h3&gt;
-&lt;p&gt;Let’s take one lottery series for this experiment, this lottery number has
-2 alphabet and 6 numbers, eg; AG389435. In this case how many unique lottery can
-be printed ?&lt;/p&gt;
+&lt;p&gt;Let’s take one lottery series for this experiment, this lottery number has 2 
+alphabet and 6 numbers, eg; AG389435. In this case how many unique lottery
+tickets can be printed ?&lt;/p&gt;
 &lt;div class="math"&gt;$$ 
  \begin{array}{l}
  Total\ number\ of\ lotteries\ for\ number\ sequence\ of\ form\
@@ -32,29 +391,30 @@ be printed ?&lt;/p&gt;
  \\
  Here\ we\ are\ assuming\ equal\ chance\ for\ all\ to\ win,\ and\ the\ lottery\
  system\ will\\
- ensure\ this\ constrain.\\
+ ensure\ this\ constraint.\\
  \\
  So\ winning\ probability/chance\ is\ \mathbf{0.000000147} \ \ or\ 1\ in\ 676\
  Million
  \end{array}
 $$&lt;/div&gt;
-&lt;p&gt;To put this number into context, let's take another study done to identify the cancer risk due to smoking &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/21545200"&gt;[link]&lt;/a&gt;, According to their study they
-estimates 1 in 10 men and 1 in 8 women in India can expect to develop cancer of any
-form, in their life span after the age of 35 year. This means getting cancer is
-way higher chance than winning a lottery.&lt;/p&gt;
+&lt;p&gt;To put this number into context, let's take another study done to identify the
+cancer risk due to smoking &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/21545200"&gt;[link]&lt;/a&gt;. According to their study they estimate 1 in 10
+men and 1 in 8 women in India can expect to develop cancer of any form, in their
+life span after the age of 35 year. This means getting cancer is way higher chance
+than winning a lottery.&lt;/p&gt;
 &lt;h3&gt;Why am I saying lottery data isn't usable for any prediction&lt;/h3&gt;
 &lt;p&gt;Because the lottery prediction is done using some random number generator (RNG),
 this means RNG ensures that every lottery purchased gets equal probability of
-winning, usually the odds of winning is above 1 in Million.
-And there won't be any relation between historical predicted number and the
-future numbers, because they are close to independent.
-So you can't find any relation from the historical winning numbers.&lt;/p&gt;
-&lt;p&gt;If we are using some faulty RNG machine or RNG system with lesser entropy then 
-the results may be skewed, so we can see pattern in number prediction.&lt;/p&gt;
-&lt;p&gt;So how few individuals broke the lottery system legally, below listed are the two
-instances people worked hard to increase their chances of winning, here also they
-aren't predicting the actual winning numbers, instead increasing the chance of
-winning probability of each lottery.&lt;/p&gt;
+winning, usually the odds of winning is above 1 in Million. And there won't be
+any relation between historical predicted number and the future numbers, because
+they are close to independent. So you can't find any relation from the
+historical winning numbers.&lt;/p&gt;
+&lt;p&gt;If we are using some faulty RNG machine or RNG system with lesser entropy then
+the results may be skewed, so we can see patterns in number prediction.
+So how few individuals broke the lottery system legally, below listed are the
+two instances people worked hard to increase their chances of winning, here also
+they aren't predicting the actual winning numbers, instead increasing the chance
+of winning probability of each lottery.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=8rJw4BgPs4w"&gt;Michle Memorized live game patterns, video&lt;/a&gt;&lt;/p&gt;
@@ -63,7 +423,7 @@ winning probability of each lottery.&lt;/p&gt;
     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
     picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/p&gt;&lt;/p&gt;
-&lt;p&gt;This story may come as holywood movie soon.&lt;/p&gt;
+&lt;p&gt;This story may come as a Hollywood movie soon.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Or you have to run a lottery syndicate to increase the chance of winning by
@@ -79,44 +439,44 @@ winning probability of each lottery.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;Does an ML model won’t predict the winning numbers at all ?&lt;/h3&gt;
-&lt;p&gt;If you are run enough number of times, your model may predict right answers some
-times, so why are you saying ML model can’t predict correctly at all ?  We call
-a model doing good, when it produces predictions better than simple guessing.
-If your model prediction accuracy is close to any other simple guess work,
-then why do you need this ML model after all.&lt;/p&gt;
+&lt;p&gt;If you run enough times, your model may predict right answers some times, so why
+are you saying ML models can’t predict correctly at all ? We call a model doing
+good, when it produces predictions better than simple guessing. If your model
+prediction accuracy is close to any other simple guess work, then why do you
+need this ML model after all.&lt;/p&gt;
 &lt;p&gt;The predictions are really based on known patterns. The patterns are coming out
 of data ( data may be image, sound, simple numbers any thing).&lt;/p&gt;
 &lt;h3&gt;When can we do ML&lt;/h3&gt;
-&lt;p&gt;We can do any sort of data analysis or prediction using statistical 
-methods only when the data has some repeating patterns or correlation or
-some inherent orders. &lt;/p&gt;
-&lt;p&gt;eg; When you see a different type of cat, you can identify it as cat, how’s
-that working, when you look at it objectively there are some underlying order in
+&lt;p&gt;We can do any sort of data analysis or prediction using statistical methods only
+when the data has some repeating patterns or correlation or some inherent
+orders.&lt;/p&gt;
+&lt;p&gt;eg; When you see a different type of cat, you can identify it as cat, how’s that
+working, when you look at it objectively there are some underlying order in
 their pixels and behaviors, and our brain maps those patterns of light signals
 to cat. And you can apply this same analogy ( similar technique ) to our ML
-models here, models learns to identify cat / dog by capturing this common patterns
-present in the data or image or video. If the data doesn’t bring this patterns,
-how can any system or our brain can identify a particular object ?&lt;/p&gt;
+models here, models learn to identify cat / dog by capturing these common
+patterns present in the data or image or video. If the data doesn’t bring these
+patterns, how can any system or our brain identify a particular object ?&lt;/p&gt;
 &lt;h3&gt;Similarities with Language Models&lt;/h3&gt;
-&lt;p&gt;Number of sequences in lottery number can be treated as finite sequence.
-The random numbers from RNG usually pick random number from this finite sequence.
-Let's connect this to the Language models in NLP. NLP language models predict the next
-word from whatever it seen till now. If we take all the words in english
-dictionary, it comes around 171,476 words. If we arrange these words in
-particular order it forms valid sentence, ie; we can't put all combinations of
-words to form a valid sentence. This means there is a fixed order of word
-sequence, this is what the NLP models learns internally via word co-occurrence
-and other methods.&lt;/p&gt;
-&lt;p&gt;Now come back and see how sequence predicted by RNG for lottery has some common
+&lt;p&gt;Number of sequences in the lottery number can be treated as a finite sequence.
+The random numbers from RNG usually pick random numbers from this finite
+sequence. Let's connect this to the Language models in NLP. NLP language models
+predict the next word from whatever it has seen till now. If we take all the
+words in english dictionary, it comes around 171,476 words. If we arrange these
+words in particular order it forms a valid sentence, ie; we can't put all
+combinations of words to form a valid sentence. This means there is a fixed
+order of word sequence, this is what the NLP models learn internally via word
+co-occurrence and other methods.&lt;/p&gt;
+&lt;p&gt;Now come back and see how the sequence predicted by RNG for the lottery has some
 pattern ?, it shouldn't. So we can't find any sort of significant statistical
 correlation between two lottery numbers.&lt;/p&gt;
 &lt;h3&gt;How click streams are helping for recommendation&lt;/h3&gt;
-&lt;p&gt;This is an another way of pulling out data that has some meaning or patterns
+&lt;p&gt;This is another way of pulling out data that has some meaning or patterns
 present in it. When you browse over any e-commerce site, for a given query your
-mouse movement leaving out some meaning about those items. They are related
-items !. So if you pull out the clickstream done by a user for a session we
-can find the related items and using that data we can do recommendations for
-a given query.&lt;/p&gt;
+mouse movement leaves out some meaning about those items. They are related items
+!. So if you pull out the clickstream done by a user for a session we can find
+the related items and using that data we can do recommendations for a given
+query.&lt;/p&gt;
 &lt;p&gt;You can read more about this from this paper from &lt;a href="https://astro.temple.edu/~tua95067/kdd2018.pdf"&gt;Airbnb&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I will be posting one more article to show how those individuals increased their
 chances of winning.&lt;/p&gt;
