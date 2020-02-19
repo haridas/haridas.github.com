@@ -7,46 +7,45 @@ Authors: Haridas N
 
 NOTE: test the writing using google document.
 
+Areas to cover:- 
+
+1. Introduction about the lottery system
+2. Game settings
+3. Match behind the loop hole
+4. How the lottery system fixed these issues
+5. How we an relate this issue with other lottery systems like the one in
+   Kerala.
+
 In my previous post I have explained how the lottery number system works and
 forecasting a winning number isn't possible with confidence grater than the
 random chance. This randomness of the data doesn't help us do any kinda
-analytic. Only thing can be done is to verify the lottery prediction doesn't 
+analytic. Only thing that can be done is to verify the lottery prediction doesn't 
 have any skewness towards particular set of numbers.
 
-Considering all these properties of the lottery system, still few people found
+Considering randomness involved in the lottery system, still few people found
 a way to win the lottery with higher confidence level or they are sure that they
 can make profit out of the lottery. I showed few such instances in previous blog
-entry. In this blog let's disect how they are able to find a loop hole in the
-lottery system.
+entry. In this blog let's dive into one such case more deeply and see how and
+what helped them exploit the lottery system.
 
+I'm taking the game played in 2007 period in USA state, ... Selbis are retired
+elder couple, they came across this lottery game once they were in a stationary
+store. Selbi was able to see a loop hole in the game in that short time, or put
+it other way he saw higher likelihood of making profit out of this game at
+particular time period. He went back and done few more statistical analysis to
+validate his theory. All was coming in his favour.
+
+
+## Rules of this Lottery game
+
+He started by purchasing spending $2000 
 
 Let's take the lottery game discussed on this video, 
 All the lottery games, the odds of winning is purely based on probability of
-getting, usually lottery games there will be price money for those tickets which
-matched partially to the winning ticket. Based on lottery scheme it varies, if
-you are able to match 3 numbers out of 6, you get $5 or 4 o
-
-They understood the internall statistical significance for winning a price based
-on particular game rules. What every I have mentioned about the previous post
-for regarding the data quality still valid.
-
-
-In this post lets see what are the techniques they have employed to find
-weakness in the lotteries to win more prices money than what they spend in most
-of the cases. Usually it's otherway around that you will fail most of the cases.
-
-This has been possible because of the special game settings and its weakness, In
-this blog I'm trying to go through the process of how they are able to find
-a successful way of making profit out of lottery business.
-
-
-In short these groups are known as "lottery syndicates"
+getting first or other smaller prices, 
+Based on lottery scheme it varies, if you are able to match 3 numbers out of 6, you get $5 or 4 o
 
 Here the lottery game is structured as below, 
-
-The type of lottery played in India and USA are different, mostely the USA has
-online style lottery. In early 1990 all the lottery drwaing work being done
-manually.
 
 
 $
