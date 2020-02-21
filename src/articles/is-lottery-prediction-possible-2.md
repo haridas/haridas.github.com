@@ -26,7 +26,8 @@ large number to maximize their profit.
 ### The game setting
 
 I'm taking a game named WINFALL played in 2004 period in Michigan. Michigan
-lottery scraped the previous game with this one to lure the customers. 
+State scrapped the previous game with this one to lure people to buy more
+lottery ticket. 
 WINFALL offered better prize money for lower matching numbers and an 
 option of distributing all prize money if the jackpot hits 5Million or above and
 nobody won the jackpot for the subsequent draw.
@@ -166,15 +167,12 @@ more background about it.
 
 ## Let's Implement it
 
-NOTE: The precision will be better here, so the expectation value, and probabilities
-values will be slightly higher.
-
 ```python
 # prize money when we have n blue balls ? 
 prize_money = {0: 0, 1: 0, 2: 0, 3: 5, 4: 100, 5: 2500, 6: 2000000 }
 
 # When jackpot hits 5Millon or above.
-#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 2000000 }
+#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
 
 # Probability of getting n blue ball ?
 expected_win_prize = 0
@@ -196,6 +194,9 @@ print(f"Expected winning prize of a single lottery is : {expected_win_prize}" )
 On Normal Drawing day the chances are listed below, 
 
 ```text
+# prize money when we have n blue balls ? 
+prize_money = {0: 0, 1: 0, 2: 0, 3: 5, 4: 100, 5: 2500, 6: 2000000 }
+
 Probability of getting 0 blue ball = 0.4359649755116915
 Probability of getting 1 blue ball = 0.4130194504847604
 Probability of getting 2 blue ball = 0.13237802900152576
@@ -210,6 +211,8 @@ Expected winning prize of a single lottery is : 0.37426121739588103
 On the 5Millon Jackpot day, the chance of winning for a given ticket.
 
 ```text
+#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
+
 Probability of getting 0 blue ball = 0.4359649755116915
 Probability of getting 1 blue ball = 0.4130194504847604
 Probability of getting 2 blue ball = 0.13237802900152576
@@ -218,22 +221,29 @@ Probability of getting 4 blue ball = 0.000968619724401408
 Probability of getting 5 blue ball = 1.8449899512407772e-05
 Probability of getting 6 blue ball = 7.151123842018516e-08
 
-Expected winning prize of a single lottery is : 2.455409882395478
+Expected winning price of a single lottery is : 2.669943597656033
 ```
+
 Checkout how the expected value changed. This was the key insight those people 
-seen on the game to exploit. **But it's not that simple, higher expected value
+seen on the game and exploited. **It's not that straight forward, higher expected value
 doesn't guarentee a profit of $2.45 for every $1 lottery ticket,
-that intuition only for those who have stitstics background gets it**.
+that intuition comes only for those who have stitstics background**.
 
-Expected value really means, by the Law of Large Number if we sample a random variable
-enough number of times the values of random variable will converge to its expected value.
-Here how many sample to take take from this random variable isn't fixed,
-only thing is how much close we are able to converge to the expected value.
-In another way they have to purchase enough number of ticket to ensure that their
-overall profit is close to the expected value projection.
+Expected value really means, by the [Law of Large Number](
+https://en.wikipedia.org/wiki/Law_of_large_numbers) if we sample a random variable
+enough number of times the values of random variable will converge to its expected value or sample mean.
+Here how do we know how many sample to take take from this random variable
+? , That is only possible if we know full distribution properties of this random
+variable. Most of the cases that's not possible due to infinite posibilities, we
+have stop somewhere with an acceptable error.
 
-In the lottery scenario, you the Random Variable is "how many matching numbers do you have" 
-,that indirectly tells the prize.
+Instead of address it full proof, going with large number of tickets or samples
+from the random variable is enough to make profit out of this game, that's what
+these players did. They done some tweakings to maximize their returns from their
+finite resources or purchasing power.
+
+Here the random variable is a categorical variable with 7 values ( How many
+lottery numbers matched against the jackpot number ). 
 
 ## How Michigan lottery fixed this problem
 
@@ -267,20 +277,24 @@ for each districts in Kerala. Only possible issues are duplicate tickets and oth
 similar fraudulent activities, which are easily identifiable.
 
 
+Currently I'm picking up the probabilistic modeling using pyro and edward, soon
+i will model this problem probabilistic to validate the same by simulating
+the lottery game, coming soon.
+
 #References
 
-0. http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262
-
-1. https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf
-
-2. http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf
-
-2. https://en.wikipedia.org/wiki/Lottery\_mathematics
-
-3. https://www.youtube.com/watch?v=U7f8j3mVMbc
-
-4. https://highline.huffingtonpost.com/articles/en/lotto-winners/
-
-5. http://www.keralalotery.in/p/kerala-lottery.html
-
-6. A chapter in this book discuss about chance in lottery, must read for math nerds - "How Not to be Wrong"
+0. [http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262](http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262)
+1. [https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf](
+https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf)
+2. [http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf](
+http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf)
+2. [https://en.wikipedia.org/wiki/Lottery_mathematics](
+https://en.wikipedia.org/wiki/Lottery_mathematics)
+3. [https://www.youtube.com/watch?v=U7f8j3mVMbc](
+https://www.youtube.com/watch?v=U7f8j3mVMbc)
+4. [https://highline.huffingtonpost.com/articles/en/lotto-winners/](
+https://highline.huffingtonpost.com/articles/en/lotto-winners/)
+5. [http://www.keralalotery.in/p/kerala-lottery.html](
+    http://www.keralalotery.in/p/kerala-lottery.html)
+6. [Book - How Not to be
+   Wrong](https://www.amazon.in/How-Not-Be-Wrong-Mathematical/dp/0143127535)
