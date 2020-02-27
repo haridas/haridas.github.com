@@ -1,7 +1,7 @@
-Title: Can I predict the winning lottery numbers 2
-Date: 2020-02-13
+Title: Expected Value of Lottery Ticket
+Date: 2020-02-27
 Category: data-science
-Tags: statistics,ml
+Tags: statistics,probability
 Authors: Haridas N
 
 
@@ -115,7 +115,15 @@ Matches and winning prize,
 Based on the above table and the chances of winning, calculate the expected
 prize money for a ticket.
 
-0.43 * 0 + 0.41 * 0 + 0.13 * 0 + 0.017 * 5 + 0.00096 * 100 + 0.000018 * 2500 + 0.000000071 * 2000000 ~= 0.4
+\begin{array}{l}
+Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 5\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 100\ +\ 0.000018\ *\ 2500\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 2000000\\
+) \ \ \sim =\mathbf{\ 0.4}
+\end{array}
+
 
 That means you get close to 40 cents for a dollar, that means if you play enough
 number of times with this prize money you lose 60 cents per dollar. Otherwise
@@ -147,13 +155,14 @@ jackpot on the following draw.
 With this scenario how much do you make when you buy a ticket ? Let's
 recalculate the new expected value of a ticket again.
 
-$$
 \begin{array}{l}
-New\ Expected\ Return\ is\ =\ ( 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
- 0.017\ *\ 50\ +\ 0.00096\ *\ 1000\ +\ \\
- 0.000018\ *\ 25000\ +\ 0.000000071\ *\ 5000000) \ \sim =\ 2.615
- \end{array}
-$$
+New\ Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 50\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 1000\ +\ 0.000018\ *\ 25000\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 5000000\\
+) \ \ \sim =\ \mathbf{2.615}
+\end{array}
 
 
 Now for every dollar you make close to $2.6, ie; You can expect close to 260%
@@ -301,6 +310,9 @@ identifiable.
 Currently I'm picking up the probabilistic programming using pyro and edward,
 soon I will model this problem in probabilistic programming to validate the same
 by simulating the lottery game Coming soon.
+
+
+NOTE: The entry was taken from its original [source](https://labs.imaginea.com/expected-value-of-lottery-ticket/) and cross posted here.
 
 
 #References
