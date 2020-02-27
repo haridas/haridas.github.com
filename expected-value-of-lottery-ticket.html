@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Expected Value of Lottery Ticket // all posts // HN </title>
+
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="https://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="https://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Expected Value of Lottery Ticket</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/statistics.html">statistics</a>
+                                <a class="post-category" href="https://haridas.in/tag/probability.html">probability</a>
+                        </p>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Thu 27 February 2020
+                        </p>
+                </header>
+            </section>
+            <p>In my previous post I have explained how the lottery number system works and
+forecasting a winning number isn't possible with confidence greater than the
+random chance. This randomness of the data doesn't help us do any kinda
+analytic. Only thing that can be done is to verify the lottery prediction
+doesn't have any skewness towards a particular set of numbers.</p>
+<p>Considering randomness involved in the lottery system, still few people found
+a way to win the lottery with higher confidence level or they are sure that they
+can make profit out of the lottery. I showed a few such instances in my previous
+blog entry. In this blog let's dive into one such case more deeply and see how
+and what helped them exploit the lottery system.</p>
+<p>In short they exploited the issues in Game Settings and make use of the Law of
+Large Numbers to maximize their profit.</p>
+<h3>The game setting</h3>
+<p>I'm taking a game named WINFALL played in the 2004 period in Michigan. Michigan
+State scrapped the previous game with this one to lure people to buy more
+lottery tickets. WINFALL offered better prize money for lower matching numbers
+and an option of distributing all prize money if the jackpot hits 5Million or
+above and nobody won the jackpot for the subsequent draw.</p>
+<p>The game setting is:-</p>
+<ol>
+<li>Players can select 6 numbers randomly from 1 to 49.</li>
+<li>One lottery means this selected 6 numbers and costs $1</li>
+<li>The lottery draw happens weekly twice, Wednesday and Saturday.</li>
+<li>The Michigan lottery randomly picks 6 numbers as jackpot numbers on a particular
+    drawing day.</li>
+<li>Anybody has these exact 6 numbers gets the full jackpot money.</li>
+<li>Those who have fewer matches like, 3 matching numbers get 5 dollar, 4 matches
+    get 100 dollar and 5 matches get 2500 dollar.</li>
+<li>When the jackpot crosses 5Million, and nobody gets the jackpot then the full
+   jackpot is distributed to all the lower matching lotteries. This means those
+   lower matching numbers get 10x more money. 3 number matches get 50 dollar,
+   4 number matches gets 1000 dollar and 5 number matches gets 25000 dollar.</li>
+</ol>
+<p>The fact was most of the time nobody gets Jackpot, those cases lower matching
+numbers gets corresponding prize money. Obviously when the jackpot crosses
+5Million there will be high demand for tickets, because each 3 or higher match
+gets 10x more prize unless nobody gets the jackpot on that draw.</p>
+<p>At this stage it looks like a standard lottery game played in those times. What
+you think about the weakness of this game and how people exploited it to win
+guaranteed profit out of this lottery game. The usual idea was the "lottery is
+a tax on poor people" and any person who knows the chance of winning won't go
+near the lottery games, including me :).</p>
+<p>But what was the reason math geeks Selbee's and other MIT students see an
+opportunity here ?. They found a way to increase their chance of winning. See
+below to know how they cracked it.</p>
+<h3>Your winning chances</h3>
+<p>Let's see first what are the visible chances here to win a jackpot or other
+prizes. The game we are discussing is 6/49, which means pick 6 numbers from 1-49
+numbers. We need to know what is the chance of getting a jackpot or what's the
+chance of getting 3, 4 or 5 matching numbers when a lottery draw happens.</p>
+<h4>Urn Model</h4>
+<p>To easily model this, think of we have 49 balls which are labeled 1-49 in a Urn.
+Each lottery purchase means picking 6 balls from this Urn with replacement. Also
+think of the six numbers which are going to be picked for jackpot are colored in
+BLUE and all other balls are RED in color.</p>
+<p>So when you buy a lottery ticket, what are the chances of getting blue balls
+? Getting 3 or more blue balls means corresponding prize waiting for you.</p>
+<div class="math">$$
+\begin{array}{l}
+Odds\ of\ getting\ no\ blue\ ball\ at\ all\ \ \ \ \ \ \ \ =\ \frac{^{6} C_{0}{}{}{} \times ^{43} C_{6}}{^{49} C_{6}} \ =\frac{6096454}{13983816} \ =\ 0.435\\
+\\
+Odds\ of\ getting\ 1\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{1}{}{}{} \times ^{43} C_{5}}{^{49} C_{6}} =\ \frac{5775588}{13983816} \ =\ 0.41\\
+\\
+Odds\ of\ getting\ 2\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{2}{}{}{} \times ^{43} C_{4}}{^{49} C_{6}} =\ \frac{1851150}{13983816} \ =0.13\\
+\\
+Odds\ of\ getting\ 3\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{3}{}{}{} \times ^{43} C_{3}}{^{49} C_{6}} \ =\ 0.017\ \\
+\\
+Odds\ of\ getting\ 4\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{4}{}{}{} \times ^{43} C_{2}}{^{49} C_{6}} \ =0.00096\\
+\\
+Odds\ of\ getting\ 5\ blue\ ball\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\frac{^{6} C_{5}{}{}{} \times ^{43} C_{1}}{^{49} C_{6}} \ =\ 1.844\ *\ 10^{-5}\\
+\\
+Odds\ of\ getting\ 6\ blue\ ball\ or\ Jackpot\ \ \ =\frac{^{6} C_{6}{}{}{} \times ^{43} C_{0}}{^{49} C_{6}} \ =\ 7.15\ *\ 10^{-8} \ \ 
+\end{array}
+$$</div>
+<p>With the above chances if we buy a ticket on a normal drawing period, how much
+return can you expect ?</p>
+<p>Matches and winning prize,</p>
+<table>
+<thead>
+<tr>
+<th>Number of Match</th>
+<th>Prize money($)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2500</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2000000</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the above table and the chances of winning, calculate the expected
+prize money for a ticket.</p>
+<div class="math">\begin{array}{l}
+Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 5\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 100\ +\ 0.000018\ *\ 2500\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 2000000\\
+) \ \ \sim =\mathbf{\ 0.4}
+\end{array}</div>
+<p>That means you get close to 40 cents for a dollar, that means if you play enough
+number of times with this prize money you lose 60 cents per dollar. Otherwise
+60% lose.</p>
+<p>Till this it's a well known fact that lottery games are kinda a "tax on poor",
+always state make money out of it for sure. In the above case, The State makes
+approximately 60 cents for every ticket they sell.</p>
+<h2>The loophole !</h2>
+<p>As we saw in the Game Setting section, when the jackpot size reaches 5Million,
+the next draw will ensure the entire money will be rolled down to all other
+lower matching lotteries unless there is a jackpot winner.</p>
+<p>The new prize money range, when Jackpot crosses 5 Million and nobody wins the
+jackpot on the following draw.</p>
+<table>
+<thead>
+<tr>
+<th>Number of Match</th>
+<th>Prize money($)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>50</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>25000</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5000000</td>
+</tr>
+</tbody>
+</table>
+<p>With this scenario how much do you make when you buy a ticket ? Let's
+recalculate the new expected value of a ticket again.</p>
+<div class="math">\begin{array}{l}
+New\ Expected\ Return\ is\ =\ (\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.43\ *\ 0\ +\ 0.41\ *\ 0\ +\ 0.13\ *\ 0\ +\
+0.017\ *\ 50\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.00096\ *\ 1000\ +\ 0.000018\ *\ 25000\ +\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.000000071\ *\ 5000000\\
+) \ \ \sim =\ \mathbf{2.615}
+\end{array}</div>
+<p>Now for every dollar you make close to $2.6, ie; You can expect close to 260%
+profit. That means if you buy tickets when the jackpot reaches 5Million you get
+a very good return from it.</p>
+<p>WAIT, this case, if you buy ONLY one ticket will it  ensure a return of 2.6
+dollar ? NO !. Why so, that’s where the real meaning of Expected Value comes in.
+To get close to the Expected Value, you have to sample enough times otherwise
+buy enough tickets. So overall return of all your tickets comes close to the
+expected value of 2.6 dollar per ticket.</p>
+<p>So what these people have done is they purchased a large number of tickets with
+the help of their friends and partners. Even a few formed companies (Or lottery
+syndicate) that give shares if some pool in their cash. That's how players like
+Selbee's pooled enough money to purchase a lot of lotteries so that the overall
+return will be close to the expected value mentioned above. The summary is play
+in bulk and get far better ROI.</p>
+<p>There are more different strategies used to maximize the return or ensure how
+fast we can converge to the expected value. I have attached few references,
+please read to get more background about it.</p>
+<h2>Let's Implement it</h2>
+<div class="highlight"><pre><span></span><span class="c1"># prize money when we have n blue balls ? </span>
+<span class="n">prize_money</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">2000000</span> <span class="p">}</span>
+
+<span class="c1"># When jackpot hits 5Millon or above.</span>
+<span class="c1">#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }</span>
+
+<span class="c1"># Probability of getting n blue ball ?</span>
+<span class="n">expected_win_prize</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">matches</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">prizes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="n">w_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">6</span><span class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">comb</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">/</span> <span class="n">comb</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="c1">#total+= w_prob</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Probability of getting {i} blue ball = {w_prob}&quot;</span><span class="p">)</span>
+    <span class="n">expected_win_prize</span> <span class="o">+=</span> <span class="n">w_prob</span> <span class="o">*</span> <span class="n">prize_money</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">w_prob</span><span class="p">))</span>
+    <span class="n">prizes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">prize_money</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w_prob</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Expected winning prize of a single lottery is : {expected_win_prize}&quot;</span> <span class="p">)</span>
+</pre></div>
+
+
+<p>On Normal Drawing day the chances are listed below, </p>
+<div class="highlight"><pre><span></span># prize money when we have n blue balls ? 
+prize_money = {0: 0, 1: 0, 2: 0, 3: 5, 4: 100, 5: 2500, 6: 2000000 }
+
+Probability of getting 0 blue ball = 0.4359649755116915
+Probability of getting 1 blue ball = 0.4130194504847604
+Probability of getting 2 blue ball = 0.13237802900152576
+Probability of getting 3 blue ball = 0.017650403866870102
+Probability of getting 4 blue ball = 0.000968619724401408
+Probability of getting 5 blue ball = 1.8449899512407772e-05
+Probability of getting 6 blue ball = 7.151123842018516e-08
+
+Expected winning prize of a single lottery is : 0.37426121739588103
+</pre></div>
+
+
+<p>On the 5Millon Jackpot day, the chance of winning for a given ticket.</p>
+<div class="highlight"><pre><span></span>#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
+
+Probability of getting 0 blue ball = 0.4359649755116915
+Probability of getting 1 blue ball = 0.4130194504847604
+Probability of getting 2 blue ball = 0.13237802900152576
+Probability of getting 3 blue ball = 0.017650403866870102
+Probability of getting 4 blue ball = 0.000968619724401408
+Probability of getting 5 blue ball = 1.8449899512407772e-05
+Probability of getting 6 blue ball = 7.151123842018516e-08
+
+Expected winning price of a single lottery is : 2.669943597656033
+</pre></div>
+
+
+<p>Checkout how the expected value changed. This was the key insight those people
+saw in the game and exploited. <strong>It's not that straight forward, higher expected
+value doesn't guarantee a profit of $2.45 for every $1 lottery ticket, that
+intuition comes only for those who have statistics background.</strong></p>
+<p>Expected value really means, by the <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">Law of Large Number</a> if we sample a random variable
+variable enough number of times the values of random variable will converge to
+its expected value or sample mean. Here how do we know how many samples to take
+from this random variable ? , That is only possible if we know full distribution
+properties of this random variable. Most of the cases that's not possible due to
+infinite possibilities, we have to stop the sampling somewhere with an
+acceptable error.</p>
+<p>Instead of addressing it full proof, going with a large number of tickets or
+samples from the random variable is enough to make profit out of this game,
+that's what these players did. They did some tweaking to maximize their returns
+from their finite resources or purchasing power.</p>
+<p>Here the random variable is a categorical variable with 7 values ( How many
+lottery numbers matched against the jackpot number ).</p>
+<h2>How Michigan lottery fixed this problem</h2>
+<p>The problem was with strictly following the rules of the game, they didn't take
+it seriously when bulk purchase of lottery happens across multiple stores. This
+game has an inherent nature like the demand can drive the volume of sale, which
+is exploited here to make the chances better for players like Selbee's and
+others.</p>
+<p>Main things to control are,</p>
+<ol>
+<li>Restricting bulk selling.</li>
+<li>Closely monitoring sudden spike in selling volumes.</li>
+</ol>
+<p>After the news came out they stopped this game and added more restrictions on
+the bulk purchases.</p>
+<p>But some other States in the USA had similar lottery games and people like
+Selbee's exploited that chance also, But all of it eventually closed down after
+sighting these issues.</p>
+<p>In either case the State doesn’t lose any money. Usually the State uses the
+profit from lottery games to do more social development.</p>
+<h2>Kerala Lottery</h2>
+<p>Kerala is one of the States in India, where the Government has been running the
+lottery since 1967. Till very recently a lot of private lotteries were present
+in the market. Currently the Government is fully controlling the system, no
+private parties can run a lottery.</p>
+<p>From a quick look, above mentioned like mass lottery purchase isn't possible
+with Kerala Lottery, as here the lotteries are in printed form, and state only
+prints fixed number of tickets based on the previous selling trends. Also there
+are special serial numbers for each District in Kerala. Only possible issues are
+duplicate tickets and other similar fraudulent activities, which are easily
+identifiable.</p>
+<p>Currently I'm picking up the probabilistic programming using pyro and edward,
+soon I will model this problem in probabilistic programming to validate the same
+by simulating the lottery game Coming soon.</p>
+<p>NOTE: The entry was taken from its original <a href="https://labs.imaginea.com/expected-value-of-lottery-ticket/">source</a> and cross posted here.</p>
+<h1>References</h1>
+<ol>
+<li><a href="http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262">http://www.casinocitytimes.com/news/article/michigan-lottery-launches-new-winfall-game-130262</a></li>
+<li><a href="https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf">https://www.mass.gov/files/documents/2016/08/vv/lottery-cash-winfall-letter-july-2012.pdf</a></li>
+<li><a href="http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf">http://www.jofamericanscience.org/journals/am-sci/0201/06-lihao-0106.pdf</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Lottery_mathematics">https://en.wikipedia.org/wiki/Lottery_mathematics</a></li>
+<li><a href="https://www.youtube.com/watch?v=U7f8j3mVMbc">https://www.youtube.com/watch?v=U7f8j3mVMbc</a></li>
+<li><a href="https://highline.huffingtonpost.com/articles/en/lotto-winners/">https://highline.huffingtonpost.com/articles/en/lotto-winners/</a></li>
+<li><a href="http://www.keralalotery.in/p/kerala-lottery.html">http://www.keralalotery.in/p/kerala-lottery.html</a></li>
+<li><a href="https://www.amazon.in/How-Not-Be-Wrong-Mathematical/dp/0143127535">Book - How Not to be
+   Wrong</a></li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
