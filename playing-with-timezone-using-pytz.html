@@ -268,7 +268,7 @@ python date object by,</p>
 <span class="go">#From DB we will get the corresponding users timezone information , for</span>
 <span class="go">   eg; we can take &#39;America/Chicago&#39; as our local timezone.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">timezone</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local</span>\<span class="n">_date</span><span class="p">,</span><span class="ow">is</span>\<span class="n">_dst</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">localize</span><span class="p">(</span><span class="n">local</span>\<span class="n">_date</span><span class="p">,</span><span class="ow">is</span>\<span class="n">_dst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">local_std_date</span>
 <span class="go">datetime.datetime(2011, 6, 7, 10, 26, 45, tzinfo=&lt;DstTzInfo</span>

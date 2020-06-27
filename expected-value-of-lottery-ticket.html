@@ -301,7 +301,7 @@ in bulk and get far better ROI.</p>
 fast we can converge to the expected value. I have attached few references,
 please read to get more background about it.</p>
 <h2>Let's Implement it</h2>
-<div class="highlight"><pre><span></span><span class="c1"># prize money when we have n blue balls ? </span>
+<div class="highlight"><pre><span></span><code><span class="c1"># prize money when we have n blue balls ? </span>
 <span class="n">prize_money</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">2000000</span> <span class="p">}</span>
 
 <span class="c1"># When jackpot hits 5Millon or above.</span>
@@ -315,17 +315,17 @@ please read to get more background about it.</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
     <span class="n">w_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="mi">6</span><span class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">comb</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">/</span> <span class="n">comb</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
     <span class="c1">#total+= w_prob</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Probability of getting {i} blue ball = {w_prob}&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probability of getting </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> blue ball = </span><span class="si">{</span><span class="n">w_prob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">expected_win_prize</span> <span class="o">+=</span> <span class="n">w_prob</span> <span class="o">*</span> <span class="n">prize_money</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">w_prob</span><span class="p">))</span>
     <span class="n">prizes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">prize_money</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">w_prob</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Expected winning prize of a single lottery is : {expected_win_prize}&quot;</span> <span class="p">)</span>
-</pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected winning prize of a single lottery is : </span><span class="si">{</span><span class="n">expected_win_prize</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">)</span>
+</code></pre></div>
 
 
 <p>On Normal Drawing day the chances are listed below, </p>
-<div class="highlight"><pre><span></span># prize money when we have n blue balls ? 
+<div class="highlight"><pre><span></span><code># prize money when we have n blue balls ? 
 prize_money = {0: 0, 1: 0, 2: 0, 3: 5, 4: 100, 5: 2500, 6: 2000000 }
 
 Probability of getting 0 blue ball = 0.4359649755116915
@@ -337,11 +337,11 @@ Probability of getting 5 blue ball = 1.8449899512407772e-05
 Probability of getting 6 blue ball = 7.151123842018516e-08
 
 Expected winning prize of a single lottery is : 0.37426121739588103
-</pre></div>
+</code></pre></div>
 
 
 <p>On the 5Millon Jackpot day, the chance of winning for a given ticket.</p>
-<div class="highlight"><pre><span></span>#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
+<div class="highlight"><pre><span></span><code>#prize_money = {0: 0, 1: 0, 2: 0, 3: 50, 4: 1000, 5: 25000, 6: 5000000 }
 
 Probability of getting 0 blue ball = 0.4359649755116915
 Probability of getting 1 blue ball = 0.4130194504847604
@@ -352,7 +352,7 @@ Probability of getting 5 blue ball = 1.8449899512407772e-05
 Probability of getting 6 blue ball = 7.151123842018516e-08
 
 Expected winning price of a single lottery is : 2.669943597656033
-</pre></div>
+</code></pre></div>
 
 
 <p>Checkout how the expected value changed. This was the key insight those people

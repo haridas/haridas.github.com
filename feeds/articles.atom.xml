@@ -149,4 +149,4 @@ if __name__ == "__main__":
 and using the above python script update the Exif tag if it doesn't exist.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in &lt;span class="sb"&gt;`&lt;/span&gt;find . -iname &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; python add_exif_record.py -t ftime -f &lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</content><category term="sync"></category><category term="photo"></category></entry></feed>
+</content><category term="articles"></category><category term="sync"></category><category term="photo"></category></entry></feed>

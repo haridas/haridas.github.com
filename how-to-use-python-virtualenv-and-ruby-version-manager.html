@@ -162,9 +162,9 @@ folder.</p>
 <p>Above command will change the current shell session by updating the
 system PATH and it also change the shell prompt, to get a notion of we
 are in the virtual environment.</p>
-<div class="highlight"><pre><span></span><span class="gp">(virtual)host@name$</span> which python
+<div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(virtual)</span><span class="gp">host@name$</span> which python
 <span class="go">PATH-to-DIR/python_project/bin/python</span>
-<span class="gp">(virtual)host@name$</span> which easy_install
+<span class="gp gp-VirtualEnv">(virtual)</span><span class="gp">host@name$</span> which easy_install
 <span class="go">PATH-to-DIR/python_project/bin/easy_install</span>
 </pre></div>
 <p>Now you can see that <cite>python</cite> and <cite>easy_install</cite> commands were from
@@ -174,7 +174,7 @@ and <cite>pip</cite>) were created under the bin directory so you can directly
 use them to install new packages under virtual environment easily that
 never going to affect the python packages installed in the default
 system path(/usr/lib/python-2.x/).</p>
-<div class="highlight"><pre><span></span><span class="gp">(virtual)host@name$</span> deactivate
+<div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(virtual)</span><span class="gp">host@name$</span> deactivate
 </pre></div>
 <p>This will deactivate our virtual environment and the control will be
 return to system shell prompt, after removing all changes in the system

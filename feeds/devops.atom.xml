@@ -295,7 +295,7 @@ provides general security for the host machine.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="docker"></category><category term="security"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="https://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
+</content><category term="devops"></category><category term="docker"></category><category term="security"></category></entry><entry><title>How to put Encrypted Contents on Cloud Storages</title><link href="https://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html" rel="alternate"></link><published>2012-07-27T00:00:00+05:30</published><updated>2012-07-27T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</id><summary type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
 But we know that the contents on the net are being open. There is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is a plenty of cloud storage services out there for free.
@@ -391,7 +391,7 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</content><category term="security"></category><category term="server"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
+</content><category term="devops"></category><category term="security"></category><category term="server"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
@@ -437,4 +437,4 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;p&gt;I hope the output of the script explained every thing. So you can use
 it in your projects to detect the current path automatically. Hope you
 enjoyed this hack.&lt;/p&gt;
-</content><category term="server admin"></category><category term="shell"></category></entry></feed>
+</content><category term="devops"></category><category term="server admin"></category><category term="shell"></category></entry></feed>
