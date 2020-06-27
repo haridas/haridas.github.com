@@ -258,14 +258,14 @@ implementation.</p>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to sever and push lot of data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s2">&quot;Starting Client&quot;</span>
+    <span class="nb">print</span> <span class="s2">&quot;Starting Client&quot;</span>
     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">proto</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
 
     <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s2">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
         <span class="c1">#</span>
@@ -274,7 +274,7 @@ implementation.</p>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
         <span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;Hi i got the data&#39;</span><span class="p">)</span>
-        <span class="k">print</span> <span class="n">data</span>
+        <span class="nb">print</span> <span class="n">data</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 
 
@@ -283,7 +283,7 @@ implementation.</p>
 <span class="sd">    The TCP client with fix applied. So it will read complete data from</span>
 <span class="sd">    socket and avoid the errors like &#39;errno 104&#39; or &#39;errno 107&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s2">&quot;Starting the newly implemented client...&quot;</span>
+    <span class="nb">print</span> <span class="s2">&quot;Starting the newly implemented client...&quot;</span>
     <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">proto</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
@@ -293,7 +293,7 @@ implementation.</p>
 
     <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s2">&quot;sending &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="n">t_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
@@ -315,7 +315,7 @@ implementation.</p>
         <span class="c1">#</span>
         <span class="c1"># Doese some action on the package `data`</span>
         <span class="c1">#</span>
-        <span class="k">print</span> <span class="s2">&quot;Handled {} bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="nb">print</span> <span class="s2">&quot;Handled </span><span class="si">{}</span><span class="s2"> bytes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
         <span class="n">rsock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
 
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -326,7 +326,7 @@ implementation.</p>
 
     <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--client&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
                       <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;new_client&quot;</span><span class="p">,</span>
-                      <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                      <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                       <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Start the new client with fix applied.&quot;</span><span class="p">)</span>
 
     <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
