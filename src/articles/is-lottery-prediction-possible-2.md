@@ -38,7 +38,7 @@ The game setting is:-
 3. The lottery draw happens weekly twice, Wednesday and Saturday.
 4. The Michigan lottery randomly picks 6 numbers as jackpot numbers on a particular
     drawing day.
-5. Anybody has these exact 6 numbers gets the full jackpot money.
+5. Anybody who has these exact 6 numbers gets the full jackpot money.
 6. Those who have fewer matches like, 3 matching numbers get 5 dollar, 4 matches
     get 100 dollar and 5 matches get 2500 dollar.
 7. When the jackpot crosses 5Million, and nobody gets the jackpot then the full
@@ -48,9 +48,9 @@ The game setting is:-
 
 
 The fact was most of the time nobody gets Jackpot, those cases lower matching
-numbers gets corresponding prize money. Obviously when the jackpot crosses
+numbers get corresponding prize money. Obviously when the jackpot crosses
 5Million there will be high demand for tickets, because each 3 or higher match
-gets 10x more prize unless nobody gets the jackpot on that draw.
+gets 10x more prizes unless nobody gets the jackpot on that draw.
 
 At this stage it looks like a standard lottery game played in those times. What
 you think about the weakness of this game and how people exploited it to win
@@ -302,7 +302,7 @@ private parties can run a lottery.
 
 From a quick look, above mentioned like mass lottery purchase isn't possible
 with Kerala Lottery, as here the lotteries are in printed form, and state only
-prints fixed number of tickets based on the previous selling trends. Also there
+prints a fixed number of tickets based on the previous selling trends. Also there
 are special serial numbers for each District in Kerala. Only possible issues are
 duplicate tickets and other similar fraudulent activities, which are easily
 identifiable.
@@ -313,7 +313,6 @@ by simulating the lottery game Coming soon.
 
 
 NOTE: The entry was taken from its original [source](https://labs.imaginea.com/expected-value-of-lottery-ticket/) and cross posted here.
-
 
 #References
 
