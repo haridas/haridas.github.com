@@ -9,7 +9,7 @@ that file while running it in a shell environment.
 
 What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
+a Unix based system. For these type of deployments you have to deal
 with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
 properly by including relative files correctly from the system path.
 Commonly what we do is, we hard code the SYSTEM PATH information to a
@@ -51,6 +51,5 @@ its current locations is **/usr/local/**)
  #sh shell.sh
  Absolute PATH : /usr/local
 
-I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.
+I hope the output of the script explained everything. So you can use
+it in your projects to detect the current path automatically. Hope you enjoyed this hack.
