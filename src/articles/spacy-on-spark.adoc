@@ -5,20 +5,20 @@
 
 = Run spacy jobs on spark using pyspark
 
-Spacy is a state-of-the-art NLP library in Python, which provides a lot of 
+Spacy is a state-of-the-art NLP library in Python, which provides a lot of
 tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
-models for Tagging, NER and related operations.
+models for Tagging, NER, and related operations.
 
-Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+Spark provides only traditional NLP tools like standard tokenizers, tf-idf, etc,
 we mostly need accurate POS tagging and chunking features when working with
-NLP problems, which spark libraries aren't close to spacy. Those cases we need to
-relay on spacy.
+NLP problems, which spark libraries aren't close to spacy. In those cases, we need to
+rely on spacy.
 
 === Pyspark architecture
 
 A quick brief about the pyspark architecture, Bellow image shows that the workers
 spawn python process to run the pyspark jobs; which are written in python and all
-necessary python ML libraries like sklearn, numpy, spacy etc.
+necessary python ML libraries like sklearn, numpy, spacy, etc.
 
 image::http://i.imgur.com/YlI8AqEl.png[Pyspark Architecture]
 
@@ -33,30 +33,30 @@ not.
 3. How we can manage the worker process management.
 
 
-Usually when we submit spark jobs to the spark `driver` compiles it and optimize the
+Usually when we submit spark jobs to the spark `driver` compiles it and optimizes the
 pipeline. The final plan of the pipeline is split across the `executors` based on
-the DAG of data flow defined on the pipeline. Here the spark executors does the 
-actual work, where the driver program sends out the relevant codes to executes 
-at executor side. This is being done by serializing the relevant parts of the
+the DAG of data flow defined on the pipeline. Here the spark executors do the
+actual work, where the driver program sends out the relevant codes to executes
+at the executor side. This is being done by serializing the relevant parts of the
 pipeline.
 
-One thing to ensure is our program is serializable ( Source code, classes and objects ).
-Otherwise spark fails to execute the pipeline.
+One thing to ensure is our program is serializable ( Source code, classes, and objects ).
+Otherwise, the spark fails to execute the pipeline.
 
 === How to skip spacy model serialization
 
 How we ensure this is by avoiding the scenario of serializing the spacy's inbuilt
-trained binary models. How we do that ? 
+trained binary models. How we do that?
 
 Pyspark uses `PickleSerializer` to serialize the python objects, but spacy models
-aren't serialisable using `PickleSerializer` which is trigger the issue when we
-load the spacy model first and then refer in worker code.
+aren't serializable using `PickleSerializer` which is trigger the issue when we
+load the spacy model first and then refer to worker code.
 
-==== This code will fail 
+==== This code will fail
 
-Here we simply loading the spacy object at driver side itself, when the python modules
+Here we simply loading the spacy object at the driver side itself, when the python modules
 are getting loaded, which demands the pickling for the spacy objects. Which eventually
-fails when ship it to the worker side.
+fails when shipping it to the worker side.
 
 ```python
 SPACY_MODEL = spacy.load("en_core_web_lg")
@@ -66,28 +66,28 @@ SPACY_MODEL = spacy.load("en_core_web_lg")
 
 Here we are wrapping the spacy model under a lazy function, which will ensure
 the model won't get loaded until it's really required -- which is actually required
-when the executor runs this code with partitioned dataset.
+when the executor runs this code with a partitioned dataset.
 
 
 ```python
 # Here we are not loading the model at the loading time, only the worker code
 # will invoke this routine and gets the spacy object. Which means we are loading
-# new spacy models on every executors.
+# new spacy models on every executor.
 SPACY_MODEL = None
 def get_spacy_model():
     global SPACY_MODEL
     if not SPACY_MODEL:
-       _model = spacy.load("en_core_web_lg") 
+       _model = spacy.load("en_core_web_lg")
     SPACY_MODEL = _model
     return SPACY_MODEL
 ```
 
-At driver side we won't load the spacy model, instead ensure they are loaded lazily at
+On the driver side, we won't load the spacy model, instead ensure they are loaded lazily at
 executor side.
 
-Here the models can't be serialised at the driver side and ship it to worker and
+Here the models can't be serialized at the driver side and ship it to work and
 load it back, So we need to ensure only at the runtime the models are really gets
-loaded into the worker memory.
+loaded into the working memory.
 
 ==== Full version of using spacy on spark
 
@@ -163,9 +163,9 @@ print(data1.select("tokens").show())
 === Spacy multi-processing capabilities
 
 This feature included with spacy to speed up the pipeline processing
-and making use of multiple core available on the machine. If you are not careful
-with this configuration then spark executors won't control the python daemon behavior 
-of forking processes internally, which leads into over utilization of resource, and
+and making use of multiple cores available on the machine. If you are not careful
+with this configuration then spark executors won't control the python daemon behavior
+of forking processes internally, which leads to overutilization of resource, and
 low throughput.
 
 
@@ -180,7 +180,7 @@ docs = nlp.pipe(raw_docs)
 
 If you are enabling this, then your spark configuration shouldn't control the
 worker cores, instead each worker/executor uses only 1 core and leave the remaining
-cores for python workers, which is an good option here.
+cores for python workers, which is a good option here.
 
 === master
 
@@ -195,7 +195,7 @@ cores for python workers, which is an good option here.
 
 IMPORTANT: Here we are setting spark worker to use only one CPU, this
 means spark can launch one executor with 1 CPU, as with spacy workload
-main computation happening at python side, and spacy brings the multiprocessing 
+main computation happening at python side, and spacy brings the multiprocessing
 outside the spark framework.
 
 === Check the python processes ran by each spark worker
@@ -216,31 +216,31 @@ $ pstree -aup | grep pyspark
       |       |   |   `-python,32615 -m pyspark.daemon
       |   |-grep,1487 --color=auto pyspark
 
-PID 32602 -> The master python job which interact with the spark executor to fetch data
-Other PIDs are the spacy workers launched, default behavior is one worker per cpu core.
+PID 32602 -> The master python job which interacts with the spark executor to fetch data
+Other PIDs are the spacy workers launched, default behavior is one worker per CPU core.
 
 ```
 Suppose we ran the apache spark worker with 8 core, and allocated 1 CPU for each executor,
-then it will fork 8x8 = 64 python processes to do the task, in place of 8 process.
+then it will fork 8x8 = 64 python processes to do the task, in place of 8 processes.
 Which will degrade pipeline performance.
 
 For  `Yarn` or `Kubernetes` cluster manager this problem won't happen as both
 will restrict the system view to application restricted -- similar to VMs; with the
 help of Control Group (`cgroup`) and `namespace` features. So the spark executor
-or the python worker won't see entire CPU / RAM for utilization, they gets it by
-the allocation specified based on the container spec on both Yarn and Kubernetes 
+or the python worker won't see the entire CPU / RAM for utilization, they get it by
+the allocation specified based on the container spec on both Yarn and Kubernetes
 environment.
 
 
 === Takeaway
 
-1. Ensure you are writing spark pipeline with serialisable objects, or do lazy
+1. Ensure you are writing spark pipeline with serializable objects, or do lazy
    evaluation.
-2. Be careful when using the external libraries like spacy, which may bring its own
+2. Be careful when using external libraries like spacy, which may bring its own
    multiprocessing feature, which will result in overloading the system with spark
    executor configuration.
-3. Use the different cluster manager other than standalone one to get more control 
-   over allocating resources to the executors.
+3. Use a different cluster manager other than a standalone one to get more control
+   over-allocating resources to the executors.
 
 === References
 

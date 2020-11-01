@@ -19,16 +19,16 @@ val vocabDist = spark.read
     .option("mergeSchema", "true")
     .load("/mnt/all_models/run-26-nov-2018-clean-vocab-50k-4m/model/topic-description"
 ```
-applicable to all types of files supported 
+applicable to all types of files supported
 
 === Save partitioned files into a single file.
 
-Here we are merging all the partitions into one file and dumping it into 
+Here we are merging all the partitions into one file and dumping it into
 the disk, this happens at the driver node, so be careful with sie of
-data set that you are dealing with. Otherwise the driver node may go out of memory.
+data set that you are dealing with. Otherwise, the driver node may go out of memory.
 
 
-Use `coaleace` method to adjust the partition size of RDD based on our needs.
+Use `coalesce` method to adjust the partition size of RDD based on our needs.
 
 ```scala
 
@@ -38,7 +38,7 @@ spark.coaleace(1)
 
 ```
 
-=== Filter rows which meets particular criteria
+=== Filter rows which meet particular criteria
 
 ```scala
 vocabDist
@@ -58,7 +58,7 @@ vocabDist
 
 === Map with case class
 
-Use case class if you want to map on multiple column with complex 
+Use case class if you want to map on multiple columns with a complex
 data structure.
 
 ```scala
@@ -79,7 +79,7 @@ OR using `Row` class.
 
 ```
 import org.apache.spark.sql.Row
-val newDf = personDf.map { 
+val newDf = personDf.map {
 	case Row(name: String, address: Array[String]) => (name, address[0])
 }.toDF("name", "primary_address")
 
@@ -87,8 +87,8 @@ val newDf = personDf.map {
 
 === Use selectExpr to access inner attributes
 
-Provide easily access the nested datastructures like `json` and filter them
-using the any existing udfs, or use your udf to get more flexibility here.
+Provide easily access the nested data structures like `json` and filter them
+using any existing udfs, or use your udf to get more flexibility here.
 
 ```scala
 // Select only those documents which has some features in it.
@@ -100,7 +100,7 @@ doc.selectExpr("doc_id", "size(features.values) as feature_size")
 Using standard `RDD` operation via pyspark API isn't straight forward, to get that
 we need to invoke the `.rdd` to convert the DataFrame to support these features.
 
-For example here we are converting a sparse vector to dense and suming it in column wise.
+For example, here we are converting a sparse vector to dense and summing it in column-wise.
 
 ```python
 
@@ -152,9 +152,9 @@ DataFrame.select(sum($"tokenFiltered")).show()
 Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functions._
 ```
 
-=== Remove unicode characters from tokens
+=== Remove Unicode characters from tokens
 
-Some time we only need to work with the ascii text, so it's better to clean out
+Sometimes we only need to work with the ascii text, so it's better to clean out
 other chars.
 
 ```scala
@@ -171,13 +171,13 @@ val minLengthFilter = udf((arr: Seq[String]) => arr.filter(_.length > 3))
 
 When using the spark to read data from the SQL database and then do the
 other pipeline processing on it, it's recommended to partition the data
-according to the natural segments in the data, or at least on a integer
-column, so that spark can fire multiple sql quries to read data from SQL
+according to the natural segments in the data, or at least on an integer
+column, so that spark can fire multiple sql queries to read data from SQL
 server and operate on it separately, the results are going to the spark
 partition.
 
 
-Bellow commands are in pyspark, but the APIs are same for scala version also.
+Bellow commands are in pyspark, but the APIs are the same for the scala version also.
 
 ```python
 jdbc_url = "jdbc://..."
@@ -193,21 +193,21 @@ report_ids = spark.read.jdbc(url = jdbc_url,
                         upperBound = 603442,
                         numPartitions = 3,
                         properties = src_conn_prop)
-                        
+
 ```
 
 === Parse nested json data
 
 This will be very helpful when working with `pyspark` and want to pass very
 nested json data between JVM and Python processes. Lately spark community relay on
-apache arrow project to avoid multiple serialization / deserialization costs when
+apache arrow project to avoid multiple serialization/deserialization costs when
 sending data from java memory to python memory or vice versa.
 
 
 So to process the inner objects you can make use of this `getItem` method
 to filter out required parts of the object and pass it over to python memory via
-arrow. In future arrow might support arbitrary nested data, but right now it won't
-support complex nested formats. General recommended option is go without nesting.
+arrow. In the future arrow might support arbitrarily nested data, but right now it won't
+support complex nested formats. The general recommended option is to go without nesting.
 
 
 ```spark
@@ -221,7 +221,7 @@ doc_features
 
 === "string => array<string>" conversion
 
-Type annotation `.as[String]` avoid implicite conversion assumed.
+Type annotation `.as[String]` avoid implicit conversion assumed.
 
 ```scala
     df.select("column").as[String].map(x => Seq(x.toString))
@@ -230,7 +230,7 @@ Type annotation `.as[String]` avoid implicite conversion assumed.
 === A crazy string collection and groupby
 
 This is a stream of operation on a column of type `Array[String]` and collect
-the tokens and count the ngram distribution over all the tokens.
+the tokens and count the n-gram distribution over all the tokens.
 
 ```scala
 dataset_sample
@@ -248,9 +248,9 @@ dataset_sample
 
 === How to access AWS s3 on spark-shell or pyspark
 
-Most of the time we might required a cloud storage provider like s3 / gs etc, to
+Most of the time we might require a cloud storage provider like s3 / gs etc, to
 read and write the data for processing, very few keeps in-house hdfs to handle the data
-themself, but for majority I think cloud storage easy to start with and don't need
+themself, but for majority, I think cloud storage easy to start with and don't need
 to bother about the size limitations.
 
 Here is the quick snippet to connect with s3.
@@ -280,7 +280,7 @@ since spark 2.4.x comes with default hadoop jars of version 2.7.x.
 
 ```bash
 
-// Configure the spark to read from s3. Ensure the 
+// Configure the spark to read from s3. Ensure the
 // aws config file is set at ~/.aws/config path.
 import com.amazonaws.auth.profile.ProfilesConfigFile
 
@@ -291,8 +291,8 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 
 ```
 === Set spark scratch space or tmp directory correctly
-This might require when working with huge dataset and your machine can't hold them
-all in memory for a given pipeline steps, those cases the data will be spilled over
+This might require when working with a huge dataset and your machine can't hold them
+all in memory for given pipeline steps, those cases the data will be spilled over
 to disk, and saved in tmp directory.
 
 Set bellow properties to ensure, you have enough space in tmp location.
@@ -313,10 +313,10 @@ spark.driver.extraJavaOptions /mnt/spark-tmp
 
 === Pyspark doesn't support all the data types.
 
-When using the `arrow` to transport data between jvm to python memory, arrow may throw
-bellow error if the types aren't compatible to existing converters. The fixes may be come
-in future on the arrow's project. I'm keeping this here to know that how the pyspark gets 
-data from jvm and what are those things can go wrong on that process.
+When using the `arrow` to transport data between jvm to python memory, the arrow may throw
+bellow error if the types aren't compatible to existing converters. The fixes may become
+in the future on the arrow's project. I'm keeping this here to know that how the pyspark gets
+data from jvm and what are those things can go wrong in that process.
 
 Example 1:
 
@@ -328,7 +328,7 @@ Example 1:
   File "pyarrow/array.pxi", line 171, in pyarrow.lib.array
   File "pyarrow/array.pxi", line 80, in pyarrow.lib._ndarray_to_array
   File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
-pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<item: int32>> conversion. 
+pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement <list<item: int32>> conversion.
 ```
 
 
@@ -340,7 +340,7 @@ https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-standalone-examp
 
 Once you have downloaded the same version of the spark binary across the machines
 you can start the spark master and slave processes to form the standalone spark
-cluster. Or you could run both these services in same machine also.
+cluster. Or you could run both these services on the same machine also.
 
 ```bash
 cd spark-<version>
@@ -350,7 +350,7 @@ cd spark-<version>
 ./sbin/start-master.sh [--properties-file <file>]
 
 
-# Start slave services on each nodes where we want to run the slave and connect
+# Start slave services on each node where we want to run the slave and connect
 # All the slaves to master to form the cluster.
 #
 ./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077
@@ -358,24 +358,23 @@ cd spark-<version>
 ```
 
 
-Standalone mode, 
+Standalone mode,
 
-1. Worker can have multiple executor.
-2. Worker is like node manager in yarn.
-3. We can set worker max core and memory usage setting.
-4. When defining the spark application via spark-shell or so, define the executor
-   memory and cores.
+1. Worker can have multiple executors.
+2. Worker is like a node manager in yarn.
+3. We can set worker max core and memory usage settings.
+4. When defining the spark application via spark-shell or so, define the executor memory and cores.
 
-	
+
 eg; worker-1 has 10 core and 20gb memory
 
-When submitting the job to get 10 executor with 1 cpu and 2gb ram each, 
+When submitting the job to get 10 executor with 1 cpu and 2gb ram each,
 
 ```
 spark-submit --execture-cores 1 --executor-memory 2g --master <url>
 ```
 
-NOTE: This page will be updaed as and when I see some reusable snippet of code for spark operations
+NOTE: This page will be updated as and when I see some reusable snippet of code for spark operations
 
 === Changelog
 
