@@ -4,7 +4,7 @@
 :tags: hadoop,spark,drill,kubernetes
 :numbered:
 
-This is a series of blog posts about the 4 session I conducted at different engieneering
+This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.
 
 1. Bigdata Session 1 - Apache Hadoop
@@ -14,31 +14,28 @@ colleges.
 
 == Spark on Kubernetes
 
-Kubernetes is a linux container manager, the ideas is similar to how yarn manages the 
-jvm containers in hadoop environment. Kubernetes can be used to deploy very hetrogenious
-workloads, and it can meet a requirements of an entire business. eg; Deploy applications
-, dev/stage environments, offline or batch processing services etc. As the hadoop
-environment is specific to bigdata processing, here we can use existing kubernetes
-cluster to do the things that we done on hadoop cluster or spark cluster.
+Kubernetes is a Linux container manager, the ideas are similar to how yarn manages the
+jvm containers in the Hadoop environment. Kubernetes can be used to deploy very heterogeneous workloads, and it can meet the requirements of an entire business. eg; Deploy applications, dev/stage environments, offline or batch processing services, etc. As the Hadoop
+environment is specific to bigdata processing, here we can use the existing kubernetes
+cluster to do the things that we did on the hadoop cluster or spark cluster.
 
-This tutorial covers how we can quickly setup a kubernetes cluster and deploy a
-spark cluster on it, so that then we can play on spark. The kubernetes act as one
+This tutorial covers how we can quickly set up a kubernetes cluster and deploy a
+spark cluster on it so that then we can play on spark. The kubernetes act as one
 of the spark's cluster manager, there is no change in other aspects of how spark
-does it's functionalities.
+does its functionalities.
 
 
 == Setup spark on kubernetes
 
-Kubernet can be deploy in multi-node or single node environment similar to
-hadoop cluster. Here we try the kubernetes setup on a VM.
+Kubernetes can be deployed in a multi-node or single node environment similar to
+a hadoop cluster. Here we try the kubernetes set up on a VM.
 
 
-We will be using `minikube` tool to setup kubernetes cluster. Minikube provide an easy
-way to setup kubernetes cluster on a VM for testing and experiment purpose.
+We will be using the `minikube` tool to set up a kubernetes cluster. Minikube provides an easy way to set up a Kubernetes cluster on a VM for testing and experiment purposes.
 
 === Gnu/Linux Environment:-
 
-- Install virtualbox
+- Install VirtualBox
 - Follow this link to install minikube https://kubernetes.io/docs/tasks/tools/install-minikube/#install-minikube
 - Install kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-binary-using-native-package-management
 
@@ -47,7 +44,7 @@ Start the minikube to launch the kubernetes cluster.
 minikube start --cpus 3 --memory 6000
 ```
 
-=== Mac environment:- 
+=== Mac environment:-
 
 ```bash
 brew cask install minikube
@@ -62,7 +59,7 @@ minikube start --vm-driver hyperkit --cpus 3 --memory 6000
 ```bash
 kubectl cluster-info
 ```
-Copy the master URL, we need it bellow to submit spark jobs.
+Copy the master URL, we need it below to submit spark jobs.
 
 
 ```bash
@@ -74,13 +71,13 @@ kubectl run jump-1 -ti --rm=true -n spark1 --image=brainlounge/jumppod:ubuntu-18
 
 ```
 
-=== Ensure you have JDK 1.8 installed in your laptop
+=== Ensure you have JDK 1.8 installed on your laptop
 
 === Prepare spark container images for kubernetes cluster
 
 Kubernetes is a container manager or orchestrator, we need to package the spark in
-docker image form to deploy them on kubernetes cluster.
-`spark-submit` command support the spark job submission into kubernetes cluster
+docker image form to deploy them on a Kubernetes cluster.
+`spark-submit` command supports the spark job submission into kubernetes cluster
 by just changing the `--master url`
 
 
@@ -111,11 +108,10 @@ is the `--master` param and extra `--conf` with image name for the spark.
 
 == Why spark on kubernetes
 
-1. Kubernetes can work with wide variety of application cluster, your entire application
+1. Kubernetes can work with a wide variety of application clusters, your entire application
 stack it can host.
-2. Easy to deploy and manager different types of applications and its different stages.
-3. If you have a kubernetes cluster in your infrastructure, this is the best option
-  available to run a spark.
+2. Easy to deploy and manage different types of applications and their different stages.
+3. If you have a kubernetes cluster in your infrastructure, this is the best option available to run a spark.
 
 == Presentation
 

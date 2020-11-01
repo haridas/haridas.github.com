@@ -5,10 +5,10 @@
 :numbered:
 
 
-This blog series includes 4 worshop session I conducted at Engieneering colleges 
+This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.
 
-This workshop we cover how spark internals works and how we can configure spark
+In this workshop, we cover how spark internals works and how we can configure spark
 with apache yarn resource manager. I'm using docker based setup for this
 workshop.
 
@@ -20,7 +20,7 @@ workshop.
 
 == Apache Spark
 
-Spark is a general purpose distributed analytic engine.
+Spark is a general-purpose distributed analytic engine.
 
 Spark can execute tasks in DAG with lazy evaluation for better query
 optimization.
@@ -28,27 +28,27 @@ optimization.
 
 == Spark cluster modes
 
-Spark can be deployed in cluster form to execute tasks across multiple machines. 
+Spark can be deployed in cluster form to execute tasks across multiple machines.
 
-For this workshop we are covering the *Spark over Yarn* setup. Which
+For this workshop, we are covering the *Spark over Yarn* setup. Which
 is more scalable and has more cluster management options provided
 by Yarn resource manager.
 
 ===== Standalone cluster
-Run spark cluster without hadoop or any of the bellow mentioned
+Run spark cluster without Hadoop or any of the bellow mentioned
 cluster managers. Spark shipped with this Standalone default
-cluster manager. We can easily setup a spark cluster using this.
+cluster manager. We can easily set up a spark cluster using this.
 
 Here we aren't covering it, Yarn based cluster manager has more
 advanced features and resource controllers. We are focusing mainly
 Yarn based cluster manager here.
 
 ===== Spark on Yarn
-This document discuss more about how we handle the spark on Yarn
-clster. Please read futher to see more on it.
+This document discusses more how we handle the spark on the Yarn
+cluster. Please read further to see more about it.
 
 ===== Spark on Kubernetes
-We will cover this on 4'th session of Bigdata workshop.
+We will cover this on the 4'th session of the Bigdata workshop.
 
 ===== Spark on Mesos
 Mesos is another cluster resource manager like Yarn, we aren't
@@ -60,20 +60,20 @@ covering more on it here.
 
 === Setup Hadoop cluster
 
-NOTE: Mac and Windows users has to provide enough memory and cpus to the docker
+NOTE: Mac and Windows users have to provide enough memory and CPUs to the docker
 daemon. On these machines the docker daemon runs under a virtual machine; the installer
-setup all these. The default size gives is around 2 cpu core and 2gb. Ensure you provision
+setup all these. The default size gives is around 2 CPU core and 2gb. Ensure your provision
 at least 5GB RAM and 3Core CPU for docker daemon to play around with bellow experiments.
 
-We already covered this part, in our session 1. Lets add some extra
-memory constraints when launching the nodes to get more idea on how
+We already covered this part, in our session 1. Let’s add some extra
+memory constraints when launching the nodes to get more ideas of how
 yarn manages the resources. Here we are exposing the required ports
-to host machine to see the Web interfaces of RN and HDFS.
+to the host machines to see the Web interfaces of RN and HDFS.
 
 
 ```bash
 
-# Launch namenode with 2 core cpu, 2gb memory.
+# Launch namenode with 2 core CPU, 2gb memory.
 #
 docker run -it -d --name namenode \
     -p 8088:8088 \
@@ -98,15 +98,15 @@ docker run -it -d --name datanode2 \
 
 ```
 
-Check the container memory allocation status using `docker stats` command.
+Check the container memory allocation status using the `docker stats` command.
 
 === Create a client docker container
 
 ```bash
 docker run -it -d --name hadoop-cli --network hadoop-nw haridasn/hadoop-cli
 
-# Add the hadoop configuration to hadoop-client container.
-# You can skip this if you already done this.
+# Add the Hadoop configuration to the hadoop-client container.
+# You can skip this if you already have done this.
 docker cp namenode:/opt/hadoop/etc .
 docker cp etc hadoop-cli:/opt/hadoop/
 ```
@@ -151,7 +151,7 @@ docker exec -it hadoop-cli bash
 # Connect to the spark container to play with it.
 docker exec -it spark bash
 
-# Inside the spark docker 
+# Inside the spark docker
 #
 export HADOOP_CONF_DIR=/opt/hadoop-conf
 
@@ -167,15 +167,15 @@ pyspark --master yarn --deploy-mode client
 jupyter notebook --no-browser --ip=0.0.0.0 --port 8090
 ```
 
-NOTE: Checkout the command line options `pyspark --help` to know more options
+NOTE: Check out the command-line options `pyspark --help` to know more options
 that we can try when submitting the jobs or running as client mode.
 
 
 === View the full cluster health
 
 As we are running all the services via docker ensure that the containers are getting
-enough resources so that we can play with spark using some smaller size data set to 
-under stand how the APIs and other features works in spark.
+enough resources so that we can play with spark using some smaller size data set to
+under stand how the APIs and other features work in spark.
 
 ```bash
 # To get the ideas about container resource consumption CPU/RAM/IO
@@ -183,7 +183,7 @@ under stand how the APIs and other features works in spark.
 docker stats
 ```
 
-Test setup is worked well on:-
+The test setup is worked well on:-
 
 ```text
 Test cluster setup on my laptop with 4 core CPU and 8GB memory.

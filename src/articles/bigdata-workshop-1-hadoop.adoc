@@ -5,11 +5,11 @@
 :numbered:
 
 
-This blog series includes 4 worshop session I conducted at Engieneering colleges 
+This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.
 
-Hadoop with docker is mainly usable for easy prototype and learning purpose, also
-it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+Hadoop with docker is mainly used for easy prototype and learning purpose, also
+it helps to set up quickly set up a Hadoop cluster on your laptop, or on multiple
 machines.
 
 1. Bigdata Session 1 - Apache Hadoop with docker <- ( You are here now )
@@ -19,12 +19,12 @@ machines.
 
 == Hadoop Cluster
 
-Main motive of the session is how we can easily test the hadoop
-cluster and related tools locally or on a small cluster. We will setup the hadoop 
+The main motive of the session is how we can easily test the Hadoop
+cluster and related tools locally or on a small cluster. We will set up the Hadoop
 in cluster mode. Hadoop cluster mode means, the individual components are runs
-separately on single machine on separate JVMs or running on multiple machines.
+separately on a single machine on separate JVMs or running on multiple machines.
 
-Here we will use the docker based setup to quickly play with main
+Here we will use the docker based setup to quickly play with the main
 features of hadoop.
 
 Main Hadoop services are:-
@@ -34,23 +34,23 @@ Main Hadoop services are:-
 3. resource manager ( computation )
 4. node manager ( computation )
 
-One hadoop cluster can formed by one namenode and multiple datanodes.
-The resource manager runs on same machine as namenode ( simpler setup).
-Responsibility of namenode is store metadata about distributed
+One Hadoop cluster can be formed by one namenode and multiple datanodes.
+The resource manager runs on the same machine as the namenode ( simpler setup).
+The responsibility of the namenode is to store metadata about the distributed
 filesystem (hdfs). Datanode actually stores the data in blob form,
 and nodemanager will be running on each datanode to handle actual
-computation requests from resource manager.
+computation requests from the resource manager.
 
 == Prerequisites
-As all cluster environments, network address resolution for each node is a key requirement
-for stable setup. Ideally a local DNS setup which permanently allocate a hostnames
+As in all cluster environments, network address resolution for each node is a key requirement
+for a stable setup. Ideally, a local DNS setup that permanently allocates hostnames
 to all the nodes in the network. Or we can manually set the hostnames without DNS.
 
 NOTE: This material is verified on Mac and Ubuntu.
 
-=== JDK 1.8 
+=== JDK 1.8
 
-NOTE: Not required if you try Docker based setup.
+NOTE: Not required if you try Docker-based setup.
 
 Ensure you have jdk 1.8+ available on your machine, oracle jdk is
 recommended.
@@ -58,13 +58,13 @@ recommended.
 
 === Install Docker
 
-Ensue you have latest version of docker is setup on your laptop.
+Ensure you have the latest version of docker is set up on your laptop.
 
 Docker Version: `18.x.x`
 
 ===== For Ubuntu / Debian machines
 
-Follow this link and install the docker with correct given bellow,
+Follow this link and install the docker with a correct given bellow,
 
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
@@ -90,7 +90,7 @@ docker build -t hadoop-2.8.5:latest
 
 === Set correct hostnames for multi-node cluster setup (Optional)
 
-NOTE: If you are setting the cluster on same machine with docker, you can skip this step.
+NOTE: If you are setting the cluster on the same machine with docker, you can skip this step.
 
 Each node in the host machine can reach each other using the hostname.
 
@@ -113,7 +113,7 @@ node3
 =====  Set the hostname of the machine to match this address.
 
 edit `/etc/hostname`
-edit `/etc/hosts` and replace any occurrence of old hostname with new one.
+edit `/etc/hosts` and replace any occurrence of old hostname with a new one.
 
 =====  Update and check hostname changed correctly
 
@@ -121,28 +121,28 @@ edit `/etc/hosts` and replace any occurrence of old hostname with new one.
 sudo hostname <hostname>
 hostname
 ```
-Cross check all the machines have correct set of hostnames before going to next
+Cross-check all the machines have the correct set of hostnames before going to next
 step.
 
-== Setup cluster on single machine using docker
+== Setup cluster on a single machine using docker
 
 We are using the docker container mainly for process isolation,
 for a simpler
-setup on single machine we make use of the same network stack as the host machine.
+setup on a single machine we make use of the same network stack as the host machine.
 
 === Create a docker network
-For clean hostname resoluation under docker environment, we have
+For clean hostname resolution under docker environment, we have
 to create a docker network; which will internally provide a DNS
-resoluation on the virtual network where all the containers reside.
+resolution on the virtual network where all the containers reside.
 
 ```bash
 docker network create hadoop-nw
 ```
 
-We will use this network to launch all our container, which will
+We will use this network to launch all our containers, which will
 internally allocate all the containers into this network. So we will
-get the hostname resoluation by default. For the non-docker deployment we have 
-to setup all these externally.
+get the hostname resolution by default. For the non-docker deployment, we have
+to set up all these externally.
 
 === Start namenode and resource Manager
 
@@ -176,7 +176,7 @@ docker ps -a
 docker logs -f datanode1
 
 .
-# If you want launch more datanodes.
+# If you want to launch more datanodes.
 
 docker run -it -d --name datanode2 \
     --network hadoop-nw haridasn/hadoop-2.8.5:latest datanode <name-node-ip>
@@ -185,9 +185,9 @@ docker run -it -d --name datanode2 \
 
 ### Get the client tools setup on another docker
 
-The `yarn`, `hdfs` clinet commands used to submit jobs and see the hdfs 
-files respectively are loaded in another docker. Lets use that as our workbench
-to play with our hadoop cluster.
+The `yarn`, `hdfs` client commands used to submit jobs and see the hdfs
+files respectively are loaded in another docker. Let’s use that as our workbench
+to play with our Hadoop cluster.
 
 ```bash
 
@@ -229,9 +229,9 @@ wordcount /logs/ /out/
 
 === Pig
 
-A simpler command oriented interface to do the map-reduce jobs over
-hadoop cluster. You can think this as a bash scripting over hdfs
-and yarn map-reduce to quickly analyse data on hdfs.
+A simpler command-oriented interface to do the map-reduce jobs over
+Hadoop cluster. You can think of this as a bash scripting over hdfs
+and yarn map-reduce to quickly analyze data on hdfs.
 
 =====  Download and extract it
 
@@ -276,7 +276,7 @@ dump user
 
 === Hive
 
-SQL interface over hadoop system.
+SQL interface over the Hadoop system.
 
 http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz
 
