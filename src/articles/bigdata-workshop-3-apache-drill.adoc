@@ -5,17 +5,17 @@
 :numbered:
 
 
-This is a series of blog posts about the 4 session I conducted at different engieneering
+This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.
 
-1. Bigdata Session 1 - Apache Hadoop  
+1. Bigdata Session 1 - Apache Hadoop
 2. Bigdata Session 2 - Apache Spark on Apache Hadoop
 3. Bigdata Session 3 - Apache Drill <- ( You are here now )
 4. Bigdata Session 4 - Apache Spark on Kubernetes
 
 
-The workshop material also included in a slide, please refer bellow slide for 
-details about apache drill and how to play with it.
+The workshop material also included in a slide, please refer bellow slide for
+details about the apache drill and how to play with it.
 
 
 === Presentation
