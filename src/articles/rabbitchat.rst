@@ -6,14 +6,14 @@ RabbitChat - Web based chat system
 
 
 **RabbitChat** is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.
 
 
 
 .. figure:: /images/RabbitChat-Arch.png
-    :width: 100% 
+    :width: 100%
 
     If you want to try this now, checkout a copy of project from this
     github url `git@github.com:haridas/RabbitChat.git`. Or download it
@@ -23,7 +23,7 @@ between server and connected clients.
     README.
 
 
-I tired to develop this same scenario in the gevent/twisted python
+I tried to develop this same scenario in the gevent/twisted python
 frameworks, but it lacks the support for good RabbitMQ clients. So after
 long search I got an idea about how to implement this web based chat
 system using Tornado Web Framework. I chose this because the python
@@ -39,13 +39,13 @@ or Twisted or Tornado has support for websocket. But in this case we
 need RabbitMQ client support also. Pika is the good python RabbitMQ
 client, it has different adapters to integrate it with RabbitMQ and
 other frameworks. Adapter for Tornado is already there, so that makes
-this implementation possible. The Pika adapters for other frameworks
+this implementation is possible. The Pika adapters for other frameworks
 will come soon.
 
 You may ask another question, why using RabbitMQ instead of a simple
 Message passing data structures, Actually this application is a demo app
-and I want to test the use of Websoxket with RabbitMQ. I'm looking
-forward to develop a Realtime API's using this architectures. Google app
+and I want to test the use of Websocket with RabbitMQ. I'm looking
+forward to develop real time API's using this architecture. Google app
 engine or other similar platforms( `Typhoonae`_) using Websocket server
 similar to this way. So you can also develop a good implementations
 using this demo application.

@@ -16,11 +16,11 @@ are currently working with latest version of Python or Ruby packages for
 our project, then most probably our project package dependency might be
 conflict with corresponding packages installed in the system default
 path. To get this work, updating the system packages might not be a good
-method, because it may broke our existing projects that depends up on
+method, because it may broke our existing projects that depends upon
 the system packages and it's very dangerous...!. This problem is common
 now because of rapid development and feature updation of packages. To
 solve this issues and use the packaging system more flexibly both Python
-and Ruby providing their own tools.
+and Ruby provides their own tools.
 
 We can first check the Python Virtualenv tool for python projects.
 
@@ -28,7 +28,7 @@ We can first check the Python Virtualenv tool for python projects.
 --------------
 
 Virtualenv package isolate python package system and corresponding
-binaries in to a user defined folder.
+binaries into a user defined folder.
 
 First install `virtualenv` package by using default pythons package
 installation tool or you can use `pip`.
@@ -95,7 +95,7 @@ requirements.
 ----------
 
 There is another package 'virtualenvwrapper' to organize and use the
-multiple virtual environments by single set of shell commands. Here is
+multiple virtual environments by a single set of shell commands. Here is
 the brief description about virtualenvwrapper.
 
 To install virtualenvwrapper, as usual you can use easy_install or pip
@@ -122,13 +122,13 @@ environments.
 
  $mkvirtualenv test_proj
 
- To deactiave
+ To deactivate
  $deactivate
 
  If we created multiple virtual environments, to list it by using,
  $workon
 
- To Activate particular virtual environment from above list.
+ To Activate a particular virtual environment from the above list.
  $workon
 
  To remove the virtual environment
@@ -138,7 +138,7 @@ This package also provide PRE and POST hooks for all of its commands ,
 we can use those hooks to inject our codes while running the
 virtualenvwrapper commands.
 
-This viritualenvwrapper is an additional package that really help both
+This virtualenvwrapper is an additional package that really help both
 administrators and programmers to manage multiple project environments
 with different versions of python packages were installed.
 
@@ -153,16 +153,16 @@ in our system without affecting the ruby installed in our system default
 path. for eg; by default our system have ruby-1.8.2 installed, but we
 want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
 using `rvm` we can change system default ruby version to ruby-1.9.2,
-we can revert this back to system ruby when we requires.
+we can revert this back to system ruby when we require.
 
 So in this manner we can install multiple ruby versions and switch
 between them, once we switch to a particular version of ruby then that
 ruby is available for that system user. This is the brief description
-how RVM works in our system. Lets move to setup part.
+how RVM works in our system. Let's move to the setup part.
 
 You can install RVM from `root` (Multi user mode)user privilege or
 from a `user` privilege(Single user mode). The single user mode were
-recommended, because the RVM only avaiable to that user only, but in
+recommended, because the RVM only available to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.
 
@@ -172,11 +172,11 @@ To install RVM you can use git if it available in your system,
 
  $bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
 
-OR (If we dont have git installed )
+OR (If we don't have git installed )
 
 .. code-block:: console
 
- Fetch installer script and run it ourself.
+ Fetch installer script and run it yourself.
  $ curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
  $chmod +x rvm-installer
@@ -184,7 +184,7 @@ OR (If we dont have git installed )
 
 After installation you can see that a folder (`.rvm`) were created
 in your home directory. This folder holds all RVM related files. Then to
-activate `rvm` command for this user you have do one more step.
+activate the `rvm` command for this user, you have to take one more step.
 
 Add following line to your `.bashrc` file, so new shell session
 onwards the `rvm` commands were available to this user. OR you can
@@ -198,7 +198,7 @@ session only.
     This loads RVM into a shell session
 
 Open a new shell session,
- 
+
 .. code-block:: console
 
  $ ruby --version
@@ -220,7 +220,7 @@ Now you can see that we have three versions of ruby in our system,
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,
 
-To use ruby-1.9.1 in one shell session only, try bellow commands.
+To use ruby-1.9.1 in one shell session only, try below commands.
 
 .. code-block:: console
 
@@ -262,5 +262,4 @@ version.
 Check the gem versions while we switching between different version of
 ruby.
 
-Ok, thats it. Try out these tools.... have a happy hacking....:)
-
+Ok, that's it. Try out these tools.... have a happy hacking....:)
