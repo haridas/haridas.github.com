@@ -4,20 +4,20 @@ Category: data-science
 Tags: LDA
 Authors: Haridas N
 
-Unsupervised topic modeling algorithms like LDA and NMF produces list of
-vocabularies for each topic after the training. These vocabs help human
+Unsupervised topic modeling algorithms like LDA and NMF produce a list of
+vocabularies for each topic after the training. These vocabs help humans
 to assign the subject information of the topic model. So how we measure the
 quality of these topic words ?, this problem has to be
 addressed in unsupervised topic clustering algorithms like LDA / NMF to
 understand models are improving or not.
 
 It's always a challenge to qualitatively measure the goodness of the words
-produced by each topic. Usually we take top 10 words ( It's recommended to keep
-the top n word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
+produced by each topic. Usually, we take the top 10 words ( It's recommended to keep
+the top n-word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
 and come up with a topic name using these words)
 
 The methods discussed here are the standard coherence evaluation metrics, based
-on Frequentest probabilistic evaluation, TF-IDF, Word2Vec and SVD based
+on Frequentist probabilistic evaluation, TF-IDF, Word2Vec, and SVD based
 methods, over the top-n words of each topic and the input corpus given into the
 LDA model.
 
@@ -28,7 +28,7 @@ each method and its conventions used.
 
 >All unsupervised topic clustering algorithms have to address this point before
 >going into production, ie; how much usable the topics produced by a given
->method, can human can interpret the meanings of topic and describe the topic
+>method, a human can interpret the meanings of a topic and describe the topic
 >using top N words ( eg N = 10 ).
 
 Based on this [paper](https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf) - coherence evaluation can be structured into
@@ -42,8 +42,8 @@ Based on this [paper](https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/pub
 ### 1. Segmentation of word subsets
 
 In this stage we split the top-n words into pairs, we can do this in multiple
-ways to support the Boolean document counting or sliding window based counting
-discussed in next sections.
+ways to support the Boolean document counting or sliding window-based counting
+discussed in the next sections.
 
 ### 2. Probability Estimation methods
 <div>
@@ -80,16 +80,16 @@ $$
 $$
 </div>
 
-### 3. Confirmation Measures 
+### 3. Confirmation Measures
 
-In this phase the actual scoring function is defined, which make uses any of
-the segmentation or probabilistic measuring methods described above. Lets see
+In this phase, the actual scoring function is defined, which makes uses of any of
+the segmentation or probabilistic measuring methods described above. Let’s see
 some of the widely used coherence measuring methods.
 
 
 ##### 3.1 UMass
 
-UMass is the simplest method of all mentioned bellow and compute time is least among
+UMass is the simplest method of all mentioned bellow and computes time is least among
 all others.
 
 
@@ -101,7 +101,7 @@ C_{UMass} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log
 N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
 \\
 Here\ the\ P( w_{j} ,\ w_{i}) \ co-occurrence\ is\ calculated\ by\ using\ \ \mathcal{P}_{bd} \ \ method\ mentioned\ above.\ \\
-\ \ 
+\ \
 \end{array}
 $$
 </div>
@@ -125,10 +125,10 @@ $$
 </div>
 
 
-##### 3.3 NPMI - Normalized Point-wise Mutual Information
+##### 3.3 NPMI - Normalized Pointwise Mutual Information
 
-Measuring the co-occurrence of words as the name suggest. This one is improved version
-of PMI, by applying a added normalisation to PMI.
+Measuring the co-occurrence of words as the name suggests. This one is an improved version
+of PMI, by applying an added normalization to PMI.
 
 <div>
 $$
@@ -151,12 +151,12 @@ $$
 
 
 Outside this 4 stage framework, there are multiple coherence measures available,
-we can fit those measures along with above mentioned coherence measuring
+we can fit those measures along with the above-mentioned coherence measuring
 framework; even though some parts aren't relevant in some cases. Few of those
-measures are listed bellow,
+measures are listed below,
 
 #### 3.4 Word2Vec based similarity score
-Here we are making use of the semantic meanings of each words on word2vec vector 
+Here we are making use of the semantic meanings of each word on the word2vec vector
 space and finding the cosine similarity between two word vectors.
 
 <div>
@@ -224,10 +224,9 @@ $$
 
 ### 4. Aggregation strategies
 
-All the coherence measures discussed till now mainly deals with per topic level,
-to aggregate the measure for the entire model we need to aggregate all the topic 
-level scores in to one. Common method applied here is arithmetic mean of topic level
-coherence score. Or other type of statistical summary like std or median etc.
+All the coherence measures discussed till now mainly deal with per topic level,
+to aggregate the measure for the entire model we need to aggregate all the topic
+level scores into one. The common method applied here is the arithmetic means of the topic level coherence score. Or other types of statistical summary like std or median etc.
 
 
 
@@ -235,15 +234,15 @@ coherence score. Or other type of statistical summary like std or median etc.
 
 ### Jaccard Similarity Measure for Model
 
-All the above mentioned measuring mechanisms discuss about coherence of
-individual topic and then we are applying standard aggregation over these scores
-via simple arithmetic mean. Is there any measure the quality of all the topics
-or relationships between them ?
+All the above mentioned measuring mechanisms discuss coherence of
+individual topics and then we are applying standard aggregation over these scores
+via simple arithmetic mean. Is there any measure of the quality of all the topics
+or relationships between them?
 
 The Jaccard Similarity between topics helps to understand how the topics are
-dependent each other. If the similarity is higher means topics are very
-dependent each other, otherwise topics are discussing about similar domain ( eg;
-automobile ). The key thing to care is, there is know good setting for this
+dependent on each other. If the similarity is higher means topics are very
+dependent on each other, otherwise topics are discussing similar domain ( eg;
+automobile ). The key thing to care about is, there is know good setting for this
 value, it's purely set based on the business requirement and nature of the data.
 
 <div>
@@ -262,7 +261,7 @@ Thank you, That's all for now. Hope these heuristics helped you to understand yo
 
 
 
-    NOTE: This blog entry was orginally published at https://labs.imaginea.com/post/how-to-measure-topic-coherence/
+    NOTE: This blog entry was originally published at https://labs.imaginea.com/post/how-to-measure-topic-coherence/
     Location, and republished here with permission.
 
 
@@ -274,7 +273,6 @@ Thank you, That's all for now. Hope these heuristics helped you to understand yo
 
 ###### 3. http://www.cs.loyola.edu/~binkley/papers/icpc14-lda.pdf
 
-###### 4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html 
+###### 4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html
 
 ###### 5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3
-
