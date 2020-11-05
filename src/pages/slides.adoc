@@ -4,12 +4,12 @@
 :tags: hadoop,spark,drill,kubernetes
 :numbered:
 
-All My recent talks and corresponding ppt links
+My recent talks and corresponding ppt links
 
 
 ==== https://www.slideshare.net/PramatiConnect/document-clustering-using-lda-haridas-narayanaswamy-pramati[Document Clustering using LDA - Apr/2019]
 
-Session done as part of meetup.com https://www.meetup.com/Mixed-Nuts-at-Pramati/events/260500930/
+The session was done as part of meetup.com https://www.meetup.com/Mixed-Nuts-at-Pramati/events/260500930/
 
 ==== https://www.slideshare.net/haridasnss/apache-spark-on-kubernetes[Bigdata Workshop session 4 - Spark on Kubernetes (Mar/2019)]
 
