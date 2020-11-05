@@ -4,7 +4,7 @@ import os
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don"t, change the current URL scheme.
-# SITEURL = "http://localhost:8000"
+#SITEURL = "http://localhost:8000"
 #
 SITEURL = "https://haridas.in"
 
@@ -21,19 +21,19 @@ THEME_STATIC_PATHS = ["static"]
 CSS_FILE = "pure.css"
 
 # Ipython template directory setting.
-IPYTHON_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__),
-                                     "src/ipython_templates")
+IPYNB_EXPORT_TEMPLATE = os.path.join(os.path.dirname(__file__),
+                                     "src/ipython_templates/article.tpl")
 
 # Ordering of content.
 REVERSE_ARCHIVE_ORDER = True
 #
 # Properly resolve the URLs for each articles. THere is no nesting all the
 # blog entries are kept on the top level itself.
-CATEGORY_SAVE_AS="category/{slug}.html"
-CATEGORY_URL="category/{slug}.html"
-TAG_URL="tag/{slug}.html"
-TAG_SAVE_AS="tag/{slug}.html"
-ARTICLE_URL="/{slug}.html"
+CATEGORY_SAVE_AS = "category/{slug}.html"
+CATEGORY_URL = "category/{slug}.html"
+TAG_URL = "tag/{slug}.html"
+TAG_SAVE_AS = "tag/{slug}.html"
+ARTICLE_URL = "/{slug}.html"
 
 # Other menu items
 MENUITEMS = [
@@ -62,18 +62,16 @@ MARKUP = ("md", "ipynb", "rst", "adoc")
 ASCIIDOC_CMD = "asciidoctor"
 ASCIIDOC_OPTIONS = []
 ASCIIDOC_BACKEND = "html5"
-PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), "./pelican-plugins"),)
+PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), "./pelican-plugins"), )
 # plugins.
+from pelican_jupyter import markup as nb_markup
 PLUGINS = [
-    "pelican_gist",
-    "pelican-ipynb.markup",
-    "asciidoc_reader.asciidoc_reader",
+    "pelican_gist", nb_markup, "asciidoc_reader.asciidoc_reader",
     "render_math"
 ]
 
 # Blogroll
-LINKS = (
-)
+LINKS = ()
 
 # Social widget
 #
@@ -82,12 +80,11 @@ LINKS = (
 # Provide OPTIONAL (wxh) tuple if you want to resize the logo.
 #
 # FORMAT :- ( Label, logo, link, (width, height))
-SOCIAL = (
-    ("Twitter", "images/tt.svg", "https://twitter.com/haridas_n",("48", "48")),
-    ("Github", "images/github.svg", "https://github.com/haridas", ("45", "45")),
-    ("Linkedin", "images/linkedin.svg",
-     "https://linkedin.com/in/haridasn", ("48", "48"))
-)
+SOCIAL = (("Twitter", "images/tt.svg", "https://twitter.com/haridas_n",
+           ("48", "48")), ("Github", "images/github.svg",
+                           "https://github.com/haridas", ("45", "45")),
+          ("Linkedin", "images/linkedin.svg",
+           "https://linkedin.com/in/haridasn", ("48", "48")))
 
 ARTICLE_EXCLUDES = ["templates", "pages", "draft-articles"]
 PAGE_EXCLUDES = ["articles", "drafts"]
