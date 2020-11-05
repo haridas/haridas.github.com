@@ -125,7 +125,7 @@
             </section>
             <p>World Timezone Image from www.physicalgeography.net</p>
 <img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" />
-<p>When we develop web applications some times we need multiple timezone
+<p>When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.</p>
@@ -136,13 +136,13 @@ system by using &quot;easy_install&quot;</p>
 <p>Install python timezone module.</p>
 <div class="highlight"><pre><span></span><span class="gp">#</span>easy_install pytz
 </pre></div>
-<p>This python module support all major timezones and it helps to convert
+<p>This python module support all major time zones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
-human readable tiemzone names in pytz module to represent the local
-timezones.( like Asia/Kolkata, Europe/Paris, EST etc. ).</p>
+human readable time zone names in pytz module to represent the local
+time zones.( like Asia/Kolkata, Europe/Paris, EST etc. ).</p>
 <p>When we deal with multiple timezone in our application, we might have
-backend database where we store these date and time informations. Most
-databases are support UTC as it's the common timezone format. And it's
+backend database where we store these date and time information. Most
+databases support UTC as it's the common timezone format. And it's
 better to keep a unique timezone information when saving the date and
 time in database and database engines not going to support all timezone
 formats directly. So we need to stick with commonly used <strong>UTC/GMT</strong>
@@ -151,7 +151,7 @@ the daylight saving issues.</p>
 <p>Here is the strategies used in web applications with multiple timezone
 support :-</p>
 <ol class="arabic simple">
-<li>Save Date and Time information’s in database as UTC format.</li>
+<li>Save Date and Time information in the database as UTC format.</li>
 <li>Convert the UTC time to corresponding local timezones, based on the
 user request and location.</li>
 <li>We take local timezone information from browser or user select a
@@ -160,13 +160,13 @@ application. We can collect this information easily with the help of
 Javascript.</li>
 </ol>
 <p>Bellow I'm explaining some real scenarios where we need to change time
-zone information's from UTC to local and vice versa,</p>
+zone information from UTC to local and vice versa,</p>
 <div class="section" id="saving-date-and-time-in-database">
 <h2><strong>1. Saving Date and Time in Database :-</strong></h2>
-<p>We always save date and time information in database as UTC standard.
-In django/Rails or other Framworks we have an option to set Projects
-default tiemzone as UTC. So in our database the time and date are always
-in UTC. If above methods are not working for your application you
+<p>We always save date and time information in the database as UTC standard.
+In django/Rails or other Frames we have an option to set Projects
+default timezone as UTC. So in our database the time and date are always
+in UTC. If above methods are not ing for your application you
 manually need to convert the local system time into UTC format and then
 save it. Below code sample explain things more clearly,</p>
 <div class="highlight"><pre><span></span><span class="go">haridas@haridas-debian:~$ python</span>
@@ -183,7 +183,7 @@ save it. Below code sample explain things more clearly,</p>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1"># utcnow() function</span>
 <span class="go">     give the UTC time of current local time.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c1"># But this date tupple doesn&#39;t have the timezone</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_system_utc</span> <span class="c1"># But this date tuple doesn&#39;t have the timezone</span>
 <span class="go">      information.</span>
 <span class="go">      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive</span>
 <span class="go">     representation(Date object without Timezone information.)</span>
@@ -203,19 +203,19 @@ save it. Below code sample explain things more clearly,</p>
 <span class="go">     #You can do the tzinfo addition when retrieving the time from DB.</span>
 </pre></div>
 <p>By this way we can save time and date in Database even-though users are
-from different timezone. We need to consider them only when retrieving
+from a different timezone. We need to consider them only when retrieving
 the time object from database, ie; we need to convert our UTC time to
-user specific timezone. So this conversion is only for view purpose.</p>
+user specific timezone. So this conversion is only for view purposes.</p>
 </div>
-<div class="section" id="converstion-from-utc-to-localtime">
-<h2><strong>2. Converstion from UTC to localtime</strong></h2>
+<div class="section" id="conversion-from-utc-to-local-time">
+<h2><strong>2. Conversion from UTC to local time</strong></h2>
 <p>We need to convert UTC times to corresponding user timezone, follow the
 bellow method,</p>
 <div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="c1">#Our UTC naive time from DB,</span>
-<span class="go">   for the time being here I&#39;m taking it as current system UTC time..</span>
+<span class="go">   For the time being here I&#39;m taking it as the current system UTC time..</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">now_utc</span>
 <span class="go">    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive</span>
 <span class="go">   form.</span>
@@ -241,7 +241,7 @@ bellow method,</p>
 </div>
 <div class="section" id="manage-browser-local-time-at-server">
 <h2><strong>3. Manage Browser Local Time at Server</strong></h2>
-<p>Rather than just conversion of UTC time, some times we need to fetch
+<p>Rather than just conversion of UTC time, sometimes we need to fetch
 records from the Database in between particular interval of local time
 time, for eg; From 07:00 Morning to 22:30 Evening of local time. Here
 our data is in UTC format, so we need to get the corresponding UTC time
@@ -253,7 +253,7 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S</li>
 <li>Convert this epoch time to python UTC time.</li>
 <li>Then search the Database.</li>
 </ol>
-<p>You can reconstruct the javascrpt string format of the date in to
+<p>You can reconstruct the javascript string format of the date in to
 python date object by,</p>
 <div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pytz</span>

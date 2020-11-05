@@ -132,16 +132,16 @@ are currently working with latest version of Python or Ruby packages for
 our project, then most probably our project package dependency might be
 conflict with corresponding packages installed in the system default
 path. To get this work, updating the system packages might not be a good
-method, because it may broke our existing projects that depends up on
+method, because it may broke our existing projects that depends upon
 the system packages and it's very dangerous...!. This problem is common
 now because of rapid development and feature updation of packages. To
 solve this issues and use the packaging system more flexibly both Python
-and Ruby providing their own tools.</p>
+and Ruby provides their own tools.</p>
 <p>We can first check the Python Virtualenv tool for python projects.</p>
 <div class="section" id="virtualenv">
 <h2><strong>Virtualenv</strong></h2>
 <p>Virtualenv package isolate python package system and corresponding
-binaries in to a user defined folder.</p>
+binaries into a user defined folder.</p>
 <p>First install <cite>virtualenv</cite> package by using default pythons package
 installation tool or you can use <cite>pip</cite>.</p>
 <div class="highlight"><pre><span></span><span class="gp">#</span>easy_install virtualenv
@@ -186,7 +186,7 @@ requirements.</p>
 <div class="section" id="update">
 <h2><strong>UPDATE</strong></h2>
 <p>There is another package 'virtualenvwrapper' to organize and use the
-multiple virtual environments by single set of shell commands. Here is
+multiple virtual environments by a single set of shell commands. Here is
 the brief description about virtualenvwrapper.</p>
 <p>To install virtualenvwrapper, as usual you can use easy_install or pip</p>
 <div class="highlight"><pre><span></span><span class="gp">#</span>pip install virtualenvwrapper
@@ -203,13 +203,13 @@ environments.</p>
 
 <span class="gp">$</span>mkvirtualenv test_proj
 
-<span class="go">To deactiave</span>
+<span class="go">To deactivate</span>
 <span class="gp">$</span>deactivate
 
 <span class="go">If we created multiple virtual environments, to list it by using,</span>
 <span class="gp">$</span>workon
 
-<span class="go">To Activate particular virtual environment from above list.</span>
+<span class="go">To Activate a particular virtual environment from the above list.</span>
 <span class="gp">$</span>workon
 
 <span class="go">To remove the virtual environment</span>
@@ -218,7 +218,7 @@ environments.</p>
 <p>This package also provide PRE and POST hooks for all of its commands ,
 we can use those hooks to inject our codes while running the
 virtualenvwrapper commands.</p>
-<p>This viritualenvwrapper is an additional package that really help both
+<p>This virtualenvwrapper is an additional package that really help both
 administrators and programmers to manage multiple project environments
 with different versions of python packages were installed.</p>
 <p>Now take a look at how we can do the similar thing in Ruby ,</p>
@@ -231,21 +231,21 @@ in our system without affecting the ruby installed in our system default
 path. for eg; by default our system have ruby-1.8.2 installed, but we
 want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
 using <cite>rvm</cite> we can change system default ruby version to ruby-1.9.2,
-we can revert this back to system ruby when we requires.</p>
+we can revert this back to system ruby when we require.</p>
 <p>So in this manner we can install multiple ruby versions and switch
 between them, once we switch to a particular version of ruby then that
 ruby is available for that system user. This is the brief description
-how RVM works in our system. Lets move to setup part.</p>
+how RVM works in our system. Let's move to the setup part.</p>
 <p>You can install RVM from <cite>root</cite> (Multi user mode)user privilege or
 from a <cite>user</cite> privilege(Single user mode). The single user mode were
-recommended, because the RVM only avaiable to that user only, but in
+recommended, because the RVM only available to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.</p>
 <p>To install RVM you can use git if it available in your system,</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span>bash &lt; &lt;<span class="o">(</span>curl -s https://rvm.beginrescueend.com/install/rvm<span class="o">)</span>
 </pre></div>
-<p>OR (If we dont have git installed )</p>
-<div class="highlight"><pre><span></span><span class="go">Fetch installer script and run it ourself.</span>
+<p>OR (If we don't have git installed )</p>
+<div class="highlight"><pre><span></span><span class="go">Fetch installer script and run it yourself.</span>
 <span class="gp">$</span> curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
 <span class="gp">$</span>chmod +x rvm-installer
@@ -253,7 +253,7 @@ the system.Here we will install RVM in single user mode.</p>
 </pre></div>
 <p>After installation you can see that a folder (<cite>.rvm</cite>) were created
 in your home directory. This folder holds all RVM related files. Then to
-activate <cite>rvm</cite> command for this user you have do one more step.</p>
+activate the <cite>rvm</cite> command for this user, you have to take one more step.</p>
 <p>Add following line to your <cite>.bashrc</cite> file, so new shell session
 onwards the <cite>rvm</cite> commands were available to this user. OR you can
 just run bellow code in your current shell to activate it for this user
@@ -280,7 +280,7 @@ session only.</p>
 <p>Now you can see that we have three versions of ruby in our system,
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,</p>
-<p>To use ruby-1.9.1 in one shell session only, try bellow commands.</p>
+<p>To use ruby-1.9.1 in one shell session only, try below commands.</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span>rvm use <span class="m">1</span>.9.1
 <span class="gp">$</span>ruby --version
 <span class="go">ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]</span>
@@ -315,7 +315,7 @@ version.</p>
 </pre></div>
 <p>Check the gem versions while we switching between different version of
 ruby.</p>
-<p>Ok, thats it. Try out these tools.... have a happy hacking....:)</p>
+<p>Ok, that's it. Try out these tools.... have a happy hacking....:)</p>
 </div>
 
             <a href="#" class="go-top">Go Top</a>

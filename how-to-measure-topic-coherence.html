@@ -121,18 +121,18 @@
                         </p>
                 </header>
             </section>
-            <p>Unsupervised topic modeling algorithms like LDA and NMF produces list of
-vocabularies for each topic after the training. These vocabs help human
+            <p>Unsupervised topic modeling algorithms like LDA and NMF produce a list of
+vocabularies for each topic after the training. These vocabs help humans
 to assign the subject information of the topic model. So how we measure the
 quality of these topic words ?, this problem has to be
 addressed in unsupervised topic clustering algorithms like LDA / NMF to
 understand models are improving or not.</p>
 <p>It's always a challenge to qualitatively measure the goodness of the words
-produced by each topic. Usually we take top 10 words ( It's recommended to keep
-the top n word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
+produced by each topic. Usually, we take the top 10 words ( It's recommended to keep
+the top n-word count up to 7+/-2 ie; 5 to 9 words appropriate for human to judge
 and come up with a topic name using these words)</p>
 <p>The methods discussed here are the standard coherence evaluation metrics, based
-on Frequentest probabilistic evaluation, TF-IDF, Word2Vec and SVD based
+on Frequentist probabilistic evaluation, TF-IDF, Word2Vec, and SVD based
 methods, over the top-n words of each topic and the input corpus given into the
 LDA model.</p>
 <p>The probabilistic models generally measure the co-occurrence of the top-n topic
@@ -142,7 +142,7 @@ each method and its conventions used.</p>
 <blockquote>
 <p>All unsupervised topic clustering algorithms have to address this point before
 going into production, ie; how much usable the topics produced by a given
-method, can human can interpret the meanings of topic and describe the topic
+method, a human can interpret the meanings of a topic and describe the topic
 using top N words ( eg N = 10 ).</p>
 </blockquote>
 <p>Based on this <a href="https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf">paper</a> - coherence evaluation can be structured into
@@ -155,12 +155,13 @@ using top N words ( eg N = 10 ).</p>
 </ol>
 <h3>1. Segmentation of word subsets</h3>
 <p>In this stage we split the top-n words into pairs, we can do this in multiple
-ways to support the Boolean document counting or sliding window based counting
-discussed in next sections.</p>
+ways to support the Boolean document counting or sliding window-based counting
+discussed in the next sections.</p>
 <h3>2. Probability Estimation methods</h3>
-<p><div>
-$$</p>
-<div class="math">\begin{array}{l}
+<div>
+$$
+
+ \begin{array}{l}
  \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
  count\ only\ onces\ in\ a\ given\ document.\\
  \mathcal{P}_{bp} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ paragraph\ estimation,\
@@ -186,15 +187,17 @@ $$</p>
  \\
  For\ other\ estimation\ types\ like\ \mathcal{P}_{np} \ we\ use\ \#\ total\
  number\ of\ paragraph\ as\ the\ normalisation\ term.
- \end{array}</div>
-<p>$$
-</div></p>
+ \end{array}
+
+$$
+</div>
+
 <h3>3. Confirmation Measures</h3>
-<p>In this phase the actual scoring function is defined, which make uses any of
-the segmentation or probabilistic measuring methods described above. Lets see
+<p>In this phase, the actual scoring function is defined, which makes uses of any of
+the segmentation or probabilistic measuring methods described above. Let’s see
 some of the widely used coherence measuring methods.</p>
 <h5>3.1 UMass</h5>
-<p>UMass is the simplest method of all mentioned bellow and compute time is least among
+<p>UMass is the simplest method of all mentioned bellow and computes time is least among
 all others.</p>
 <div>
 $$
@@ -204,7 +207,7 @@ C_{UMass} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log
 N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
 \\
 Here\ the\ P( w_{j} ,\ w_{i}) \ co-occurrence\ is\ calculated\ by\ using\ \ \mathcal{P}_{bd} \ \ method\ mentioned\ above.\ \\
-\ \ 
+\ \
 \end{array}
 $$
 </div>
@@ -225,9 +228,9 @@ text\ document.
 $$
 </div>
 
-<h5>3.3 NPMI - Normalized Point-wise Mutual Information</h5>
-<p>Measuring the co-occurrence of words as the name suggest. This one is improved version
-of PMI, by applying a added normalisation to PMI.</p>
+<h5>3.3 NPMI - Normalized Pointwise Mutual Information</h5>
+<p>Measuring the co-occurrence of words as the name suggests. This one is an improved version
+of PMI, by applying an added normalization to PMI.</p>
 <div>
 $$
 
@@ -248,11 +251,11 @@ $$
 </div>
 
 <p>Outside this 4 stage framework, there are multiple coherence measures available,
-we can fit those measures along with above mentioned coherence measuring
+we can fit those measures along with the above-mentioned coherence measuring
 framework; even though some parts aren't relevant in some cases. Few of those
-measures are listed bellow,</p>
+measures are listed below,</p>
 <h4>3.4 Word2Vec based similarity score</h4>
-<p>Here we are making use of the semantic meanings of each words on word2vec vector 
+<p>Here we are making use of the semantic meanings of each word on the word2vec vector
 space and finding the cosine similarity between two word vectors.</p>
 <div>
 $$
@@ -314,21 +317,20 @@ $$
 </div>
 
 <h3>4. Aggregation strategies</h3>
-<p>All the coherence measures discussed till now mainly deals with per topic level,
-to aggregate the measure for the entire model we need to aggregate all the topic 
-level scores in to one. Common method applied here is arithmetic mean of topic level
-coherence score. Or other type of statistical summary like std or median etc.</p>
+<p>All the coherence measures discussed till now mainly deal with per topic level,
+to aggregate the measure for the entire model we need to aggregate all the topic
+level scores into one. The common method applied here is the arithmetic means of the topic level coherence score. Or other types of statistical summary like std or median etc.</p>
 <hr/>
 
 <h3>Jaccard Similarity Measure for Model</h3>
-<p>All the above mentioned measuring mechanisms discuss about coherence of
-individual topic and then we are applying standard aggregation over these scores
-via simple arithmetic mean. Is there any measure the quality of all the topics
-or relationships between them ?</p>
+<p>All the above mentioned measuring mechanisms discuss coherence of
+individual topics and then we are applying standard aggregation over these scores
+via simple arithmetic mean. Is there any measure of the quality of all the topics
+or relationships between them?</p>
 <p>The Jaccard Similarity between topics helps to understand how the topics are
-dependent each other. If the similarity is higher means topics are very
-dependent each other, otherwise topics are discussing about similar domain ( eg;
-automobile ). The key thing to care is, there is know good setting for this
+dependent on each other. If the similarity is higher means topics are very
+dependent on each other, otherwise topics are discussing similar domain ( eg;
+automobile ). The key thing to care about is, there is know good setting for this
 value, it's purely set based on the business requirement and nature of the data.</p>
 <div>
 $$
@@ -342,10 +344,9 @@ $$
 </div>
 
 <p>Thank you, That's all for now. Hope these heuristics helped you to understand your models well.</p>
-<div class="highlight"><pre><span></span><code><span class="n">NOTE</span><span class="o">:</span> <span class="n">This</span> <span class="n">blog</span> <span class="n">entry</span> <span class="n">was</span> <span class="n">orginally</span> <span class="n">published</span> <span class="n">at</span> <span class="n">https</span><span class="o">://</span><span class="n">labs</span><span class="o">.</span><span class="na">imaginea</span><span class="o">.</span><span class="na">com</span><span class="sr">/post/how-to-measure-topic-coherence/</span>
+<div class="highlight"><pre><span></span><code><span class="n">NOTE</span><span class="o">:</span> <span class="n">This</span> <span class="n">blog</span> <span class="n">entry</span> <span class="n">was</span> <span class="n">originally</span> <span class="n">published</span> <span class="n">at</span> <span class="n">https</span><span class="o">://</span><span class="n">labs</span><span class="o">.</span><span class="na">imaginea</span><span class="o">.</span><span class="na">com</span><span class="sr">/post/how-to-measure-topic-coherence/</span>
 <span class="n">Location</span><span class="o">,</span> <span class="n">and</span> <span class="n">republished</span> <span class="n">here</span> <span class="k">with</span> <span class="n">permission</span><span class="o">.</span>
 </code></pre></div>
-
 
 <h2>References</h2>
 <h6>1. https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf</h6>
@@ -353,68 +354,6 @@ $$
 <h6>3. http://www.cs.loyola.edu/~binkley/papers/icpc14-lda.pdf</h6>
 <h6>4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html</h6>
 <h6>5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3</h6>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 

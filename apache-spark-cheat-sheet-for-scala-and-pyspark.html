@@ -128,14 +128,14 @@
 <ul class="sectlevel2">
 <li><a href="#_read_the_partitioned_json_files_from_disk">Read the partitioned json files from disk</a></li>
 <li><a href="#_save_partitioned_files_into_a_single_file">Save partitioned files into a single file.</a></li>
-<li><a href="#_filter_rows_which_meets_particular_criteria">Filter rows which meets particular criteria</a></li>
+<li><a href="#_filter_rows_which_meet_particular_criteria">Filter rows which meet particular criteria</a></li>
 <li><a href="#_map_with_case_class">Map with case class</a></li>
 <li><a href="#_use_selectexpr_to_access_inner_attributes">Use selectExpr to access inner attributes</a></li>
 <li><a href="#_how_to_access_rdd_methods_from_pyspark_side">How to access RDD methods from pyspark side</a></li>
 <li><a href="#_filtering_a_dataframe_column_of_type_seqstring">Filtering a DataFrame column of type Seq[String]</a></li>
 <li><a href="#_filter_a_column_with_custom_regex_and_udf">Filter a column with custom regex and udf</a></li>
 <li><a href="#_sum_a_column_elements">Sum a column elements</a></li>
-<li><a href="#_remove_unicode_characters_from_tokens">Remove unicode characters from tokens</a></li>
+<li><a href="#_remove_unicode_characters_from_tokens">Remove Unicode characters from tokens</a></li>
 <li><a href="#_connecting_to_jdbc_with_partition_by_integer_column">Connecting to jdbc with partition by integer column</a></li>
 <li><a href="#_parse_nested_json_data">Parse nested json data</a></li>
 <li><a href="#_string_arraystring_conversion">"string &#8658; array&lt;string&gt;" conversion</a></li>
@@ -185,10 +185,10 @@ This code snippets are tested on <code>spark-2.4.x</code> version, mostly work o
 <div class="paragraph">
 <p>Here we are merging all the partitions into one file and dumping it into
 the disk, this happens at the driver node, so be careful with sie of
-data set that you are dealing with. Otherwise the driver node may go out of memory.</p>
+data set that you are dealing with. Otherwise, the driver node may go out of memory.</p>
 </div>
 <div class="paragraph">
-<p>Use <code>coaleace</code> method to adjust the partition size of RDD based on our needs.</p>
+<p>Use <code>coalesce</code> method to adjust the partition size of RDD based on our needs.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -199,7 +199,7 @@ data set that you are dealing with. Otherwise the driver node may go out of memo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_filter_rows_which_meets_particular_criteria">Filter rows which meets particular criteria</h3>
+<h3 id="_filter_rows_which_meet_particular_criteria">Filter rows which meet particular criteria</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-scala" data-lang="scala">vocabDist
@@ -221,7 +221,7 @@ vocabDist
 <div class="sect2">
 <h3 id="_map_with_case_class">Map with case class</h3>
 <div class="paragraph">
-<p>Use case class if you want to map on multiple column with complex
+<p>Use case class if you want to map on multiple columns with a complex
 data structure.</p>
 </div>
 <div class="listingblock">
@@ -252,8 +252,8 @@ val newDf = personDf.map {
 <div class="sect2">
 <h3 id="_use_selectexpr_to_access_inner_attributes">Use selectExpr to access inner attributes</h3>
 <div class="paragraph">
-<p>Provide easily access the nested datastructures like <code>json</code> and filter them
-using the any existing udfs, or use your udf to get more flexibility here.</p>
+<p>Provide easily access the nested data structures like <code>json</code> and filter them
+using any existing udfs, or use your udf to get more flexibility here.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -270,7 +270,7 @@ doc.selectExpr("doc_id", "size(features.values) as feature_size")
 we need to invoke the <code>.rdd</code> to convert the DataFrame to support these features.</p>
 </div>
 <div class="paragraph">
-<p>For example here we are converting a sparse vector to dense and suming it in column wise.</p>
+<p>For example, here we are converting a sparse vector to dense and summing it in column-wise.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -328,9 +328,9 @@ Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functi
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_unicode_characters_from_tokens">Remove unicode characters from tokens</h3>
+<h3 id="_remove_unicode_characters_from_tokens">Remove Unicode characters from tokens</h3>
 <div class="paragraph">
-<p>Some time we only need to work with the ascii text, so it&#8217;s better to clean out
+<p>Sometimes we only need to work with the ascii text, so it&#8217;s better to clean out
 other chars.</p>
 </div>
 <div class="listingblock">
@@ -349,13 +349,13 @@ val minLengthFilter = udf((arr: Seq[String]) =&gt; arr.filter(_.length &gt; 3))<
 <div class="paragraph">
 <p>When using the spark to read data from the SQL database and then do the
 other pipeline processing on it, it&#8217;s recommended to partition the data
-according to the natural segments in the data, or at least on a integer
-column, so that spark can fire multiple sql quries to read data from SQL
+according to the natural segments in the data, or at least on an integer
+column, so that spark can fire multiple sql queries to read data from SQL
 server and operate on it separately, the results are going to the spark
 partition.</p>
 </div>
 <div class="paragraph">
-<p>Bellow commands are in pyspark, but the APIs are same for scala version also.</p>
+<p>Bellow commands are in pyspark, but the APIs are the same for the scala version also.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -380,14 +380,14 @@ report_ids = spark.read.jdbc(url = jdbc_url,
 <div class="paragraph">
 <p>This will be very helpful when working with <code>pyspark</code> and want to pass very
 nested json data between JVM and Python processes. Lately spark community relay on
-apache arrow project to avoid multiple serialization / deserialization costs when
+apache arrow project to avoid multiple serialization/deserialization costs when
 sending data from java memory to python memory or vice versa.</p>
 </div>
 <div class="paragraph">
 <p>So to process the inner objects you can make use of this <code>getItem</code> method
 to filter out required parts of the object and pass it over to python memory via
-arrow. In future arrow might support arbitrary nested data, but right now it won&#8217;t
-support complex nested formats. General recommended option is go without nesting.</p>
+arrow. In the future arrow might support arbitrarily nested data, but right now it won&#8217;t
+support complex nested formats. The general recommended option is to go without nesting.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -403,7 +403,7 @@ support complex nested formats. General recommended option is go without nesting
 <div class="sect2">
 <h3 id="_string_arraystring_conversion">"string &#8658; array&lt;string&gt;" conversion</h3>
 <div class="paragraph">
-<p>Type annotation <code>.as[String]</code> avoid implicite conversion assumed.</p>
+<p>Type annotation <code>.as[String]</code> avoid implicit conversion assumed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -415,7 +415,7 @@ support complex nested formats. General recommended option is go without nesting
 <h3 id="_a_crazy_string_collection_and_groupby">A crazy string collection and groupby</h3>
 <div class="paragraph">
 <p>This is a stream of operation on a column of type <code>Array[String]</code> and collect
-the tokens and count the ngram distribution over all the tokens.</p>
+the tokens and count the n-gram distribution over all the tokens.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -436,9 +436,9 @@ the tokens and count the ngram distribution over all the tokens.</p>
 <div class="sect2">
 <h3 id="_how_to_access_aws_s3_on_spark_shell_or_pyspark">How to access AWS s3 on spark-shell or pyspark</h3>
 <div class="paragraph">
-<p>Most of the time we might required a cloud storage provider like s3 / gs etc, to
+<p>Most of the time we might require a cloud storage provider like s3 / gs etc, to
 read and write the data for processing, very few keeps in-house hdfs to handle the data
-themself, but for majority I think cloud storage easy to start with and don&#8217;t need
+themself, but for majority, I think cloud storage easy to start with and don&#8217;t need
 to bother about the size limitations.</p>
 </div>
 <div class="paragraph">
@@ -486,8 +486,8 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 <div class="sect2">
 <h3 id="_set_spark_scratch_space_or_tmp_directory_correctly">Set spark scratch space or tmp directory correctly</h3>
 <div class="paragraph">
-<p>This might require when working with huge dataset and your machine can&#8217;t hold them
-all in memory for a given pipeline steps, those cases the data will be spilled over
+<p>This might require when working with a huge dataset and your machine can&#8217;t hold them
+all in memory for given pipeline steps, those cases the data will be spilled over
 to disk, and saved in tmp directory.</p>
 </div>
 <div class="paragraph">
@@ -509,10 +509,10 @@ spark.driver.extraJavaOptions /mnt/spark-tmp
 <div class="sect2">
 <h3 id="_pyspark_doesnt_support_all_the_data_types">Pyspark doesn&#8217;t support all the data types.</h3>
 <div class="paragraph">
-<p>When using the <code>arrow</code> to transport data between jvm to python memory, arrow may throw
-bellow error if the types aren&#8217;t compatible to existing converters. The fixes may be come
-in future on the arrow&#8217;s project. I&#8217;m keeping this here to know that how the pyspark gets
-data from jvm and what are those things can go wrong on that process.</p>
+<p>When using the <code>arrow</code> to transport data between jvm to python memory, the arrow may throw
+bellow error if the types aren&#8217;t compatible to existing converters. The fixes may become
+in the future on the arrow&#8217;s project. I&#8217;m keeping this here to know that how the pyspark gets
+data from jvm and what are those things can go wrong in that process.</p>
 </div>
 <div class="paragraph">
 <p>Example 1:</p>
@@ -540,7 +540,7 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &lt;list&
 <div class="paragraph">
 <p>Once you have downloaded the same version of the spark binary across the machines
 you can start the spark master and slave processes to form the standalone spark
-cluster. Or you could run both these services in same machine also.</p>
+cluster. Or you could run both these services on the same machine also.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -551,7 +551,7 @@ cluster. Or you could run both these services in same machine also.</p>
 ./sbin/start-master.sh [--properties-file &lt;file&gt;]
 
 
-# Start slave services on each nodes where we want to run the slave and connect
+# Start slave services on each node where we want to run the slave and connect
 # All the slaves to master to form the cluster.
 #
 ./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077</code></pre>
@@ -563,17 +563,16 @@ cluster. Or you could run both these services in same machine also.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Worker can have multiple executor.</p>
+<p>Worker can have multiple executors.</p>
 </li>
 <li>
-<p>Worker is like node manager in yarn.</p>
+<p>Worker is like a node manager in yarn.</p>
 </li>
 <li>
-<p>We can set worker max core and memory usage setting.</p>
+<p>We can set worker max core and memory usage settings.</p>
 </li>
 <li>
-<p>When defining the spark application via spark-shell or so, define the executor
-memory and cores.</p>
+<p>When defining the spark application via spark-shell or so, define the executor memory and cores.</p>
 </li>
 </ol>
 </div>
@@ -595,7 +594,7 @@ memory and cores.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-This page will be updaed as and when I see some reusable snippet of code for spark operations
+This page will be updated as and when I see some reusable snippet of code for spark operations
 </td>
 </tr>
 </table>
@@ -624,7 +623,6 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 </div>
 </div>
 </div>
-
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 

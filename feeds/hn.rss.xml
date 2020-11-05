@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"><channel><title>HN - HN</title><link>https://haridas.in/</link><description></description><lastBuildDate>Sun, 02 Jun 2019 00:00:00 +0530</lastBuildDate><item><title>Bigdata Session 1 - Hadoop with docker</title><link>https://haridas.in/bigdata-session-1-hadoop-with-docker.html</link><description>&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Hadoop with docker is mainly usable for easy prototype and learning purpose, also
-it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+&lt;p&gt;Hadoop with docker is mainly used for easy prototype and learning purpose, also
+it helps to set up quickly set up a Hadoop cluster on your laptop, or on multiple
 machines.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Bigdata Session 1 - Apache Hadoop with …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-1-hadoop-with-docker.html</guid><category>data-science</category><category>hadoop</category><category>yarn</category><category>hdfs</category></item><item><title>Bigdata Session 2 - Apache Spark</title><link>https://haridas.in/bigdata-session-2-apache-spark.html</link><description>&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;p&gt;Bigdata Session 1 …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-1-hadoop-with-docker.html</guid><category>data-science</category><category>hadoop</category><category>yarn</category><category>hdfs</category></item><item><title>Bigdata Session 2 - Apache Spark</title><link>https://haridas.in/bigdata-session-2-apache-spark.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This workshop we cover how spark internals works and how we can configure spark
+&lt;p&gt;In this workshop, we cover how spark internals works and how we can configure spark
 with apache yarn resource manager. I&amp;#8217;m using docker based setup for this
 workshop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Bigdata Session 1 - Apache Hadoop&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Bigdata …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-2-apache-spark.html</guid><category>data-science</category><category>hadoop</category><category>spark</category><category>yarn</category></item><item><title>Bigdata Session 3 - Apache Drill</title><link>https://haridas.in/bigdata-session-3-apache-drill.html</link><description>&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-2-apache-spark.html</guid><category>data-science</category><category>hadoop</category><category>spark</category><category>yarn</category></item><item><title>Bigdata Session 3 - Apache Drill</title><link>https://haridas.in/bigdata-session-3-apache-drill.html</link><description>&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -48,7 +45,7 @@ colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;The workshop material also …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 02 Jun 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-06-02:/bigdata-session-3-apache-drill.html</guid><category>data-science</category><category>drill</category><category>yarn</category></item><item><title>Bigdata Session 4 - Apache Spark on Kubernetes</title><link>https://haridas.in/bigdata-session-4-apache-spark-on-kubernetes.html</link><description>&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -73,16 +70,16 @@ colleges.&lt;/p&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
 tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
-models for Tagging, NER and related operations.&lt;/p&gt;
+models for Tagging, NER, and related operations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf, etc,
 we mostly need accurate POS tagging and …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Thu, 16 May 2019 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2019-05-16:/run-spacy-jobs-on-apache-spark.html</guid><category>data-science</category><category>bigdata</category><category>nlp</category><category>spark</category></item><item><title>Apache Spark cheat sheet for scala and pyspark</title><link>https://haridas.in/apache-spark-cheat-sheet-for-scala-and-pyspark.html</link><description>&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meet_particular_criteria"&gt;Filter rows which meet particular criteria&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_how_to_access_rdd_methods_from_pyspark_side"&gt;How to access RDD methods from pyspark side&lt;/a&gt;&lt;/li&gt;
@@ -162,10 +159,10 @@ Vim and its command modes. Or if you are new to Vim, you can &lt;a class="refere
 know how I came in to Vim and its fundamental differences with other editors …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Thu, 08 Nov 2012 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-11-08:/vim-as-your-ide.html</guid><category>programming</category><category>linux</category><category>vim</category><category>editor</category></item><item><title>How to put Encrypted Contents on Cloud Storages</title><link>https://haridas.in/how-to-put-encrypted-contents-on-cloud-storages.html</link><description>&lt;p&gt;There is a plenty of cloud storage services out there for free.
 It's very convenient and flexible that we can sync our local files with
 remote storage. For simple and non-sensitive contents this  is very useful.
-But we know that the contents on the net are being open. There is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Fri, 27 Jul 2012 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</guid><category>devops</category><category>security</category><category>server</category></item><item><title>How I came in to Vim</title><link>https://haridas.in/how-i-came-in-to-vim.html</link><description>&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
-&lt;p&gt;I was started to use the Vim …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 27 May 2012 16:30:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</guid><category>programming</category><category>linux</category><category>vim</category><category>editor</category></item><item><title>Wordpress blog migrated to Pelican</title><link>https://haridas.in/wordpress-blog-migrated-to-pelican.html</link><description>&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
+But we know that the contents on the net are being open. There is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Fri, 27 Jul 2012 00:00:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-07-27:/how-to-put-encrypted-contents-on-cloud-storages.html</guid><category>devops</category><category>security</category><category>server</category></item><item><title>How I came in to Vim</title><link>https://haridas.in/how-i-came-in-to-vim.html</link><description>&lt;p&gt;I know most of them in the programming world are very fascinated by Vim editor
+rather than typical IDE's like Eclipse, Visual Studios, etc. Every one using Vim
+has a story to tell, How they came into Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Sun, 27 May 2012 16:30:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</guid><category>programming</category><category>linux</category><category>vim</category><category>editor</category></item><item><title>Wordpress blog migrated to Pelican</title><link>https://haridas.in/wordpress-blog-migrated-to-pelican.html</link><description>&lt;p&gt;Initially this blog was running on wordpress, And you know the reasons for
 that. Wordpress is the most successful and feature rich blog engine. So
 I chose it without thinking twice, I didn't even search for a python alternative blog
 engines at that time. But after a while I felt …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Mon, 07 May 2012 13:33:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2012-05-07:/wordpress-blog-migrated-to-pelican.html</guid><category>programming</category><category>wordpress</category><category>pelican</category><category>python</category></item><item><title>Find the Absolute path in Shell Script</title><link>https://haridas.in/find-the-absolute-path-in-shell-script.html</link><description>&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
@@ -177,24 +174,24 @@ instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
 system default Python or Ruby installation. We use Virtualenv for Python
 and RVM(Ruby …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Wed, 31 Aug 2011 06:20:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</guid><category>programming</category><category>python</category><category>ruby</category></item><item><title>RabbitChat - Web based chat system</title><link>https://haridas.in/rabbitchat-web-based-chat-system.html</link><description>&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="" src="/images/RabbitChat-Arch.png" style="width: 100%;" /&gt;
 &lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
 github …&lt;/p&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Thu, 28 Jul 2011 12:10:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</guid><category>programming</category><category>programming</category><category>python</category><category>Server Architecture</category></item><item><title>Change and Migrate Django Models using South</title><link>https://haridas.in/change-and-migrate-django-models-using-south.html</link><description>&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
-&lt;p&gt;South is very handy django application to manage the django models. If
+&lt;p&gt;South is a very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
-appropriately. This is very …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Fri, 17 Jun 2011 10:41:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</guid><category>programming</category><category>python</category><category>django</category><category>south</category></item><item><title>playing with timezone using pytz</title><link>https://haridas.in/playing-with-timezone-using-pytz.html</link><description>&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+appropriately. This is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Fri, 17 Jun 2011 10:41:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</guid><category>programming</category><category>python</category><category>django</category><category>south</category></item><item><title>playing with timezone using pytz</title><link>https://haridas.in/playing-with-timezone-using-pytz.html</link><description>&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
-&lt;p&gt;When we develop web applications some times we need multiple timezone
+&lt;p&gt;When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.&lt;/p&gt;
-&lt;p&gt;I have …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Wed, 11 May 2011 04:15:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</guid><category>programming</category><category>python</category><category>pytz</category><category>timezone</category></item><item><title>Programming Vs. Scripting.</title><link>https://haridas.in/programming-vs-scripting.html</link><description>&lt;p&gt;When I was started to learn C programming language, I only know the term
+&lt;p&gt;I have been …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Wed, 11 May 2011 04:15:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</guid><category>programming</category><category>python</category><category>pytz</category><category>timezone</category></item><item><title>Programming Vs. Scripting.</title><link>https://haridas.in/programming-vs-scripting.html</link><description>&lt;p&gt;When I was started to learn C programming language, I only know the term
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">HN</dc:creator><pubDate>Tue, 28 Sep 2010 09:21:00 +0530</pubDate><guid isPermaLink="false">tag:haridas.in,2010-09-28:/programming-vs-scripting.html</guid><category>programming</category><category>programming</category><category>scripting</category></item></channel></rss>
