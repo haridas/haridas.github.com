@@ -151,8 +151,7 @@ that the promise chain will take care the result propagation properly.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="programming"></category><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+&lt;/div&gt;</content><category term="programming"></category><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;After using vim for few years the main difficulties I have with my current
 pathogen based vim plugin environment is, it's bit difficult to re-produce a
 fresh setup on new machine, managing gitmodules is dirty thing and adding new
@@ -408,8 +407,8 @@ a redis HASH set.&lt;/p&gt;
        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
            &lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
            &lt;span class="c1"&gt;// Do your work now..&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -1186,21 +1185,21 @@ implementation.&lt;/p&gt;
 &lt;span class="cp"&gt;#define SIZE 512&lt;/span&gt;
 
 
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sa_family&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;send_sock_msg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sock_fd&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="c1"&gt;//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);&lt;/span&gt;
 
@@ -1229,9 +1228,9 @@ implementation.&lt;/p&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;INET6_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
     &lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="n"&gt;memset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
@@ -1258,12 +1257,12 @@ implementation.&lt;/p&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;setsockopt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: bind&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1279,7 +1278,7 @@ implementation.&lt;/p&gt;
 
     &lt;span class="n"&gt;freeaddrinfo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// No need for it further.&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
@@ -1289,16 +1288,16 @@ implementation.&lt;/p&gt;
 
     &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;sin_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;accept ...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="n"&gt;inet_ntop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ss_family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
         &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: got connection from %s &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -1311,7 +1310,7 @@ implementation.&lt;/p&gt;
 
             &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logfile&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
                 &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;logfile open error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="p"&gt;}&lt;/span&gt;
 
             &lt;span class="cm"&gt;/*&lt;/span&gt;
@@ -2082,50 +2081,49 @@ to improve my blog.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="programming"></category><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
-&lt;p&gt;I was started to use the Vim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
-&lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
-a long time I was just used it whenever there is no  other option available, and
-I did't realized the importance of Vim editor.&lt;/p&gt;
+</content><category term="programming"></category><category term="linux"></category><category term="vim"></category><category term="editor"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated by Vim editor
+rather than typical IDE's like Eclipse, Visual Studios, etc. Every one using Vim
+has a story to tell, How they came into Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated by Vim editor
+rather than typical IDE's like Eclipse, Visual Studios, etc. Every one using Vim
+has a story to tell, How they came into Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for a long time I have just used it whenever there is no  other option available, and
+I didn’t realize the importance of Vim editor.&lt;/p&gt;
 &lt;p&gt;After I started my Job as Server Administrator, I have to use Vim regularly to
 work with servers and other configuration files. But I used it because there is
-no other thing available at remote severs :). And some times when I watching
+no other thing available at remote servers :). And some times when I watching
 hackers video, most of them are using Vim editor to show their works,
-I always wonder why they are using it instead of common IDE's. In the same time
-I have an interest in Programming, so I tried to  automate my  works using
-different Scripting and Programming languages, that eventually turned me to a Programmer.&lt;/p&gt;
-&lt;p&gt;When I was started to working as a Django developer I used to work with Eclipse with
-python binding. At these times I very rarely used the Vim editor, most of time
-I was engaged in Eclipse editor. Then I moved to another company as
+I always wonder why they are using it instead of common IDE's. At the same time
+I have an interest in Programming, so I tried to automate my works using
+different Scripting and Programming languages, which eventually turned me into a Programmer.&lt;/p&gt;
+&lt;p&gt;When I was started working as a Django developer I used to work with Eclipse with
+python binding. At these times I very rarely used the Vim editor, most of the time
+I was engaged in the Eclipse editor. Then I moved to another company as
 a Python and Django backend developer, there I met &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; My Team
 Lead and a Big fan of Vim, He already using Vim as his main editor and he encouraged me and others to use
-the Vim editor. But for few weeks I didn't mind it, and was worked with eclipse
+the Vim editor. But for a few weeks, I didn't mind it and was worked with the eclipse
 itself.&lt;/p&gt;
-&lt;p&gt;Finally one day evening I realized the fact that why the Vim gets this much interest
-among programmers and other hackers. That was a sudden move, with in that day
-Itself I learned the basic navigation key bindings and &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
-me to setup the Vim as a general IDE for all my works. After that we together
+&lt;p&gt;Finally one day evening I realized the fact that why Vim gets this much interest
+among programmers and other hackers. That was a sudden move, within that day
+I learned the basic navigation key bindings and &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
+me to set up Vim as a general IDE for all my works. After that, we together
 working and learning to improve the Vim skills every day and I'm enjoying the
 facts that I'm using it for my project works right after the first day of my
 basic learning. When I look back I can see that I missed the Vim editor
-for long time. Any way right now I became a big fan of Vim :). I used Vim to
+for a long time. Anyway, right now I became a big fan of Vim :). I used Vim to
 type this blog entry.&lt;/p&gt;
 &lt;p&gt;The main facts that I liked with the Vim editors while comparing with other
 editors are,&lt;/p&gt;
 &lt;div class="section" id="basic-navigation"&gt;
 &lt;h2&gt;Basic Navigation&lt;/h2&gt;
-&lt;p&gt;Actually this feature is the one which brought me to Vim. There is no need to
-use Mouse, We can do every thing using key board. The mouse usage is far less
-productive and more stressful if we compare the same operation with keyboard.
-Mouse has an importance when user has no or very less idea about the GUI, then
-He/She can do better with mouse. But that case is valid for short term usage
+&lt;p&gt;Actually, this feature is the one that brought me to Vim. There is no need to
+use Mouse, We can do everything using the keyboard. The mouse usage is far less
+productive and more stressful if we compare the same operation with the keyboard.
+The mouse has importance when the user has no or very less idea about the GUI, then
+He/She can do better with a mouse. But that case is valid for short term usage
 only.&lt;/p&gt;
 &lt;p&gt;If you are comfortable with touch typing then it's very easy to catch the Vim commands.
-This includes, navigating through,&lt;/p&gt;
+This includes navigating through,&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Files&lt;/li&gt;
 &lt;li&gt;Pages&lt;/li&gt;
@@ -2134,38 +2132,38 @@ This includes, navigating through,&lt;/p&gt;
 &lt;li&gt;Characters&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;And do all &lt;strong&gt;CRUD&lt;/strong&gt; operations very quickly by using simple keystroke.&lt;/p&gt;
-&lt;p&gt;You might think that, we can do that with the keyboard arrow keys, that is
+&lt;p&gt;You might think that we can do that with the keyboard arrow keys, that is
 possible, but vim has its own way to do it. It got different modes of
 working, &lt;strong&gt;Insert Mode&lt;/strong&gt; - For typing contents, &lt;strong&gt;Command mode&lt;/strong&gt; - In this mode we use
-different shortcuts to do lot of operations, &lt;strong&gt;Search Mode&lt;/strong&gt;, etc.&lt;/p&gt;
+different shortcuts todo a lot of operations, &lt;strong&gt;Search Mode&lt;/strong&gt;, etc.&lt;/p&gt;
 &lt;p&gt;Using Vim is far faster and easy to work with any text editing
-operations.Programmers are always doing it.&lt;/p&gt;
+operations. Programmers are always doing it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="availability"&gt;
 &lt;h2&gt;Availability&lt;/h2&gt;
 &lt;p&gt;By default all Gnu/Linux ship with the Vim editor. So we don't need to move to
 other editors when you are working with Gnu/Linux. Mac and Windows also got Vim
 editors so just download it and give a try.
-Also you can integrate the Vim key bindings with all major IDE's like
+Also, you can integrate the Vim key bindings with all major IDE's like
 &lt;a class="reference external" href="https://www.viplugin.com/viplugin/"&gt;Eclipse&lt;/a&gt;, &lt;a class="reference external" href="https://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329"&gt;Visual Studio&lt;/a&gt;, etc..&lt;/p&gt;
-&lt;p&gt;Also the vim keyboard bindings for navigation are also being used with web
+&lt;p&gt;Also, the vim keyboard bindings for navigation are also being used with web
 browsers(&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb"&gt;Chrome&lt;/a&gt;, &lt;a class="reference external" href="https://www.vimperator.org/vimperator"&gt;Firefox&lt;/a&gt;), and even you can use this key bindings with
 OS command prompt.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="light-weight-fast-and-highly-configurable"&gt;
-&lt;h2&gt;Light weight, Fast and highly configurable&lt;/h2&gt;
+&lt;div class="section" id="lightweight-fast-and-highly-configurable"&gt;
+&lt;h2&gt;Lightweight, Fast and highly configurable&lt;/h2&gt;
 &lt;p&gt;Even after adding lot of extensions with default Vim to make it general IDE
 like look and feel, its size would be very less compared to other IDE's.And we
 can customize the Vim editor very easily using its configuration file &lt;strong&gt;.vimrc&lt;/strong&gt;
 under the user home directory. And of course Vim is very fast.&lt;/p&gt;
-&lt;p&gt;One problem with Vim is, the learning curve. It has got lot of very advanced shortcuts
-and key bindings that can  be understood after using it for a while,But the
+&lt;p&gt;One problem with Vim is the learning curve. It has got lot of very advanced shortcuts
+and key bindings that can  be understood after using it for a while, But the
 basic shortcuts required to get start with Vim is very simple.
-We will learn new and new keyboard bindings through out the life span :).&lt;/p&gt;
+We will learn new and new keyboard bindings throughout the life span :).&lt;/p&gt;
 &lt;p&gt;You can have a look at this &lt;a class="reference external" href="https://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/"&gt;Article&lt;/a&gt; which describes how the Vim key bindings
-became integral part of our life ;).&lt;/p&gt;
+became an integral part of our lives ;).&lt;/p&gt;
 &lt;p&gt;My Vim Story-2 blog entry will come soon which describe the details how to
-setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
+setup the Vim to make it suitable for all types of programmers.&lt;/p&gt;
 &lt;p&gt;Till then... Bye :)&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="https://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
@@ -2202,9 +2200,9 @@ enables easy version controlling.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Next challenge that I faced was the selection of one static site generator from
 bunch of choice. There are lot of them are implemented in
-Python or Ruby. I was searched for few days to come up with a suitable one.
+Python or Ruby. I searched for a few days to come up with a suitable one.
 Finally I picked up a Python based engine &lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; as my favorite. It doesn't
-mean that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
+means that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
 &lt;p&gt;Here is the list of few major static site generators that I went through as
 part of the selection process.&lt;/p&gt;
 &lt;/div&gt;
@@ -2223,8 +2221,8 @@ generators, And other problems that I found on Jekyll was,&lt;/p&gt;
 &lt;h2&gt;&lt;a class="reference external" href="https://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Hyde is a  Python based static site generator like Jekyll but less complex.
 But Hyde lacks good documentation, and mainly a way to migrate from other
-blog engines. I can see that the project getting more interest recently.
-I hope it will get in to good position very soon.&lt;/p&gt;
+blog engines. I can see that the project is getting more likes recently.
+I hope it will get into a good position very soon.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pelican"&gt;
 &lt;h2&gt;&lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
@@ -2243,7 +2241,7 @@ engines.And I liked the way it structured the blog posts and its contents.It
 got clear upper hand over other site generators, I don't need to think twice to
 select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
-a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
+a fresh try to see how quickly you can set up a blog.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="https://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
@@ -2259,16 +2257,16 @@ are currently working with latest version of Python or Ruby packages for
 our project, then most probably our project package dependency might be
 conflict with corresponding packages installed in the system default
 path. To get this work, updating the system packages might not be a good
-method, because it may broke our existing projects that depends up on
+method, because it may broke our existing projects that depends upon
 the system packages and it's very dangerous...!. This problem is common
 now because of rapid development and feature updation of packages. To
 solve this issues and use the packaging system more flexibly both Python
-and Ruby providing their own tools.&lt;/p&gt;
+and Ruby provides their own tools.&lt;/p&gt;
 &lt;p&gt;We can first check the Python Virtualenv tool for python projects.&lt;/p&gt;
 &lt;div class="section" id="virtualenv"&gt;
 &lt;h2&gt;&lt;strong&gt;Virtualenv&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;Virtualenv package isolate python package system and corresponding
-binaries in to a user defined folder.&lt;/p&gt;
+binaries into a user defined folder.&lt;/p&gt;
 &lt;p&gt;First install &lt;cite&gt;virtualenv&lt;/cite&gt; package by using default pythons package
 installation tool or you can use &lt;cite&gt;pip&lt;/cite&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install virtualenv
@@ -2313,7 +2311,7 @@ requirements.&lt;/p&gt;
 &lt;div class="section" id="update"&gt;
 &lt;h2&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;There is another package 'virtualenvwrapper' to organize and use the
-multiple virtual environments by single set of shell commands. Here is
+multiple virtual environments by a single set of shell commands. Here is
 the brief description about virtualenvwrapper.&lt;/p&gt;
 &lt;p&gt;To install virtualenvwrapper, as usual you can use easy_install or pip&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;pip install virtualenvwrapper
@@ -2330,13 +2328,13 @@ environments.&lt;/p&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;mkvirtualenv test_proj
 
-&lt;span class="go"&gt;To deactiave&lt;/span&gt;
+&lt;span class="go"&gt;To deactivate&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;deactivate
 
 &lt;span class="go"&gt;If we created multiple virtual environments, to list it by using,&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;workon
 
-&lt;span class="go"&gt;To Activate particular virtual environment from above list.&lt;/span&gt;
+&lt;span class="go"&gt;To Activate a particular virtual environment from the above list.&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;workon
 
 &lt;span class="go"&gt;To remove the virtual environment&lt;/span&gt;
@@ -2345,7 +2343,7 @@ environments.&lt;/p&gt;
 &lt;p&gt;This package also provide PRE and POST hooks for all of its commands ,
 we can use those hooks to inject our codes while running the
 virtualenvwrapper commands.&lt;/p&gt;
-&lt;p&gt;This viritualenvwrapper is an additional package that really help both
+&lt;p&gt;This virtualenvwrapper is an additional package that really help both
 administrators and programmers to manage multiple project environments
 with different versions of python packages were installed.&lt;/p&gt;
 &lt;p&gt;Now take a look at how we can do the similar thing in Ruby ,&lt;/p&gt;
@@ -2358,21 +2356,21 @@ in our system without affecting the ruby installed in our system default
 path. for eg; by default our system have ruby-1.8.2 installed, but we
 want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
 using &lt;cite&gt;rvm&lt;/cite&gt; we can change system default ruby version to ruby-1.9.2,
-we can revert this back to system ruby when we requires.&lt;/p&gt;
+we can revert this back to system ruby when we require.&lt;/p&gt;
 &lt;p&gt;So in this manner we can install multiple ruby versions and switch
 between them, once we switch to a particular version of ruby then that
 ruby is available for that system user. This is the brief description
-how RVM works in our system. Lets move to setup part.&lt;/p&gt;
+how RVM works in our system. Let's move to the setup part.&lt;/p&gt;
 &lt;p&gt;You can install RVM from &lt;cite&gt;root&lt;/cite&gt; (Multi user mode)user privilege or
 from a &lt;cite&gt;user&lt;/cite&gt; privilege(Single user mode). The single user mode were
-recommended, because the RVM only avaiable to that user only, but in
+recommended, because the RVM only available to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.&lt;/p&gt;
 &lt;p&gt;To install RVM you can use git if it available in your system,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class="o"&gt;(&lt;/span&gt;curl -s https://rvm.beginrescueend.com/install/rvm&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;OR (If we dont have git installed )&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Fetch installer script and run it ourself.&lt;/span&gt;
+&lt;p&gt;OR (If we don't have git installed )&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Fetch installer script and run it yourself.&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
 &lt;span class="gp"&gt;$&lt;/span&gt;chmod +x rvm-installer
@@ -2380,7 +2378,7 @@ the system.Here we will install RVM in single user mode.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After installation you can see that a folder (&lt;cite&gt;.rvm&lt;/cite&gt;) were created
 in your home directory. This folder holds all RVM related files. Then to
-activate &lt;cite&gt;rvm&lt;/cite&gt; command for this user you have do one more step.&lt;/p&gt;
+activate the &lt;cite&gt;rvm&lt;/cite&gt; command for this user, you have to take one more step.&lt;/p&gt;
 &lt;p&gt;Add following line to your &lt;cite&gt;.bashrc&lt;/cite&gt; file, so new shell session
 onwards the &lt;cite&gt;rvm&lt;/cite&gt; commands were available to this user. OR you can
 just run bellow code in your current shell to activate it for this user
@@ -2407,7 +2405,7 @@ session only.&lt;/p&gt;
 &lt;p&gt;Now you can see that we have three versions of ruby in our system,
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,&lt;/p&gt;
-&lt;p&gt;To use ruby-1.9.1 in one shell session only, try bellow commands.&lt;/p&gt;
+&lt;p&gt;To use ruby-1.9.1 in one shell session only, try below commands.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 &lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
 &lt;span class="go"&gt;ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]&lt;/span&gt;
@@ -2442,17 +2440,17 @@ version.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Check the gem versions while we switching between different version of
 ruby.&lt;/p&gt;
-&lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
+&lt;p&gt;Ok, that's it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="https://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="" src="/images/RabbitChat-Arch.png" style="width: 100%;" /&gt;
 &lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
 github …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
@@ -2464,7 +2462,7 @@ the README file for instructions about how to setup and run the
 application. It has one branch also, I explained the difference in
 README.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;I tired to develop this same scenario in the gevent/twisted python
+&lt;p&gt;I tried to develop this same scenario in the gevent/twisted python
 frameworks, but it lacks the support for good RabbitMQ clients. So after
 long search I got an idea about how to implement this web based chat
 system using Tornado Web Framework. I chose this because the python
@@ -2479,31 +2477,31 @@ or Twisted or Tornado has support for websocket. But in this case we
 need RabbitMQ client support also. Pika is the good python RabbitMQ
 client, it has different adapters to integrate it with RabbitMQ and
 other frameworks. Adapter for Tornado is already there, so that makes
-this implementation possible. The Pika adapters for other frameworks
+this implementation is possible. The Pika adapters for other frameworks
 will come soon.&lt;/p&gt;
 &lt;p&gt;You may ask another question, why using RabbitMQ instead of a simple
 Message passing data structures, Actually this application is a demo app
-and I want to test the use of Websoxket with RabbitMQ. I'm looking
-forward to develop a Realtime API's using this architectures. Google app
+and I want to test the use of Websocket with RabbitMQ. I'm looking
+forward to develop real time API's using this architecture. Google app
 engine or other similar platforms( &lt;a class="reference external" href="https://code.google.com/p/typhoonae/"&gt;Typhoonae&lt;/a&gt;) using Websocket server
 similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
 </content><category term="programming"></category><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="https://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
-&lt;p&gt;South is very handy django application to manage the django models. If
+&lt;p&gt;South is a very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
-appropriately. This is very …&lt;/p&gt;</summary><content type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
-&lt;p&gt;South is very handy django application to manage the django models. If
+appropriately. This is …&lt;/p&gt;</summary><content type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+&lt;p&gt;South is a very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
 appropriately. This is very frustrating if we have to do it several
 times.&lt;/p&gt;
 &lt;p&gt;The South application makes it very easy to handle the model changes
-and fill the initial data's into the database tables. To setup the South
+and fill the initial data into the database tables. To setup the South
 application along with your django project, you need to do very simple
 changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
@@ -2512,7 +2510,7 @@ the project.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install south
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;then you have to add your south app to django settings.py file under&lt;/p&gt;
-&lt;p&gt;INSTALLED_APPS veriable, ie;&lt;/p&gt;
+&lt;p&gt;INSTALLED_APPS variable, ie;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -2528,7 +2526,7 @@ the project.&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we added the south app to our django project, the commands
-associated with this app is comes under the manage.py.&lt;/p&gt;
+associated with this app comes under the manage.py.&lt;/p&gt;
 &lt;p&gt;Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Migrate all tables to backend database,&lt;/span&gt;
@@ -2539,7 +2537,7 @@ have to use the usual method , ie;&lt;/p&gt;
 &lt;p&gt;That's it !. we are now ready to use south app for our apps model
 management.&lt;/p&gt;
 &lt;p&gt;Currently we added tables of default django apps and south app to
-backend. Now we are ready to add our applications to django project.
+backend. Now we are ready to add our applications to the django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,&lt;/p&gt;
@@ -2562,19 +2560,19 @@ steps,&lt;/p&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py migrate your_app
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So using south app you are now manged model changes without touching
+&lt;p&gt;So using south app you are now managed model changes without touching
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
 </content><category term="programming"></category><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="https://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
-&lt;p&gt;When we develop web applications some times we need multiple timezone
+&lt;p&gt;When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.&lt;/p&gt;
-&lt;p&gt;I have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+&lt;p&gt;I have been …&lt;/p&gt;</summary><content type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
-&lt;p&gt;When we develop web applications some times we need multiple timezone
+&lt;p&gt;When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.&lt;/p&gt;
@@ -2585,13 +2583,13 @@ system by using &amp;quot;easy_install&amp;quot;&lt;/p&gt;
 &lt;p&gt;Install python timezone module.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This python module support all major timezones and it helps to convert
+&lt;p&gt;This python module support all major time zones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
-human readable tiemzone names in pytz module to represent the local
-timezones.( like Asia/Kolkata, Europe/Paris, EST etc. ).&lt;/p&gt;
+human readable time zone names in pytz module to represent the local
+time zones.( like Asia/Kolkata, Europe/Paris, EST etc. ).&lt;/p&gt;
 &lt;p&gt;When we deal with multiple timezone in our application, we might have
-backend database where we store these date and time informations. Most
-databases are support UTC as it's the common timezone format. And it's
+backend database where we store these date and time information. Most
+databases support UTC as it's the common timezone format. And it's
 better to keep a unique timezone information when saving the date and
 time in database and database engines not going to support all timezone
 formats directly. So we need to stick with commonly used &lt;strong&gt;UTC/GMT&lt;/strong&gt;
@@ -2600,7 +2598,7 @@ the daylight saving issues.&lt;/p&gt;
 &lt;p&gt;Here is the strategies used in web applications with multiple timezone
 support :-&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Save Date and Time information’s in database as UTC format.&lt;/li&gt;
+&lt;li&gt;Save Date and Time information in the database as UTC format.&lt;/li&gt;
 &lt;li&gt;Convert the UTC time to corresponding local timezones, based on the
 user request and location.&lt;/li&gt;
 &lt;li&gt;We take local timezone information from browser or user select a
@@ -2609,13 +2607,13 @@ application. We can collect this information easily with the help of
 Javascript.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Bellow I'm explaining some real scenarios where we need to change time
-zone information's from UTC to local and vice versa,&lt;/p&gt;
+zone information from UTC to local and vice versa,&lt;/p&gt;
 &lt;div class="section" id="saving-date-and-time-in-database"&gt;
 &lt;h2&gt;&lt;strong&gt;1. Saving Date and Time in Database :-&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;We always save date and time information in database as UTC standard.
-In django/Rails or other Framworks we have an option to set Projects
-default tiemzone as UTC. So in our database the time and date are always
-in UTC. If above methods are not working for your application you
+&lt;p&gt;We always save date and time information in the database as UTC standard.
+In django/Rails or other Frames we have an option to set Projects
+default timezone as UTC. So in our database the time and date are always
+in UTC. If above methods are not ing for your application you
 manually need to convert the local system time into UTC format and then
 save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;haridas@haridas-debian:~$ python&lt;/span&gt;
@@ -2632,7 +2630,7 @@ save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# utcnow() function&lt;/span&gt;
 &lt;span class="go"&gt;     give the UTC time of current local time.&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c1"&gt;# But this date tupple doesn&amp;#39;t have the timezone&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c1"&gt;# But this date tuple doesn&amp;#39;t have the timezone&lt;/span&gt;
 &lt;span class="go"&gt;      information.&lt;/span&gt;
 &lt;span class="go"&gt;      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive&lt;/span&gt;
 &lt;span class="go"&gt;     representation(Date object without Timezone information.)&lt;/span&gt;
@@ -2652,19 +2650,19 @@ save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;span class="go"&gt;     #You can do the tzinfo addition when retrieving the time from DB.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;By this way we can save time and date in Database even-though users are
-from different timezone. We need to consider them only when retrieving
+from a different timezone. We need to consider them only when retrieving
 the time object from database, ie; we need to convert our UTC time to
-user specific timezone. So this conversion is only for view purpose.&lt;/p&gt;
+user specific timezone. So this conversion is only for view purposes.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="converstion-from-utc-to-localtime"&gt;
-&lt;h2&gt;&lt;strong&gt;2. Converstion from UTC to localtime&lt;/strong&gt;&lt;/h2&gt;
+&lt;div class="section" id="conversion-from-utc-to-local-time"&gt;
+&lt;h2&gt;&lt;strong&gt;2. Conversion from UTC to local time&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;We need to convert UTC times to corresponding user timezone, follow the
 bellow method,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;#Our UTC naive time from DB,&lt;/span&gt;
-&lt;span class="go"&gt;   for the time being here I&amp;#39;m taking it as current system UTC time..&lt;/span&gt;
+&lt;span class="go"&gt;   For the time being here I&amp;#39;m taking it as the current system UTC time..&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;
 &lt;span class="go"&gt;    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive&lt;/span&gt;
 &lt;span class="go"&gt;   form.&lt;/span&gt;
@@ -2690,7 +2688,7 @@ bellow method,&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="manage-browser-local-time-at-server"&gt;
 &lt;h2&gt;&lt;strong&gt;3. Manage Browser Local Time at Server&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;Rather than just conversion of UTC time, some times we need to fetch
+&lt;p&gt;Rather than just conversion of UTC time, sometimes we need to fetch
 records from the Database in between particular interval of local time
 time, for eg; From 07:00 Morning to 22:30 Evening of local time. Here
 our data is in UTC format, so we need to get the corresponding UTC time
@@ -2702,7 +2700,7 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S&lt;/li&gt;
 &lt;li&gt;Convert this epoch time to python UTC time.&lt;/li&gt;
 &lt;li&gt;Then search the Database.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can reconstruct the javascrpt string format of the date in to
+&lt;p&gt;You can reconstruct the javascript string format of the date in to
 python date object by,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
@@ -2739,7 +2737,7 @@ terms Scripting and Programming. I found some books of Javascript and …&lt;/p&
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and
-Perl describing about this at the beginning. But most of them are
+Perl described this at the beginning. But most of them are
 not clearly specifying the difference correctly.&lt;/p&gt;
 &lt;p&gt;I think these terms were came  due to the difference of how these codes
 are being running under the machine, ie; codes running under Interpreter
@@ -2755,21 +2753,21 @@ Scripting languages like &lt;cite&gt;Python, Perl ,Ruby&lt;/cite&gt; and &lt;cit
 used for general purposes along with famous programming languages like
 &lt;cite&gt;C/C++&lt;/cite&gt; and &lt;cite&gt;Java&lt;/cite&gt;.Other scripting languages are &lt;cite&gt;Php&lt;/cite&gt; (Web
 based applications ), &lt;cite&gt;Lua Script&lt;/cite&gt; (Embedded language , very fast,low
-memory foot print).&lt;/p&gt;
+memory footprint).&lt;/p&gt;
 &lt;div class="section" id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;You can call different Computer Languages as Scripting language or
 Programming language, but remember that the Scripting language can do any
 thing that a programming language could accomplish. And after all we have to be
-more rational while picking good tool set to solve our problem.&lt;/p&gt;
+more rational while picking a good tool set to solve our problem.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="update-14-jan-2014"&gt;
 &lt;h2&gt;Update - 14/Jan/2014&lt;/h2&gt;
-&lt;p&gt;This entry was the my first blog. That time I was just started to learn different
+&lt;p&gt;This entry was my first blog. That time I was just started to learn different
 languages in more depth. I was mainly trying the Python and other scripting
 languages, its beauty, easy to use and popularity on the Internet made me to
 think that it can do everything. Now After few years of experience in different
 parts of the Computer Science problems and work experience I can easily see
-that what I was wrote above was not going to work out practically.&lt;/p&gt;
+that what I wrote above was not going to work out practically.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="programming"></category><category term="scripting"></category></entry></feed>

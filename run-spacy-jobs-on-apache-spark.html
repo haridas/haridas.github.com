@@ -128,13 +128,13 @@
 <div class="paragraph">
 <p>Spacy is a state-of-the-art NLP library in Python, which provides a lot of
 tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
-models for Tagging, NER and related operations.</p>
+models for Tagging, NER, and related operations.</p>
 </div>
 <div class="paragraph">
-<p>Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+<p>Spark provides only traditional NLP tools like standard tokenizers, tf-idf, etc,
 we mostly need accurate POS tagging and chunking features when working with
-NLP problems, which spark libraries aren&#8217;t close to spacy. Those cases we need to
-relay on spacy.</p>
+NLP problems, which spark libraries aren&#8217;t close to spacy. In those cases, we need to
+rely on spacy.</p>
 </div>
 </div>
 </div>
@@ -143,7 +143,7 @@ relay on spacy.</p>
 <div class="paragraph">
 <p>A quick brief about the pyspark architecture, Bellow image shows that the workers
 spawn python process to run the pyspark jobs; which are written in python and all
-necessary python ML libraries like sklearn, numpy, spacy etc.</p>
+necessary python ML libraries like sklearn, numpy, spacy, etc.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -172,35 +172,35 @@ not.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Usually when we submit spark jobs to the spark <code>driver</code> compiles it and optimize the
+<p>Usually when we submit spark jobs to the spark <code>driver</code> compiles it and optimizes the
 pipeline. The final plan of the pipeline is split across the <code>executors</code> based on
-the DAG of data flow defined on the pipeline. Here the spark executors does the
+the DAG of data flow defined on the pipeline. Here the spark executors do the
 actual work, where the driver program sends out the relevant codes to executes
-at executor side. This is being done by serializing the relevant parts of the
+at the executor side. This is being done by serializing the relevant parts of the
 pipeline.</p>
 </div>
 <div class="paragraph">
-<p>One thing to ensure is our program is serializable ( Source code, classes and objects ).
-Otherwise spark fails to execute the pipeline.</p>
+<p>One thing to ensure is our program is serializable ( Source code, classes, and objects ).
+Otherwise, the spark fails to execute the pipeline.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_how_to_skip_spacy_model_serialization">How to skip spacy model serialization</h3>
 <div class="paragraph">
 <p>How we ensure this is by avoiding the scenario of serializing the spacy&#8217;s inbuilt
-trained binary models. How we do that ?</p>
+trained binary models. How we do that?</p>
 </div>
 <div class="paragraph">
 <p>Pyspark uses <code>PickleSerializer</code> to serialize the python objects, but spacy models
-aren&#8217;t serialisable using <code>PickleSerializer</code> which is trigger the issue when we
-load the spacy model first and then refer in worker code.</p>
+aren&#8217;t serializable using <code>PickleSerializer</code> which is trigger the issue when we
+load the spacy model first and then refer to worker code.</p>
 </div>
 <div class="sect3">
 <h4 id="_this_code_will_fail">This code will fail</h4>
 <div class="paragraph">
-<p>Here we simply loading the spacy object at driver side itself, when the python modules
+<p>Here we simply loading the spacy object at the driver side itself, when the python modules
 are getting loaded, which demands the pickling for the spacy objects. Which eventually
-fails when ship it to the worker side.</p>
+fails when shipping it to the worker side.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -213,13 +213,13 @@ fails when ship it to the worker side.</p>
 <div class="paragraph">
 <p>Here we are wrapping the spacy model under a lazy function, which will ensure
 the model won&#8217;t get loaded until it&#8217;s really required&#8201;&#8212;&#8201;which is actually required
-when the executor runs this code with partitioned dataset.</p>
+when the executor runs this code with a partitioned dataset.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-python" data-lang="python"># Here we are not loading the model at the loading time, only the worker code
 # will invoke this routine and gets the spacy object. Which means we are loading
-# new spacy models on every executors.
+# new spacy models on every executor.
 SPACY_MODEL = None
 def get_spacy_model():
     global SPACY_MODEL
@@ -230,13 +230,13 @@ def get_spacy_model():
 </div>
 </div>
 <div class="paragraph">
-<p>At driver side we won&#8217;t load the spacy model, instead ensure they are loaded lazily at
+<p>On the driver side, we won&#8217;t load the spacy model, instead ensure they are loaded lazily at
 executor side.</p>
 </div>
 <div class="paragraph">
-<p>Here the models can&#8217;t be serialised at the driver side and ship it to worker and
+<p>Here the models can&#8217;t be serialized at the driver side and ship it to work and
 load it back, So we need to ensure only at the runtime the models are really gets
-loaded into the worker memory.</p>
+loaded into the working memory.</p>
 </div>
 </div>
 <div class="sect3">
@@ -315,9 +315,9 @@ print(data1.select("tokens").show())</code></pre>
 <h3 id="_spacy_multi_processing_capabilities">Spacy multi-processing capabilities</h3>
 <div class="paragraph">
 <p>This feature included with spacy to speed up the pipeline processing
-and making use of multiple core available on the machine. If you are not careful
+and making use of multiple cores available on the machine. If you are not careful
 with this configuration then spark executors won&#8217;t control the python daemon behavior
-of forking processes internally, which leads into over utilization of resource, and
+of forking processes internally, which leads to overutilization of resource, and
 low throughput.</p>
 </div>
 <div class="paragraph">
@@ -334,7 +334,7 @@ docs = nlp.pipe(raw_docs)</code></pre>
 <div class="paragraph">
 <p>If you are enabling this, then your spark configuration shouldn&#8217;t control the
 worker cores, instead each worker/executor uses only 1 core and leave the remaining
-cores for python workers, which is an good option here.</p>
+cores for python workers, which is a good option here.</p>
 </div>
 </div>
 <div class="sect2">
@@ -386,20 +386,20 @@ $ pstree -aup | grep pyspark
       |       |   |   `-python,32615 -m pyspark.daemon
       |   |-grep,1487 --color=auto pyspark
 
-PID 32602 -&gt; The master python job which interact with the spark executor to fetch data
-Other PIDs are the spacy workers launched, default behavior is one worker per cpu core.</code></pre>
+PID 32602 -&gt; The master python job which interacts with the spark executor to fetch data
+Other PIDs are the spacy workers launched, default behavior is one worker per CPU core.</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Suppose we ran the apache spark worker with 8 core, and allocated 1 CPU for each executor,
-then it will fork 8x8 = 64 python processes to do the task, in place of 8 process.
+then it will fork 8x8 = 64 python processes to do the task, in place of 8 processes.
 Which will degrade pipeline performance.</p>
 </div>
 <div class="paragraph">
 <p>For  <code>Yarn</code> or <code>Kubernetes</code> cluster manager this problem won&#8217;t happen as both
 will restrict the system view to application restricted&#8201;&#8212;&#8201;similar to VMs; with the
 help of Control Group (<code>cgroup</code>) and <code>namespace</code> features. So the spark executor
-or the python worker won&#8217;t see entire CPU / RAM for utilization, they gets it by
+or the python worker won&#8217;t see the entire CPU / RAM for utilization, they get it by
 the allocation specified based on the container spec on both Yarn and Kubernetes
 environment.</p>
 </div>
@@ -409,17 +409,17 @@ environment.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure you are writing spark pipeline with serialisable objects, or do lazy
+<p>Ensure you are writing spark pipeline with serializable objects, or do lazy
 evaluation.</p>
 </li>
 <li>
-<p>Be careful when using the external libraries like spacy, which may bring its own
+<p>Be careful when using external libraries like spacy, which may bring its own
 multiprocessing feature, which will result in overloading the system with spark
 executor configuration.</p>
 </li>
 <li>
-<p>Use the different cluster manager other than standalone one to get more control
-over allocating resources to the executors.</p>
+<p>Use a different cluster manager other than a standalone one to get more control
+over-allocating resources to the executors.</p>
 </li>
 </ol>
 </div>
@@ -434,7 +434,6 @@ over allocating resources to the executors.</p>
 </ol>
 </div>
 </div>
-
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 

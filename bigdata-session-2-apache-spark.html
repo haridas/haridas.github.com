@@ -124,11 +124,11 @@
                 </header>
             </section>
             <div class="paragraph">
-<p>This blog series includes 4 worshop session I conducted at Engieneering colleges
+<p>This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.</p>
 </div>
 <div class="paragraph">
-<p>This workshop we cover how spark internals works and how we can configure spark
+<p>In this workshop, we cover how spark internals works and how we can configure spark
 with apache yarn resource manager. I&#8217;m using docker based setup for this
 workshop.</p>
 </div>
@@ -152,7 +152,7 @@ workshop.</p>
 <h2 id="_apache_spark">1. Apache Spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spark is a general purpose distributed analytic engine.</p>
+<p>Spark is a general-purpose distributed analytic engine.</p>
 </div>
 <div class="paragraph">
 <p>Spark can execute tasks in DAG with lazy evaluation for better query
@@ -167,16 +167,16 @@ optimization.</p>
 <p>Spark can be deployed in cluster form to execute tasks across multiple machines.</p>
 </div>
 <div class="paragraph">
-<p>For this workshop we are covering the <strong>Spark over Yarn</strong> setup. Which
+<p>For this workshop, we are covering the <strong>Spark over Yarn</strong> setup. Which
 is more scalable and has more cluster management options provided
 by Yarn resource manager.</p>
 </div>
 <div class="sect4">
 <h5 id="_standalone_cluster">Standalone cluster</h5>
 <div class="paragraph">
-<p>Run spark cluster without hadoop or any of the bellow mentioned
+<p>Run spark cluster without Hadoop or any of the bellow mentioned
 cluster managers. Spark shipped with this Standalone default
-cluster manager. We can easily setup a spark cluster using this.</p>
+cluster manager. We can easily set up a spark cluster using this.</p>
 </div>
 <div class="paragraph">
 <p>Here we aren&#8217;t covering it, Yarn based cluster manager has more
@@ -187,14 +187,14 @@ Yarn based cluster manager here.</p>
 <div class="sect4">
 <h5 id="_spark_on_yarn">Spark on Yarn</h5>
 <div class="paragraph">
-<p>This document discuss more about how we handle the spark on Yarn
-clster. Please read futher to see more on it.</p>
+<p>This document discusses more how we handle the spark on the Yarn
+cluster. Please read further to see more about it.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_spark_on_kubernetes">Spark on Kubernetes</h5>
 <div class="paragraph">
-<p>We will cover this on 4&#8217;th session of Bigdata workshop.</p>
+<p>We will cover this on the 4&#8217;th session of the Bigdata workshop.</p>
 </div>
 </div>
 <div class="sect4">
@@ -218,23 +218,23 @@ covering more on it here.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-Mac and Windows users has to provide enough memory and cpus to the docker
+Mac and Windows users have to provide enough memory and CPUs to the docker
 daemon. On these machines the docker daemon runs under a virtual machine; the installer
-setup all these. The default size gives is around 2 cpu core and 2gb. Ensure you provision
+setup all these. The default size gives is around 2 CPU core and 2gb. Ensure your provision
 at least 5GB RAM and 3Core CPU for docker daemon to play around with bellow experiments.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>We already covered this part, in our session 1. Lets add some extra
-memory constraints when launching the nodes to get more idea on how
+<p>We already covered this part, in our session 1. Let’s add some extra
+memory constraints when launching the nodes to get more ideas of how
 yarn manages the resources. Here we are exposing the required ports
-to host machine to see the Web interfaces of RN and HDFS.</p>
+to the host machines to see the Web interfaces of RN and HDFS.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># Launch namenode with 2 core cpu, 2gb memory.
+<pre class="highlight"><code class="language-bash" data-lang="bash"># Launch namenode with 2 core CPU, 2gb memory.
 #
 docker run -it -d --name namenode \
     -p 8088:8088 \
@@ -259,7 +259,7 @@ docker run -it -d --name datanode2 \
 </div>
 </div>
 <div class="paragraph">
-<p>Check the container memory allocation status using <code>docker stats</code> command.</p>
+<p>Check the container memory allocation status using the <code>docker stats</code> command.</p>
 </div>
 </div>
 <div class="sect2">
@@ -268,8 +268,8 @@ docker run -it -d --name datanode2 \
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">docker run -it -d --name hadoop-cli --network hadoop-nw haridasn/hadoop-cli
 
-# Add the hadoop configuration to hadoop-client container.
-# You can skip this if you already done this.
+# Add the Hadoop configuration to the hadoop-client container.
+# You can skip this if you already have done this.
 docker cp namenode:/opt/hadoop/etc .
 docker cp etc hadoop-cli:/opt/hadoop/</code></pre>
 </div>
@@ -345,7 +345,7 @@ jupyter notebook --no-browser --ip=0.0.0.0 --port 8090</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-Checkout the command line options <code>pyspark --help</code> to know more options
+Check out the command-line options <code>pyspark --help</code> to know more options
 that we can try when submitting the jobs or running as client mode.
 </td>
 </tr>
@@ -357,7 +357,7 @@ that we can try when submitting the jobs or running as client mode.
 <div class="paragraph">
 <p>As we are running all the services via docker ensure that the containers are getting
 enough resources so that we can play with spark using some smaller size data set to
-under stand how the APIs and other features works in spark.</p>
+under stand how the APIs and other features work in spark.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -367,7 +367,7 @@ docker stats</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Test setup is worked well on:-</p>
+<p>The test setup is worked well on:-</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -400,7 +400,6 @@ Allocated
 </div>
 </div>
 </div>
-
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 

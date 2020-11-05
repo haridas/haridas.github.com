@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>HN - HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/hn.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2019-06-02T00:00:00+05:30</updated><entry><title>Bigdata Session 1 - Hadoop with docker</title><link href="https://haridas.in/bigdata-session-1-hadoop-with-docker.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-1-hadoop-with-docker.html</id><summary type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Hadoop with docker is mainly usable for easy prototype and learning purpose, also
-it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+&lt;p&gt;Hadoop with docker is mainly used for easy prototype and learning purpose, also
+it helps to set up quickly set up a Hadoop cluster on your laptop, or on multiple
 machines.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Bigdata Session 1 - Apache Hadoop with …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;p&gt;Bigdata Session 1 …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Hadoop with docker is mainly usable for easy prototype and learning purpose, also
-it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+&lt;p&gt;Hadoop with docker is mainly used for easy prototype and learning purpose, also
+it helps to set up quickly set up a Hadoop cluster on your laptop, or on multiple
 machines.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -40,13 +40,13 @@ machines.&lt;/p&gt;
 &lt;h2 id="_hadoop_cluster"&gt;1. Hadoop Cluster&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Main motive of the session is how we can easily test the hadoop
-cluster and related tools locally or on a small cluster. We will setup the hadoop
+&lt;p&gt;The main motive of the session is how we can easily test the Hadoop
+cluster and related tools locally or on a small cluster. We will set up the Hadoop
 in cluster mode. Hadoop cluster mode means, the individual components are runs
-separately on single machine on separate JVMs or running on multiple machines.&lt;/p&gt;
+separately on a single machine on separate JVMs or running on multiple machines.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Here we will use the docker based setup to quickly play with main
+&lt;p&gt;Here we will use the docker based setup to quickly play with the main
 features of hadoop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
@@ -69,12 +69,12 @@ features of hadoop.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;One hadoop cluster can formed by one namenode and multiple datanodes.
-The resource manager runs on same machine as namenode ( simpler setup).
-Responsibility of namenode is store metadata about distributed
+&lt;p&gt;One Hadoop cluster can be formed by one namenode and multiple datanodes.
+The resource manager runs on the same machine as the namenode ( simpler setup).
+The responsibility of the namenode is to store metadata about the distributed
 filesystem (hdfs). Datanode actually stores the data in blob form,
 and nodemanager will be running on each datanode to handle actual
-computation requests from resource manager.&lt;/p&gt;
+computation requests from the resource manager.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -82,8 +82,8 @@ computation requests from resource manager.&lt;/p&gt;
 &lt;h2 id="_prerequisites"&gt;2. Prerequisites&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;As all cluster environments, network address resolution for each node is a key requirement
-for stable setup. Ideally a local DNS setup which permanently allocate a hostnames
+&lt;p&gt;As in all cluster environments, network address resolution for each node is a key requirement
+for a stable setup. Ideally, a local DNS setup that permanently allocates hostnames
 to all the nodes in the network. Or we can manually set the hostnames without DNS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonitionblock note"&gt;
@@ -107,7 +107,7 @@ This material is verified on Mac and Ubuntu.
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-Not required if you try Docker based setup.
+Not required if you try Docker-based setup.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -120,7 +120,7 @@ recommended.&lt;/p&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_install_docker"&gt;2.2. Install Docker&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Ensue you have latest version of docker is setup on your laptop.&lt;/p&gt;
+&lt;p&gt;Ensure you have the latest version of docker is set up on your laptop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Docker Version: &lt;code&gt;18.x.x&lt;/code&gt;&lt;/p&gt;
@@ -128,7 +128,7 @@ recommended.&lt;/p&gt;
 &lt;div class="sect4"&gt;
 &lt;h5 id="_for_ubuntu_debian_machines"&gt;For Ubuntu / Debian machines&lt;/h5&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Follow this link and install the docker with correct given bellow,&lt;/p&gt;
+&lt;p&gt;Follow this link and install the docker with a correct given bellow,&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" class="bare"&gt;https://docs.docker.com/install/linux/docker-ce/ubuntu/&lt;/a&gt;&lt;/p&gt;
@@ -175,7 +175,7 @@ docker build -t hadoop-2.8.5:latest&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-If you are setting the cluster on same machine with docker, you can skip this step.
+If you are setting the cluster on the same machine with docker, you can skip this step.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -207,7 +207,7 @@ node3
 &lt;h5 id="_set_the_hostname_of_the_machine_to_match_this_address"&gt;Set the hostname of the machine to match this address.&lt;/h5&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;edit &lt;code&gt;/etc/hostname&lt;/code&gt;
-edit &lt;code&gt;/etc/hosts&lt;/code&gt; and replace any occurrence of old hostname with new one.&lt;/p&gt;
+edit &lt;code&gt;/etc/hosts&lt;/code&gt; and replace any occurrence of old hostname with a new one.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect4"&gt;
@@ -219,7 +219,7 @@ hostname&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Cross check all the machines have correct set of hostnames before going to next
+&lt;p&gt;Cross-check all the machines have the correct set of hostnames before going to next
 step.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -227,19 +227,19 @@ step.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
-&lt;h2 id="_setup_cluster_on_single_machine_using_docker"&gt;3. Setup cluster on single machine using docker&lt;/h2&gt;
+&lt;h2 id="_setup_cluster_on_a_single_machine_using_docker"&gt;3. Setup cluster on a single machine using docker&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;We are using the docker container mainly for process isolation,
 for a simpler
-setup on single machine we make use of the same network stack as the host machine.&lt;/p&gt;
+setup on a single machine we make use of the same network stack as the host machine.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_create_a_docker_network"&gt;3.1. Create a docker network&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;For clean hostname resoluation under docker environment, we have
+&lt;p&gt;For clean hostname resolution under docker environment, we have
 to create a docker network; which will internally provide a DNS
-resoluation on the virtual network where all the containers reside.&lt;/p&gt;
+resolution on the virtual network where all the containers reside.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -247,10 +247,10 @@ resoluation on the virtual network where all the containers reside.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;We will use this network to launch all our container, which will
+&lt;p&gt;We will use this network to launch all our containers, which will
 internally allocate all the containers into this network. So we will
-get the hostname resoluation by default. For the non-docker deployment we have
-to setup all these externally.&lt;/p&gt;
+get the hostname resolution by default. For the non-docker deployment, we have
+to set up all these externally.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
@@ -289,7 +289,7 @@ docker ps -a
 docker logs -f datanode1
 
 .
-# If you want launch more datanodes.
+# If you want to launch more datanodes.
 
 docker run -it -d --name datanode2 \
     --network hadoop-nw haridasn/hadoop-2.8.5:latest datanode &amp;lt;name-node-ip&amp;gt;&lt;/code&gt;&lt;/pre&gt;
@@ -299,9 +299,9 @@ docker run -it -d --name datanode2 \
 &lt;div class="sect2"&gt;
 &lt;h3 id="_get_the_client_tools_setup_on_another_docker"&gt;3.4. Get the client tools setup on another docker&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;code&gt;yarn&lt;/code&gt;, &lt;code&gt;hdfs&lt;/code&gt; clinet commands used to submit jobs and see the hdfs
-files respectively are loaded in another docker. Lets use that as our workbench
-to play with our hadoop cluster.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;yarn&lt;/code&gt;, &lt;code&gt;hdfs&lt;/code&gt; client commands used to submit jobs and see the hdfs
+files respectively are loaded in another docker. Let’s use that as our workbench
+to play with our Hadoop cluster.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -349,9 +349,9 @@ wordcount /logs/ /out/&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_pig"&gt;4.1. Pig&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;A simpler command oriented interface to do the map-reduce jobs over
-hadoop cluster. You can think this as a bash scripting over hdfs
-and yarn map-reduce to quickly analyse data on hdfs.&lt;/p&gt;
+&lt;p&gt;A simpler command-oriented interface to do the map-reduce jobs over
+Hadoop cluster. You can think of this as a bash scripting over hdfs
+and yarn map-reduce to quickly analyze data on hdfs.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect4"&gt;
 &lt;h5 id="_download_and_extract_it"&gt;Download and extract it&lt;/h5&gt;
@@ -400,7 +400,7 @@ dump user&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_hive"&gt;4.2. Hive&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;SQL interface over hadoop system.&lt;/p&gt;
+&lt;p&gt;SQL interface over the Hadoop system.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz" class="bare"&gt;http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz&lt;/a&gt;&lt;/p&gt;
@@ -413,28 +413,24 @@ dump user&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="sectionbody"&gt;
 &lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/HKFon6Yn1cmXqa" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/haridasnss/bigdata-and-hadoop-with-docker" title="Bigdata and Hadoop with Docker" target="_blank"&gt;Bigdata and Hadoop with Docker&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="https://www.slideshare.net/haridasnss" target="_blank"&gt;haridasnss&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="hadoop"></category><category term="yarn"></category><category term="hdfs"></category></entry><entry><title>Bigdata Session 2 - Apache Spark</title><link href="https://haridas.in/bigdata-session-2-apache-spark.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-2-apache-spark.html</id><summary type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;/div&gt;</content><category term="data-science"></category><category term="hadoop"></category><category term="yarn"></category><category term="hdfs"></category></entry><entry><title>Bigdata Session 2 - Apache Spark</title><link href="https://haridas.in/bigdata-session-2-apache-spark.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-2-apache-spark.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This workshop we cover how spark internals works and how we can configure spark
+&lt;p&gt;In this workshop, we cover how spark internals works and how we can configure spark
 with apache yarn resource manager. I&amp;#8217;m using docker based setup for this
 workshop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Bigdata Session 1 - Apache Hadoop&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Bigdata …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This blog series includes 4 worshop session I conducted at Engieneering colleges
+&lt;p&gt;Bigdata Session 1 - Apache Hadoop …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This workshop we cover how spark internals works and how we can configure spark
+&lt;p&gt;In this workshop, we cover how spark internals works and how we can configure spark
 with apache yarn resource manager. I&amp;#8217;m using docker based setup for this
 workshop.&lt;/p&gt;
 &lt;/div&gt;
@@ -458,7 +454,7 @@ workshop.&lt;/p&gt;
 &lt;h2 id="_apache_spark"&gt;1. Apache Spark&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Spark is a general purpose distributed analytic engine.&lt;/p&gt;
+&lt;p&gt;Spark is a general-purpose distributed analytic engine.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Spark can execute tasks in DAG with lazy evaluation for better query
@@ -473,16 +469,16 @@ optimization.&lt;/p&gt;
 &lt;p&gt;Spark can be deployed in cluster form to execute tasks across multiple machines.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;For this workshop we are covering the &lt;strong&gt;Spark over Yarn&lt;/strong&gt; setup. Which
+&lt;p&gt;For this workshop, we are covering the &lt;strong&gt;Spark over Yarn&lt;/strong&gt; setup. Which
 is more scalable and has more cluster management options provided
 by Yarn resource manager.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect4"&gt;
 &lt;h5 id="_standalone_cluster"&gt;Standalone cluster&lt;/h5&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Run spark cluster without hadoop or any of the bellow mentioned
+&lt;p&gt;Run spark cluster without Hadoop or any of the bellow mentioned
 cluster managers. Spark shipped with this Standalone default
-cluster manager. We can easily setup a spark cluster using this.&lt;/p&gt;
+cluster manager. We can easily set up a spark cluster using this.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Here we aren&amp;#8217;t covering it, Yarn based cluster manager has more
@@ -493,14 +489,14 @@ Yarn based cluster manager here.&lt;/p&gt;
 &lt;div class="sect4"&gt;
 &lt;h5 id="_spark_on_yarn"&gt;Spark on Yarn&lt;/h5&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This document discuss more about how we handle the spark on Yarn
-clster. Please read futher to see more on it.&lt;/p&gt;
+&lt;p&gt;This document discusses more how we handle the spark on the Yarn
+cluster. Please read further to see more about it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect4"&gt;
 &lt;h5 id="_spark_on_kubernetes"&gt;Spark on Kubernetes&lt;/h5&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;We will cover this on 4&amp;#8217;th session of Bigdata workshop.&lt;/p&gt;
+&lt;p&gt;We will cover this on the 4&amp;#8217;th session of the Bigdata workshop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect4"&gt;
@@ -524,23 +520,23 @@ covering more on it here.&lt;/p&gt;
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-Mac and Windows users has to provide enough memory and cpus to the docker
+Mac and Windows users have to provide enough memory and CPUs to the docker
 daemon. On these machines the docker daemon runs under a virtual machine; the installer
-setup all these. The default size gives is around 2 cpu core and 2gb. Ensure you provision
+setup all these. The default size gives is around 2 CPU core and 2gb. Ensure your provision
 at least 5GB RAM and 3Core CPU for docker daemon to play around with bellow experiments.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;We already covered this part, in our session 1. Lets add some extra
-memory constraints when launching the nodes to get more idea on how
+&lt;p&gt;We already covered this part, in our session 1. Let’s add some extra
+memory constraints when launching the nodes to get more ideas of how
 yarn manages the resources. Here we are exposing the required ports
-to host machine to see the Web interfaces of RN and HDFS.&lt;/p&gt;
+to the host machines to see the Web interfaces of RN and HDFS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# Launch namenode with 2 core cpu, 2gb memory.
+&lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;# Launch namenode with 2 core CPU, 2gb memory.
 #
 docker run -it -d --name namenode \
     -p 8088:8088 \
@@ -565,7 +561,7 @@ docker run -it -d --name datanode2 \
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Check the container memory allocation status using &lt;code&gt;docker stats&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;Check the container memory allocation status using the &lt;code&gt;docker stats&lt;/code&gt; command.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
@@ -574,8 +570,8 @@ docker run -it -d --name datanode2 \
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-bash" data-lang="bash"&gt;docker run -it -d --name hadoop-cli --network hadoop-nw haridasn/hadoop-cli
 
-# Add the hadoop configuration to hadoop-client container.
-# You can skip this if you already done this.
+# Add the Hadoop configuration to the hadoop-client container.
+# You can skip this if you already have done this.
 docker cp namenode:/opt/hadoop/etc .
 docker cp etc hadoop-cli:/opt/hadoop/&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -651,7 +647,7 @@ jupyter notebook --no-browser --ip=0.0.0.0 --port 8090&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-Checkout the command line options &lt;code&gt;pyspark --help&lt;/code&gt; to know more options
+Check out the command-line options &lt;code&gt;pyspark --help&lt;/code&gt; to know more options
 that we can try when submitting the jobs or running as client mode.
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -663,7 +659,7 @@ that we can try when submitting the jobs or running as client mode.
 &lt;div class="paragraph"&gt;
 &lt;p&gt;As we are running all the services via docker ensure that the containers are getting
 enough resources so that we can play with spark using some smaller size data set to
-under stand how the APIs and other features works in spark.&lt;/p&gt;
+under stand how the APIs and other features work in spark.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -673,7 +669,7 @@ docker stats&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Test setup is worked well on:-&lt;/p&gt;
+&lt;p&gt;The test setup is worked well on:-&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -705,9 +701,8 @@ Allocated
 &lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/iup0BsV0cNWjN0" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/haridasnss/apache-spark-on-hadoop-yarn-resource-manager" title="Apache spark on Hadoop Yarn Resource Manager" target="_blank"&gt;Apache spark on Hadoop Yarn Resource Manager&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="https://www.slideshare.net/haridasnss" target="_blank"&gt;haridasnss&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="hadoop"></category><category term="spark"></category><category term="yarn"></category></entry><entry><title>Bigdata Session 3 - Apache Drill</title><link href="https://haridas.in/bigdata-session-3-apache-drill.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-3-apache-drill.html</id><summary type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;/div&gt;</content><category term="data-science"></category><category term="hadoop"></category><category term="spark"></category><category term="yarn"></category></entry><entry><title>Bigdata Session 3 - Apache Drill</title><link href="https://haridas.in/bigdata-session-3-apache-drill.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-3-apache-drill.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -728,7 +723,7 @@ colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;The workshop material also …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -749,7 +744,7 @@ colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;The workshop material also included in a slide, please refer bellow slide for
-details about apache drill and how to play with it.&lt;/p&gt;
+details about the apache drill and how to play with it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_presentation"&gt;1. Presentation&lt;/h3&gt;
@@ -766,9 +761,8 @@ details about apache drill and how to play with it.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="drill"></category><category term="yarn"></category></entry><entry><title>Bigdata Session 4 - Apache Spark on Kubernetes</title><link href="https://haridas.in/bigdata-session-4-apache-spark-on-kubernetes.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-4-apache-spark-on-kubernetes.html</id><summary type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;/div&gt;</content><category term="data-science"></category><category term="drill"></category><category term="yarn"></category></entry><entry><title>Bigdata Session 4 - Apache Spark on Kubernetes</title><link href="https://haridas.in/bigdata-session-4-apache-spark-on-kubernetes.html" rel="alternate"></link><published>2019-06-02T00:00:00+05:30</published><updated>2019-06-02T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-06-02:/bigdata-session-4-apache-spark-on-kubernetes.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -789,7 +783,7 @@ colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect1"&gt;
 &lt;h2 id="_spark_on_kubernetes"&gt;1. Spark on Kubernetes …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This is a series of blog posts about the 4 session I conducted at different engieneering
+&lt;p&gt;This is a series of blog posts about the 4 sessions I conducted at different engineering
 colleges.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="olist arabic"&gt;
@@ -812,18 +806,16 @@ colleges.&lt;/p&gt;
 &lt;h2 id="_spark_on_kubernetes"&gt;1. Spark on Kubernetes&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Kubernetes is a linux container manager, the ideas is similar to how yarn manages the
-jvm containers in hadoop environment. Kubernetes can be used to deploy very hetrogenious
-workloads, and it can meet a requirements of an entire business. eg; Deploy applications
-, dev/stage environments, offline or batch processing services etc. As the hadoop
-environment is specific to bigdata processing, here we can use existing kubernetes
-cluster to do the things that we done on hadoop cluster or spark cluster.&lt;/p&gt;
+&lt;p&gt;Kubernetes is a Linux container manager, the ideas are similar to how yarn manages the
+jvm containers in the Hadoop environment. Kubernetes can be used to deploy very heterogeneous workloads, and it can meet the requirements of an entire business. eg; Deploy applications, dev/stage environments, offline or batch processing services, etc. As the Hadoop
+environment is specific to bigdata processing, here we can use the existing kubernetes
+cluster to do the things that we did on the hadoop cluster or spark cluster.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This tutorial covers how we can quickly setup a kubernetes cluster and deploy a
-spark cluster on it, so that then we can play on spark. The kubernetes act as one
+&lt;p&gt;This tutorial covers how we can quickly set up a kubernetes cluster and deploy a
+spark cluster on it so that then we can play on spark. The kubernetes act as one
 of the spark&amp;#8217;s cluster manager, there is no change in other aspects of how spark
-does it&amp;#8217;s functionalities.&lt;/p&gt;
+does its functionalities.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -831,19 +823,18 @@ does it&amp;#8217;s functionalities.&lt;/p&gt;
 &lt;h2 id="_setup_spark_on_kubernetes"&gt;2. Setup spark on kubernetes&lt;/h2&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Kubernet can be deploy in multi-node or single node environment similar to
-hadoop cluster. Here we try the kubernetes setup on a VM.&lt;/p&gt;
+&lt;p&gt;Kubernetes can be deployed in a multi-node or single node environment similar to
+a hadoop cluster. Here we try the kubernetes set up on a VM.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;We will be using &lt;code&gt;minikube&lt;/code&gt; tool to setup kubernetes cluster. Minikube provide an easy
-way to setup kubernetes cluster on a VM for testing and experiment purpose.&lt;/p&gt;
+&lt;p&gt;We will be using the &lt;code&gt;minikube&lt;/code&gt; tool to set up a kubernetes cluster. Minikube provides an easy way to set up a Kubernetes cluster on a VM for testing and experiment purposes.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_gnulinux_environment"&gt;2.1. Gnu/Linux Environment:-&lt;/h3&gt;
 &lt;div class="ulist"&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Install virtualbox&lt;/p&gt;
+&lt;p&gt;Install VirtualBox&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Follow this link to install minikube &lt;a href="https://kubernetes.io/docs/tasks/tools/install-minikube/#install-minikube" class="bare"&gt;https://kubernetes.io/docs/tasks/tools/install-minikube/#install-minikube&lt;/a&gt;&lt;/p&gt;
@@ -883,7 +874,7 @@ minikube start --vm-driver hyperkit --cpus 3 --memory 6000&lt;/code&gt;&lt;/pre&
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Copy the master URL, we need it bellow to submit spark jobs.&lt;/p&gt;
+&lt;p&gt;Copy the master URL, we need it below to submit spark jobs.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -895,15 +886,15 @@ kubectl run jump-1 -ti --rm=true -n spark1 --image=brainlounge/jumppod:ubuntu-18
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_ensure_you_have_jdk_1_8_installed_in_your_laptop"&gt;2.4. Ensure you have JDK 1.8 installed in your laptop&lt;/h3&gt;
+&lt;h3 id="_ensure_you_have_jdk_1_8_installed_on_your_laptop"&gt;2.4. Ensure you have JDK 1.8 installed on your laptop&lt;/h3&gt;
 
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_prepare_spark_container_images_for_kubernetes_cluster"&gt;2.5. Prepare spark container images for kubernetes cluster&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Kubernetes is a container manager or orchestrator, we need to package the spark in
-docker image form to deploy them on kubernetes cluster.
-&lt;code&gt;spark-submit&lt;/code&gt; command support the spark job submission into kubernetes cluster
+docker image form to deploy them on a Kubernetes cluster.
+&lt;code&gt;spark-submit&lt;/code&gt; command supports the spark job submission into kubernetes cluster
 by just changing the &lt;code&gt;--master url&lt;/code&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonitionblock note"&gt;
@@ -953,15 +944,14 @@ is the &lt;code&gt;--master&lt;/code&gt; param and extra &lt;code&gt;--conf&lt;/
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Kubernetes can work with wide variety of application cluster, your entire application
+&lt;p&gt;Kubernetes can work with a wide variety of application clusters, your entire application
 stack it can host.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Easy to deploy and manager different types of applications and its different stages.&lt;/p&gt;
+&lt;p&gt;Easy to deploy and manage different types of applications and their different stages.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;If you have a kubernetes cluster in your infrastructure, this is the best option
-available to run a spark.&lt;/p&gt;
+&lt;p&gt;If you have a kubernetes cluster in your infrastructure, this is the best option available to run a spark.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -972,28 +962,27 @@ available to run a spark.&lt;/p&gt;
 &lt;div class="sectionbody"&gt;
 &lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/sRm6qq2Fdaplhk" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/haridasnss/apache-spark-on-kubernetes" title="Apache Spark on Kubernetes" target="_blank"&gt;Apache Spark on Kubernetes&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="https://www.slideshare.net/haridasnss" target="_blank"&gt;haridasnss&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="hadoop"></category><category term="spark"></category><category term="drill"></category><category term="kubernetes"></category></entry><entry><title>Run spacy jobs on Apache Spark</title><link href="https://haridas.in/run-spacy-jobs-on-apache-spark.html" rel="alternate"></link><published>2019-05-16T00:00:00+05:30</published><updated>2019-05-16T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-05-16:/run-spacy-jobs-on-apache-spark.html</id><summary type="html">&lt;div id="preamble"&gt;
+&lt;/div&gt;</content><category term="data-science"></category><category term="hadoop"></category><category term="spark"></category><category term="drill"></category><category term="kubernetes"></category></entry><entry><title>Run spacy jobs on Apache Spark</title><link href="https://haridas.in/run-spacy-jobs-on-apache-spark.html" rel="alternate"></link><published>2019-05-16T00:00:00+05:30</published><updated>2019-05-16T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-05-16:/run-spacy-jobs-on-apache-spark.html</id><summary type="html">&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
 tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
-models for Tagging, NER and related operations.&lt;/p&gt;
+models for Tagging, NER, and related operations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf, etc,
 we mostly need accurate POS tagging and …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Spacy is a state-of-the-art NLP library in Python, which provides a lot of
 tools that required in NLP problems, eg; NER, unicode tokenizers, Deep learning
-models for Tagging, NER and related operations.&lt;/p&gt;
+models for Tagging, NER, and related operations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf,etc,
+&lt;p&gt;Spark provides only traditional NLP tools like standard tokenizers, tf-idf, etc,
 we mostly need accurate POS tagging and chunking features when working with
-NLP problems, which spark libraries aren&amp;#8217;t close to spacy. Those cases we need to
-relay on spacy.&lt;/p&gt;
+NLP problems, which spark libraries aren&amp;#8217;t close to spacy. In those cases, we need to
+rely on spacy.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1002,7 +991,7 @@ relay on spacy.&lt;/p&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;A quick brief about the pyspark architecture, Bellow image shows that the workers
 spawn python process to run the pyspark jobs; which are written in python and all
-necessary python ML libraries like sklearn, numpy, spacy etc.&lt;/p&gt;
+necessary python ML libraries like sklearn, numpy, spacy, etc.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="imageblock"&gt;
 &lt;div class="content"&gt;
@@ -1031,35 +1020,35 @@ not.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Usually when we submit spark jobs to the spark &lt;code&gt;driver&lt;/code&gt; compiles it and optimize the
+&lt;p&gt;Usually when we submit spark jobs to the spark &lt;code&gt;driver&lt;/code&gt; compiles it and optimizes the
 pipeline. The final plan of the pipeline is split across the &lt;code&gt;executors&lt;/code&gt; based on
-the DAG of data flow defined on the pipeline. Here the spark executors does the
+the DAG of data flow defined on the pipeline. Here the spark executors do the
 actual work, where the driver program sends out the relevant codes to executes
-at executor side. This is being done by serializing the relevant parts of the
+at the executor side. This is being done by serializing the relevant parts of the
 pipeline.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;One thing to ensure is our program is serializable ( Source code, classes and objects ).
-Otherwise spark fails to execute the pipeline.&lt;/p&gt;
+&lt;p&gt;One thing to ensure is our program is serializable ( Source code, classes, and objects ).
+Otherwise, the spark fails to execute the pipeline.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_how_to_skip_spacy_model_serialization"&gt;How to skip spacy model serialization&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;How we ensure this is by avoiding the scenario of serializing the spacy&amp;#8217;s inbuilt
-trained binary models. How we do that ?&lt;/p&gt;
+trained binary models. How we do that?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Pyspark uses &lt;code&gt;PickleSerializer&lt;/code&gt; to serialize the python objects, but spacy models
-aren&amp;#8217;t serialisable using &lt;code&gt;PickleSerializer&lt;/code&gt; which is trigger the issue when we
-load the spacy model first and then refer in worker code.&lt;/p&gt;
+aren&amp;#8217;t serializable using &lt;code&gt;PickleSerializer&lt;/code&gt; which is trigger the issue when we
+load the spacy model first and then refer to worker code.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="sect3"&gt;
 &lt;h4 id="_this_code_will_fail"&gt;This code will fail&lt;/h4&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Here we simply loading the spacy object at driver side itself, when the python modules
+&lt;p&gt;Here we simply loading the spacy object at the driver side itself, when the python modules
 are getting loaded, which demands the pickling for the spacy objects. Which eventually
-fails when ship it to the worker side.&lt;/p&gt;
+fails when shipping it to the worker side.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1072,13 +1061,13 @@ fails when ship it to the worker side.&lt;/p&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Here we are wrapping the spacy model under a lazy function, which will ensure
 the model won&amp;#8217;t get loaded until it&amp;#8217;s really required&amp;#8201;&amp;#8212;&amp;#8201;which is actually required
-when the executor runs this code with partitioned dataset.&lt;/p&gt;
+when the executor runs this code with a partitioned dataset.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;# Here we are not loading the model at the loading time, only the worker code
 # will invoke this routine and gets the spacy object. Which means we are loading
-# new spacy models on every executors.
+# new spacy models on every executor.
 SPACY_MODEL = None
 def get_spacy_model():
     global SPACY_MODEL
@@ -1089,13 +1078,13 @@ def get_spacy_model():
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;At driver side we won&amp;#8217;t load the spacy model, instead ensure they are loaded lazily at
+&lt;p&gt;On the driver side, we won&amp;#8217;t load the spacy model, instead ensure they are loaded lazily at
 executor side.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Here the models can&amp;#8217;t be serialised at the driver side and ship it to worker and
+&lt;p&gt;Here the models can&amp;#8217;t be serialized at the driver side and ship it to work and
 load it back, So we need to ensure only at the runtime the models are really gets
-loaded into the worker memory.&lt;/p&gt;
+loaded into the working memory.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect3"&gt;
@@ -1174,9 +1163,9 @@ print(data1.select("tokens").show())&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id="_spacy_multi_processing_capabilities"&gt;Spacy multi-processing capabilities&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This feature included with spacy to speed up the pipeline processing
-and making use of multiple core available on the machine. If you are not careful
+and making use of multiple cores available on the machine. If you are not careful
 with this configuration then spark executors won&amp;#8217;t control the python daemon behavior
-of forking processes internally, which leads into over utilization of resource, and
+of forking processes internally, which leads to overutilization of resource, and
 low throughput.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
@@ -1193,7 +1182,7 @@ docs = nlp.pipe(raw_docs)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;If you are enabling this, then your spark configuration shouldn&amp;#8217;t control the
 worker cores, instead each worker/executor uses only 1 core and leave the remaining
-cores for python workers, which is an good option here.&lt;/p&gt;
+cores for python workers, which is a good option here.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
@@ -1245,20 +1234,20 @@ $ pstree -aup | grep pyspark
       |       |   |   `-python,32615 -m pyspark.daemon
       |   |-grep,1487 --color=auto pyspark
 
-PID 32602 -&amp;gt; The master python job which interact with the spark executor to fetch data
-Other PIDs are the spacy workers launched, default behavior is one worker per cpu core.&lt;/code&gt;&lt;/pre&gt;
+PID 32602 -&amp;gt; The master python job which interacts with the spark executor to fetch data
+Other PIDs are the spacy workers launched, default behavior is one worker per CPU core.&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Suppose we ran the apache spark worker with 8 core, and allocated 1 CPU for each executor,
-then it will fork 8x8 = 64 python processes to do the task, in place of 8 process.
+then it will fork 8x8 = 64 python processes to do the task, in place of 8 processes.
 Which will degrade pipeline performance.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;For  &lt;code&gt;Yarn&lt;/code&gt; or &lt;code&gt;Kubernetes&lt;/code&gt; cluster manager this problem won&amp;#8217;t happen as both
 will restrict the system view to application restricted&amp;#8201;&amp;#8212;&amp;#8201;similar to VMs; with the
 help of Control Group (&lt;code&gt;cgroup&lt;/code&gt;) and &lt;code&gt;namespace&lt;/code&gt; features. So the spark executor
-or the python worker won&amp;#8217;t see entire CPU / RAM for utilization, they gets it by
+or the python worker won&amp;#8217;t see the entire CPU / RAM for utilization, they get it by
 the allocation specified based on the container spec on both Yarn and Kubernetes
 environment.&lt;/p&gt;
 &lt;/div&gt;
@@ -1268,17 +1257,17 @@ environment.&lt;/p&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Ensure you are writing spark pipeline with serialisable objects, or do lazy
+&lt;p&gt;Ensure you are writing spark pipeline with serializable objects, or do lazy
 evaluation.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Be careful when using the external libraries like spacy, which may bring its own
+&lt;p&gt;Be careful when using external libraries like spacy, which may bring its own
 multiprocessing feature, which will result in overloading the system with spark
 executor configuration.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Use the different cluster manager other than standalone one to get more control
-over allocating resources to the executors.&lt;/p&gt;
+&lt;p&gt;Use a different cluster manager other than a standalone one to get more control
+over-allocating resources to the executors.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -1292,13 +1281,12 @@ over allocating resources to the executors.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="bigdata"></category><category term="nlp"></category><category term="spark"></category></entry><entry><title>Apache Spark cheat sheet for scala and pyspark</title><link href="https://haridas.in/apache-spark-cheat-sheet-for-scala-and-pyspark.html" rel="alternate"></link><published>2019-04-15T00:00:00+05:30</published><updated>2019-04-15T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-04-15:/apache-spark-cheat-sheet-for-scala-and-pyspark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+&lt;/div&gt;</content><category term="data-science"></category><category term="bigdata"></category><category term="nlp"></category><category term="spark"></category></entry><entry><title>Apache Spark cheat sheet for scala and pyspark</title><link href="https://haridas.in/apache-spark-cheat-sheet-for-scala-and-pyspark.html" rel="alternate"></link><published>2019-04-15T00:00:00+05:30</published><updated>2019-04-15T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2019-04-15:/apache-spark-cheat-sheet-for-scala-and-pyspark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meet_particular_criteria"&gt;Filter rows which meet particular criteria&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_how_to_access_rdd_methods_from_pyspark_side"&gt;How to access RDD methods from pyspark side&lt;/a&gt;&lt;/li&gt;
@@ -1308,14 +1296,14 @@ over allocating resources to the executors.&lt;/p&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_read_the_partitioned_json_files_from_disk"&gt;Read the partitioned json files from disk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_save_partitioned_files_into_a_single_file"&gt;Save partitioned files into a single file.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_filter_rows_which_meet_particular_criteria"&gt;Filter rows which meet particular criteria&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_map_with_case_class"&gt;Map with case class&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_how_to_access_rdd_methods_from_pyspark_side"&gt;How to access RDD methods from pyspark side&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_filtering_a_dataframe_column_of_type_seqstring"&gt;Filtering a DataFrame column of type Seq[String]&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_filter_a_column_with_custom_regex_and_udf"&gt;Filter a column with custom regex and udf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_sum_a_column_elements"&gt;Sum a column elements&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;Remove unicode characters from tokens&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#_remove_unicode_characters_from_tokens"&gt;Remove Unicode characters from tokens&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_connecting_to_jdbc_with_partition_by_integer_column"&gt;Connecting to jdbc with partition by integer column&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_parse_nested_json_data"&gt;Parse nested json data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#_string_arraystring_conversion"&gt;"string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/a&gt;&lt;/li&gt;
@@ -1365,10 +1353,10 @@ This code snippets are tested on &lt;code&gt;spark-2.4.x&lt;/code&gt; version, m
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Here we are merging all the partitions into one file and dumping it into
 the disk, this happens at the driver node, so be careful with sie of
-data set that you are dealing with. Otherwise the driver node may go out of memory.&lt;/p&gt;
+data set that you are dealing with. Otherwise, the driver node may go out of memory.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Use &lt;code&gt;coaleace&lt;/code&gt; method to adjust the partition size of RDD based on our needs.&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;coalesce&lt;/code&gt; method to adjust the partition size of RDD based on our needs.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1379,7 +1367,7 @@ data set that you are dealing with. Otherwise the driver node may go out of memo
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_filter_rows_which_meets_particular_criteria"&gt;Filter rows which meets particular criteria&lt;/h3&gt;
+&lt;h3 id="_filter_rows_which_meet_particular_criteria"&gt;Filter rows which meet particular criteria&lt;/h3&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
 &lt;pre class="highlight"&gt;&lt;code class="language-scala" data-lang="scala"&gt;vocabDist
@@ -1401,7 +1389,7 @@ vocabDist
 &lt;div class="sect2"&gt;
 &lt;h3 id="_map_with_case_class"&gt;Map with case class&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Use case class if you want to map on multiple column with complex
+&lt;p&gt;Use case class if you want to map on multiple columns with a complex
 data structure.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
@@ -1432,8 +1420,8 @@ val newDf = personDf.map {
 &lt;div class="sect2"&gt;
 &lt;h3 id="_use_selectexpr_to_access_inner_attributes"&gt;Use selectExpr to access inner attributes&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Provide easily access the nested datastructures like &lt;code&gt;json&lt;/code&gt; and filter them
-using the any existing udfs, or use your udf to get more flexibility here.&lt;/p&gt;
+&lt;p&gt;Provide easily access the nested data structures like &lt;code&gt;json&lt;/code&gt; and filter them
+using any existing udfs, or use your udf to get more flexibility here.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1450,7 +1438,7 @@ doc.selectExpr("doc_id", "size(features.values) as feature_size")
 we need to invoke the &lt;code&gt;.rdd&lt;/code&gt; to convert the DataFrame to support these features.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;For example here we are converting a sparse vector to dense and suming it in column wise.&lt;/p&gt;
+&lt;p&gt;For example, here we are converting a sparse vector to dense and summing it in column-wise.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1508,9 +1496,9 @@ Other function examples are "avg", "std" etc.. Refer org.apache.spark.sql.functi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="sect2"&gt;
-&lt;h3 id="_remove_unicode_characters_from_tokens"&gt;Remove unicode characters from tokens&lt;/h3&gt;
+&lt;h3 id="_remove_unicode_characters_from_tokens"&gt;Remove Unicode characters from tokens&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Some time we only need to work with the ascii text, so it&amp;#8217;s better to clean out
+&lt;p&gt;Sometimes we only need to work with the ascii text, so it&amp;#8217;s better to clean out
 other chars.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
@@ -1529,13 +1517,13 @@ val minLengthFilter = udf((arr: Seq[String]) =&amp;gt; arr.filter(_.length &amp;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;When using the spark to read data from the SQL database and then do the
 other pipeline processing on it, it&amp;#8217;s recommended to partition the data
-according to the natural segments in the data, or at least on a integer
-column, so that spark can fire multiple sql quries to read data from SQL
+according to the natural segments in the data, or at least on an integer
+column, so that spark can fire multiple sql queries to read data from SQL
 server and operate on it separately, the results are going to the spark
 partition.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Bellow commands are in pyspark, but the APIs are same for scala version also.&lt;/p&gt;
+&lt;p&gt;Bellow commands are in pyspark, but the APIs are the same for the scala version also.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1560,14 +1548,14 @@ report_ids = spark.read.jdbc(url = jdbc_url,
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This will be very helpful when working with &lt;code&gt;pyspark&lt;/code&gt; and want to pass very
 nested json data between JVM and Python processes. Lately spark community relay on
-apache arrow project to avoid multiple serialization / deserialization costs when
+apache arrow project to avoid multiple serialization/deserialization costs when
 sending data from java memory to python memory or vice versa.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;So to process the inner objects you can make use of this &lt;code&gt;getItem&lt;/code&gt; method
 to filter out required parts of the object and pass it over to python memory via
-arrow. In future arrow might support arbitrary nested data, but right now it won&amp;#8217;t
-support complex nested formats. General recommended option is go without nesting.&lt;/p&gt;
+arrow. In the future arrow might support arbitrarily nested data, but right now it won&amp;#8217;t
+support complex nested formats. The general recommended option is to go without nesting.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1583,7 +1571,7 @@ support complex nested formats. General recommended option is go without nesting
 &lt;div class="sect2"&gt;
 &lt;h3 id="_string_arraystring_conversion"&gt;"string &amp;#8658; array&amp;lt;string&amp;gt;" conversion&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Type annotation &lt;code&gt;.as[String]&lt;/code&gt; avoid implicite conversion assumed.&lt;/p&gt;
+&lt;p&gt;Type annotation &lt;code&gt;.as[String]&lt;/code&gt; avoid implicit conversion assumed.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1595,7 +1583,7 @@ support complex nested formats. General recommended option is go without nesting
 &lt;h3 id="_a_crazy_string_collection_and_groupby"&gt;A crazy string collection and groupby&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;This is a stream of operation on a column of type &lt;code&gt;Array[String]&lt;/code&gt; and collect
-the tokens and count the ngram distribution over all the tokens.&lt;/p&gt;
+the tokens and count the n-gram distribution over all the tokens.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1616,9 +1604,9 @@ the tokens and count the ngram distribution over all the tokens.&lt;/p&gt;
 &lt;div class="sect2"&gt;
 &lt;h3 id="_how_to_access_aws_s3_on_spark_shell_or_pyspark"&gt;How to access AWS s3 on spark-shell or pyspark&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;Most of the time we might required a cloud storage provider like s3 / gs etc, to
+&lt;p&gt;Most of the time we might require a cloud storage provider like s3 / gs etc, to
 read and write the data for processing, very few keeps in-house hdfs to handle the data
-themself, but for majority I think cloud storage easy to start with and don&amp;#8217;t need
+themself, but for majority, I think cloud storage easy to start with and don&amp;#8217;t need
 to bother about the size limitations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
@@ -1666,8 +1654,8 @@ spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.
 &lt;div class="sect2"&gt;
 &lt;h3 id="_set_spark_scratch_space_or_tmp_directory_correctly"&gt;Set spark scratch space or tmp directory correctly&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;This might require when working with huge dataset and your machine can&amp;#8217;t hold them
-all in memory for a given pipeline steps, those cases the data will be spilled over
+&lt;p&gt;This might require when working with a huge dataset and your machine can&amp;#8217;t hold them
+all in memory for given pipeline steps, those cases the data will be spilled over
 to disk, and saved in tmp directory.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
@@ -1689,10 +1677,10 @@ spark.driver.extraJavaOptions /mnt/spark-tmp
 &lt;div class="sect2"&gt;
 &lt;h3 id="_pyspark_doesnt_support_all_the_data_types"&gt;Pyspark doesn&amp;#8217;t support all the data types.&lt;/h3&gt;
 &lt;div class="paragraph"&gt;
-&lt;p&gt;When using the &lt;code&gt;arrow&lt;/code&gt; to transport data between jvm to python memory, arrow may throw
-bellow error if the types aren&amp;#8217;t compatible to existing converters. The fixes may be come
-in future on the arrow&amp;#8217;s project. I&amp;#8217;m keeping this here to know that how the pyspark gets
-data from jvm and what are those things can go wrong on that process.&lt;/p&gt;
+&lt;p&gt;When using the &lt;code&gt;arrow&lt;/code&gt; to transport data between jvm to python memory, the arrow may throw
+bellow error if the types aren&amp;#8217;t compatible to existing converters. The fixes may become
+in the future on the arrow&amp;#8217;s project. I&amp;#8217;m keeping this here to know that how the pyspark gets
+data from jvm and what are those things can go wrong in that process.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Example 1:&lt;/p&gt;
@@ -1720,7 +1708,7 @@ pyarrow.lib.ArrowNotImplementedError: NumPyConverter doesn't implement &amp;lt;l
 &lt;div class="paragraph"&gt;
 &lt;p&gt;Once you have downloaded the same version of the spark binary across the machines
 you can start the spark master and slave processes to form the standalone spark
-cluster. Or you could run both these services in same machine also.&lt;/p&gt;
+cluster. Or you could run both these services on the same machine also.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
@@ -1731,7 +1719,7 @@ cluster. Or you could run both these services in same machine also.&lt;/p&gt;
 ./sbin/start-master.sh [--properties-file &amp;lt;file&amp;gt;]
 
 
-# Start slave services on each nodes where we want to run the slave and connect
+# Start slave services on each node where we want to run the slave and connect
 # All the slaves to master to form the cluster.
 #
 ./sbin/start-slave.sh -c 2 -m 16g spark://master-host:7077&lt;/code&gt;&lt;/pre&gt;
@@ -1743,17 +1731,16 @@ cluster. Or you could run both these services in same machine also.&lt;/p&gt;
 &lt;div class="olist arabic"&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;
-&lt;p&gt;Worker can have multiple executor.&lt;/p&gt;
+&lt;p&gt;Worker can have multiple executors.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Worker is like node manager in yarn.&lt;/p&gt;
+&lt;p&gt;Worker is like a node manager in yarn.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;We can set worker max core and memory usage setting.&lt;/p&gt;
+&lt;p&gt;We can set worker max core and memory usage settings.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;When defining the spark application via spark-shell or so, define the executor
-memory and cores.&lt;/p&gt;
+&lt;p&gt;When defining the spark application via spark-shell or so, define the executor memory and cores.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -1775,7 +1762,7 @@ memory and cores.&lt;/p&gt;
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-This page will be updaed as and when I see some reusable snippet of code for spark operations
+This page will be updated as and when I see some reusable snippet of code for spark operations
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -1803,8 +1790,7 @@ This page will be updaed as and when I see some reusable snippet of code for spa
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="spark"></category><category term="dataframe"></category><category term="pyspark"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in/apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09:/apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
+&lt;/div&gt;</content><category term="data-science"></category><category term="spark"></category><category term="dataframe"></category><category term="pyspark"></category></entry><entry><title>Apache Toree notebook for Spark</title><link href="https://haridas.in/apache-toree-notebook-for-spark.html" rel="alternate"></link><published>2018-12-09T00:00:00+05:30</published><updated>2018-12-09T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-12-09:/apache-toree-notebook-for-spark.html</id><summary type="html">&lt;div id="toc" class="toc"&gt;
 &lt;div id="toctitle"&gt;Table of Contents&lt;/div&gt;
 &lt;ul class="sectlevel2"&gt;
 &lt;li&gt;&lt;a href="#_configure_toree_with_jupyter_notebook"&gt;1. Configure toree with jupyter notebook&lt;/a&gt;&lt;/li&gt;
@@ -2032,8 +2018,7 @@ interface instead of web-console, some cases backend console is better.&lt;/p&gt
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="apache-spark"></category><category term="apache-toree"></category></entry><entry><title>Differential Equations Needed for ML</title><link href="https://haridas.in/differential-equations-needed-for-ml.html" rel="alternate"></link><published>2018-10-19T00:00:00+05:30</published><updated>2018-10-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-10-19:/differential-equations-needed-for-ml.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;/div&gt;</content><category term="data-science"></category><category term="apache-spark"></category><category term="apache-toree"></category></entry><entry><title>Differential Equations Needed for ML</title><link href="https://haridas.in/differential-equations-needed-for-ml.html" rel="alternate"></link><published>2018-10-19T00:00:00+05:30</published><updated>2018-10-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-10-19:/differential-equations-needed-for-ml.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;In this post I want to include basic derivaties and primitive building blocks required
 from calculus for the model optimization. These are commonly used, but after some
 time I&amp;#8217;m losing grip of these basics, so I want to keep it one place for future
@@ -2183,8 +2168,7 @@ The math equetions are created using &lt;a href="https://www.mathcha.io" class="
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="data-science"></category><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Production ready docker images</title><link href="https://haridas.in/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19:/production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
+&lt;/div&gt;</content><category term="data-science"></category><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Production ready docker images</title><link href="https://haridas.in/production-ready-docker-images.html" rel="alternate"></link><published>2018-09-19T00:00:00+05:30</published><updated>2018-09-19T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2018-09-19:/production-ready-docker-images.html</id><summary type="html">&lt;div class="paragraph"&gt;
 &lt;p&gt;Docker is a de facto standard across all the software development pipeline.
 Very few and legacy systems aren&amp;#8217;t using dockers. Docker is very easy to starts with
 for the development phase, but taking the docker into production level involves
@@ -2479,8 +2463,7 @@ interaction happens across the system.&lt;/p&gt;
 provides general security for the host machine.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="devops"></category><category term="docker"></category><category term="security"></category></entry><entry><title>Bind With Promise</title><link href="https://haridas.in/bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-21:/bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
+&lt;/div&gt;</content><category term="devops"></category><category term="docker"></category><category term="security"></category></entry><entry><title>Bind With Promise</title><link href="https://haridas.in/bind-with-promise.html" rel="alternate"></link><published>2017-12-21T00:00:00+05:30</published><updated>2017-12-21T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-21:/bind-with-promise.html</id><summary type="html">&lt;div id="preamble"&gt;
 &lt;div class="sectionbody"&gt;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;code&gt;bind&lt;/code&gt; function in js is an interesting function that does behave
@@ -2632,8 +2615,7 @@ that the promise chain will take care the result propagation properly.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-</content><category term="programming"></category><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
+&lt;/div&gt;</content><category term="programming"></category><category term="nodejs"></category><category term="promise"></category><category term="bind"></category></entry><entry><title>Vim Upgrade 2017</title><link href="https://haridas.in/vim-upgrade-2017.html" rel="alternate"></link><published>2017-12-18T00:00:00+05:30</published><updated>2017-12-18T00:00:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2017-12-18:/vim-upgrade-2017.html</id><summary type="html">&lt;p class="first last"&gt;Vim upgrade with new set of plugins.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;After using vim for few years the main difficulties I have with my current
 pathogen based vim plugin environment is, it's bit difficult to re-produce a
 fresh setup on new machine, managing gitmodules is dirty thing and adding new
@@ -2889,8 +2871,8 @@ a redis HASH set.&lt;/p&gt;
        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
            &lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
            &lt;span class="c1"&gt;// Do your work now..&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -3817,21 +3799,21 @@ implementation.&lt;/p&gt;
 &lt;span class="cp"&gt;#define SIZE 512&lt;/span&gt;
 
 
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sa_family&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;send_sock_msg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sock_fd&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="c1"&gt;//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);&lt;/span&gt;
 
@@ -3860,9 +3842,9 @@ implementation.&lt;/p&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;INET6_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
     &lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="n"&gt;memset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
@@ -3889,12 +3871,12 @@ implementation.&lt;/p&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;setsockopt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: bind&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -3910,7 +3892,7 @@ implementation.&lt;/p&gt;
 
     &lt;span class="n"&gt;freeaddrinfo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// No need for it further.&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
@@ -3920,16 +3902,16 @@ implementation.&lt;/p&gt;
 
     &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;sin_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;accept ...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="n"&gt;inet_ntop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ss_family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
         &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: got connection from %s &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -3942,7 +3924,7 @@ implementation.&lt;/p&gt;
 
             &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logfile&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
                 &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;logfile open error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="p"&gt;}&lt;/span&gt;
 
             &lt;span class="cm"&gt;/*&lt;/span&gt;
@@ -4809,50 +4791,49 @@ when you are trying to mount it in the booting time itself.&lt;/p&gt;
 alternative of encrypting entire home directory using the inbuilt tool
 available with the ecryptfs utils package. sdfasd&lt;/dd&gt;
 &lt;/dl&gt;
-</content><category term="devops"></category><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
-&lt;p&gt;I was started to use the Vim …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated to Vim editor
-rather than typical IDE's like Eclipse, Visual Studios etc. Every one using Vim
-has a story to tell, How they came in to Vim. Here is my story.&lt;/p&gt;
-&lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for
-a long time I was just used it whenever there is no  other option available, and
-I did't realized the importance of Vim editor.&lt;/p&gt;
+</content><category term="devops"></category><category term="security"></category><category term="server"></category></entry><entry><title>How I came in to Vim</title><link href="https://haridas.in/how-i-came-in-to-vim.html" rel="alternate"></link><published>2012-05-27T16:30:00+05:30</published><updated>2012-05-27T16:30:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2012-05-27:/how-i-came-in-to-vim.html</id><summary type="html">&lt;p&gt;I know most of them in the programming world are very fascinated by Vim editor
+rather than typical IDE's like Eclipse, Visual Studios, etc. Every one using Vim
+has a story to tell, How they came into Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I know most of them in the programming world are very fascinated by Vim editor
+rather than typical IDE's like Eclipse, Visual Studios, etc. Every one using Vim
+has a story to tell, How they came into Vim. Here is my story.&lt;/p&gt;
+&lt;p&gt;I was started to use the Vim editor from my College time onwards. Since then for a long time I have just used it whenever there is no  other option available, and
+I didn’t realize the importance of Vim editor.&lt;/p&gt;
 &lt;p&gt;After I started my Job as Server Administrator, I have to use Vim regularly to
 work with servers and other configuration files. But I used it because there is
-no other thing available at remote severs :). And some times when I watching
+no other thing available at remote servers :). And some times when I watching
 hackers video, most of them are using Vim editor to show their works,
-I always wonder why they are using it instead of common IDE's. In the same time
-I have an interest in Programming, so I tried to  automate my  works using
-different Scripting and Programming languages, that eventually turned me to a Programmer.&lt;/p&gt;
-&lt;p&gt;When I was started to working as a Django developer I used to work with Eclipse with
-python binding. At these times I very rarely used the Vim editor, most of time
-I was engaged in Eclipse editor. Then I moved to another company as
+I always wonder why they are using it instead of common IDE's. At the same time
+I have an interest in Programming, so I tried to automate my works using
+different Scripting and Programming languages, which eventually turned me into a Programmer.&lt;/p&gt;
+&lt;p&gt;When I was started working as a Django developer I used to work with Eclipse with
+python binding. At these times I very rarely used the Vim editor, most of the time
+I was engaged in the Eclipse editor. Then I moved to another company as
 a Python and Django backend developer, there I met &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; My Team
 Lead and a Big fan of Vim, He already using Vim as his main editor and he encouraged me and others to use
-the Vim editor. But for few weeks I didn't mind it, and was worked with eclipse
+the Vim editor. But for a few weeks, I didn't mind it and was worked with the eclipse
 itself.&lt;/p&gt;
-&lt;p&gt;Finally one day evening I realized the fact that why the Vim gets this much interest
-among programmers and other hackers. That was a sudden move, with in that day
-Itself I learned the basic navigation key bindings and &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
-me to setup the Vim as a general IDE for all my works. After that we together
+&lt;p&gt;Finally one day evening I realized the fact that why Vim gets this much interest
+among programmers and other hackers. That was a sudden move, within that day
+I learned the basic navigation key bindings and &lt;a class="reference external" href="https://twitter.com/satyajitranjeev"&gt;&amp;#64;Satyajit Ranjeev&lt;/a&gt; helped
+me to set up Vim as a general IDE for all my works. After that, we together
 working and learning to improve the Vim skills every day and I'm enjoying the
 facts that I'm using it for my project works right after the first day of my
 basic learning. When I look back I can see that I missed the Vim editor
-for long time. Any way right now I became a big fan of Vim :). I used Vim to
+for a long time. Anyway, right now I became a big fan of Vim :). I used Vim to
 type this blog entry.&lt;/p&gt;
 &lt;p&gt;The main facts that I liked with the Vim editors while comparing with other
 editors are,&lt;/p&gt;
 &lt;div class="section" id="basic-navigation"&gt;
 &lt;h2&gt;Basic Navigation&lt;/h2&gt;
-&lt;p&gt;Actually this feature is the one which brought me to Vim. There is no need to
-use Mouse, We can do every thing using key board. The mouse usage is far less
-productive and more stressful if we compare the same operation with keyboard.
-Mouse has an importance when user has no or very less idea about the GUI, then
-He/She can do better with mouse. But that case is valid for short term usage
+&lt;p&gt;Actually, this feature is the one that brought me to Vim. There is no need to
+use Mouse, We can do everything using the keyboard. The mouse usage is far less
+productive and more stressful if we compare the same operation with the keyboard.
+The mouse has importance when the user has no or very less idea about the GUI, then
+He/She can do better with a mouse. But that case is valid for short term usage
 only.&lt;/p&gt;
 &lt;p&gt;If you are comfortable with touch typing then it's very easy to catch the Vim commands.
-This includes, navigating through,&lt;/p&gt;
+This includes navigating through,&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Files&lt;/li&gt;
 &lt;li&gt;Pages&lt;/li&gt;
@@ -4861,38 +4842,38 @@ This includes, navigating through,&lt;/p&gt;
 &lt;li&gt;Characters&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;And do all &lt;strong&gt;CRUD&lt;/strong&gt; operations very quickly by using simple keystroke.&lt;/p&gt;
-&lt;p&gt;You might think that, we can do that with the keyboard arrow keys, that is
+&lt;p&gt;You might think that we can do that with the keyboard arrow keys, that is
 possible, but vim has its own way to do it. It got different modes of
 working, &lt;strong&gt;Insert Mode&lt;/strong&gt; - For typing contents, &lt;strong&gt;Command mode&lt;/strong&gt; - In this mode we use
-different shortcuts to do lot of operations, &lt;strong&gt;Search Mode&lt;/strong&gt;, etc.&lt;/p&gt;
+different shortcuts todo a lot of operations, &lt;strong&gt;Search Mode&lt;/strong&gt;, etc.&lt;/p&gt;
 &lt;p&gt;Using Vim is far faster and easy to work with any text editing
-operations.Programmers are always doing it.&lt;/p&gt;
+operations. Programmers are always doing it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="availability"&gt;
 &lt;h2&gt;Availability&lt;/h2&gt;
 &lt;p&gt;By default all Gnu/Linux ship with the Vim editor. So we don't need to move to
 other editors when you are working with Gnu/Linux. Mac and Windows also got Vim
 editors so just download it and give a try.
-Also you can integrate the Vim key bindings with all major IDE's like
+Also, you can integrate the Vim key bindings with all major IDE's like
 &lt;a class="reference external" href="https://www.viplugin.com/viplugin/"&gt;Eclipse&lt;/a&gt;, &lt;a class="reference external" href="https://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329"&gt;Visual Studio&lt;/a&gt;, etc..&lt;/p&gt;
-&lt;p&gt;Also the vim keyboard bindings for navigation are also being used with web
+&lt;p&gt;Also, the vim keyboard bindings for navigation are also being used with web
 browsers(&lt;a class="reference external" href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb"&gt;Chrome&lt;/a&gt;, &lt;a class="reference external" href="https://www.vimperator.org/vimperator"&gt;Firefox&lt;/a&gt;), and even you can use this key bindings with
 OS command prompt.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="light-weight-fast-and-highly-configurable"&gt;
-&lt;h2&gt;Light weight, Fast and highly configurable&lt;/h2&gt;
+&lt;div class="section" id="lightweight-fast-and-highly-configurable"&gt;
+&lt;h2&gt;Lightweight, Fast and highly configurable&lt;/h2&gt;
 &lt;p&gt;Even after adding lot of extensions with default Vim to make it general IDE
 like look and feel, its size would be very less compared to other IDE's.And we
 can customize the Vim editor very easily using its configuration file &lt;strong&gt;.vimrc&lt;/strong&gt;
 under the user home directory. And of course Vim is very fast.&lt;/p&gt;
-&lt;p&gt;One problem with Vim is, the learning curve. It has got lot of very advanced shortcuts
-and key bindings that can  be understood after using it for a while,But the
+&lt;p&gt;One problem with Vim is the learning curve. It has got lot of very advanced shortcuts
+and key bindings that can  be understood after using it for a while, But the
 basic shortcuts required to get start with Vim is very simple.
-We will learn new and new keyboard bindings through out the life span :).&lt;/p&gt;
+We will learn new and new keyboard bindings throughout the life span :).&lt;/p&gt;
 &lt;p&gt;You can have a look at this &lt;a class="reference external" href="https://kevinw.github.com/2010/12/15/this-is-your-brain-on-vim/"&gt;Article&lt;/a&gt; which describes how the Vim key bindings
-became integral part of our life ;).&lt;/p&gt;
+became an integral part of our lives ;).&lt;/p&gt;
 &lt;p&gt;My Vim Story-2 blog entry will come soon which describe the details how to
-setup the Vim to make it suitable for all type of programmers.&lt;/p&gt;
+setup the Vim to make it suitable for all types of programmers.&lt;/p&gt;
 &lt;p&gt;Till then... Bye :)&lt;/p&gt;
 &lt;p&gt;EDIT:&lt;/p&gt;
 &lt;p&gt;Finished the second part of my Vim blog - &lt;a class="reference external" href="https://haridas.in/vim-as-your-ide.html"&gt;How to setup Vim as your IDE&lt;/a&gt;&lt;/p&gt;
@@ -4929,9 +4910,9 @@ enables easy version controlling.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Next challenge that I faced was the selection of one static site generator from
 bunch of choice. There are lot of them are implemented in
-Python or Ruby. I was searched for few days to come up with a suitable one.
+Python or Ruby. I searched for a few days to come up with a suitable one.
 Finally I picked up a Python based engine &lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt; as my favorite. It doesn't
-mean that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
+means that others are bad implementation, but Pelican suits my taste better.&lt;/p&gt;
 &lt;p&gt;Here is the list of few major static site generators that I went through as
 part of the selection process.&lt;/p&gt;
 &lt;/div&gt;
@@ -4950,8 +4931,8 @@ generators, And other problems that I found on Jekyll was,&lt;/p&gt;
 &lt;h2&gt;&lt;a class="reference external" href="https://hyde.github.com"&gt;Hyde&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Hyde is a  Python based static site generator like Jekyll but less complex.
 But Hyde lacks good documentation, and mainly a way to migrate from other
-blog engines. I can see that the project getting more interest recently.
-I hope it will get in to good position very soon.&lt;/p&gt;
+blog engines. I can see that the project is getting more likes recently.
+I hope it will get into a good position very soon.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pelican"&gt;
 &lt;h2&gt;&lt;a class="reference external" href="https://pelican.notmyidea.org/"&gt;Pelican&lt;/a&gt;&lt;/h2&gt;
@@ -4970,7 +4951,7 @@ engines.And I liked the way it structured the blog posts and its contents.It
 got clear upper hand over other site generators, I don't need to think twice to
 select it.&lt;/p&gt;
 &lt;p&gt;Currently I hosted this site under Github, you can &lt;a class="reference external" href="https://github.com/haridas/haridas.github.com"&gt;fork&lt;/a&gt; this project and give
-a fresh try to see how quickly you can setup a blog.&lt;/p&gt;
+a fresh try to see how quickly you can set up a blog.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="wordpress"></category><category term="pelican"></category><category term="python"></category></entry><entry><title>Find the Absolute path in Shell Script</title><link href="https://haridas.in/find-the-absolute-path-in-shell-script.html" rel="alternate"></link><published>2011-11-19T06:01:00+05:30</published><updated>2011-11-19T06:01:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-11-19:/find-the-absolute-path-in-shell-script.html</id><summary type="html">&lt;p&gt;This is a simple shell script snippet to get the full absolute path of
 that file while running it in a shell environment.&lt;/p&gt;
@@ -4980,7 +4961,7 @@ a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a simple shell sc
 that file while running it in a shell environment.&lt;/p&gt;
 &lt;p&gt;What is the use of this script -- Yeah, this script is really helpful
 when you are looking for a stable deployment of a multi-file project in
-a Unix based systems. For these type of deployments you have to deal
+a Unix based system. For these type of deployments you have to deal
 with the SYSTEM_PATH and PROJECT_HOME_DIR etc, to make our project run
 properly by including relative files correctly from the system path.
 Commonly what we do is, we hard code the SYSTEM PATH information to a
@@ -5015,9 +4996,8 @@ its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;sh shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I hope the output of the script explained every thing. So you can use
-it in your projects to detect the current path automatically. Hope you
-enjoyed this hack.&lt;/p&gt;
+&lt;p&gt;I hope the output of the script explained everything. So you can use
+it in your projects to detect the current path automatically. Hope you enjoyed this hack.&lt;/p&gt;
 </content><category term="devops"></category><category term="server admin"></category><category term="shell"></category></entry><entry><title>How to use Python Virtualenv and Ruby Version Manager</title><link href="https://haridas.in/how-to-use-python-virtualenv-and-ruby-version-manager.html" rel="alternate"></link><published>2011-08-31T06:20:00+05:30</published><updated>2011-08-31T06:20:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-08-31:/how-to-use-python-virtualenv-and-ruby-version-manager.html</id><summary type="html">&lt;p&gt;First thing I want tell you that here I'm not comparing these two tools
 instead only describing how to install and use them.&lt;/p&gt;
 &lt;p&gt;We use these tools to isolate the multiple Python or Ruby versions from
@@ -5032,16 +5012,16 @@ are currently working with latest version of Python or Ruby packages for
 our project, then most probably our project package dependency might be
 conflict with corresponding packages installed in the system default
 path. To get this work, updating the system packages might not be a good
-method, because it may broke our existing projects that depends up on
+method, because it may broke our existing projects that depends upon
 the system packages and it's very dangerous...!. This problem is common
 now because of rapid development and feature updation of packages. To
 solve this issues and use the packaging system more flexibly both Python
-and Ruby providing their own tools.&lt;/p&gt;
+and Ruby provides their own tools.&lt;/p&gt;
 &lt;p&gt;We can first check the Python Virtualenv tool for python projects.&lt;/p&gt;
 &lt;div class="section" id="virtualenv"&gt;
 &lt;h2&gt;&lt;strong&gt;Virtualenv&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;Virtualenv package isolate python package system and corresponding
-binaries in to a user defined folder.&lt;/p&gt;
+binaries into a user defined folder.&lt;/p&gt;
 &lt;p&gt;First install &lt;cite&gt;virtualenv&lt;/cite&gt; package by using default pythons package
 installation tool or you can use &lt;cite&gt;pip&lt;/cite&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install virtualenv
@@ -5086,7 +5066,7 @@ requirements.&lt;/p&gt;
 &lt;div class="section" id="update"&gt;
 &lt;h2&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;There is another package 'virtualenvwrapper' to organize and use the
-multiple virtual environments by single set of shell commands. Here is
+multiple virtual environments by a single set of shell commands. Here is
 the brief description about virtualenvwrapper.&lt;/p&gt;
 &lt;p&gt;To install virtualenvwrapper, as usual you can use easy_install or pip&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;pip install virtualenvwrapper
@@ -5103,13 +5083,13 @@ environments.&lt;/p&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;mkvirtualenv test_proj
 
-&lt;span class="go"&gt;To deactiave&lt;/span&gt;
+&lt;span class="go"&gt;To deactivate&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;deactivate
 
 &lt;span class="go"&gt;If we created multiple virtual environments, to list it by using,&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;workon
 
-&lt;span class="go"&gt;To Activate particular virtual environment from above list.&lt;/span&gt;
+&lt;span class="go"&gt;To Activate a particular virtual environment from the above list.&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt;workon
 
 &lt;span class="go"&gt;To remove the virtual environment&lt;/span&gt;
@@ -5118,7 +5098,7 @@ environments.&lt;/p&gt;
 &lt;p&gt;This package also provide PRE and POST hooks for all of its commands ,
 we can use those hooks to inject our codes while running the
 virtualenvwrapper commands.&lt;/p&gt;
-&lt;p&gt;This viritualenvwrapper is an additional package that really help both
+&lt;p&gt;This virtualenvwrapper is an additional package that really help both
 administrators and programmers to manage multiple project environments
 with different versions of python packages were installed.&lt;/p&gt;
 &lt;p&gt;Now take a look at how we can do the similar thing in Ruby ,&lt;/p&gt;
@@ -5131,21 +5111,21 @@ in our system without affecting the ruby installed in our system default
 path. for eg; by default our system have ruby-1.8.2 installed, but we
 want ruby-1.9.2 for our project. So after installing the ruby-1.9.2
 using &lt;cite&gt;rvm&lt;/cite&gt; we can change system default ruby version to ruby-1.9.2,
-we can revert this back to system ruby when we requires.&lt;/p&gt;
+we can revert this back to system ruby when we require.&lt;/p&gt;
 &lt;p&gt;So in this manner we can install multiple ruby versions and switch
 between them, once we switch to a particular version of ruby then that
 ruby is available for that system user. This is the brief description
-how RVM works in our system. Lets move to setup part.&lt;/p&gt;
+how RVM works in our system. Let's move to the setup part.&lt;/p&gt;
 &lt;p&gt;You can install RVM from &lt;cite&gt;root&lt;/cite&gt; (Multi user mode)user privilege or
 from a &lt;cite&gt;user&lt;/cite&gt; privilege(Single user mode). The single user mode were
-recommended, because the RVM only avaiable to that user only, but in
+recommended, because the RVM only available to that user only, but in
 Multi-user mode of RVM installation make it available to all users in
 the system.Here we will install RVM in single user mode.&lt;/p&gt;
 &lt;p&gt;To install RVM you can use git if it available in your system,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;bash &amp;lt; &amp;lt;&lt;span class="o"&gt;(&lt;/span&gt;curl -s https://rvm.beginrescueend.com/install/rvm&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;OR (If we dont have git installed )&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Fetch installer script and run it ourself.&lt;/span&gt;
+&lt;p&gt;OR (If we don't have git installed )&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Fetch installer script and run it yourself.&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer
 
 &lt;span class="gp"&gt;$&lt;/span&gt;chmod +x rvm-installer
@@ -5153,7 +5133,7 @@ the system.Here we will install RVM in single user mode.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After installation you can see that a folder (&lt;cite&gt;.rvm&lt;/cite&gt;) were created
 in your home directory. This folder holds all RVM related files. Then to
-activate &lt;cite&gt;rvm&lt;/cite&gt; command for this user you have do one more step.&lt;/p&gt;
+activate the &lt;cite&gt;rvm&lt;/cite&gt; command for this user, you have to take one more step.&lt;/p&gt;
 &lt;p&gt;Add following line to your &lt;cite&gt;.bashrc&lt;/cite&gt; file, so new shell session
 onwards the &lt;cite&gt;rvm&lt;/cite&gt; commands were available to this user. OR you can
 just run bellow code in your current shell to activate it for this user
@@ -5180,7 +5160,7 @@ session only.&lt;/p&gt;
 &lt;p&gt;Now you can see that we have three versions of ruby in our system,
 ruby-1.9.1 and ruby-1.9.2 were installed via RVM and ruby-1.8.7 from our
 system. To switch between these versions,&lt;/p&gt;
-&lt;p&gt;To use ruby-1.9.1 in one shell session only, try bellow commands.&lt;/p&gt;
+&lt;p&gt;To use ruby-1.9.1 in one shell session only, try below commands.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt;rvm use &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 &lt;span class="gp"&gt;$&lt;/span&gt;ruby --version
 &lt;span class="go"&gt;ruby 1.9.1p431 (2011-02-18 revision 30908) [i686-linux]&lt;/span&gt;
@@ -5215,17 +5195,17 @@ version.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Check the gem versions while we switching between different version of
 ruby.&lt;/p&gt;
-&lt;p&gt;Ok, thats it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
+&lt;p&gt;Ok, that's it. Try out these tools.... have a happy hacking....:)&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="python"></category><category term="ruby"></category></entry><entry><title>RabbitChat - Web based chat system</title><link href="https://haridas.in/rabbitchat-web-based-chat-system.html" rel="alternate"></link><published>2011-07-28T12:10:00+05:30</published><updated>2011-07-28T12:10:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-07-28:/rabbitchat-web-based-chat-system.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="" src="/images/RabbitChat-Arch.png" style="width: 100%;" /&gt;
 &lt;p class="caption"&gt;If you want to try this now, checkout a copy of project from this
 github …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;RabbitChat&lt;/strong&gt; is a simple Web based chat system developed in Tornado
-Hight speed Python web framework. It uses Websoket for Full-duplex
+High speed Python web framework. It uses Websocket for Full-duplex
 communication over http and RabbitMQ Broker for message transaction
 between server and connected clients.&lt;/p&gt;
 &lt;div class="figure"&gt;
@@ -5237,7 +5217,7 @@ the README file for instructions about how to setup and run the
 application. It has one branch also, I explained the difference in
 README.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;I tired to develop this same scenario in the gevent/twisted python
+&lt;p&gt;I tried to develop this same scenario in the gevent/twisted python
 frameworks, but it lacks the support for good RabbitMQ clients. So after
 long search I got an idea about how to implement this web based chat
 system using Tornado Web Framework. I chose this because the python
@@ -5252,31 +5232,31 @@ or Twisted or Tornado has support for websocket. But in this case we
 need RabbitMQ client support also. Pika is the good python RabbitMQ
 client, it has different adapters to integrate it with RabbitMQ and
 other frameworks. Adapter for Tornado is already there, so that makes
-this implementation possible. The Pika adapters for other frameworks
+this implementation is possible. The Pika adapters for other frameworks
 will come soon.&lt;/p&gt;
 &lt;p&gt;You may ask another question, why using RabbitMQ instead of a simple
 Message passing data structures, Actually this application is a demo app
-and I want to test the use of Websoxket with RabbitMQ. I'm looking
-forward to develop a Realtime API's using this architectures. Google app
+and I want to test the use of Websocket with RabbitMQ. I'm looking
+forward to develop real time API's using this architecture. Google app
 engine or other similar platforms( &lt;a class="reference external" href="https://code.google.com/p/typhoonae/"&gt;Typhoonae&lt;/a&gt;) using Websocket server
 similar to this way. So you can also develop a good implementations
 using this demo application.&lt;/p&gt;
 &lt;p&gt;I hope this demo application helps you to get an idea about Real Time
 Web application development.&lt;/p&gt;
 </content><category term="programming"></category><category term="programming"></category><category term="python"></category><category term="Server Architecture"></category></entry><entry><title>Change and Migrate Django Models using South</title><link href="https://haridas.in/change-and-migrate-django-models-using-south.html" rel="alternate"></link><published>2011-06-17T10:41:00+05:30</published><updated>2011-06-17T10:41:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-06-17:/change-and-migrate-django-models-using-south.html</id><summary type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
-&lt;p&gt;South is very handy django application to manage the django models. If
+&lt;p&gt;South is a very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
-appropriately. This is very …&lt;/p&gt;</summary><content type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
-&lt;p&gt;South is very handy django application to manage the django models. If
+appropriately. This is …&lt;/p&gt;</summary><content type="html">&lt;img alt="" src="/images/south.png" style="width: 100%;" /&gt;
+&lt;p&gt;South is a very handy django application to manage the django models. If
 we are developing web projects using django we need to change the Django
 model several times , In normal case we have to do these changes
 manually by editing both django model and backend database
 appropriately. This is very frustrating if we have to do it several
 times.&lt;/p&gt;
 &lt;p&gt;The South application makes it very easy to handle the model changes
-and fill the initial data's into the database tables. To setup the South
+and fill the initial data into the database tables. To setup the South
 application along with your django project, you need to do very simple
 changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
@@ -5285,7 +5265,7 @@ the project.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install south
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;then you have to add your south app to django settings.py file under&lt;/p&gt;
-&lt;p&gt;INSTALLED_APPS veriable, ie;&lt;/p&gt;
+&lt;p&gt;INSTALLED_APPS variable, ie;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -5301,7 +5281,7 @@ the project.&lt;/p&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we added the south app to our django project, the commands
-associated with this app is comes under the manage.py.&lt;/p&gt;
+associated with this app comes under the manage.py.&lt;/p&gt;
 &lt;p&gt;Next step is to sync all models to the backend database, for that you
 have to use the usual method , ie;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;Migrate all tables to backend database,&lt;/span&gt;
@@ -5312,7 +5292,7 @@ have to use the usual method , ie;&lt;/p&gt;
 &lt;p&gt;That's it !. we are now ready to use south app for our apps model
 management.&lt;/p&gt;
 &lt;p&gt;Currently we added tables of default django apps and south app to
-backend. Now we are ready to add our applications to django project.
+backend. Now we are ready to add our applications to the django project.
 After adding new django application to the sttings.py INSTALLED_APPS
 variable, we need to migrate it's models using south management
 commands,&lt;/p&gt;
@@ -5335,19 +5315,19 @@ steps,&lt;/p&gt;
 
 &lt;span class="gp"&gt;$&lt;/span&gt;python manage.py migrate your_app
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So using south app you are now manged model changes without touching
+&lt;p&gt;So using south app you are now managed model changes without touching
 backend database. In this manner we can manage all django applications
 under your project.&lt;/p&gt;
 &lt;p&gt;Try this out ! and save your time.&lt;/p&gt;
 </content><category term="programming"></category><category term="python"></category><category term="django"></category><category term="south"></category></entry><entry><title>playing with timezone using pytz</title><link href="https://haridas.in/playing-with-timezone-using-pytz.html" rel="alternate"></link><published>2011-05-11T04:15:00+05:30</published><updated>2011-05-11T04:15:00+05:30</updated><author><name>HN</name></author><id>tag:haridas.in,2011-05-11:/playing-with-timezone-using-pytz.html</id><summary type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
-&lt;p&gt;When we develop web applications some times we need multiple timezone
+&lt;p&gt;When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.&lt;/p&gt;
-&lt;p&gt;I have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
+&lt;p&gt;I have been …&lt;/p&gt;</summary><content type="html">&lt;p&gt;World Timezone Image from www.physicalgeography.net&lt;/p&gt;
 &lt;img alt="" src="/images/world_time2-300x172.gif" style="width: 100%;" /&gt;
-&lt;p&gt;When we develop web applications some times we need multiple timezone
+&lt;p&gt;When we develop web applications sometimes we need multiple timezone
 support. If we don’t have any previous experience then it might be a
 tough and confusing job. Here I will help you to get some basics of
 Timezone conversion.&lt;/p&gt;
@@ -5358,13 +5338,13 @@ system by using &amp;quot;easy_install&amp;quot;&lt;/p&gt;
 &lt;p&gt;Install python timezone module.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;easy_install pytz
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This python module support all major timezones and it helps to convert
+&lt;p&gt;This python module support all major time zones and it helps to convert
 date and time in one timezone to any other timezones.You can use the
-human readable tiemzone names in pytz module to represent the local
-timezones.( like Asia/Kolkata, Europe/Paris, EST etc. ).&lt;/p&gt;
+human readable time zone names in pytz module to represent the local
+time zones.( like Asia/Kolkata, Europe/Paris, EST etc. ).&lt;/p&gt;
 &lt;p&gt;When we deal with multiple timezone in our application, we might have
-backend database where we store these date and time informations. Most
-databases are support UTC as it's the common timezone format. And it's
+backend database where we store these date and time information. Most
+databases support UTC as it's the common timezone format. And it's
 better to keep a unique timezone information when saving the date and
 time in database and database engines not going to support all timezone
 formats directly. So we need to stick with commonly used &lt;strong&gt;UTC/GMT&lt;/strong&gt;
@@ -5373,7 +5353,7 @@ the daylight saving issues.&lt;/p&gt;
 &lt;p&gt;Here is the strategies used in web applications with multiple timezone
 support :-&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
-&lt;li&gt;Save Date and Time information’s in database as UTC format.&lt;/li&gt;
+&lt;li&gt;Save Date and Time information in the database as UTC format.&lt;/li&gt;
 &lt;li&gt;Convert the UTC time to corresponding local timezones, based on the
 user request and location.&lt;/li&gt;
 &lt;li&gt;We take local timezone information from browser or user select a
@@ -5382,13 +5362,13 @@ application. We can collect this information easily with the help of
 Javascript.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Bellow I'm explaining some real scenarios where we need to change time
-zone information's from UTC to local and vice versa,&lt;/p&gt;
+zone information from UTC to local and vice versa,&lt;/p&gt;
 &lt;div class="section" id="saving-date-and-time-in-database"&gt;
 &lt;h2&gt;&lt;strong&gt;1. Saving Date and Time in Database :-&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;We always save date and time information in database as UTC standard.
-In django/Rails or other Framworks we have an option to set Projects
-default tiemzone as UTC. So in our database the time and date are always
-in UTC. If above methods are not working for your application you
+&lt;p&gt;We always save date and time information in the database as UTC standard.
+In django/Rails or other Frames we have an option to set Projects
+default timezone as UTC. So in our database the time and date are always
+in UTC. If above methods are not ing for your application you
 manually need to convert the local system time into UTC format and then
 save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;haridas@haridas-debian:~$ python&lt;/span&gt;
@@ -5405,7 +5385,7 @@ save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# utcnow() function&lt;/span&gt;
 &lt;span class="go"&gt;     give the UTC time of current local time.&lt;/span&gt;
-&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c1"&gt;# But this date tupple doesn&amp;#39;t have the timezone&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;local_system_utc&lt;/span&gt; &lt;span class="c1"&gt;# But this date tuple doesn&amp;#39;t have the timezone&lt;/span&gt;
 &lt;span class="go"&gt;      information.&lt;/span&gt;
 &lt;span class="go"&gt;      datetime.datetime(2011, 5, 7, 5, 42, 49, 253618) #We call it as Naive&lt;/span&gt;
 &lt;span class="go"&gt;     representation(Date object without Timezone information.)&lt;/span&gt;
@@ -5425,19 +5405,19 @@ save it. Below code sample explain things more clearly,&lt;/p&gt;
 &lt;span class="go"&gt;     #You can do the tzinfo addition when retrieving the time from DB.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;By this way we can save time and date in Database even-though users are
-from different timezone. We need to consider them only when retrieving
+from a different timezone. We need to consider them only when retrieving
 the time object from database, ie; we need to convert our UTC time to
-user specific timezone. So this conversion is only for view purpose.&lt;/p&gt;
+user specific timezone. So this conversion is only for view purposes.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="converstion-from-utc-to-localtime"&gt;
-&lt;h2&gt;&lt;strong&gt;2. Converstion from UTC to localtime&lt;/strong&gt;&lt;/h2&gt;
+&lt;div class="section" id="conversion-from-utc-to-local-time"&gt;
+&lt;h2&gt;&lt;strong&gt;2. Conversion from UTC to local time&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;We need to convert UTC times to corresponding user timezone, follow the
 bellow method,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="go"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utcnow&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;#Our UTC naive time from DB,&lt;/span&gt;
-&lt;span class="go"&gt;   for the time being here I&amp;#39;m taking it as current system UTC time..&lt;/span&gt;
+&lt;span class="go"&gt;   For the time being here I&amp;#39;m taking it as the current system UTC time..&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;now_utc&lt;/span&gt;
 &lt;span class="go"&gt;    datetime.datetime(2011, 5, 9, 6, 36, 39, 883479) # UTC time in Naive&lt;/span&gt;
 &lt;span class="go"&gt;   form.&lt;/span&gt;
@@ -5463,7 +5443,7 @@ bellow method,&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="manage-browser-local-time-at-server"&gt;
 &lt;h2&gt;&lt;strong&gt;3. Manage Browser Local Time at Server&lt;/strong&gt;&lt;/h2&gt;
-&lt;p&gt;Rather than just conversion of UTC time, some times we need to fetch
+&lt;p&gt;Rather than just conversion of UTC time, sometimes we need to fetch
 records from the Database in between particular interval of local time
 time, for eg; From 07:00 Morning to 22:30 Evening of local time. Here
 our data is in UTC format, so we need to get the corresponding UTC time
@@ -5475,7 +5455,7 @@ represent a particular time) or in string format ie; Y-M-D-H-M-S&lt;/li&gt;
 &lt;li&gt;Convert this epoch time to python UTC time.&lt;/li&gt;
 &lt;li&gt;Then search the Database.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can reconstruct the javascrpt string format of the date in to
+&lt;p&gt;You can reconstruct the javascript string format of the date in to
 python date object by,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
@@ -5512,7 +5492,7 @@ terms Scripting and Programming. I found some books of Javascript and …&lt;/p&
 Programming. After some time I learned basics of the Javascript and perl for
 some internal projects, from there onwards I started to use the two
 terms Scripting and Programming. I found some books of Javascript and
-Perl describing about this at the beginning. But most of them are
+Perl described this at the beginning. But most of them are
 not clearly specifying the difference correctly.&lt;/p&gt;
 &lt;p&gt;I think these terms were came  due to the difference of how these codes
 are being running under the machine, ie; codes running under Interpreter
@@ -5528,21 +5508,21 @@ Scripting languages like &lt;cite&gt;Python, Perl ,Ruby&lt;/cite&gt; and &lt;cit
 used for general purposes along with famous programming languages like
 &lt;cite&gt;C/C++&lt;/cite&gt; and &lt;cite&gt;Java&lt;/cite&gt;.Other scripting languages are &lt;cite&gt;Php&lt;/cite&gt; (Web
 based applications ), &lt;cite&gt;Lua Script&lt;/cite&gt; (Embedded language , very fast,low
-memory foot print).&lt;/p&gt;
+memory footprint).&lt;/p&gt;
 &lt;div class="section" id="conclusion"&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;You can call different Computer Languages as Scripting language or
 Programming language, but remember that the Scripting language can do any
 thing that a programming language could accomplish. And after all we have to be
-more rational while picking good tool set to solve our problem.&lt;/p&gt;
+more rational while picking a good tool set to solve our problem.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="update-14-jan-2014"&gt;
 &lt;h2&gt;Update - 14/Jan/2014&lt;/h2&gt;
-&lt;p&gt;This entry was the my first blog. That time I was just started to learn different
+&lt;p&gt;This entry was my first blog. That time I was just started to learn different
 languages in more depth. I was mainly trying the Python and other scripting
 languages, its beauty, easy to use and popularity on the Internet made me to
 think that it can do everything. Now After few years of experience in different
 parts of the Computer Science problems and work experience I can easily see
-that what I was wrote above was not going to work out practically.&lt;/p&gt;
+that what I wrote above was not going to work out practically.&lt;/p&gt;
 &lt;/div&gt;
 </content><category term="programming"></category><category term="programming"></category><category term="scripting"></category></entry></feed>

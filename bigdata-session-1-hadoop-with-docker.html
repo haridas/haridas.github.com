@@ -124,12 +124,12 @@
                 </header>
             </section>
             <div class="paragraph">
-<p>This blog series includes 4 worshop session I conducted at Engieneering colleges
+<p>This blog series includes 4 workshop sessions I conducted at Engineering colleges
 and in my office.</p>
 </div>
 <div class="paragraph">
-<p>Hadoop with docker is mainly usable for easy prototype and learning purpose, also
-it helps to setup quickly setup hadoop cluster on your laptop, or on multiple
+<p>Hadoop with docker is mainly used for easy prototype and learning purpose, also
+it helps to set up quickly set up a Hadoop cluster on your laptop, or on multiple
 machines.</p>
 </div>
 <div class="olist arabic">
@@ -152,13 +152,13 @@ machines.</p>
 <h2 id="_hadoop_cluster">1. Hadoop Cluster</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Main motive of the session is how we can easily test the hadoop
-cluster and related tools locally or on a small cluster. We will setup the hadoop
+<p>The main motive of the session is how we can easily test the Hadoop
+cluster and related tools locally or on a small cluster. We will set up the Hadoop
 in cluster mode. Hadoop cluster mode means, the individual components are runs
-separately on single machine on separate JVMs or running on multiple machines.</p>
+separately on a single machine on separate JVMs or running on multiple machines.</p>
 </div>
 <div class="paragraph">
-<p>Here we will use the docker based setup to quickly play with main
+<p>Here we will use the docker based setup to quickly play with the main
 features of hadoop.</p>
 </div>
 <div class="paragraph">
@@ -181,12 +181,12 @@ features of hadoop.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>One hadoop cluster can formed by one namenode and multiple datanodes.
-The resource manager runs on same machine as namenode ( simpler setup).
-Responsibility of namenode is store metadata about distributed
+<p>One Hadoop cluster can be formed by one namenode and multiple datanodes.
+The resource manager runs on the same machine as the namenode ( simpler setup).
+The responsibility of the namenode is to store metadata about the distributed
 filesystem (hdfs). Datanode actually stores the data in blob form,
 and nodemanager will be running on each datanode to handle actual
-computation requests from resource manager.</p>
+computation requests from the resource manager.</p>
 </div>
 </div>
 </div>
@@ -194,8 +194,8 @@ computation requests from resource manager.</p>
 <h2 id="_prerequisites">2. Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As all cluster environments, network address resolution for each node is a key requirement
-for stable setup. Ideally a local DNS setup which permanently allocate a hostnames
+<p>As in all cluster environments, network address resolution for each node is a key requirement
+for a stable setup. Ideally, a local DNS setup that permanently allocates hostnames
 to all the nodes in the network. Or we can manually set the hostnames without DNS.</p>
 </div>
 <div class="admonitionblock note">
@@ -219,7 +219,7 @@ This material is verified on Mac and Ubuntu.
 <div class="title">Note</div>
 </td>
 <td class="content">
-Not required if you try Docker based setup.
+Not required if you try Docker-based setup.
 </td>
 </tr>
 </table>
@@ -232,7 +232,7 @@ recommended.</p>
 <div class="sect2">
 <h3 id="_install_docker">2.2. Install Docker</h3>
 <div class="paragraph">
-<p>Ensue you have latest version of docker is setup on your laptop.</p>
+<p>Ensure you have the latest version of docker is set up on your laptop.</p>
 </div>
 <div class="paragraph">
 <p>Docker Version: <code>18.x.x</code></p>
@@ -240,7 +240,7 @@ recommended.</p>
 <div class="sect4">
 <h5 id="_for_ubuntu_debian_machines">For Ubuntu / Debian machines</h5>
 <div class="paragraph">
-<p>Follow this link and install the docker with correct given bellow,</p>
+<p>Follow this link and install the docker with a correct given bellow,</p>
 </div>
 <div class="paragraph">
 <p><a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" class="bare">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a></p>
@@ -287,7 +287,7 @@ docker build -t hadoop-2.8.5:latest</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-If you are setting the cluster on same machine with docker, you can skip this step.
+If you are setting the cluster on the same machine with docker, you can skip this step.
 </td>
 </tr>
 </table>
@@ -319,7 +319,7 @@ node3
 <h5 id="_set_the_hostname_of_the_machine_to_match_this_address">Set the hostname of the machine to match this address.</h5>
 <div class="paragraph">
 <p>edit <code>/etc/hostname</code>
-edit <code>/etc/hosts</code> and replace any occurrence of old hostname with new one.</p>
+edit <code>/etc/hosts</code> and replace any occurrence of old hostname with a new one.</p>
 </div>
 </div>
 <div class="sect4">
@@ -331,7 +331,7 @@ hostname</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Cross check all the machines have correct set of hostnames before going to next
+<p>Cross-check all the machines have the correct set of hostnames before going to next
 step.</p>
 </div>
 </div>
@@ -339,19 +339,19 @@ step.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup_cluster_on_single_machine_using_docker">3. Setup cluster on single machine using docker</h2>
+<h2 id="_setup_cluster_on_a_single_machine_using_docker">3. Setup cluster on a single machine using docker</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We are using the docker container mainly for process isolation,
 for a simpler
-setup on single machine we make use of the same network stack as the host machine.</p>
+setup on a single machine we make use of the same network stack as the host machine.</p>
 </div>
 <div class="sect2">
 <h3 id="_create_a_docker_network">3.1. Create a docker network</h3>
 <div class="paragraph">
-<p>For clean hostname resoluation under docker environment, we have
+<p>For clean hostname resolution under docker environment, we have
 to create a docker network; which will internally provide a DNS
-resoluation on the virtual network where all the containers reside.</p>
+resolution on the virtual network where all the containers reside.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -359,10 +359,10 @@ resoluation on the virtual network where all the containers reside.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We will use this network to launch all our container, which will
+<p>We will use this network to launch all our containers, which will
 internally allocate all the containers into this network. So we will
-get the hostname resoluation by default. For the non-docker deployment we have
-to setup all these externally.</p>
+get the hostname resolution by default. For the non-docker deployment, we have
+to set up all these externally.</p>
 </div>
 </div>
 <div class="sect2">
@@ -401,7 +401,7 @@ docker ps -a
 docker logs -f datanode1
 
 .
-# If you want launch more datanodes.
+# If you want to launch more datanodes.
 
 docker run -it -d --name datanode2 \
     --network hadoop-nw haridasn/hadoop-2.8.5:latest datanode &lt;name-node-ip&gt;</code></pre>
@@ -411,9 +411,9 @@ docker run -it -d --name datanode2 \
 <div class="sect2">
 <h3 id="_get_the_client_tools_setup_on_another_docker">3.4. Get the client tools setup on another docker</h3>
 <div class="paragraph">
-<p>The <code>yarn</code>, <code>hdfs</code> clinet commands used to submit jobs and see the hdfs
-files respectively are loaded in another docker. Lets use that as our workbench
-to play with our hadoop cluster.</p>
+<p>The <code>yarn</code>, <code>hdfs</code> client commands used to submit jobs and see the hdfs
+files respectively are loaded in another docker. Let’s use that as our workbench
+to play with our Hadoop cluster.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -461,9 +461,9 @@ wordcount /logs/ /out/</code></pre>
 <div class="sect2">
 <h3 id="_pig">4.1. Pig</h3>
 <div class="paragraph">
-<p>A simpler command oriented interface to do the map-reduce jobs over
-hadoop cluster. You can think this as a bash scripting over hdfs
-and yarn map-reduce to quickly analyse data on hdfs.</p>
+<p>A simpler command-oriented interface to do the map-reduce jobs over
+Hadoop cluster. You can think of this as a bash scripting over hdfs
+and yarn map-reduce to quickly analyze data on hdfs.</p>
 </div>
 <div class="sect4">
 <h5 id="_download_and_extract_it">Download and extract it</h5>
@@ -512,7 +512,7 @@ dump user</code></pre>
 <div class="sect2">
 <h3 id="_hive">4.2. Hive</h3>
 <div class="paragraph">
-<p>SQL interface over hadoop system.</p>
+<p>SQL interface over the Hadoop system.</p>
 </div>
 <div class="paragraph">
 <p><a href="http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz" class="bare">http://mirrors.estointernet.in/apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz</a></p>
@@ -526,7 +526,6 @@ dump user</code></pre>
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/HKFon6Yn1cmXqa" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/haridasnss/bigdata-and-hadoop-with-docker" title="Bigdata and Hadoop with Docker" target="_blank">Bigdata and Hadoop with Docker</a> </strong> from <strong><a href="https://www.slideshare.net/haridasnss" target="_blank">haridasnss</a></strong> </div>
 </div>
 </div>
-
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 
