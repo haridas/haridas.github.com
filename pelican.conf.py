@@ -1,10 +1,12 @@
+"""Pelican settings override"""
 # -*- coding: utf-8 -*- #
 import os
+from pelican_jupyter import markup as nb_markup
 
 AUTHOR = u"HN"
 SITENAME = u"HN"
 # Don"t, change the current URL scheme.
-#SITEURL = "http://localhost:8000"
+# SITEURL = "http://localhost:8000"
 #
 SITEURL = "https://haridas.in"
 
@@ -37,7 +39,7 @@ ARTICLE_URL = "/{slug}.html"
 
 # Other menu items
 MENUITEMS = [
-    #("Archives", "archives.html"),
+    # ("Archives", "archives.html"),
     ("Programming", "category/programming.html"),
     ("Data-Science", "category/data-science.html"),
     ("Security", "tag/security.html"),
@@ -63,8 +65,22 @@ ASCIIDOC_CMD = "asciidoctor"
 ASCIIDOC_OPTIONS = []
 ASCIIDOC_BACKEND = "html5"
 PLUGIN_PATHS = (os.path.join(os.path.dirname(__file__), "./pelican-plugins"), )
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.fenced_code': {},
+        'markdown.extensions.meta': {},
+        #'pymdownx.highlight': {},
+        #'pymdownx.inlinehilite': {},
+        #'pymdownx.details': {},
+    },
+    'output_format': 'html5',
+}
+#
+
 # plugins.
-from pelican_jupyter import markup as nb_markup
 PLUGINS = [
     "pelican_gist", nb_markup, "asciidoc_reader.asciidoc_reader",
     "render_math"

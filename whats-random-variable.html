@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>What's Random Variable // all posts // HN </title>
+
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pymdext.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+	<script src="https://haridas.in/theme/js/pymdext.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/tag/security.html">Security
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">Devops
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="https://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="https://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">What's Random Variable</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/statistics.html">statistics</a>
+                                <a class="post-category" href="https://haridas.in/tag/probability.html">probability</a>
+                        </p>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Tue 08 December 2020
+                        </p>
+                </header>
+            </section>
+            <p>This is one of the basic ideas that are commonly not understood properly, we learn
+this from the high school level. Currently, most of the exploration is going
+back to basics and wondering why they are defined like that. I can see that most of the
+definitions have mathematical backgrounds and general theorems or axioms
+present, which I'm trying to understand more now. Here I want to see what’s
+the intuition behind the Random Variables.</p>
+<blockquote>
+<p><strong>From Wikipedia:</strong></p>
+<p>A Random variable / Random Quantity/ Stochastic Variable is
+described as a variable whose value depends on the outcomes of a random phenomenon.</p>
+</blockquote>
+<p>Definition based on Measure Theory is more intuitive,</p>
+<blockquote>
+<p>Random Variable isn't a variable, it's a function which maps objects to real valued line.</p>
+</blockquote>
+<p>The definition of a Random variable in Formal Mathematical term is defined using
+Measure Theory, It seems measure theory based intuitions are easier to connect
+rather than statements which define the random variable. Usually, we remember
+things if we can associate them with some real-world entities or actions, which
+is more intuitively we can recollect when we want to restate or understand other
+similar concepts. I’m trying to wrap around this basic idea using measure
+theory.</p>
+<h2>Measure Theory</h2>
+<p>Very generically we can say, Measure can be explained using the Set Theory from
+the Wikipedia article is very apt here.</p>
+<blockquote>
+<p><strong>Measure on a Set is a systematic way to assign a real number to each suitable subset of a set.</strong></p>
+</blockquote>
+<p><strong>Measurable Events:</strong> We can group those set of events that can be measured or quantified by using some units that we are familiar with.</p>
+<p><img alt="MeasureTheory" src="../images/RandomVariable-Measure_theory.png"></p>
+<p>Here <code>Set A</code> can be anything ( eg; all people in the world, space in physics, number of atoms in the universe ), that we are trying to understand. Power Set of <code>Set A</code> includes all elements in <code>Set A</code> as well as all combinations of items in <code>Set A</code> including the <code>null</code> item.</p>
+<p>Assigning a real number to all these subsets of A is called <strong>Measuring</strong>. We can do any type of measuring activity that is possible on the <code>Set A</code> or the measuring that's important to us. For example, to understand the heights of all humans in the globe, we do Measure their height, here the measuring is finding the height of each and every person and map that to a real line with some unit.</p>
+<p>I was wondering, why the Measure was defined like this, why the intermediate set ( power set of <code>A</code> ) required here ?, why note map the initial set A to the real number? What I'm able to reason here for these questions are,</p>
+<ol>
+<li>Power set includes the <code>set A</code> also</li>
+<li>It takes care of the cases where the original set is not fully tractable or impossible to find all the items in it, so we have to measure things that are available for us, so there the subset makes sense as a framework.</li>
+<li>In the case of non-discrete space eg; length, volume, temperature, etc, it's impossible to get the exact value, hence ranges are used or subsets here.</li>
+</ol>
+<h3>σ-algebra ( Sigma Algebra )</h3>
+<p>An <code>Algebra</code> on a Set is a collection of subsets closed under Union and Intersections.</p>
+<p>An <code>σ-Algebra</code> on a Set is a collection of subsets closed under countable unions and Intersections.</p>
+<p>What's mean by <strong>closed</strong> is that, if we take any two items from the given set and we do the specified operation (union or intersection), the result also available in the same Set.</p>
+<p>The <code>Countable</code> union or intersection means, we can associate natural numbers to the subsets of a given set, ie; a bijective nature in the mapping. Another side of it is, all the subsets are not measurable, as it wouldn't follow the constraints of σ-algebra, Hence σ-algebra is a special constraint applied on a Set to define the Measure and Measure space.</p>
+<p><img alt="CountableAddictivity" src="../images/Countable_additivity_of_a_measure.svg.png"></p>
+<p> [Source: Wikipedia] </p>
+
+<p>Note: Here <span class="math">\(\mu\)</span> is a <strong>Measure</strong>.</p>
+<h3>Different Types of Measures</h3>
+<p>Based on some constraints applied on how we can do the measuring or what to measure we can group the Measuring to different types of measures that are common for a particular domain,</p>
+<ol>
+<li><strong>Borel Measure</strong>: Allocate real number to space.</li>
+<li><strong>Lebesgue Measure</strong>: Standard way to measure the n-dimensional euclidean space. This measure is a more general one and used to formalize the probability space also. As in that case, the measure assigns values in the range of [0, 1].</li>
+<li><strong>Counting Measure</strong>: Counts the number of items in a subset of <code>Set A</code></li>
+<li>etc.</li>
+</ol>
+<h3>Measure Space</h3>
+<p>Measure space is defined using a triplet - <span class="math">\((X, A, \mu)\)</span>, Here</p>
+<ol>
+<li><span class="math">\(X\)</span> is the Set</li>
+<li><span class="math">\(A\)</span> <span class="math">\(\sigma\)</span>-algebra defined on the Set X, or the subset follows the constraints of <span class="math">\(\sigma\)</span>-algebra.</li>
+<li><span class="math">\(\mu\)</span> is the measure</li>
+</ol>
+<p>This abstract notion helps to understand the entire Measure space and its characteristics.</p>
+<ol>
+<li><strong>Euclidian space</strong> - Try to measure the Length, Area, Volume, hypervolume, etc. Or more common 3-D space.</li>
+<li><strong>Probability Space</strong> - In this case, the Measure of an entire Set is 1. And <code>null</code> set gets value zero -- We can say this space is an abstract space, with some special properties attached to it. This is being done by proper normalization or knowing about all subsets in the measure space.</li>
+<li>etc.</li>
+</ol>
+<p>Probability Space also formally defined by the triplet same as above, but the elements are named differently, as,</p>
+<p>Probability space triplet - <span class="math">\((\Omega, F, P)\)</span></p>
+<ol>
+<li><span class="math">\(\Omega\)</span> - All possible outcomes of an experiment or <code>Sample Space</code>,</li>
+<li><span class="math">\(F\)</span> - Subsets of <span class="math">\(\Omega\)</span> called as <code>Event Space</code>, each subset is called an <code>event</code>. We can call the <span class="math">\(F\)</span> set of all events from sample space.</li>
+<li><span class="math">\(P\)</span> - Probability function, which assigns a real number between [0-1] to every  <code>event</code>.</li>
+</ol>
+<p>Here you will be wondering how the probability function ensures the mapping is between 0-1 ?, this is being ensured by the proper normalization factor, if the sample space <span class="math">\(\Omega\)</span> is fully tractable, then that can be used, or only approximation works there.</p>
+<p>Why <span class="math">\(P(\Omega) = 1\)</span>, this can be explained by applying the rule of <span class="math">\(\sigma\)</span>-algebra, the functions should support, <strong>countable union</strong>,</p>
+<p><span class="math">\(P(\Omega) = P(O_1) + P(O_2) + ... + P(O_n) = 1\)</span></p>
+<h2>Random Variable</h2>
+<p>Now we all already covered what's Random variable multiple times above, let’s restate it here,</p>
+<blockquote>
+<p><strong>A random variable is not a variable but a function that maps from space to the real number domain.</strong> So we can see that Random Variable is a measure done on a specified Measure Space.</p>
+</blockquote>
+<p>So it's clear that we can pick, any measurable function as a random variable. Few constraints applied there are</p>
+<ol>
+<li>Whether that measurable function is usable to us.</li>
+<li>We can do the measure on the given Space.</li>
+</ol>
+<p>If we are dealing with the probabilities of outcomes of an event, then we can represent this entire experiment using the <code>probability space</code> definition.</p>
+<h5>Q: So what's <strong>Random</strong> in Random Variable?</h5>
+<p>A: Only thing here random being important is, at measure time we shouldn't be biased on any specific type of subsets for measuring. So the <strong>process</strong> of measuring has randomness, hence we call this a random variable.</p>
+<p>Let's take one example experiment, where we consider all humans as our <strong>Measure Space</strong></p>
+<h2>Probability Distributions</h2>
+<blockquote>
+<p>From Wikipedia, Probability Distribution is a mathematical description ( or summary) of probabilities of events, subsets of the sample space. These descriptions are represented as a function.</p>
+<p>Putting it in another way: Probability Distribution is a function that gives probabilities of occurrence of different possible outcomes for an Experiment.</p>
+</blockquote>
+<p>IMO, This idea came because, after seeing different probability spaces ( or outcomes of different experiments ) we were observed surprisingly have a common pattern. From this, we have an abstract meta function that describes the behaviors of a <strong>random variable</strong>.</p>
+<p>The Normal Distribution ( Bell curve ), seems to be a common pattern we see for a lot of Random Variables that we pick, If a particular Random Variable follows a pattern of particular distribution, then we call it as normally distributed Random Variable. There are a lot of different types of distributions present based on the different characteristics of the Random Variable. In which the Normal Distribution seems to be a universal standard behavior across the board.</p>
+<p>There are two key principles around this,</p>
+<p>Let's explain this using a simple measure experiment - <strong>Measure height of people across the globe</strong></p>
+<p>The measuring process is shown below, </p>
+<p><img alt="MeasurePeopleHeight" src="../images/RandomVariable-HeightRandomVariable.png"></p>
+<p>It's not humanly possible to measure all 7+ Billion people's height to get an idea about how it distributed. So this will be done by taking samples randomly from different locations, and repeat this process till we feel the measure is consistent enough or showing convergence properties. ie; the overall properties of the measure ( probability distribution ) isn't changing considerably after N ( finite sample ) measures.</p>
+<h4>1. Central Limit Theory ( CLT )</h4>
+<blockquote>
+<p>An <strong>Average</strong> of Random Variable's distribution tend towards Normal Distribution ( Bell curve ) if we do measure/sample an infinite number of times.</p>
+</blockquote>
+<p>This observation comes empirically. The averaging operation actually bringing the distributions of different independent and identically distributed (i.i.d.) random variables centered around the global average or Population Average. This is where the CLT has some relation to the Law of Large Number discussed below, which covers the Expected Value of a Random Variable will be stabilized when we sample/measure enough number of time from the event space.</p>
+<h4>2. Law of Large Number</h4>
+<blockquote>
+<p>Sample Mean converges to the population mean.</p>
+<p>Sample Mean is the set of events we have measured ie; Random Variables.</p>
+</blockquote>
+<p>In the above measure of height, we can consider there is an unknown population mean <span class="math">\(\mu\)</span> and population standard deviation <span class="math">\(\sigma\)</span>. We are doing this measure to find this population mean and variance or other properties of the height (<span class="math">\(H\)</span>) random variable. So from the event space, we randomly pick N number of people and measure the height, ( N maybe 1000, or 1Million or so ).</p>
+<p>I have discussed the Law of Large Number in another blog post also - <a href="https://haridas.in/expected-value-of-lottery-ticket.html">Expected Value of a Lottery</a></p>
+<p>Thanks for reading. If you have any suggestions, please comment or contact me via Twitter <code>@haridas_n</code></p>
+<h2>References</h2>
+<ol>
+<li>https://nrich.maths.org/13852</li>
+<li>https://en.wikipedia.org/wiki/Probability_axioms</li>
+<li>https://en.wikipedia.org/wiki/Probability_theory</li>
+<li>https://en.wikipedia.org/wiki/Random_variable</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

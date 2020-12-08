@@ -1,15 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2020-07-02T00:00:00+05:30</updated><entry><title>Managing Microservices with Service Mesh - A Control Plane for your Application</title><link href="https://haridas.in/managing-microservices-with-service-mesh-a-control-plane-for-your-application.html" rel="alternate"></link><published>2020-07-02T00:00:00+05:30</published><updated>2020-07-02T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-07-02:/managing-microservices-with-service-mesh-a-control-plane-for-your-application.html</id><content type="html">&lt;p&gt;This post has been published in Hackernoon, Here i'm creating an alias post
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2020-12-08T00:00:00+05:30</updated><entry><title>What's Random Variable</title><link href="https://haridas.in/whats-random-variable.html" rel="alternate"></link><published>2020-12-08T00:00:00+05:30</published><updated>2020-12-08T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-12-08:/whats-random-variable.html</id><summary type="html">&lt;p&gt;This is one of the basic ideas that are commonly not understood properly, we learn
+this from the high school level. Currently, most of the exploration is going
+back to basics and wondering why they are defined like that. I can see that most of the
+definitions have mathematical backgrounds …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is one of the basic ideas that are commonly not understood properly, we learn
+this from the high school level. Currently, most of the exploration is going
+back to basics and wondering why they are defined like that. I can see that most of the
+definitions have mathematical backgrounds and general theorems or axioms
+present, which I'm trying to understand more now. Here I want to see what’s
+the intuition behind the Random Variables.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;From Wikipedia:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A Random variable / Random Quantity/ Stochastic Variable is
+described as a variable whose value depends on the outcomes of a random phenomenon.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Definition based on Measure Theory is more intuitive,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Random Variable isn't a variable, it's a function which maps objects to real valued line.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The definition of a Random variable in Formal Mathematical term is defined using
+Measure Theory, It seems measure theory based intuitions are easier to connect
+rather than statements which define the random variable. Usually, we remember
+things if we can associate them with some real-world entities or actions, which
+is more intuitively we can recollect when we want to restate or understand other
+similar concepts. I’m trying to wrap around this basic idea using measure
+theory.&lt;/p&gt;
+&lt;h2&gt;Measure Theory&lt;/h2&gt;
+&lt;p&gt;Very generically we can say, Measure can be explained using the Set Theory from
+the Wikipedia article is very apt here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Measure on a Set is a systematic way to assign a real number to each suitable subset of a set.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Measurable Events:&lt;/strong&gt; We can group those set of events that can be measured or quantified by using some units that we are familiar with.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="MeasureTheory" src="../images/RandomVariable-Measure_theory.png"&gt;&lt;/p&gt;
+&lt;p&gt;Here &lt;code&gt;Set A&lt;/code&gt; can be anything ( eg; all people in the world, space in physics, number of atoms in the universe ), that we are trying to understand. Power Set of &lt;code&gt;Set A&lt;/code&gt; includes all elements in &lt;code&gt;Set A&lt;/code&gt; as well as all combinations of items in &lt;code&gt;Set A&lt;/code&gt; including the &lt;code&gt;null&lt;/code&gt; item.&lt;/p&gt;
+&lt;p&gt;Assigning a real number to all these subsets of A is called &lt;strong&gt;Measuring&lt;/strong&gt;. We can do any type of measuring activity that is possible on the &lt;code&gt;Set A&lt;/code&gt; or the measuring that's important to us. For example, to understand the heights of all humans in the globe, we do Measure their height, here the measuring is finding the height of each and every person and map that to a real line with some unit.&lt;/p&gt;
+&lt;p&gt;I was wondering, why the Measure was defined like this, why the intermediate set ( power set of &lt;code&gt;A&lt;/code&gt; ) required here ?, why note map the initial set A to the real number? What I'm able to reason here for these questions are,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Power set includes the &lt;code&gt;set A&lt;/code&gt; also&lt;/li&gt;
+&lt;li&gt;It takes care of the cases where the original set is not fully tractable or impossible to find all the items in it, so we have to measure things that are available for us, so there the subset makes sense as a framework.&lt;/li&gt;
+&lt;li&gt;In the case of non-discrete space eg; length, volume, temperature, etc, it's impossible to get the exact value, hence ranges are used or subsets here.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;σ-algebra ( Sigma Algebra )&lt;/h3&gt;
+&lt;p&gt;An &lt;code&gt;Algebra&lt;/code&gt; on a Set is a collection of subsets closed under Union and Intersections.&lt;/p&gt;
+&lt;p&gt;An &lt;code&gt;σ-Algebra&lt;/code&gt; on a Set is a collection of subsets closed under countable unions and Intersections.&lt;/p&gt;
+&lt;p&gt;What's mean by &lt;strong&gt;closed&lt;/strong&gt; is that, if we take any two items from the given set and we do the specified operation (union or intersection), the result also available in the same Set.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Countable&lt;/code&gt; union or intersection means, we can associate natural numbers to the subsets of a given set, ie; a bijective nature in the mapping. Another side of it is, all the subsets are not measurable, as it wouldn't follow the constraints of σ-algebra, Hence σ-algebra is a special constraint applied on a Set to define the Measure and Measure space.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CountableAddictivity" src="../images/Countable_additivity_of_a_measure.svg.png"&gt;&lt;/p&gt;
+&lt;p&gt; [Source: Wikipedia] &lt;/p&gt;
+
+&lt;p&gt;Note: Here &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; is a &lt;strong&gt;Measure&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;Different Types of Measures&lt;/h3&gt;
+&lt;p&gt;Based on some constraints applied on how we can do the measuring or what to measure we can group the Measuring to different types of measures that are common for a particular domain,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Borel Measure&lt;/strong&gt;: Allocate real number to space.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lebesgue Measure&lt;/strong&gt;: Standard way to measure the n-dimensional euclidean space. This measure is a more general one and used to formalize the probability space also. As in that case, the measure assigns values in the range of [0, 1].&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Counting Measure&lt;/strong&gt;: Counts the number of items in a subset of &lt;code&gt;Set A&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Measure Space&lt;/h3&gt;
+&lt;p&gt;Measure space is defined using a triplet - &lt;span class="math"&gt;\((X, A, \mu)\)&lt;/span&gt;, Here&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(X\)&lt;/span&gt; is the Set&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(A\)&lt;/span&gt; &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;-algebra defined on the Set X, or the subset follows the constraints of &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;-algebra.&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\mu\)&lt;/span&gt; is the measure&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This abstract notion helps to understand the entire Measure space and its characteristics.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Euclidian space&lt;/strong&gt; - Try to measure the Length, Area, Volume, hypervolume, etc. Or more common 3-D space.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Probability Space&lt;/strong&gt; - In this case, the Measure of an entire Set is 1. And &lt;code&gt;null&lt;/code&gt; set gets value zero -- We can say this space is an abstract space, with some special properties attached to it. This is being done by proper normalization or knowing about all subsets in the measure space.&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Probability Space also formally defined by the triplet same as above, but the elements are named differently, as,&lt;/p&gt;
+&lt;p&gt;Probability space triplet - &lt;span class="math"&gt;\((\Omega, F, P)\)&lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(\Omega\)&lt;/span&gt; - All possible outcomes of an experiment or &lt;code&gt;Sample Space&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(F\)&lt;/span&gt; - Subsets of &lt;span class="math"&gt;\(\Omega\)&lt;/span&gt; called as &lt;code&gt;Event Space&lt;/code&gt;, each subset is called an &lt;code&gt;event&lt;/code&gt;. We can call the &lt;span class="math"&gt;\(F\)&lt;/span&gt; set of all events from sample space.&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P\)&lt;/span&gt; - Probability function, which assigns a real number between [0-1] to every  &lt;code&gt;event&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here you will be wondering how the probability function ensures the mapping is between 0-1 ?, this is being ensured by the proper normalization factor, if the sample space &lt;span class="math"&gt;\(\Omega\)&lt;/span&gt; is fully tractable, then that can be used, or only approximation works there.&lt;/p&gt;
+&lt;p&gt;Why &lt;span class="math"&gt;\(P(\Omega) = 1\)&lt;/span&gt;, this can be explained by applying the rule of &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;-algebra, the functions should support, &lt;strong&gt;countable union&lt;/strong&gt;,&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(P(\Omega) = P(O_1) + P(O_2) + ... + P(O_n) = 1\)&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Random Variable&lt;/h2&gt;
+&lt;p&gt;Now we all already covered what's Random variable multiple times above, let’s restate it here,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;A random variable is not a variable but a function that maps from space to the real number domain.&lt;/strong&gt; So we can see that Random Variable is a measure done on a specified Measure Space.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So it's clear that we can pick, any measurable function as a random variable. Few constraints applied there are&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Whether that measurable function is usable to us.&lt;/li&gt;
+&lt;li&gt;We can do the measure on the given Space.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If we are dealing with the probabilities of outcomes of an event, then we can represent this entire experiment using the &lt;code&gt;probability space&lt;/code&gt; definition.&lt;/p&gt;
+&lt;h5&gt;Q: So what's &lt;strong&gt;Random&lt;/strong&gt; in Random Variable?&lt;/h5&gt;
+&lt;p&gt;A: Only thing here random being important is, at measure time we shouldn't be biased on any specific type of subsets for measuring. So the &lt;strong&gt;process&lt;/strong&gt; of measuring has randomness, hence we call this a random variable.&lt;/p&gt;
+&lt;p&gt;Let's take one example experiment, where we consider all humans as our &lt;strong&gt;Measure Space&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Probability Distributions&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;From Wikipedia, Probability Distribution is a mathematical description ( or summary) of probabilities of events, subsets of the sample space. These descriptions are represented as a function.&lt;/p&gt;
+&lt;p&gt;Putting it in another way: Probability Distribution is a function that gives probabilities of occurrence of different possible outcomes for an Experiment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;IMO, This idea came because, after seeing different probability spaces ( or outcomes of different experiments ) we were observed surprisingly have a common pattern. From this, we have an abstract meta function that describes the behaviors of a &lt;strong&gt;random variable&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The Normal Distribution ( Bell curve ), seems to be a common pattern we see for a lot of Random Variables that we pick, If a particular Random Variable follows a pattern of particular distribution, then we call it as normally distributed Random Variable. There are a lot of different types of distributions present based on the different characteristics of the Random Variable. In which the Normal Distribution seems to be a universal standard behavior across the board.&lt;/p&gt;
+&lt;p&gt;There are two key principles around this,&lt;/p&gt;
+&lt;p&gt;Let's explain this using a simple measure experiment - &lt;strong&gt;Measure height of people across the globe&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The measuring process is shown below, &lt;/p&gt;
+&lt;p&gt;&lt;img alt="MeasurePeopleHeight" src="../images/RandomVariable-HeightRandomVariable.png"&gt;&lt;/p&gt;
+&lt;p&gt;It's not humanly possible to measure all 7+ Billion people's height to get an idea about how it distributed. So this will be done by taking samples randomly from different locations, and repeat this process till we feel the measure is consistent enough or showing convergence properties. ie; the overall properties of the measure ( probability distribution ) isn't changing considerably after N ( finite sample ) measures.&lt;/p&gt;
+&lt;h4&gt;1. Central Limit Theory ( CLT )&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An &lt;strong&gt;Average&lt;/strong&gt; of Random Variable's distribution tend towards Normal Distribution ( Bell curve ) if we do measure/sample an infinite number of times.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This observation comes empirically. The averaging operation actually bringing the distributions of different independent and identically distributed (i.i.d.) random variables centered around the global average or Population Average. This is where the CLT has some relation to the Law of Large Number discussed below, which covers the Expected Value of a Random Variable will be stabilized when we sample/measure enough number of time from the event space.&lt;/p&gt;
+&lt;h4&gt;2. Law of Large Number&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sample Mean converges to the population mean.&lt;/p&gt;
+&lt;p&gt;Sample Mean is the set of events we have measured ie; Random Variables.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the above measure of height, we can consider there is an unknown population mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; and population standard deviation &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;. We are doing this measure to find this population mean and variance or other properties of the height (&lt;span class="math"&gt;\(H\)&lt;/span&gt;) random variable. So from the event space, we randomly pick N number of people and measure the height, ( N maybe 1000, or 1Million or so ).&lt;/p&gt;
+&lt;p&gt;I have discussed the Law of Large Number in another blog post also - &lt;a href="https://haridas.in/expected-value-of-lottery-ticket.html"&gt;Expected Value of a Lottery&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thanks for reading. If you have any suggestions, please comment or contact me via Twitter &lt;code&gt;@haridas_n&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;https://nrich.maths.org/13852&lt;/li&gt;
+&lt;li&gt;https://en.wikipedia.org/wiki/Probability_axioms&lt;/li&gt;
+&lt;li&gt;https://en.wikipedia.org/wiki/Probability_theory&lt;/li&gt;
+&lt;li&gt;https://en.wikipedia.org/wiki/Random_variable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="data-science"></category><category term="statistics"></category><category term="probability"></category></entry><entry><title>Managing Microservices with Service Mesh - A Control Plane for your Application</title><link href="https://haridas.in/managing-microservices-with-service-mesh-a-control-plane-for-your-application.html" rel="alternate"></link><published>2020-07-02T00:00:00+05:30</published><updated>2020-07-02T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-07-02:/managing-microservices-with-service-mesh-a-control-plane-for-your-application.html</id><content type="html">&lt;p&gt;This post has been published in Hackernoon, Here i'm creating an alias post
 without duplicating the content. Please click below link to see the full post in
 hackernoon.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://hackernoon.com/managing-microservices-with-service-mesh-a-control-plane-for-your-application-ve1k3u1c"&gt;Managing Microservies with Service Mesh - A control plane for your
-Application&lt;/a&gt;&lt;/p&gt;</content><category term="devops"></category><category term="services-mesh"></category><category term="kubernetes"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+Application&lt;/a&gt;&lt;/p&gt;</content><category term="devops"></category><category term="services-mesh"></category><category term="kubernetes"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -4513,8 +4696,8 @@ a redis HASH set.&lt;/p&gt;
        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
            &lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
-           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+           &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
            &lt;span class="c1"&gt;// Do your work now..&lt;/span&gt;
        &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -4758,13 +4941,8 @@ sorting it out based on the score of each card.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;If you guys interested, give a try and let me know your feedbacks.&lt;/p&gt;
 &lt;p&gt;Cheers!&lt;/p&gt;
-</content><category term="programming"></category><category term="android"></category><category term="firebase"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+</content><category term="programming"></category><category term="android"></category><category term="firebase"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -9441,21 +9619,21 @@ implementation.&lt;/p&gt;
 &lt;span class="cp"&gt;#define SIZE 512&lt;/span&gt;
 
 
-&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sa_family&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in6&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;sa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;sin6_addr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;send_sock_msg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sock_fd&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;receiver_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;msghdr&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;iovec&lt;/span&gt; &lt;span class="n"&gt;iov&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="c1"&gt;//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);&lt;/span&gt;
 
@@ -9484,9 +9662,9 @@ implementation.&lt;/p&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ttl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;INET6_ADDRSTRLEN&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_in&lt;/span&gt; &lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;addrinfo&lt;/span&gt; &lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr_storage&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// COnnectors address info.&lt;/span&gt;
     &lt;span class="kt"&gt;socklen_t&lt;/span&gt; &lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
     &lt;span class="n"&gt;memset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hints&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
@@ -9513,12 +9691,12 @@ implementation.&lt;/p&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+                    &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;setsockopt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ai_addrlen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: bind&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -9534,7 +9712,7 @@ implementation.&lt;/p&gt;
 
     &lt;span class="n"&gt;freeaddrinfo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serverinfo&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// No need for it further.&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;MAX_LISTEN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
@@ -9544,16 +9722,16 @@ implementation.&lt;/p&gt;
 
     &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="n"&gt;sin_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;new_sd&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;sin_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_sd&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
             &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;accept ...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="k"&gt;continue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
 
         &lt;span class="n"&gt;inet_ntop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ss_family&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                &lt;span class="n"&gt;get_in_addr&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sockaddr&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;their_addr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
         &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;server: got connection from %s &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -9566,7 +9744,7 @@ implementation.&lt;/p&gt;
 
             &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logfile&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
                 &lt;span class="n"&gt;perror&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;logfile open error&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
             &lt;span class="p"&gt;}&lt;/span&gt;
 
             &lt;span class="cm"&gt;/*&lt;/span&gt;
