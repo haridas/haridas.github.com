@@ -13,6 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
     <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pymdext.css">
 
     <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
 
@@ -23,6 +24,7 @@
             $(".content").fitVids();
         });
     </script>
+	<script src="https://haridas.in/theme/js/pymdext.js"></script>
 </head>
 
 <body>
@@ -255,8 +257,8 @@ a redis HASH set.</p>
        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
            <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-           <span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
-           <span class="kd">let</span> <span class="nx">weight</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+           <span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+           <span class="kd">let</span> <span class="nx">weight</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
            <span class="c1">// Do your work now..</span>
        <span class="p">}</span>
 <span class="p">}</span>
@@ -494,7 +496,6 @@ please check out the co library's github page for more examples.</p>
 </footer>            </div>
 
     </div>
-
     <script>
         var $top = $('.go-top');
 

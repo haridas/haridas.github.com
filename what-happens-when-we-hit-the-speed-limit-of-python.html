@@ -13,6 +13,7 @@
     <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
     <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pymdext.css">
 
     <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
 
@@ -23,6 +24,7 @@
             $(".content").fitVids();
         });
     </script>
+	<script src="https://haridas.in/theme/js/pymdext.js"></script>
 </head>
 
 <body>
@@ -363,21 +365,21 @@ implementation.</p>
 <span class="cp">#define SIZE 512</span>
 
 
-<span class="kt">void</span> <span class="o">*</span><span class="nf">get_in_addr</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="n">sa</span><span class="p">){</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">get_in_addr</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">sa</span><span class="p">){</span>
     <span class="k">if</span><span class="p">(</span><span class="n">sa</span><span class="o">-&gt;</span><span class="n">sa_family</span> <span class="o">==</span> <span class="n">AF_INET</span><span class="p">){</span>
-        <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="nc">sockaddr_in6</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin6_addr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="n">sockaddr_in6</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin6_addr</span><span class="p">);</span>
 <span class="p">}</span>
 
 
 <span class="kt">int</span> <span class="nf">send_sock_msg</span><span class="p">(</span><span class="kt">int</span> <span class="n">sock_fd</span><span class="p">){</span>
-    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">receiver_addr</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">receiver_addr</span><span class="p">;</span>
 
     <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">msghdr</span> <span class="n">msg</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">iovec</span> <span class="n">iov</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">msghdr</span> <span class="n">msg</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">iovec</span> <span class="n">iov</span><span class="p">;</span>
 
     <span class="c1">//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span>
 
@@ -406,9 +408,9 @@ implementation.</p>
     <span class="kt">int</span> <span class="n">ttl</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
 
-    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">addr</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">addrinfo</span> <span class="n">hints</span><span class="p">,</span> <span class="o">*</span><span class="n">serverinfo</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">sockaddr_storage</span> <span class="n">their_addr</span><span class="p">;</span> <span class="c1">// COnnectors address info.</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">addr</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">addrinfo</span> <span class="n">hints</span><span class="p">,</span> <span class="o">*</span><span class="n">serverinfo</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">sockaddr_storage</span> <span class="n">their_addr</span><span class="p">;</span> <span class="c1">// COnnectors address info.</span>
     <span class="kt">socklen_t</span> <span class="n">sin_size</span><span class="p">;</span>
 
     <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">hints</span><span class="p">));</span>
@@ -435,12 +437,12 @@ implementation.</p>
         <span class="p">}</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">yes</span><span class="p">,</span>
-                    <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
+                    <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
             <span class="n">perror</span><span class="p">(</span><span class="s">&quot;setsockopt&quot;</span><span class="p">);</span>
             <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">)</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
             <span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
             <span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: bind&quot;</span><span class="p">);</span>
             <span class="k">continue</span><span class="p">;</span>
@@ -456,7 +458,7 @@ implementation.</p>
 
     <span class="n">freeaddrinfo</span><span class="p">(</span><span class="n">serverinfo</span><span class="p">);</span> <span class="c1">// No need for it further.</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">MAX_LISTEN</span><span class="p">)</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">MAX_LISTEN</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
         <span class="n">perror</span><span class="p">(</span><span class="s">&quot;listen&quot;</span><span class="p">);</span>
         <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
@@ -466,16 +468,16 @@ implementation.</p>
 
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
         <span class="n">sin_size</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">their_addr</span><span class="p">;</span>
-        <span class="n">new_sd</span>  <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
+        <span class="n">new_sd</span>  <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="n">new_sd</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">new_sd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
             <span class="n">perror</span><span class="p">(</span><span class="s">&quot;accept ...&quot;</span><span class="p">);</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
             <span class="k">continue</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="n">inet_ntop</span><span class="p">(</span><span class="n">their_addr</span><span class="p">.</span><span class="n">ss_family</span><span class="p">,</span>
-                <span class="n">get_in_addr</span><span class="p">((</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">),</span>
+                <span class="n">get_in_addr</span><span class="p">((</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">),</span>
                 <span class="n">s</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">s</span><span class="p">);</span>
 
         <span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: got connection from %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
@@ -488,7 +490,7 @@ implementation.</p>
 
             <span class="k">if</span><span class="p">(</span><span class="n">logfile</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
                 <span class="n">perror</span><span class="p">(</span><span class="s">&quot;logfile open error&quot;</span><span class="p">);</span>
-                <span class="k">return</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
             <span class="p">}</span>
 
             <span class="cm">/*</span>
@@ -657,7 +659,6 @@ $ sudo tcpdump -i any port <span class="m">8000</span>
 </footer>            </div>
 
     </div>
-
     <script>
         var $top = $('.go-top');
 
