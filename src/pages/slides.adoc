@@ -6,6 +6,13 @@
 
 My recent talks and corresponding ppt links
 
+==== https://github.com/microsoft/AdaptiveCards/tree/main/source/pic2card[Pic2Card - 8/Jan/2021] 
+
+Happy to be part of this opensource effort by my https://imaginea.com[Imaginea]
+towards AdaptiveCards, an card authoring paltform agnostic environment from Microsoft.
+
+- https://www.youtube.com/watch?v=T-nJY0IOzp4[Meetup Video]
+- https://www.youtube.com/watch?v=b7FVAsaWo3g[AdaptiveCards Community Session Video]
 
 ==== https://www.slideshare.net/PramatiConnect/document-clustering-using-lda-haridas-narayanaswamy-pramati[Document Clustering using LDA - Apr/2019]
 
