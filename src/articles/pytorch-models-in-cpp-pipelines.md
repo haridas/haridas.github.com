@@ -25,6 +25,15 @@ for eg;
 3. Easy way to switch between these settings via environment variables.
 
 
+## API Abstraction
+
+UML diagram if possible.
+
+
+So like many such tricks and tips from the standrd software engineering concepts can be applied to make the ML model deployment and management of the project much easier for long run to maintain and iterate the models quality intependent of the actual pipelines.
+
+
+Hope this helps, to see all these explained in a single project please checkout the pic2card source code.
 
 
 Recently I was playing around on a object detection models specifically DETR model for one of the opensource project that we are working ( AdaptiveCards ).
