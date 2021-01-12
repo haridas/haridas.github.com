@@ -26,10 +26,10 @@ words in the actual input corpus and the coherence value will be good if the
 co-occurrence measure from the top-n words will be higher. See more details of
 each method and its conventions used.
 
->All unsupervised topic clustering algorithms have to address this point before
->going into production, ie; how much usable the topics produced by a given
->method, a human can interpret the meanings of a topic and describe the topic
->using top N words ( eg N = 10 ).
+> All unsupervised topic clustering algorithms have to address this point before
+> going into production, ie; how much usable the topics produced by a given
+> method, a human can interpret the meanings of a topic and describe the topic
+> using top N words ( eg N = 10 ).
 
 Based on this [paper](https://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf) - coherence evaluation can be structured into
 4 stages,
@@ -46,39 +46,36 @@ ways to support the Boolean document counting or sliding window-based counting
 discussed in the next sections.
 
 ### 2. Probability Estimation methods
-<div>
-$$
-
- \begin{array}{l}
- \mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,\
- count\ only\ onces\ in\ a\ given\ document.\\
- \mathcal{P}_{bp} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ paragraph\ estimation,\
- counts\ the\ occurrences\ on\ every\ paragraph.\\
- \mathcal{P}_{bs} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ sentence\ estimation,\
- counts\ on\ occurrences\ on\ every\ sentences\ wise.\\
- \mathcal{P}_{sw} \ \ \ \ \ \ \ \ \ =\ \ Sliding\ window\ estimation,\ here\ a\
- window\ of\ size\ N\ has\ been\ used\ to\ move\\
- \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ over\ the\ document\ and\ each\
- window\ is\ considered\ a\ virtual\ document,\ and\\
- \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\ \mathcal{P}_{bd} \ counts\
- on\ each\ windows.\\
- \\
- \ P( w_{j} ,\ w_{i}) =\ \ \ \ \#documents\ ( w_{j} ,\ w_{i}) \ co-occures\ /\
- \#\ total\ number\ of\ documents.\\
- \ P( w_{j}) \ \ \ \ \ \ =\ \ \ \ \ \#documents\ w_{j} \ occures\ /\ \#\ total\
- number\ of\ documents\\
- \\
- The\ denominators\ /\ normalization\ term\ of\ the\ joint\ and\ marginal\
- probability\ can\ be\ different\\
- based\ on\ the\ method\ used\ for\ estimate\ the\ same.\ Above\ one\ is\ used\
- if\ \mathcal{P}_{bd} \ is\ the\ estimation\ used.\\
- \\
- For\ other\ estimation\ types\ like\ \mathcal{P}_{np} \ we\ use\ \#\ total\
- number\ of\ paragraph\ as\ the\ normalisation\ term.
- \end{array}
 
 $$
-</div>
+\begin{array}{l}
+\mathcal{P}_{bd} \ \ \ \ \ \ \ \ \ \ =\ \ \ Boolean\ document\ estimation,
+count\ only\ onces\ in\ a\ given\ document.\\
+\mathcal{P}_{bp} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ paragraph\ estimation,
+counts\ the\ occurrences\ on\ every\ paragraph.\\
+\mathcal{P}_{bs} \ \ \ \ \ \ \ \ \ \ =\ \ Boolean\ sentence\ estimation,
+counts\ on\ occurrences\ on\ every\ sentences\ wise.\\
+\mathcal{P}_{sw} \ \ \ \ \ \ \ \ \ =\ \ Sliding\ window\ estimation,\ here\ a
+window\ of\ size\ N\ has\ been\ used\ to\ move\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ over\ the\ document\ and\ each
+window\ is\ considered\ a\ virtual\ document,\ and\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\ \mathcal{P}_{bd} \ counts
+on\ each\ windows.\\
+\\
+\ P( w_{j} ,\ w_{i}) =\ \ \ \ \#documents\ ( w_{j} ,\ w_{i}) \ co-occures\ /
+\#\ total\ number\ of\ documents.\\
+\ P( w_{j}) \ \ \ \ \ \ =\ \ \ \ \ \#documents\ w_{j} \ occures\ /\ \#\ total
+number\ of\ documents\\
+\\
+The\ denominators\ /\ normalization\ term\ of\ the\ joint\ and\ marginal
+probability\ can\ be\ different\\
+based\ on\ the\ method\ used\ for\ estimate\ the\ same.\ Above\ one\ is\ used
+if\ \mathcal{P}_{bd} \ is\ the\ estimation\ used.\\
+\\
+For\ other\ estimation\ types\ like\ \mathcal{P}_{np} \ we\ use\ \#\ total
+number\ of\ paragraph\ as\ the\ normalisation\ term.
+\end{array}
+$$
 
 ### 3. Confirmation Measures
 
@@ -93,27 +90,25 @@ UMass is the simplest method of all mentioned bellow and computes time is least 
 all others.
 
 
-<div>
 $$
- \begin{array}{l}
+\begin{array}{l}
 C_{UMass} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i})}\right)\\
 \\
 N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
 \\
 Here\ the\ P( w_{j} ,\ w_{i}) \ co-occurrence\ is\ calculated\ by\ using\ \ \mathcal{P}_{bd} \ \ method\ mentioned\ above.\ \\
-\ \
+\ 
 \end{array}
 $$
-</div>
 
 ##### 3.2 UCI
 
 Slightly improved version of UMass, and applying the sliding window based probabilistic
 measure.
 
-<div>
+
 $$
- \begin{array}{l}
+\begin{array}{l}
 C_{UCI} \ =\dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ log\left(\dfrac{P( w_{j} ,\ w_{i}) \ +\ \epsilon }{P( w_{i}) \ P( w_{j})}\right)\\
 \\
 N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
@@ -122,7 +117,6 @@ Here\ the\ co-occurrence\ is\ calculated\ by\ applying\ the\ sliding\ window\ ov
 text\ document.
 \end{array}
 $$
-</div>
 
 
 ##### 3.3 NPMI - Normalized Pointwise Mutual Information
@@ -130,24 +124,21 @@ $$
 Measuring the co-occurrence of words as the name suggests. This one is an improved version
 of PMI, by applying an added normalization to PMI.
 
-<div>
 $$
-
- \begin{array}{l}
- N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
- \\
- C_{NPMI} \ =\ \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\
- -1}_{i=1}\left( \ \dfrac{\left(\dfrac{log\ ( P( w_{j} ,w_{i})) \ +\ \epsilon
- }{P( w_{j}) \ P( w_{i})}\right)}{-\ log( P( w_{j} ,\ w_{i})) \ +\ \epsilon
- }\right)\\
- \\
- P( w_{j} ,\ w_{i}) \ =\ Frequency\ of\ these\ two\ tokens\ co-occurrence\ on\
- the\ input\ datasets.\ \\
- \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Here\ we\ apply\ \mathcal{P}_{sw}
- \ method.
- \end{array}
+\begin{array}{l}
+N=\ \#Top\ words\ from\ a\ Topic.\ eg;\ N=10\\
+\\
+C_{NPMI} \ =\ \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j
+-1}_{i=1}\left( \ \dfrac{\left(\dfrac{log\ ( P( w_{j} ,w_{i})) \ +\ \epsilon
+}{P( w_{j}) \ P( w_{i})}\right)}{-\ log( P( w_{j} ,\ w_{i})) \ +\ \epsilon
+}\right)\\
+\\
+P( w_{j} ,\ w_{i}) \ =\ Frequency\ of\ these\ two\ tokens\ co-occurrence\ on
+the\ input\ datasets.\ \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Here\ we\ apply\ \mathcal{P}_{sw}
+\ method.
+\end{array}
 $$
-</div>
 
 
 Outside this 4 stage framework, there are multiple coherence measures available,
@@ -159,20 +150,17 @@ measures are listed below,
 Here we are making use of the semantic meanings of each word on the word2vec vector
 space and finding the cosine similarity between two word vectors.
 
-<div>
 $$
 \displaystyle \dfrac{1}{^{N} C_{2}} \ \sum ^{N}_{j=2} \ \sum ^{j\ -1}_{i=1} \ similarity( wvi,\ wvj)
 $$
-</div>
 
 #### 3.5 TF-IDF based improvement for UMass method
 
 Here instead of measuring co-occurrence of two words across the documents, measure
 its relevance using tf-idf calculation.
 
-<div>
 $$
- \begin{array}{l}
+\begin{array}{l}
 c( t,\ W_{t}) \ -\ Topic\ t\ is\ characterized\ by\ its\ set\ of\ top\ W_{t} \ words.\\
 \\
 c_{tf-idf}( t,\ W_{t}) \ =\ \sum _{w_{1} ,w_{2} \ \in \ W_{t}} log\ \left(\dfrac{\sum _{d:\ w_{1} ,w_{w} \ \in \ d}( tf-idf( w_{1} ,\ d) \ \times \ tf-idf( w_{2} ,\ d) \ +\ \epsilon )}{\sum _{d:\ w_{1} \ \in \ d} tf-idf( w_{1} ,\ d)}\right)\\
@@ -185,7 +173,6 @@ c) \ max\ _{w^{*} \ \in \ d} \ f\left( \ w^{*} ,\ d\right) \ =\ Normalise\ it\ w
 d) \ w^{*} \ \ \neq \ \ w
 \end{array}
 $$
-</div>
 
 
 #### 3.6 TBuckets
@@ -196,9 +183,8 @@ $$
 
 Refer [paper](http://www.aclweb.org/anthology/E17-2070)
 
-<div>
 $$
- \begin{array}{l}
+\begin{array}{l}
 A\ =\ U{\textstyle \sum V^{T} \ \ \ ;\ SVD\ of\ the\ Matrix\ A}\\
 \\
 \\
@@ -220,7 +206,6 @@ use\ Interger\ Linear\ Programming\ or\ Linear\ optimization\ to\ get\ better\ a
 fragmentation.
 \end{array}
 $$
-</div>
 
 ### 4. Aggregation strategies
 
@@ -245,16 +230,13 @@ dependent on each other, otherwise topics are discussing similar domain ( eg;
 automobile ). The key thing to care about is, there is know good setting for this
 value, it's purely set based on the business requirement and nature of the data.
 
-<div>
 $$
- \begin{array}{l}
+\begin{array}{l}
 K\ =\ \#Topics\\
 \\
 MPJ_{m,\ k} \ =\ \dfrac{1}{^{K} C_{2}} \ \sum ^{K}_{j=2} \ \sum ^{j\ -1}_{i=1} \ \left( \ \dfrac{TD_{i} \ \cap \ TD_{j}}{TD_{i} \ \cup \ TD_{j}}\right)
 \end{array}
-
 $$
-</div>
 
 
 Thank you, That's all for now. Hope these heuristics helped you to understand your models well.
