@@ -33,6 +33,8 @@ This is same for the Pytorch scenario also
 
 ## Master Dockerfile
 
+Right now we are targetted to do the CPU only inference on the cloud lambda services, in our case [Azure Functions](https://azure.microsoft.com/en-in/services/functions/). So to check how the tensorflow service being seutup, see below main docker file which handles the option to include the inference model with dockerfile or exclude and use the external service which does the actual model inference.
+
 The Multi-build feature of the docker helps to agregate the different control-flows with in the docker.
 
 for eg;
@@ -41,9 +43,11 @@ for eg;
 2. I want to Keep the model as external service, so I don't need to install all the model specific heavy dependencies with my service.
 3. Easy way to switch between these settings via environment variables.
 
-## API Abstraction
 
-UML diagram if possible.
+< Show sample of the docker file and its stages >
+
+
+## API Abstraction
 
 So like many such tricks and tips from the standrd software engineering concepts can be applied to make the ML model deployment and management of the project much easier for long run to maintain and iterate the models quality intependent of the actual pipelines.
 
@@ -77,21 +81,12 @@ Inference time difference:
 | DETE |   |   |
 | EfficiendDet-0-7x: |   |   |
 
-### Main stages involved
 
-1. Create TorchScript representation of the model
-2. Do the trace run to get python intenepndent representation, so that you can load them in libtorch library ie; cpp/c
-3. CPP inserference library you can now directly load this torch script model.
-4. Provide the inputs via cv::Mat or other compatible matrix format.
-5. If you further want to load this cpp inference as a python binding to any other python projects that doesn't need explicit pytorch dependency, you can do that.
-6. As the size of the torch library size is higher.
+### Github Actions Integration
 
-This is not a common pipeline but needed for high throughput systems where we need to integrate any ML-based solutions we have to package the model as a Linear Algebra module that does some vector calculations and produce the result as quick as possible.
+This would be an Iceing on the cake feature for you, This helps to avoid all the headache of running the builds yourself, and it helps to avoid extra efforts that need to be put in to do the sam relase process after few months. As obviously most of the part of the pieline by then will be forgotten.
 
-1. Export your model to TorchScript Format
-2. Load this model in CPP program.
-
-Size comparison between libtorch and pytorch ?
+So Actions helsp to make the end-to-end pipeline works well, and error free and it's less streassful for the entire team.
 
 ---
 
@@ -114,3 +109,32 @@ Trying out the pic2card inference pipeline on the c++ library only inference opt
 4. Or use it with CPP projects directly
 
 Currently these optimisations are possible using the pytorch environment using the the torchscript option.
+
+### What's Torchscript
+
+Like how the tensorflow standrdized their model information using the binary protocol ( Protocol Buffer ) based encoding, similarly Torchscirpt does the same standardization of the pytorch models so that it can be serialized and used with different projects. For eg; You can build you project in Pytorch and export the final model into to TorchScript serialized representation ( Frozen graph; Tensorflow termonology ) so that it can be loaded into CPP or other non-python environments for modle inference.
+
+
+### How to export and what are the thigns need to be taken cared of.
+
+
+Basic steps involved in it and special function annotations and how it helps for the custom implementations are injected into the computation graph so that it can be used in the training time or at the inference time.
+
+
+### Load torchscript into C++ project
+
+<code smple:
+
+
+### Torch to cv.Matrix
+
+TBD
+
+### Wrap the c++ inference as a python package
+
+How about load the model into 
+
+
+### Performance improvement
+
+Getting close to 50-70% speed gain when doing the c++ pipelien for the inference. This can be improved much further if we can re-implement some part of the image preprocessing workload.
