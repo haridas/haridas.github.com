@@ -1,10 +1,10 @@
-Title: Packaging Object Detection Models via Docker
+Title: Packaging Object Detection Models for Production
 Date: 2020-12-15  00:00
 Category: data-science
-Tags: pytroch,cpp
+Tags: pytroch,tensorflow,docker
 Authors: Haridas N
 
-Recently got chance to be part of an opensource effort from our [company](Imaginea) named pic2card. There we are mainly exploiting the object detection models for our usecase. Object Detection models become one of the main stream in the ML world, lot of innovative models came into existance recent years. Currently most of the models are trying to reduce the latency by keep the quality of the existing model, so that these can be applied for videos and realtime video streams. And this usecase is the one of the prime inputs for the self-driving application.
+Recently I got chance to be part of an opensource effort from our [company](Imaginea) named pic2card. There we are mainly exploiting the object detection models for our usecase. Object Detection models become one of the main stream in the ML world, lot of innovative models came into existance recent years. Currently most of the models are trying to reduce the latency by keep the quality of the existing model, so that these can be applied for videos and realtime video streams. And this usecase is the one of the prime inputs for the self-driving application.
 
 If you consider the different implementations avilable for the object detection you can see lot of implementations availble for the key architectures in tensorflow and Torch done against the main benchmark dataset named COCO, similar to the ImageNet datset for the Image competitions.
 
@@ -43,9 +43,7 @@ for eg;
 2. I want to Keep the model as external service, so I don't need to install all the model specific heavy dependencies with my service.
 3. Easy way to switch between these settings via environment variables.
 
-
 < Show sample of the docker file and its stages >
-
 
 ## API Abstraction
 
@@ -81,40 +79,22 @@ Inference time difference:
 | DETE |   |   |
 | EfficiendDet-0-7x: |   |   |
 
-### Main stages involved
+Docker Image Sizes:
 
-1. Create TorchScript representation of the model
-2. Do the trace run to get python intenepndent representation, so that you can load them in libtorch library ie; cpp/c
-3. CPP inserference library you can now directly load this torch script model.
-4. Provide the inputs via cv::Mat or other compatible matrix format.
-5. If you further want to load this cpp inference as a python binding to any other python projects that doesn't need explicit pytorch dependency, you can do that.
-6. As the size of the torch library size is higher.
+Both images 1GB+ images, which makes it easy for deploy it on Serverless environments. We need to be strictily avoid all unncessary package installations to make this work.
 
-This is not a common pipeline but needed for high throughput systems where we need to integrate any ML-based solutions we have to package the model as a Linear Algebra module that does some vector calculations and produce the result as quick as possible.
+### Github Actions Integration
 
-1. Export your model to TorchScript Format
-2. Load this model in CPP program.
+This would be an Iceing on the cake feature for you, This helps to avoid all the headache of running the builds yourself, and it helps to avoid extra efforts that need to be put in to do the sam relase process after few months. As obviously most of the part of the pieline by then will be forgotten.
 
-Size comparison between libtorch and pytorch ?
+So Actions helsp to make the end-to-end pipeline works well, and error free and it's less streassful for the entire team.
 
----
+### Github Docker Registry
 
+This is another feature we get for free from github, if your project is a opensource one. You can build the images using github actions and keep them under the github docker registry. This makes the life easyer for build and keep the publically available images for anybody to deploy or try it out.
 
-Title: Pytorch model Inference pipeline using c++
-Date: 2020-12-15  00:00
-Category: data-science
-Tags: pytroch,cpp
-Authors: Haridas N
+See the below action codes under the pic2card source code to know more about how to integrate the actions with github registry.
 
-After seeing the option that we can easily move our model into C++ inference model, I couldn't wait to try this out with one of the Pytorch work that got into production environment. I have able to pack the entire model inference pipeline in C++, and export the C++ model via python wraper so that I can use the C++ inference pipeline in a another python only projects where i don't need to install the pytorch library specifically.
+To see all these dicussed methods in action, checkout the opensource project named Pic2Card under AdaptiveCards framework - [https://github.com/microsoft/AdaptiveCards/tree/main/source/pic2card](https://github.com/microsoft/AdaptiveCards/tree/main/source/pic2card)
 
-You can see the implementation of the c++ python package here:
-
-Trying out the pic2card inference pipeline on the c++ library only inference option. The objectives are,
-
-1. Reduce the net image size of the ML service
-2. Reduce the latency as much as possible
-3. CPP based python binding
-4. Or use it with CPP projects directly
-
-Currently these optimisations are possible using the pytorch environment using the the torchscript option.
+Github Actions available under the root of that project: [https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows](https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows)
