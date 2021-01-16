@@ -43,7 +43,7 @@ MENUITEMS = [
     ("Programming", "category/programming.html"),
     ("Data-Science", "category/data-science.html"),
     #("Security", "tag/security.html"),
-    ("Devops", "category/devops.html"),
+    ("DevOps", "category/devops.html"),
     ("Talks", "pages/my-talks.html"),
     ("About Me", "pages/about-me.html"),
     ("Resume", "resume.pdf")

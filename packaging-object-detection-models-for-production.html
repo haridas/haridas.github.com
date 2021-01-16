@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Packaging Object Detection Models for Production // all posts // HN </title>
+
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pymdext.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+	<script src="https://haridas.in/theme/js/pymdext.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">DevOps
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="https://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="https://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Packaging Object Detection Models for Production</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/pytorch.html">pytorch</a>
+                                <a class="post-category" href="https://haridas.in/tag/tensorflow.html">tensorflow</a>
+                                <a class="post-category" href="https://haridas.in/tag/docker.html">docker</a>
+                        </p>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Sat 16 January 2021
+                        </p>
+                </header>
+            </section>
+            <p>Recently I got the chance to be part of an open-source project effort from our 
+<a href="https://imaginea.com">company</a> named pic2card. There we are mainly exploiting
+the object detection models for this problem. Object Detection models have become
+one of the mainstream in the ML world, a lot of innovative models came into existence
+in recent years. Currently, most of the models are trying to reduce the latency by
+keeping the quality of the existing model, so that these can be applied for videos
+and real-time video streams.</p>
+<p>If you consider the different models available for object detection you can see
+a lot of implementations available for the key architectures in Tensorflow and PyTorch.
+These object detection models mainly use a benchmark dataset named
+<a href="https://cocodataset.org/">MS-COCO</a>, similar to the <a href="http://image-net.org/">ImageNet</a>
+dataset for the Image classification competition.</p>
+<p>So if you are using an object detection model to solve one of your problems, how you
+manage the different model options at your hand, end-to-end how you design the pipeline
+and build and ship your project into production. Here I’m trying to show a quick walkthrough
+of how we attacked this problem for the pic2card project.</p>
+<p>Key things to concentrate on are,</p>
+<ol>
+<li>Model specific dependency management.</li>
+<li>The flexible way to package and ship your service with different model implementations.</li>
+<li>Docker packaging.</li>
+<li>Deploy the ML service into a Serverless environment.</li>
+</ol>
+<p>Your project structure and modularisation heavily influenced by the downstream pipeline
+requirements like the one listed above. Let’s look into each one of them briefly.</p>
+<h4>Dependency Management</h4>
+<ol>
+<li>Common dependencies for your ml service and preprocessing pipeline in the <code>requirements.txt</code> file</li>
+<li>Model specific dependency in corresponding requirements files. for eg; <code>requirements-tensorflow.txt</code>, or <code>requirements-pytorch.txt</code></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># Common dependencies are kept here</span>
+$ cat requirements.txt
+<span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.9.2
+<span class="nv">flask</span><span class="o">==</span><span class="m">1</span>.1.1
+...
+
+<span class="c1"># Only Tensorflow specific packages</span>
+$ cat requirements-tensorflow.txt
+<span class="nv">tensorflow</span><span class="o">==</span><span class="m">1</span>.15.4
+
+<span class="c1"># Only Pytorch specific packages.</span>
+$ cat requirements-pytorch.txt
+<span class="nv">torch</span><span class="o">==</span><span class="m">1</span>.5.0
+<span class="nv">torchvision</span><span class="o">==</span><span class="m">0</span>.6.0
+</code></pre></div>
+
+<p>Keeping separate requirements has to be in sync with how you structure the code so that
+the code path that requires <code>PyTorch</code> won't get loaded while using the <code>tensorflow</code> models
+for inference. With Python, it's easy due to the dynamic nature of the language, with
+static languages it has to be done by a common interface implementation and separate library packaging.</p>
+<h4>Packaging using Docker</h4>
+<p>Now let's see how to build the Dockerfile for your ML Service and how we can include
+the trained model with your ML Service.</p>
+<p>Dedicated Dockerfile for each type of pipeline provided they have options to change
+the pipeline properties at image build time itself. Make use of the Multi-stage dockerfiles,
+which helps to accommodate different configurations that we need to bake into the docker image build time. eg;</p>
+<ol>
+<li>Build a Docker image with an embedded tensorflow model and CPU/GPU support</li>
+<li>Build a Docker image without model embedded init, instead configure the service to reach out for the ML APIs</li>
+<li>Build a Docker image with Pytorch version of the model embedded</li>
+<li>Build a Docker image with an embedded C++ (libtorch) model inference pipeline.</li>
+</ol>
+<h4>ML Service with TF model</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Global ARGs</span>
+ARG <span class="nv">TARGET_API</span><span class="o">=</span>frozen_graph
+
+<span class="c1">## Stage 1: TFS base stage</span>
+FROM python:3.7.9-slim-buster as tfs
+ADD requirements/requirements.txt /app/requirements.txt
+
+<span class="c1">## Stage 2: Embedded model with service stage.</span>
+FROM python:3.7.9-slim-buster as frozen_graph
+<span class="c1"># Fill in both, as in this case, we need both dependencies.</span>
+ADD requirements/requirements-frozen_graph.txt /app/
+ADD requirements/requirements.txt /app/
+RUN cat /app/requirements-frozen_graph.txt &gt;&gt; /app/requirements.txt
+COPY model/frozen_inference_graph.pb /app/model/
+
+<span class="c1">## Stage 3: Temp stage to keep project files</span>
+FROM <span class="nv">$TARGET_API</span> AS build
+COPY app /app/app
+COPY mystique /app/mystique
+
+<span class="c1">## Stage 4: Main Docker Image</span>
+FROM python:3.7.9-slim-buster
+
+<span class="c1"># Life-saving option to know which version of code got packaged in this</span>
+<span class="c1"># docker image!</span>
+ARG <span class="nv">COMMIT_SHA</span><span class="o">=</span>
+ARG <span class="nv">BRANCH_NAME</span><span class="o">=</span>
+
+<span class="c1"># Having separate ARG variable as global one is not accessible</span>
+<span class="c1"># under one FROM block.</span>
+ARG <span class="nv">tfs_enable</span><span class="o">=</span>
+
+<span class="c1"># Use this ENV to control the code path in your service.</span>
+ENV <span class="nv">ENABLE_TF_SERVING</span><span class="o">=</span><span class="nv">$tfs_enable</span>
+
+<span class="c1">### &lt; Dependencies and projects in place, now goes install dependency and other setups. &gt; ###</span>
+</code></pre></div>
+
+<p>Here only showing the key parts of this setup. If you want to see how this has been
+done for the pic2card project please refer <a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/docker/Dockerfile">here</a>.</p>
+<p>For the <code>PyTorch</code> other framework based models you can follow a similar pattern of
+build pipeline and accordingly modularise the packages for better management of your
+entire pipeline. If you want to see the PyTorch example, please check this <a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/docker/Dockerfile-detr">repository</a>.</p>
+<h3>CICD using Github Actions</h3>
+<p>This would be an Icing on the cake feature for you, This helps to avoid all the
+headache of setting up a CICD pipeline and manage those.  So Actions help to make
+the end-to-end pipeline works well, and error free and it's less stressful for the entire team.</p>
+<p>Another cool feature is you can build your project and push the docker image to GitHub provided docker registry itself.</p>
+<p>See the pipeline setup that we have done for the pic2card project - <a href="https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows">https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows</a></p>
+<p><img alt="Pic2card Build" src="../images/pic2card_gh_actions.png"></p>
+<h3>Github Docker Registry</h3>
+<p>This is another feature we get for free from GitHub; this avoids the worry of
+where to keep the docker images and you don't need to manage docker registry servers for yourself.
+You can build the images using GitHub actions and keep them under the GitHub docker registry.
+This makes life easier to build and keep the publically available images for anybody to deploy or try out.</p>
+<p>Try this out here
+<a href="https://github.com/features/packages">https://github.com/features/packages</a></p>
+<h3>Deployment on serverless environments</h3>
+<p>If you are already into AWS or other cloud providers to provision your infrastructure
+then it’s much easier to deploy your ready to run docker image into serverless options
+provided by these cloud providers. Eg; <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-function-linux-custom-image?tabs=bash%2Cportal&amp;pivots=programming-language-csharp">Azure Functions</a>
+or <a href="https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/">AWS Lambdas</a>,
+both these providers support serverless option with docker so that you can easily deploy it
+without having to package it in some other cloud provider specific packaging of your project ( eg; zip or others ).</p>
+<blockquote>
+<p>As mentioned above one thing to be aware of is ensure your image size is not too large,
+in our case it comes close to 1GB for the ML service image with a model embedded in it.</p>
+</blockquote>
+<h3>Takeaway</h3>
+<p>The key takeaway I can give if you are planning to package your ML based services are,</p>
+<ol>
+<li>Don't keep any unnecessary dependencies</li>
+<li>Ensure your service running on GPU/CPU, and include packages specifically for those targets, and save the image size. In general, CPU Model inference is enough.</li>
+<li>Structure your service code with these modularisations in mind, so that using Environment variables you can switch the code paths.</li>
+<li>Keep models from different frameworks like TensorFlow / PyTorch / others separate, ensuring your code doesn’t need to be touched for this purpose.</li>
+<li>Reduce the Docker Image so that the service can be deployed in a serverless environment in a better way.</li>
+</ol>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>

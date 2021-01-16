@@ -1,5 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2020-12-08T00:00:00+05:30</updated><entry><title>What's Random Variable</title><link href="https://haridas.in/whats-random-variable.html" rel="alternate"></link><published>2020-12-08T00:00:00+05:30</published><updated>2020-12-08T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-12-08:/whats-random-variable.html</id><summary type="html">&lt;p&gt;This is one of the basic ideas that are commonly not understood properly, we learn
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HN</title><link href="https://haridas.in/" rel="alternate"></link><link href="https://haridas.in/feeds/all-en.atom.xml" rel="self"></link><id>https://haridas.in/</id><updated>2021-01-16T00:00:00+05:30</updated><entry><title>Packaging Object Detection Models for Production</title><link href="https://haridas.in/packaging-object-detection-models-for-production.html" rel="alternate"></link><published>2021-01-16T00:00:00+05:30</published><updated>2021-01-16T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2021-01-16:/packaging-object-detection-models-for-production.html</id><summary type="html">&lt;p&gt;Recently I got the chance to be part of an open-source project effort from our 
+&lt;a href="https://imaginea.com"&gt;company&lt;/a&gt; named pic2card. There we are mainly exploiting
+the object detection models for this problem. Object Detection models have become
+one of the mainstream in the ML world, a lot of innovative models came into …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I got the chance to be part of an open-source project effort from our 
+&lt;a href="https://imaginea.com"&gt;company&lt;/a&gt; named pic2card. There we are mainly exploiting
+the object detection models for this problem. Object Detection models have become
+one of the mainstream in the ML world, a lot of innovative models came into existence
+in recent years. Currently, most of the models are trying to reduce the latency by
+keeping the quality of the existing model, so that these can be applied for videos
+and real-time video streams.&lt;/p&gt;
+&lt;p&gt;If you consider the different models available for object detection you can see
+a lot of implementations available for the key architectures in Tensorflow and PyTorch.
+These object detection models mainly use a benchmark dataset named
+&lt;a href="https://cocodataset.org/"&gt;MS-COCO&lt;/a&gt;, similar to the &lt;a href="http://image-net.org/"&gt;ImageNet&lt;/a&gt;
+dataset for the Image classification competition.&lt;/p&gt;
+&lt;p&gt;So if you are using an object detection model to solve one of your problems, how you
+manage the different model options at your hand, end-to-end how you design the pipeline
+and build and ship your project into production. Here I’m trying to show a quick walkthrough
+of how we attacked this problem for the pic2card project.&lt;/p&gt;
+&lt;p&gt;Key things to concentrate on are,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Model specific dependency management.&lt;/li&gt;
+&lt;li&gt;The flexible way to package and ship your service with different model implementations.&lt;/li&gt;
+&lt;li&gt;Docker packaging.&lt;/li&gt;
+&lt;li&gt;Deploy the ML service into a Serverless environment.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Your project structure and modularisation heavily influenced by the downstream pipeline
+requirements like the one listed above. Let’s look into each one of them briefly.&lt;/p&gt;
+&lt;h4&gt;Dependency Management&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Common dependencies for your ml service and preprocessing pipeline in the &lt;code&gt;requirements.txt&lt;/code&gt; file&lt;/li&gt;
+&lt;li&gt;Model specific dependency in corresponding requirements files. for eg; &lt;code&gt;requirements-tensorflow.txt&lt;/code&gt;, or &lt;code&gt;requirements-pytorch.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Common dependencies are kept here&lt;/span&gt;
+$ cat requirements.txt
+&lt;span class="nv"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.9.2
+&lt;span class="nv"&gt;flask&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.1.1
+...
+
+&lt;span class="c1"&gt;# Only Tensorflow specific packages&lt;/span&gt;
+$ cat requirements-tensorflow.txt
+&lt;span class="nv"&gt;tensorflow&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.15.4
+
+&lt;span class="c1"&gt;# Only Pytorch specific packages.&lt;/span&gt;
+$ cat requirements-pytorch.txt
+&lt;span class="nv"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;.5.0
+&lt;span class="nv"&gt;torchvision&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;.6.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Keeping separate requirements has to be in sync with how you structure the code so that
+the code path that requires &lt;code&gt;PyTorch&lt;/code&gt; won't get loaded while using the &lt;code&gt;tensorflow&lt;/code&gt; models
+for inference. With Python, it's easy due to the dynamic nature of the language, with
+static languages it has to be done by a common interface implementation and separate library packaging.&lt;/p&gt;
+&lt;h4&gt;Packaging using Docker&lt;/h4&gt;
+&lt;p&gt;Now let's see how to build the Dockerfile for your ML Service and how we can include
+the trained model with your ML Service.&lt;/p&gt;
+&lt;p&gt;Dedicated Dockerfile for each type of pipeline provided they have options to change
+the pipeline properties at image build time itself. Make use of the Multi-stage dockerfiles,
+which helps to accommodate different configurations that we need to bake into the docker image build time. eg;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Build a Docker image with an embedded tensorflow model and CPU/GPU support&lt;/li&gt;
+&lt;li&gt;Build a Docker image without model embedded init, instead configure the service to reach out for the ML APIs&lt;/li&gt;
+&lt;li&gt;Build a Docker image with Pytorch version of the model embedded&lt;/li&gt;
+&lt;li&gt;Build a Docker image with an embedded C++ (libtorch) model inference pipeline.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;ML Service with TF model&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Global ARGs&lt;/span&gt;
+ARG &lt;span class="nv"&gt;TARGET_API&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;frozen_graph
+
+&lt;span class="c1"&gt;## Stage 1: TFS base stage&lt;/span&gt;
+FROM python:3.7.9-slim-buster as tfs
+ADD requirements/requirements.txt /app/requirements.txt
+
+&lt;span class="c1"&gt;## Stage 2: Embedded model with service stage.&lt;/span&gt;
+FROM python:3.7.9-slim-buster as frozen_graph
+&lt;span class="c1"&gt;# Fill in both, as in this case, we need both dependencies.&lt;/span&gt;
+ADD requirements/requirements-frozen_graph.txt /app/
+ADD requirements/requirements.txt /app/
+RUN cat /app/requirements-frozen_graph.txt &amp;gt;&amp;gt; /app/requirements.txt
+COPY model/frozen_inference_graph.pb /app/model/
+
+&lt;span class="c1"&gt;## Stage 3: Temp stage to keep project files&lt;/span&gt;
+FROM &lt;span class="nv"&gt;$TARGET_API&lt;/span&gt; AS build
+COPY app /app/app
+COPY mystique /app/mystique
+
+&lt;span class="c1"&gt;## Stage 4: Main Docker Image&lt;/span&gt;
+FROM python:3.7.9-slim-buster
+
+&lt;span class="c1"&gt;# Life-saving option to know which version of code got packaged in this&lt;/span&gt;
+&lt;span class="c1"&gt;# docker image!&lt;/span&gt;
+ARG &lt;span class="nv"&gt;COMMIT_SHA&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+ARG &lt;span class="nv"&gt;BRANCH_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Having separate ARG variable as global one is not accessible&lt;/span&gt;
+&lt;span class="c1"&gt;# under one FROM block.&lt;/span&gt;
+ARG &lt;span class="nv"&gt;tfs_enable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Use this ENV to control the code path in your service.&lt;/span&gt;
+ENV &lt;span class="nv"&gt;ENABLE_TF_SERVING&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$tfs_enable&lt;/span&gt;
+
+&lt;span class="c1"&gt;### &amp;lt; Dependencies and projects in place, now goes install dependency and other setups. &amp;gt; ###&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here only showing the key parts of this setup. If you want to see how this has been
+done for the pic2card project please refer &lt;a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/docker/Dockerfile"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the &lt;code&gt;PyTorch&lt;/code&gt; other framework based models you can follow a similar pattern of
+build pipeline and accordingly modularise the packages for better management of your
+entire pipeline. If you want to see the PyTorch example, please check this &lt;a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/docker/Dockerfile-detr"&gt;repository&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;CICD using Github Actions&lt;/h3&gt;
+&lt;p&gt;This would be an Icing on the cake feature for you, This helps to avoid all the
+headache of setting up a CICD pipeline and manage those.  So Actions help to make
+the end-to-end pipeline works well, and error free and it's less stressful for the entire team.&lt;/p&gt;
+&lt;p&gt;Another cool feature is you can build your project and push the docker image to GitHub provided docker registry itself.&lt;/p&gt;
+&lt;p&gt;See the pipeline setup that we have done for the pic2card project - &lt;a href="https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows"&gt;https://github.com/microsoft/AdaptiveCards/tree/main/.github/workflows&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pic2card Build" src="../images/pic2card_gh_actions.png"&gt;&lt;/p&gt;
+&lt;h3&gt;Github Docker Registry&lt;/h3&gt;
+&lt;p&gt;This is another feature we get for free from GitHub; this avoids the worry of
+where to keep the docker images and you don't need to manage docker registry servers for yourself.
+You can build the images using GitHub actions and keep them under the GitHub docker registry.
+This makes life easier to build and keep the publically available images for anybody to deploy or try out.&lt;/p&gt;
+&lt;p&gt;Try this out here
+&lt;a href="https://github.com/features/packages"&gt;https://github.com/features/packages&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Deployment on serverless environments&lt;/h3&gt;
+&lt;p&gt;If you are already into AWS or other cloud providers to provision your infrastructure
+then it’s much easier to deploy your ready to run docker image into serverless options
+provided by these cloud providers. Eg; &lt;a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-function-linux-custom-image?tabs=bash%2Cportal&amp;amp;pivots=programming-language-csharp"&gt;Azure Functions&lt;/a&gt;
+or &lt;a href="https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/"&gt;AWS Lambdas&lt;/a&gt;,
+both these providers support serverless option with docker so that you can easily deploy it
+without having to package it in some other cloud provider specific packaging of your project ( eg; zip or others ).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As mentioned above one thing to be aware of is ensure your image size is not too large,
+in our case it comes close to 1GB for the ML service image with a model embedded in it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Takeaway&lt;/h3&gt;
+&lt;p&gt;The key takeaway I can give if you are planning to package your ML based services are,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Don't keep any unnecessary dependencies&lt;/li&gt;
+&lt;li&gt;Ensure your service running on GPU/CPU, and include packages specifically for those targets, and save the image size. In general, CPU Model inference is enough.&lt;/li&gt;
+&lt;li&gt;Structure your service code with these modularisations in mind, so that using Environment variables you can switch the code paths.&lt;/li&gt;
+&lt;li&gt;Keep models from different frameworks like TensorFlow / PyTorch / others separate, ensuring your code doesn’t need to be touched for this purpose.&lt;/li&gt;
+&lt;li&gt;Reduce the Docker Image so that the service can be deployed in a serverless environment in a better way.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="data-science"></category><category term="pytorch"></category><category term="tensorflow"></category><category term="docker"></category></entry><entry><title>What's Random Variable</title><link href="https://haridas.in/whats-random-variable.html" rel="alternate"></link><published>2020-12-08T00:00:00+05:30</published><updated>2020-12-08T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-12-08:/whats-random-variable.html</id><summary type="html">&lt;p&gt;This is one of the basic ideas that are commonly not understood properly, we learn
 this from the high school level. Currently, most of the exploration is going
 back to basics and wondering why they are defined like that. I can see that most of the
 definitions have mathematical backgrounds …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is one of the basic ideas that are commonly not understood properly, we learn
