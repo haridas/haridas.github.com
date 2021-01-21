@@ -1,5 +1,5 @@
 Title: Pytorch model Inference pipeline using C++
-Date: 2020-01-22  00:00
+Date: 2021-01-22  00:00
 Category: data-science
 Tags: pytroch,cpp
 Authors: Haridas N
