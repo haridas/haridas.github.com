@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HN, ">
+
+        <link rel="alternate"  href="https://haridas.in/feeds/all.atom.xml" type="application/atom+xml" title="HN Full Atom Feed"/>
+
+    <title>Pytorch model Inference pipeline using C++ // all posts // HN </title>
+
+
+    <link href='https://fonts.googleapis.com/css?family=PT+Mono|PT+Serif|PT+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pure.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/asciidoctor.css">
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pymdext.css">
+
+    <link rel="stylesheet" href="https://haridas.in/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+	<script src="https://haridas.in/theme/js/pymdext.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+            <div class="container-header">
+            </div>
+
+
+            <div class="container-body">
+
+                    <div class="body-sidebar">
+                        <header class="content-sidebar">
+
+                            <hgroup>
+
+                                <img class="avatar" src="https://haridas.in/images/profile_pic.jpg">
+
+                                <h1 class="brand-main"><a href="https://haridas.in">HN</a></h1>
+
+
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/programming.html">Programming
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/data-science.html">Data-Science
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/category/devops.html">DevOps
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/my-talks.html">Talks
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/pages/about-me.html">About Me
+                                                </a>
+                                            </p>
+                                            <p class="links">
+                                                <a href="https://haridas.in/resume.pdf">Resume
+                                                </a>
+                                            </p>
+                                <p class="social">
+                                        <a href="https://twitter.com/haridas_n">
+                                                <img src="https://haridas.in/images/tt.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                        <a href="https://github.com/haridas">
+                                                <img src="https://haridas.in/images/github.svg" alt="menu icon" width="45" height="45" />
+                                        </a>
+                                        <a href="https://linkedin.com/in/haridasn">
+                                                <img src="https://haridas.in/images/linkedin.svg" alt="menu icon" width="48" height="48" />
+                                        </a>
+                                </p>
+                            </hgroup>
+                    </header>
+
+                    </div>
+
+
+                    <div class="body-column">
+    <div class="content">
+        <div class="column">
+            <section class="post">
+                <header class="post-header">
+                    <h1 class="article-title">Pytorch model Inference pipeline using C++</h1>
+                        <p class="post-meta">
+                            Tags:                                 <a class="post-category" href="https://haridas.in/tag/pytroch.html">pytroch</a>
+                                <a class="post-category" href="https://haridas.in/tag/cpp.html">cpp</a>
+                        </p>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="haridas_n">
+    Tweet
+</a>
+
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+           po.src = 'https://apis.google.com/js/platform.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                 })();
+</script>                        <p class="post-date">
+                            in <a href="https://haridas.in/category/data-science.html">data-science</a> &middot; Wed 22 January 2020
+                        </p>
+                </header>
+            </section>
+            <p>After seeing the option that we can easily export the PyTorch model and load it in
+non-python environments like  C++ programs for better inference performance, I couldn't
+wait to try this out. So here I’m explaining our recent experience with one of the
+Pytorch models used with the <a href="https://www.prnewswire.com/news-releases/imaginea-launches-pic2card-automatic-images-to-card-converter-a-new-feature-in-microsoft-adaptive-cards-301089878.html">Pic2Card</a> Project.</p>
+<p>Pic2Card is our open source contribution to the <a href="https://adaptivecards.io/">AdaptiveCards</a> community, where we are
+employing multiple object detection models. One PyTorch model that we have played with is
+<a href="https://arxiv.org/abs/2005.12872">DETR</a> end-to-end transformer based object detection pipeline.
+Here I will show how we can export the trained DETR model into a C++ pipeline for inference.</p>
+<p>One thing to note here is that the c++ inference pipeline is possible because that PyTorch
+has the C++ frontend to their Tensor library named it as <a href="https://pytorch.org/cppdocs/installing.html">libtorch</a>. Similar to how we
+use the PyTorch APIs we can use the C++ frontend and also support similar high level
+APIs to interact with the Tensors. This library gives the flexibility of creating our
+model in PyTorch and then for production we can move it to a C++ environment ( If it’s necessary ).</p>
+<blockquote>
+<p>C++ pipeline gives close to 3x or faster inference performance compared to PyTorch
+version.</p>
+</blockquote>
+<h3>What's TorchScript</h3>
+<p>A serialized Model representation that can be used to export the models trained in 
+PyTorch and run it on any other place without python dependencies. for eg; if you
+can create a TorchScript version of your model, it can be loaded into Python or
+C++ or other languages that have libtorch support.</p>
+<p>Tensorflow employes the protocol buffer based serialization standards to ensure the
+model representations are kept in the given format.</p>
+<blockquote>
+<p>TorchScript has a restricted python syntax, and it compiles this python code into the
+intermediate interpretable format. Like a small Virtual Machine, which produces the
+TorchScript that can be run on any torch runtime; ie; it can be on standalone C++
+program or with python itself.</p>
+</blockquote>
+<p>For a more detailed introduction please check the torchscript documentation, which explains
+it in many details and an easy fashion.</p>
+<blockquote>
+<p>I wish Tensorflow has similar documentation as the PyTorch. The way PyTorch internals
+are organized and documented are very easy to follow as nothing different from how a 
+standard C++ program behaviors and python extension mechanisms</p>
+</blockquote>
+<h3>Export the Trained Models into TorchScript</h3>
+<p>If you are familiar with PyTorch, it also behaves similar to the tensorflow graph
+based execution but we aren’t handling any graph construction APIs. Instead, PyTorch
+creates the Tensor operations as a graph dynamically when it sees python statements
+that do some operations on a Tensor. For example, adding two tensors, and then the
+next line does apply a nonlinear function on top of it. In Tensorflow the library
+“Keras” does the dynamic graph construction hidden from the main APIs.</p>
+<p>When we come to the generation of Torchscript representations of your model, you can do that in two ways, </p>
+<h4>1. Tracing</h4>
+<p>As the name suggests, the tracing method is used to record the set of operations for
+a given input and export it as the torchscript representation of the model.</p>
+<div class="highlight"><pre><span></span><code><span class="n">detr</span>  <span class="o">=</span> <span class="o">&lt;</span><span class="n">Instantiate</span> <span class="n">DETR</span> <span class="n">Model</span><span class="p">,</span> <span class="n">a</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span> <span class="n">class</span><span class="o">.&gt;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apply preprocessing and convert the image into a Tensor format with batch index.</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Here we are doing inference on the “detr” model, meanwhile, the trace captures</span>
+<span class="c1"># the Tensor operations associated with this inference in a Graph format.</span>
+<span class="n">detr_trace_module</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">detr</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Save the torchscript model, that can be loaded in python or non-python</span>
+<span class="c1"># environments.</span>
+<span class="n">detr_trace_module</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;detr_trace.pt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load the torchscript model</span>
+<span class="n">ts_detr_model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;detr_trace.pt&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h4>2. Script</h4>
+<p>Script (<code>torch.jit.script</code>) method tries to capture all the control flows in (restricted)
+python code into the torchscript compatible representation. This captures full
+operations that have been done on top of a given Tensor. Internally script parses the
+restricted version of python and generates intermediate representations ( like java class files ).
+The torchscript jit compiler can do this on the fly or this intermediate version can be
+exported to the torchscript serialized representation.</p>
+<div class="highlight"><pre><span></span><code><span class="n">detr_tscript</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">script</span><span class="p">(</span><span class="n">detr</span><span class="p">)</span>
+
+<span class="c1"># script won’t need any input, as it’s capturing the entire source code associated with the</span>
+<span class="c1"># given class. We have ensured the implementation using only the standard python</span>
+<span class="c1"># constructs supported by the torchscript jit compiler.</span>
+
+<span class="c1"># Once the torchscript intermediate representation is ready, the process is similar to </span>
+<span class="c1"># the trace method.</span>
+</code></pre></div>
+
+<p>I would recommend reading the PyTorch documentation, which explains these concepts better than mine - https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html</p>
+<p>Here is the notebook to play with this on a DETR model with pic2card pipeline - <a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/notebooks/DETR.ipynb">Ipython Notebook</a></p>
+<blockquote>
+<p>TorchScript jit compilers provide a VM based intermediate representation of a model,
+and these representations can then be optimized using custom compiler optimization.
+Also this common representation can be exported to machine executable codes,
+specific to the particular chipset or similar custom platforms if needed.</p>
+</blockquote>
+<p>This idea of treating the model as a graph of tensor operations ( or general programs ) and having a compiler stack that can parse and generate target executable codes seem pretty much reusing the concepts of the standard programming environment. Which makes it much easier to understand these problems as it’s similar to a normal java / C program!</p>
+<h4>C++ code snippet to load the detr torchscript model</h4>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;torch/extension.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;torch/script.h&gt;</span><span class="cp"></span>
+<span class="c1">// Other includes if any.</span>
+
+
+<span class="k">struct</span> <span class="n">Detr</span>
+<span class="p">{</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">model_path</span><span class="p">;</span>
+    <span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">script</span><span class="o">::</span><span class="n">Module</span> <span class="n">model</span><span class="p">;</span>
+
+    <span class="n">Detr</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">model_path</span><span class="p">)</span> <span class="o">:</span> <span class="n">model_path</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">loadModel</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">getModelPath</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">model_path</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">loadModel</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Other plumping and inference code follows.</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>For the full version of the above code, please refer to the pic2card <a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/mystique/models/pth/detr_cpp">detr_cpp</a>
+subproject. It includes a way to call this c++ inference pipeline from python
+bypassing the inputs as <code>NumPy</code> to the c++ program. We have type casting options
+to convert the NumPy representation into <code>cv::Mat</code> and from there to <code>torch::Tensor</code>
+type. Directly converting from NumPy to torch Tensor seems tricky due to the
+different memory layout of both tensor implementations. In case of <code>cv::Mat</code> to
+<code>torch::Tensor</code> it’s pretty straightforward.</p>
+<h3>Inference Speed gain</h3>
+<p>From our empirical experiment on the <code>DETR</code> based model, we have found that --
+you can expect 3x or more speed gain compared to the PyTorch inference pipeline.
+In our experiment, this comparison is done between PyTorch based model inference and
+libtorch based model inference provided some part of the image pre-processing was
+still in python itself.</p>
+<h3>References</h3>
+<ol>
+<li>Pytorch Internals, <a href="https://pytorch.org/blog/a-tour-of-pytorch-internals-1/">1</a>, <a href="https://pytorch.org/blog/a-tour-of-pytorch-internals-2">2</a></li>
+<li><a href="https://github.com/microsoft/AdaptiveCards/blob/main/source/pic2card/mystique/models/pth/detr_cpp">Detr CPP inference implementation</a></li>
+</ol>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+
+        <!-- <div id="disqus_thread"></div> -->
+
+        <div id="disqus_thread">
+            <a href="#" class="comments-holder" onclick="loadDisqus();return false;">Show/Post Comments</a> 
+        </div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "haridas"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            var loadDisqus = function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            };
+        </script>
+
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </div>
+        </div>
+    </div>
+                    </div>
+
+            </div>
+
+            <div class="container-footer">
+<footer class="footer">
+                <a href="https://twitter.com/haridas_n"> Twitter</a> |
+                <a href="https://github.com/haridas"> Github</a> |
+                <a href="https://linkedin.com/in/haridasn"> Linkedin</a>
+        &ndash;
+        &copy; HN &ndash;
+        <i> <a href="https://github.com/haridas/hn-theme">Built with HN Theme</a> </i>
+        for <a href="https://blog.getpelican.com/">Pelican</a>
+</footer>            </div>
+
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-23592173-1']);
+          _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+
+    </script>
+
+</body>
+</html>
