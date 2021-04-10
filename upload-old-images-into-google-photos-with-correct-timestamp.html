@@ -262,7 +262,7 @@ if __name__ == "__main__":
 <p>Now simply give following commands to update your file's EXIF tag <cite>Exif.Photo.DateTimeOriginal</cite>.</p>
 <p>The bellow command will find all the &quot;jpg&quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> file in <span class="sb">`</span>find . -iname <span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> python add_exif_record.py -t ftime -f <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> file <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> python add_exif_record.py -t ftime -f <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
 
             <a href="#" class="go-top">Go Top</a>

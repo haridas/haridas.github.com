@@ -100,7 +100,7 @@ specific to the particular chipset or similar custom platforms if needed.&lt;/p&
 &lt;span class="c1"&gt;// Other includes if any.&lt;/span&gt;
 
 
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Detr&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;Detr&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
 
     &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;model_path&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -477,8 +477,13 @@ the Wikipedia article is very apt here.&lt;/p&gt;
 without duplicating the content. Please click below link to see the full post in
 hackernoon.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://hackernoon.com/managing-microservices-with-service-mesh-a-control-plane-for-your-application-ve1k3u1c"&gt;Managing Microservies with Service Mesh - A control plane for your
-Application&lt;/a&gt;&lt;/p&gt;</content><category term="devops"></category><category term="services-mesh"></category><category term="kubernetes"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+Application&lt;/a&gt;&lt;/p&gt;</content><category term="devops"></category><category term="services-mesh"></category><category term="kubernetes"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -2110,8 +2115,13 @@ $$
 &lt;h6&gt;2. TBuckets paper http://www.aclweb.org/anthology/E17-2070&lt;/h6&gt;
 &lt;h6&gt;3. http://www.cs.loyola.edu/~binkley/papers/icpc14-lda.pdf&lt;/h6&gt;
 &lt;h6&gt;4. Gensim Implementation - https://radimrehurek.com/gensim/models/coherencemodel.html&lt;/h6&gt;
-&lt;h6&gt;5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3&lt;/h6&gt;</content><category term="data-science"></category><category term="LDA"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+&lt;h6&gt;5. Math equations are built using this site - https://www.mathcha.io/editor/w6PBH0GSWNtDpir3&lt;/h6&gt;</content><category term="data-science"></category><category term="LDA"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */

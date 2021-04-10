@@ -152,8 +152,8 @@ normal password required to initiate the encryption or decryption.</p>
 </pre></div>
 <p>I'm using Dropbox as my cloud storage. So inside your drobox folder just create
 one folder named Encrypted.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/Dropbox/Encrypted
-<span class="gp">$</span> mkdir ~/SecureDropbox
+<div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir ~/Dropbox/Encrypted
+<span class="gp">$ </span>mkdir ~/SecureDropbox
 </pre></div>
 <p>We are going to keep our documents under the ~/SecureDropbox folder, and the
 ecryptfs will generate the corresponding encrypted files on the
@@ -173,7 +173,7 @@ the mounting operation.</p>
 <img alt="" src="/images/encryption-3.jpg" style="width: 100%;" />
 <p>Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.</p>
-<div class="highlight"><pre><span></span><span class="gp">#</span> df -h
+<div class="highlight"><pre><span></span><span class="gp"># </span>df -h
 </pre></div>
 <p>So if there is no error, you can now check for the file encryption by directly
 adding one text file in to <cite>/home/haridas/SecureDropbox</cite>, immediately you can see

@@ -333,8 +333,8 @@ normal password required to initiate the encryption or decryption.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
 one folder named Encrypted.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/Dropbox/Encrypted
-&lt;span class="gp"&gt;$&lt;/span&gt; mkdir ~/SecureDropbox
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir ~/Dropbox/Encrypted
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir ~/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
 ecryptfs will generate the corresponding encrypted files on the
@@ -354,7 +354,7 @@ the mounting operation.&lt;/p&gt;
 &lt;img alt="" src="/images/encryption-3.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; df -h
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;df -h
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So if there is no error, you can now check for the file encryption by directly
 adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
@@ -427,11 +427,11 @@ following content and run it from different locations.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
 its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /
 &lt;span class="gp"&gt;#&lt;/span&gt;sh /usr/local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr
-&lt;span class="gp"&gt;#&lt;/span&gt; sh local/shell.sh
+&lt;span class="gp"&gt;# &lt;/span&gt;sh local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nb"&gt;local&lt;/span&gt;
 &lt;span class="gp"&gt;#&lt;/span&gt;sh shell.sh

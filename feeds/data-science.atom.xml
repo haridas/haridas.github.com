@@ -100,7 +100,7 @@ specific to the particular chipset or similar custom platforms if needed.&lt;/p&
 &lt;span class="c1"&gt;// Other includes if any.&lt;/span&gt;
 
 
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Detr&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;Detr&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
 
     &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;model_path&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -473,8 +473,13 @@ the Wikipedia article is very apt here.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="data-science"></category><category term="statistics"></category><category term="probability"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+&lt;/script&gt;</content><category term="data-science"></category><category term="statistics"></category><category term="probability"></category></entry><entry><title>Simple Trading Game Simulation</title><link href="https://haridas.in/trading-game-simulation.html" rel="alternate"></link><published>2020-06-27T00:00:00+05:30</published><updated>2020-06-27T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2020-06-27:/trading-game-simulation.html</id><summary type="html">&lt;p&gt;A simple transaction game to study the real world transactions and wealth disparity.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -2944,7 +2949,7 @@ def get_spacy_model():
     global SPACY_MODEL
     if not SPACY_MODEL:
        _model = spacy.load("en_core_web_lg")
-    SPACY_MODEL = _model
+       SPACY_MODEL = _model
     return SPACY_MODEL&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2962,8 +2967,7 @@ loaded into the working memory.&lt;/p&gt;
 &lt;h4 id="_full_version_of_using_spacy_on_spark"&gt;Full version of using spacy on spark&lt;/h4&gt;
 &lt;div class="listingblock"&gt;
 &lt;div class="content"&gt;
-&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;ubuntu@ip-10-50-168-159:~$
-import os
+&lt;pre class="highlight"&gt;&lt;code class="language-python" data-lang="python"&gt;import os
 import spacy
 import pandas as pd
 from pyspark.sql import SparkSession
@@ -2981,8 +2985,7 @@ def get_spacy_model():
            lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS,
            spacy.attrs.IS_STOP
        )
-
-    SPACY_MODEL = _model
+       SPACY_MODEL = _model
     return SPACY_MODEL
 
 
@@ -4275,8 +4278,13 @@ The math equetions are created using &lt;a href="https://www.mathcha.io" class="
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><category term="data-science"></category><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+&lt;/div&gt;</content><category term="data-science"></category><category term="math"></category><category term="ML"></category><category term="calculus"></category></entry><entry><title>Outlier removal clustring</title><link href="https://haridas.in/outlier-removal-clustering.html" rel="alternate"></link><published>2016-09-04T00:00:00+05:30</published><updated>2016-09-04T00:00:00+05:30</updated><author><name>Haridas N</name></author><id>tag:haridas.in,2016-09-04:/outlier-removal-clustering.html</id><summary type="html">&lt;p&gt;Kmean clustering with anomaly removal&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
