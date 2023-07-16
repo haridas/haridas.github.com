@@ -6,6 +6,8 @@
 
 My recent talks and corresponding ppt links
 
+==== https://hasgeek.com/fifthelephant/mlops-conference-july-2021/sub/process-of-open-source-your-ml-service-P9pEwEv4MsEjJDe7aRKm4M[MLOPs Conference - How to Open Source your ML Service : July/2021]
+
 ==== https://github.com/microsoft/AdaptiveCards/tree/main/source/pic2card[Pic2Card - 8/Jan/2021] 
 
 Happy to be part of this opensource effort by my https://imaginea.com[Imaginea]
