@@ -170,61 +170,61 @@ Similarly any DB / IO related nodejs libraries follows this method.</p>
 <span class="cm">@arg callback(err, result): The More information about the signature of the</span>
 <span class="cm">                            callback is much appreciated one.</span>
 <span class="cm">*/</span>
-<span class="err">&#39;</span><span class="n">use</span> <span class="n">strict</span><span class="err">&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="n">Redis</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">&quot;ioredis&quot;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="n">redis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Redis</span><span class="p">();</span>
+<span class="err">&#39;</span><span class="n">use</span><span class="w"> </span><span class="n">strict</span><span class="err">&#39;</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">Redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">require</span><span class="p">(</span><span class="s">&quot;ioredis&quot;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Redis</span><span class="p">();</span>
 
-<span class="n">function</span> <span class="nf">initializeRedis</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">();</span>
-    <span class="n">pipeline</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
-    <span class="n">pipeline</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">);</span>
+<span class="n">function</span><span class="w"> </span><span class="nf">initializeRedis</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">pipeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pipeline</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pipeline</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.8</span><span class="p">);</span>
 
-    <span class="n">pipeline</span><span class="p">.</span><span class="na">exec</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">    </span><span class="n">pipeline</span><span class="p">.</span><span class="na">exec</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 
-    <span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
 
 <span class="p">};</span>
 
-<span class="n">function</span> <span class="nf">calculateBmi</span><span class="p">(</span><span class="n">weightKey</span><span class="p">,</span> <span class="n">heightKey</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">redis</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">redis</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-                <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
-                    <span class="c1">// Units: Weight in KG, and height in Meters.</span>
-                    <span class="n">let</span> <span class="n">bmi</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">height</span><span class="p">)</span>
-                    <span class="n">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="n">bmi</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">})</span>
-        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
-            <span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
+<span class="n">function</span><span class="w"> </span><span class="nf">calculateBmi</span><span class="p">(</span><span class="n">weightKey</span><span class="p">,</span><span class="w"> </span><span class="n">heightKey</span><span class="p">,</span><span class="w"> </span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">redis</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">redis</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Units: Weight in KG, and height in Meters.</span>
+<span class="w">                    </span><span class="n">let</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">height</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="w">                    </span><span class="n">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">bmi</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">callback</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="c1">// We have to initialize the redis first and then read and do our task.</span>
 <span class="c1">// You can see from this point onwards we are passing a callback</span>
-<span class="n">initializeRedis</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Redis initialization failed&quot;</span><span class="p">);</span>
-        <span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">//Actual call to the method.</span>
-        <span class="n">calculateBmi</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span> <span class="s">&quot;heightKey&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">bmi</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Error on calculation: &quot;</span> <span class="o">+</span> <span class="n">err</span><span class="p">);</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your BMI: &quot;</span> <span class="o">+</span> <span class="n">bmi</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
+<span class="n">initializeRedis</span><span class="p">(</span><span class="n">function</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Redis initialization failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//Actual call to the method.</span>
+<span class="w">        </span><span class="n">calculateBmi</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">bmi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Error on calculation: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">err</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your BMI: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bmi</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
 <p>In the above code you can see that, how the use of callback comes in, and how we set
@@ -248,15 +248,15 @@ interaction ( Which means we are reducing the #callbacks )</p>
 <p>Eg: here we can avoid two calls if we keep the information of a person in
 a redis HASH set.</p>
 <p>This will reduce the nested structure.</p>
-<div class="highlight"><pre><span></span><span class="nx">redis</span><span class="p">.</span><span class="nx">hmget</span><span class="p">(</span><span class="s2">&quot;userHashKey&quot;</span><span class="p">,</span> <span class="s2">&quot;heightKey&quot;</span><span class="p">,</span> <span class="s2">&quot;weightKey&quot;</span><span class="p">,</span>
-    <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
-       <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-           <span class="kd">let</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
-           <span class="kd">let</span> <span class="nx">weight</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
-           <span class="c1">// Do your work now..</span>
-       <span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nx">redis</span><span class="p">.</span><span class="nx">hmget</span><span class="p">(</span><span class="s2">&quot;userHashKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;heightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;weightKey&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">           </span><span class="kd">let</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">results</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">           </span><span class="kd">let</span><span class="w"> </span><span class="nx">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">results</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">           </span><span class="c1">// Do your work now..</span>
+<span class="w">       </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 <p>Think of the case, if we can't modify the data structure, and still want to
@@ -282,55 +282,55 @@ is the chaining capabilities of promise object.</p>
 specification given in <a class="reference external" href="https://www.promisejs.org/">Promise/A+</a> specification. Promise wraps the async operation and gives
 the response object even though the response is not yet ready, it eventually be ready.
 Promise object can also be called as <strong>thenable</strong> object.</p>
-<div class="highlight"><pre><span></span><span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="nx">promise2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">promise1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span><span class="w"> </span><span class="nx">onRejected</span><span class="p">);</span>
 <span class="c1">// Where onFulfilled and onRejected are callback with single argument</span>
 <span class="c1">// onFullfiled gets result.</span>
 <span class="c1">// onRejected gets reason for failure.</span>
 </pre></div>
 <p>Rewriting the above example looks as follows:-</p>
-<div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="w"> </span><span class="cm">/*</span>
 <span class="cm"> * Create your own promise object, that behave like thenable object</span>
 <span class="cm"> * and can be used other parts of the codebase</span>
 <span class="cm"> */</span>
-<span class="kd">var</span> <span class="n">getValuePromise</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">Promise</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">onFulfilled</span><span class="p">,</span> <span class="n">onRejected</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="n">redisPromise</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">()</span>
-                <span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">)</span>
-                <span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">)</span>
-                <span class="p">.</span><span class="na">exec</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">getValuePromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Promise</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">onFulfilled</span><span class="p">,</span><span class="w"> </span><span class="n">onRejected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">redisPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">exec</span><span class="p">();</span>
 
-            <span class="n">redisPromise</span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// Both height and weight are packed in `results` object.</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">||</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="c1">// If the redis operation have some error, call the</span>
-                    <span class="c1">// Promise reject.</span>
-                    <span class="n">onRejected</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                    <span class="c1">// Successful promise.</span>
-                    <span class="n">let</span> <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
-                        <span class="err">&#39;</span><span class="n">height</span><span class="err">&#39;</span><span class="p">:</span> <span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span>
-                        <span class="err">&#39;</span><span class="n">weight</span><span class="err">&#39;</span><span class="p">:</span> <span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span>
-                    <span class="p">}</span>
-                    <span class="n">onFulfilled</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">})</span>
-        <span class="p">});</span>
+<span class="w">            </span><span class="n">redisPromise</span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Both height and weight are packed in `results` object.</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// If the redis operation have some error, call the</span>
+<span class="w">                    </span><span class="c1">// Promise reject.</span>
+<span class="w">                    </span><span class="n">onRejected</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Successful promise.</span>
+<span class="w">                    </span><span class="n">let</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="err">&#39;</span><span class="n">height</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">results</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span>
+<span class="w">                        </span><span class="err">&#39;</span><span class="n">weight</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">results</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">onFulfilled</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">});</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="n">getYourBmi</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">getValuePromise</span><span class="p">().</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//console.log(&quot;Bmi calculation: &quot; + val.height)</span>
-        <span class="k">return</span> <span class="n">val</span><span class="p">.</span><span class="na">weight</span> <span class="o">/</span> <span class="p">(</span><span class="n">val</span><span class="p">.</span><span class="na">height</span> <span class="o">*</span> <span class="n">val</span><span class="p">.</span><span class="na">height</span> <span class="p">);</span>
-    <span class="p">});</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">getYourBmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">getValuePromise</span><span class="p">().</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//console.log(&quot;Bmi calculation: &quot; + val.height)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="p">.</span><span class="na">weight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
 <span class="p">}</span>
 
 
-<span class="n">getYourBmi</span><span class="p">().</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your Bmi: &quot;</span> <span class="o">+</span> <span class="n">result</span> <span class="p">);</span>
-    <span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
-<span class="p">}).</span><span class="na">catch</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Calculation failed with error: &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="p">);</span>
-    <span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
+<span class="n">getYourBmi</span><span class="p">().</span><span class="na">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your Bmi: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
+<span class="p">}).</span><span class="na">catch</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Calculation failed with error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+<span class="w">    </span><span class="n">process</span><span class="p">.</span><span class="na">exit</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
 <p>NOTE: Here the promise examples are based on the bluebird promise
@@ -379,13 +379,13 @@ through chunks of big files or streams.</li>
 </ol>
 <p>Here is the simple example of how to define a generator and how to consume it.</p>
 <div class="highlight"><pre><span></span><span class="c1">//Generator functions are defined using &quot;function*&quot; syntax.</span>
-<span class="n">function</span><span class="o">*</span> <span class="n">getList</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">yield</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
-    <span class="n">yield</span> <span class="sc">&#39;b&#39;</span><span class="p">;</span>
+<span class="n">function</span><span class="o">*</span><span class="w"> </span><span class="n">getList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">yield</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">yield</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">x</span> <span class="n">of</span> <span class="nf">getList</span><span class="p">())</span> <span class="p">{</span>
-    <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nf">getList</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="c1">// Prints</span>
 <span class="n">a</span>
@@ -394,16 +394,16 @@ through chunks of big files or streams.</li>
 
 <span class="c1">// Another way to retrieve the generator values are making use of &#39;next&#39;</span>
 <span class="c1">// method.</span>
-<span class="kd">var</span> <span class="n">gen</span> <span class="o">=</span> <span class="n">getList</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">gen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getList</span><span class="p">();</span>
 
 <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="n">gen</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
 <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="n">gen</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
 <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="n">gen</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
 
 <span class="c1">// Prints</span>
-<span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
-<span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="sc">&#39;b&#39;</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
-<span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="n">undefined</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span> <span class="c1">// Indicates generator finished.</span>
+<span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">undefined</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span><span class="w"> </span><span class="c1">// Indicates generator finished.</span>
 </pre></div>
 <p>Lets implement our above example using generator and promise.
 we are using <em>'co' library</em> which is a wrapper around generator which
@@ -413,26 +413,26 @@ sequential behavior.</p>
 <span class="c1">// The async calls will be executed synchronously. Ie; it will block till</span>
 <span class="c1">// the call to async call finishes.</span>
 
-<span class="kd">var</span> <span class="n">bmi</span> <span class="o">=</span> <span class="n">co</span><span class="p">(</span><span class="n">function</span><span class="o">*</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">var</span><span class="w"> </span><span class="n">bmi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co</span><span class="p">(</span><span class="n">function</span><span class="o">*</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-    <span class="c1">// First async call</span>
+<span class="w">    </span><span class="c1">// First async call</span>
 
-    <span class="kd">var</span> <span class="n">setRedis</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">()</span>
-                              <span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">)</span>
-                              <span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
-                              <span class="p">.</span><span class="na">exec</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">setRedis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">yield</span><span class="w"> </span><span class="n">redis</span><span class="p">.</span><span class="na">pipeline</span><span class="p">()</span>
+<span class="w">                              </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;heightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.8</span><span class="p">)</span>
+<span class="w">                              </span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;weightKey&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">)</span>
+<span class="w">                              </span><span class="p">.</span><span class="na">exec</span><span class="p">();</span>
 
-    <span class="c1">// Blocks here till the redis write operation finishes.</span>
+<span class="w">    </span><span class="c1">// Blocks here till the redis write operation finishes.</span>
 
 
-    <span class="c1">// Second async call</span>
-    <span class="kd">var</span> <span class="n">res</span> <span class="o">=</span> <span class="n">yield</span> <span class="nf">getYourBmi</span><span class="p">()</span>
-    <span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your Bmi: &quot;</span> <span class="o">+</span> <span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Second async call</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">yield</span><span class="w"> </span><span class="nf">getYourBmi</span><span class="p">()</span>
+<span class="w">    </span><span class="n">console</span><span class="p">.</span><span class="na">log</span><span class="p">(</span><span class="s">&quot;Your Bmi: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
 
-<span class="p">}).</span><span class="na">catch</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Errors are wrapped out ensure no callback way of handling the errors</span>
-    <span class="c1">// from bottom up fashion.</span>
-    <span class="n">console</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="na">stack</span><span class="p">);</span>
+<span class="p">}).</span><span class="na">catch</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Errors are wrapped out ensure no callback way of handling the errors</span>
+<span class="w">    </span><span class="c1">// from bottom up fashion.</span>
+<span class="w">    </span><span class="n">console</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="na">stack</span><span class="p">);</span>
 
 <span class="p">});</span>
 </pre></div>

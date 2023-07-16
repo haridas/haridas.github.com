@@ -142,21 +142,21 @@ following content and run it from different locations.</p>
 
 <span class="nv">curr_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 
-<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span>
-<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span>  <span class="nv">$dir</span><span class="p">;</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="sb">`</span>
+<span class="nv">FILE_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">cd</span><span class="w">  </span><span class="nv">$dir</span><span class="p">;</span><span class="nb">pwd</span><span class="sb">`</span>
 
-<span class="nb">echo</span> <span class="s2">&quot;Path to this file : </span><span class="nv">$FILE_PATH</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Path to this file : </span><span class="nv">$FILE_PATH</span><span class="s2">&quot;</span>
 </pre></div>
 <p>Add this script to <strong>/usr/local/</strong> and run it ( We know that
 its current locations is <strong>/usr/local/</strong>)</p>
-<div class="highlight"><pre><span></span><span class="gp"># </span><span class="nb">cd</span> /
-<span class="gp">#</span>sh /usr/local/shell.sh
+<div class="highlight"><pre><span></span><span class="gp"># </span><span class="nb">cd</span><span class="w"> </span>/
+<span class="gp">#</span>sh<span class="w"> </span>/usr/local/shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> /usr
-<span class="gp"># </span>sh local/shell.sh
+<span class="gp">#</span><span class="nb">cd</span><span class="w"> </span>/usr
+<span class="gp"># </span>sh<span class="w"> </span>local/shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
-<span class="gp">#</span><span class="nb">cd</span> <span class="nb">local</span>
-<span class="gp">#</span>sh shell.sh
+<span class="gp">#</span><span class="nb">cd</span><span class="w"> </span><span class="nb">local</span>
+<span class="gp">#</span>sh<span class="w"> </span>shell.sh
 <span class="go">Absolute PATH : /usr/local</span>
 </pre></div>
 <p>I hope the output of the script explained everything. So you can use

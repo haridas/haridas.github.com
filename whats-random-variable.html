@@ -166,7 +166,7 @@ the Wikipedia article is very apt here.</p>
 <p><img alt="CountableAddictivity" src="../images/Countable_additivity_of_a_measure.svg.png"></p>
 <p> [Source: Wikipedia] </p>
 
-<p>Note: Here <span class="math">\(\mu\)</span> is a <strong>Measure</strong>.</p>
+<p>Note: Here $\mu$ is a <strong>Measure</strong>.</p>
 <h3>Different Types of Measures</h3>
 <p>Based on some constraints applied on how we can do the measuring or what to measure we can group the Measuring to different types of measures that are common for a particular domain,</p>
 <ol>
@@ -176,11 +176,11 @@ the Wikipedia article is very apt here.</p>
 <li>etc.</li>
 </ol>
 <h3>Measure Space</h3>
-<p>Measure space is defined using a triplet - <span class="math">\((X, A, \mu)\)</span>, Here</p>
+<p>Measure space is defined using a triplet - $(X, A, \mu)$, Here</p>
 <ol>
-<li><span class="math">\(X\)</span> is the Set</li>
-<li><span class="math">\(A\)</span> <span class="math">\(\sigma\)</span>-algebra defined on the Set X, or the subset follows the constraints of <span class="math">\(\sigma\)</span>-algebra.</li>
-<li><span class="math">\(\mu\)</span> is the measure</li>
+<li>$X$ is the Set</li>
+<li>$A$ $\sigma$-algebra defined on the Set X, or the subset follows the constraints of $\sigma$-algebra.</li>
+<li>$\mu$ is the measure</li>
 </ol>
 <p>This abstract notion helps to understand the entire Measure space and its characteristics.</p>
 <ol>
@@ -189,15 +189,15 @@ the Wikipedia article is very apt here.</p>
 <li>etc.</li>
 </ol>
 <p>Probability Space also formally defined by the triplet same as above, but the elements are named differently, as,</p>
-<p>Probability space triplet - <span class="math">\((\Omega, F, P)\)</span></p>
+<p>Probability space triplet - $(\Omega, F, P)$</p>
 <ol>
-<li><span class="math">\(\Omega\)</span> - All possible outcomes of an experiment or <code>Sample Space</code>,</li>
-<li><span class="math">\(F\)</span> - Subsets of <span class="math">\(\Omega\)</span> called as <code>Event Space</code>, each subset is called an <code>event</code>. We can call the <span class="math">\(F\)</span> set of all events from sample space.</li>
-<li><span class="math">\(P\)</span> - Probability function, which assigns a real number between [0-1] to every  <code>event</code>.</li>
+<li>$\Omega$ - All possible outcomes of an experiment or <code>Sample Space</code>,</li>
+<li>$F$ - Subsets of $\Omega$ called as <code>Event Space</code>, each subset is called an <code>event</code>. We can call the $F$ set of all events from sample space.</li>
+<li>$P$ - Probability function, which assigns a real number between [0-1] to every  <code>event</code>.</li>
 </ol>
-<p>Here you will be wondering how the probability function ensures the mapping is between 0-1 ?, this is being ensured by the proper normalization factor, if the sample space <span class="math">\(\Omega\)</span> is fully tractable, then that can be used, or only approximation works there.</p>
-<p>Why <span class="math">\(P(\Omega) = 1\)</span>, this can be explained by applying the rule of <span class="math">\(\sigma\)</span>-algebra, the functions should support, <strong>countable union</strong>,</p>
-<p><span class="math">\(P(\Omega) = P(O_1) + P(O_2) + ... + P(O_n) = 1\)</span></p>
+<p>Here you will be wondering how the probability function ensures the mapping is between 0-1 ?, this is being ensured by the proper normalization factor, if the sample space $\Omega$ is fully tractable, then that can be used, or only approximation works there.</p>
+<p>Why $P(\Omega) = 1$, this can be explained by applying the rule of $\sigma$-algebra, the functions should support, <strong>countable union</strong>,</p>
+<p>$P(\Omega) = P(O_1) + P(O_2) + ... + P(O_n) = 1$</p>
 <h2>Random Variable</h2>
 <p>Now we all already covered what's Random variable multiple times above, let’s restate it here,</p>
 <blockquote>
@@ -234,7 +234,7 @@ the Wikipedia article is very apt here.</p>
 <p>Sample Mean converges to the population mean.</p>
 <p>Sample Mean is the set of events we have measured ie; Random Variables.</p>
 </blockquote>
-<p>In the above measure of height, we can consider there is an unknown population mean <span class="math">\(\mu\)</span> and population standard deviation <span class="math">\(\sigma\)</span>. We are doing this measure to find this population mean and variance or other properties of the height (<span class="math">\(H\)</span>) random variable. So from the event space, we randomly pick N number of people and measure the height, ( N maybe 1000, or 1Million or so ).</p>
+<p>In the above measure of height, we can consider there is an unknown population mean $\mu$ and population standard deviation $\sigma$. We are doing this measure to find this population mean and variance or other properties of the height ($H$) random variable. So from the event space, we randomly pick N number of people and measure the height, ( N maybe 1000, or 1Million or so ).</p>
 <p>I have discussed the Law of Large Number in another blog post also - <a href="https://haridas.in/expected-value-of-lottery-ticket.html">Expected Value of a Lottery</a></p>
 <p>Thanks for reading. If you have any suggestions, please comment or contact me via Twitter <code>@haridas_n</code></p>
 <h2>References</h2>
@@ -244,68 +244,6 @@ the Wikipedia article is very apt here.</p>
 <li>https://en.wikipedia.org/wiki/Probability_theory</li>
 <li>https://en.wikipedia.org/wiki/Random_variable</li>
 </ol>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
 

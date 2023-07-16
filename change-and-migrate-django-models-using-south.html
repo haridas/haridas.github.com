@@ -135,7 +135,7 @@ changes to the settings.py file of your django project. To make it
 simple you have to do this step before adding any of your django apps to
 the project.</p>
 <p>First of all install the south application to your system.</p>
-<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install south
+<div class="highlight"><pre><span></span><span class="gp">#</span>easy_install<span class="w"> </span>south
 </pre></div>
 <p>then you have to add your south app to django settings.py file under</p>
 <p>INSTALLED_APPS variable, ie;</p>
@@ -160,7 +160,7 @@ have to use the usual method , ie;</p>
 <div class="highlight"><pre><span></span><span class="go">Migrate all tables to backend database,</span>
 <span class="go">it includes our south apps tables.</span>
 
-<span class="gp">$</span>python manage.py syncdb
+<span class="gp">$</span>python<span class="w"> </span>manage.py<span class="w"> </span>syncdb
 </pre></div>
 <p>That's it !. we are now ready to use south app for our apps model
 management.</p>
@@ -174,7 +174,7 @@ commands,</p>
 <span class="go">This will setup your app under south, need to run only once,</span>
 <span class="go">Then migrate models to backend database,</span>
 
-<span class="gp">$</span>python manage.py migrate your_app
+<span class="gp">$</span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate<span class="w"> </span>your_app
 </pre></div>
 <p>After the initial addition of your django app under south, to migrate
 the future model changes under the same app, you have to do the bellow
@@ -182,11 +182,11 @@ steps,</p>
 <div class="highlight"><pre><span></span><span class="go">After any changes to your model,</span>
 <span class="go">First detect those changes ,</span>
 
-<span class="gp">$</span>python manage.py schemamigration your_app --auto
+<span class="gp">$</span>python<span class="w"> </span>manage.py<span class="w"> </span>schemamigration<span class="w"> </span>your_app<span class="w"> </span>--auto
 
 <span class="go">Then Migrate to backend,</span>
 
-<span class="gp">$</span>python manage.py migrate your_app
+<span class="gp">$</span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate<span class="w"> </span>your_app
 </pre></div>
 <p>So using south app you are now managed model changes without touching
 backend database. In this manner we can manage all django applications

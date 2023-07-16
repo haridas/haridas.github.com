@@ -328,13 +328,13 @@ normal password required to initiate the encryption or decryption.&lt;/p&gt;
 &lt;p&gt;Here I'm explaining how to use the ecryptfs,&lt;/p&gt;
 &lt;p&gt;First install the packages required,&lt;/p&gt;
 &lt;p&gt;From root user follow these commands.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get install ecryptfs-utils
-&lt;span class="gp"&gt;#&lt;/span&gt;modprobe cryptfs
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;#&lt;/span&gt;apt-get&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;ecryptfs-utils
+&lt;span class="gp"&gt;#&lt;/span&gt;modprobe&lt;span class="w"&gt; &lt;/span&gt;cryptfs
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I'm using Dropbox as my cloud storage. So inside your drobox folder just create
 one folder named Encrypted.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir ~/Dropbox/Encrypted
-&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir ~/SecureDropbox
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;~/Dropbox/Encrypted
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;~/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We are going to keep our documents under the ~/SecureDropbox folder, and the
 ecryptfs will generate the corresponding encrypted files on the
@@ -347,14 +347,14 @@ creation of the encrypted file system is explained bellow.&lt;/p&gt;
 &lt;p&gt;To mount the encrypted device to the mount point, use the normal mount command
 with ecryptfs as its filesystem. This step ask for set of questions.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Mount command requires root privilage.&lt;/span&gt;
-mount -t ecryptfs /home/haridas/Dropbox/Encrypted /home/haridas/SecureDropbox
+mount&lt;span class="w"&gt; &lt;/span&gt;-t&lt;span class="w"&gt; &lt;/span&gt;ecryptfs&lt;span class="w"&gt; &lt;/span&gt;/home/haridas/Dropbox/Encrypted&lt;span class="w"&gt; &lt;/span&gt;/home/haridas/SecureDropbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Check this console page to see the complete list of commands required to finish
 the mounting operation.&lt;/p&gt;
 &lt;img alt="" src="/images/encryption-3.jpg" style="width: 100%;" /&gt;
 &lt;p&gt;Now check the filesystem to see whether the encrypted filesystem got mounted
 to the mount point, use df command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;df -h
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;df&lt;span class="w"&gt; &lt;/span&gt;-h
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So if there is no error, you can now check for the file encryption by directly
 adding one text file in to &lt;cite&gt;/home/haridas/SecureDropbox&lt;/cite&gt;, immediately you can see
@@ -420,21 +420,21 @@ following content and run it from different locations.&lt;/p&gt;
 
 &lt;span class="nv"&gt;curr_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 
-&lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;dirname &lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="nv"&gt;FILE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;  &lt;span class="nv"&gt;$dir&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;dirname&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$0&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;FILE_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;$dir&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
 
-&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Path to this file : &lt;/span&gt;&lt;span class="nv"&gt;$FILE_PATH&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Path to this file : &lt;/span&gt;&lt;span class="nv"&gt;$FILE_PATH&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add this script to &lt;strong&gt;/usr/local/&lt;/strong&gt; and run it ( We know that
 its current locations is &lt;strong&gt;/usr/local/&lt;/strong&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /
-&lt;span class="gp"&gt;#&lt;/span&gt;sh /usr/local/shell.sh
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;# &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/
+&lt;span class="gp"&gt;#&lt;/span&gt;sh&lt;span class="w"&gt; &lt;/span&gt;/usr/local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /usr
-&lt;span class="gp"&gt;# &lt;/span&gt;sh local/shell.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;/usr
+&lt;span class="gp"&gt;# &lt;/span&gt;sh&lt;span class="w"&gt; &lt;/span&gt;local/shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nb"&gt;local&lt;/span&gt;
-&lt;span class="gp"&gt;#&lt;/span&gt;sh shell.sh
+&lt;span class="gp"&gt;#&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;local&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt;sh&lt;span class="w"&gt; &lt;/span&gt;shell.sh
 &lt;span class="go"&gt;Absolute PATH : /usr/local&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I hope the output of the script explained everything. So you can use

@@ -213,33 +213,33 @@ specific to the particular chipset or similar custom platforms if needed.</p>
 </blockquote>
 <p>This idea of treating the model as a graph of tensor operations ( or general programs ) and having a compiler stack that can parse and generate target executable codes seem pretty much reusing the concepts of the standard programming environment. Which makes it much easier to understand these problems as it’s similar to a normal java / C program!</p>
 <h4>C++ code snippet to load the detr torchscript model</h4>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;torch/extension.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;torch/script.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;torch/extension.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;torch/script.h&gt;</span>
 <span class="c1">// Other includes if any.</span>
 
 
-<span class="k">struct</span> <span class="nc">Detr</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Detr</span>
 <span class="p">{</span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">model_path</span><span class="p">;</span>
-    <span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">script</span><span class="o">::</span><span class="n">Module</span> <span class="n">model</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">model_path</span><span class="p">;</span>
+<span class="w">    </span><span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">script</span><span class="o">::</span><span class="n">Module</span><span class="w"> </span><span class="n">model</span><span class="p">;</span>
 
-    <span class="n">Detr</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">model_path</span><span class="p">)</span> <span class="o">:</span> <span class="n">model_path</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">loadModel</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="n">Detr</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">model_path</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">model_path</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">loadModel</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">getModelPath</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="n">model_path</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">getModelPath</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">model_path</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">loadModel</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">loadModel</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="o">::</span><span class="n">jit</span><span class="o">::</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="c1">// Other plumping and inference code follows.</span>
+<span class="w">    </span><span class="c1">// Other plumping and inference code follows.</span>
 
 <span class="p">}</span>
 </code></pre></div>

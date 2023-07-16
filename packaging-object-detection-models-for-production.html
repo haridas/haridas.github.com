@@ -152,17 +152,17 @@ requirements like the one listed above. Let’s look into each one of them brief
 <li>Model specific dependency in corresponding requirements files. for eg; <code>requirements-tensorflow.txt</code>, or <code>requirements-pytorch.txt</code></li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1"># Common dependencies are kept here</span>
-$ cat requirements.txt
+$<span class="w"> </span>cat<span class="w"> </span>requirements.txt
 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.9.2
 <span class="nv">flask</span><span class="o">==</span><span class="m">1</span>.1.1
 ...
 
 <span class="c1"># Only Tensorflow specific packages</span>
-$ cat requirements-tensorflow.txt
+$<span class="w"> </span>cat<span class="w"> </span>requirements-tensorflow.txt
 <span class="nv">tensorflow</span><span class="o">==</span><span class="m">1</span>.15.4
 
 <span class="c1"># Only Pytorch specific packages.</span>
-$ cat requirements-pytorch.txt
+$<span class="w"> </span>cat<span class="w"> </span>requirements-pytorch.txt
 <span class="nv">torch</span><span class="o">==</span><span class="m">1</span>.5.0
 <span class="nv">torchvision</span><span class="o">==</span><span class="m">0</span>.6.0
 </code></pre></div>
@@ -185,39 +185,39 @@ which helps to accommodate different configurations that we need to bake into th
 </ol>
 <h4>ML Service with TF model</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># Global ARGs</span>
-ARG <span class="nv">TARGET_API</span><span class="o">=</span>frozen_graph
+ARG<span class="w"> </span><span class="nv">TARGET_API</span><span class="o">=</span>frozen_graph
 
 <span class="c1">## Stage 1: TFS base stage</span>
-FROM python:3.7.9-slim-buster as tfs
-ADD requirements/requirements.txt /app/requirements.txt
+FROM<span class="w"> </span>python:3.7.9-slim-buster<span class="w"> </span>as<span class="w"> </span>tfs
+ADD<span class="w"> </span>requirements/requirements.txt<span class="w"> </span>/app/requirements.txt
 
 <span class="c1">## Stage 2: Embedded model with service stage.</span>
-FROM python:3.7.9-slim-buster as frozen_graph
+FROM<span class="w"> </span>python:3.7.9-slim-buster<span class="w"> </span>as<span class="w"> </span>frozen_graph
 <span class="c1"># Fill in both, as in this case, we need both dependencies.</span>
-ADD requirements/requirements-frozen_graph.txt /app/
-ADD requirements/requirements.txt /app/
-RUN cat /app/requirements-frozen_graph.txt &gt;&gt; /app/requirements.txt
-COPY model/frozen_inference_graph.pb /app/model/
+ADD<span class="w"> </span>requirements/requirements-frozen_graph.txt<span class="w"> </span>/app/
+ADD<span class="w"> </span>requirements/requirements.txt<span class="w"> </span>/app/
+RUN<span class="w"> </span>cat<span class="w"> </span>/app/requirements-frozen_graph.txt<span class="w"> </span>&gt;&gt;<span class="w"> </span>/app/requirements.txt
+COPY<span class="w"> </span>model/frozen_inference_graph.pb<span class="w"> </span>/app/model/
 
 <span class="c1">## Stage 3: Temp stage to keep project files</span>
-FROM <span class="nv">$TARGET_API</span> AS build
-COPY app /app/app
-COPY mystique /app/mystique
+FROM<span class="w"> </span><span class="nv">$TARGET_API</span><span class="w"> </span>AS<span class="w"> </span>build
+COPY<span class="w"> </span>app<span class="w"> </span>/app/app
+COPY<span class="w"> </span>mystique<span class="w"> </span>/app/mystique
 
 <span class="c1">## Stage 4: Main Docker Image</span>
-FROM python:3.7.9-slim-buster
+FROM<span class="w"> </span>python:3.7.9-slim-buster
 
 <span class="c1"># Life-saving option to know which version of code got packaged in this</span>
 <span class="c1"># docker image!</span>
-ARG <span class="nv">COMMIT_SHA</span><span class="o">=</span>
-ARG <span class="nv">BRANCH_NAME</span><span class="o">=</span>
+ARG<span class="w"> </span><span class="nv">COMMIT_SHA</span><span class="o">=</span>
+ARG<span class="w"> </span><span class="nv">BRANCH_NAME</span><span class="o">=</span>
 
 <span class="c1"># Having separate ARG variable as global one is not accessible</span>
 <span class="c1"># under one FROM block.</span>
-ARG <span class="nv">tfs_enable</span><span class="o">=</span>
+ARG<span class="w"> </span><span class="nv">tfs_enable</span><span class="o">=</span>
 
 <span class="c1"># Use this ENV to control the code path in your service.</span>
-ENV <span class="nv">ENABLE_TF_SERVING</span><span class="o">=</span><span class="nv">$tfs_enable</span>
+ENV<span class="w"> </span><span class="nv">ENABLE_TF_SERVING</span><span class="o">=</span><span class="nv">$tfs_enable</span>
 
 <span class="c1">### &lt; Dependencies and projects in place, now goes install dependency and other setups. &gt; ###</span>
 </code></pre></div>

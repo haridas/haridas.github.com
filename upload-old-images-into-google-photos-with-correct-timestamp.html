@@ -148,7 +148,7 @@ order it correctly.</p>
 <p>Luckily we have set of utilities available to edit EXIF tags in an image.
 <a class="reference external" href="https://www.exiv2.org/">exiv2</a> is the one of it.</p>
 <p>It's available on all platforms. Lets install and checkout some samples.</p>
-<div class="highlight"><pre><span></span>$ sudo apt-get install exiv2
+<div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>exiv2
 </pre></div>
 <p>How to change single photo's EXIF record using exiv2 tool.</p>
 <div class="highlight"><pre><span></span>$ exiv2 -M&quot;add Exif.Photo.DateTimeOriginal 2009:03:05 00:00:00&quot; IMG_20090305_000553.jpg
@@ -262,7 +262,7 @@ if __name__ == "__main__":
 <p>Now simply give following commands to update your file's EXIF tag <cite>Exif.Photo.DateTimeOriginal</cite>.</p>
 <p>The bellow command will find all the &quot;jpg&quot; files in your current and sub folders
 and using the above python script update the Exif tag if it doesn't exist.</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> file <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> python add_exif_record.py -t ftime -f <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s2">&quot;*.jpg&quot;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>python<span class="w"> </span>add_exif_record.py<span class="w"> </span>-t<span class="w"> </span>ftime<span class="w"> </span>-f<span class="w"> </span><span class="nv">$file</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 
             <a href="#" class="go-top">Go Top</a>

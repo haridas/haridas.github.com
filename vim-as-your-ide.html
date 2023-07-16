@@ -290,7 +290,7 @@ Snipmate does have support for different html tags. Please check
 the snippets folder(<cite>~/.vim/bundle/snippets/</cite>) to see all available
 snippets for a particular language or markup.</p>
 <p>More examples;</p>
-<div class="highlight"><pre><span></span>vim test.py
+<div class="highlight"><pre><span></span>vim<span class="w"> </span>test.py
 </pre></div>
 <div class="highlight"><pre><span></span><span class="ch">#!/bin/python</span>
 <span class="n">cl</span>
@@ -340,7 +340,7 @@ multiple lines in the default Vim itself, But it's not a programming language
 dependent.</p>
 <p>Back to <a class="reference internal" href="#topics">Topics</a></p>
 </div>
-<div class="section" id="id1">
+<div class="section" id="rope-1">
 <span id="rope"></span><h2>8. Rope</h2>
 <p>Rope is a special Plugin for Python project navigation. Most of the IDE's have
 similar feature to see the definition of a function or class by clicking on it or
@@ -379,7 +379,7 @@ browser in other IDE's.</p>
 parentheses. This is a very handy to save few key press.</p>
 <p>Back to <a class="reference internal" href="#topics">Topics</a></p>
 </div>
-<div class="section" id="id2">
+<div class="section" id="others-1">
 <span id="others"></span><h2>Others</h2>
 <p>This section is to discus about already existing awesome features build in
 with the Vim. You can consider me as a beginner in this area :).
@@ -422,9 +422,9 @@ ever required.</p>
 <p>Before doing this, please take a backup of your current Vim settings from your home
 directory.</p>
 <p>We can start the installation by picking my Git Repository,</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span>git clone git://github.com/haridas/Dotfiles.git
+<div class="highlight"><pre><span></span><span class="gp">$</span>git<span class="w"> </span>clone<span class="w"> </span>git://github.com/haridas/Dotfiles.git
 
-<span class="gp">$</span><span class="nb">cd</span> Dotfiles
+<span class="gp">$</span><span class="nb">cd</span><span class="w"> </span>Dotfiles
 </pre></div>
 <p>I kept all the required plugins as git submodules. So we will get the new
 changes from the plugin projects by updating the submodule project.
@@ -435,22 +435,22 @@ To do that, type below commands inside your Dotfiles folder.</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span><span class="nb">pwd</span>
 <span class="go">&lt;path to gitproject&gt;/Dotfiles</span>
 
-<span class="gp">$</span>git submodule init
-<span class="gp">$</span>git submodule update
+<span class="gp">$</span>git<span class="w"> </span>submodule<span class="w"> </span>init
+<span class="gp">$</span>git<span class="w"> </span>submodule<span class="w"> </span>update
 </pre></div>
 <p>Now you have all the files required to get start with Vim, Next thing is to
 link my git files as your vim files. To do that just create soft link of
 the Vim system files and then point it to my git repository files.
 Here is the steps.</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span><span class="nb">cd</span>
-<span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim .vim
-<span class="gp">$</span>ln -s &lt;path-to&gt;Dotfiles/vim-files/vim/vimrc .vimrc
+<span class="gp">$</span>ln<span class="w"> </span>-s<span class="w"> </span>&lt;path-to&gt;Dotfiles/vim-files/vim<span class="w"> </span>.vim
+<span class="gp">$</span>ln<span class="w"> </span>-s<span class="w"> </span>&lt;path-to&gt;Dotfiles/vim-files/vim/vimrc<span class="w"> </span>.vimrc
 </pre></div>
 <p>Thats it, now open your vim, you can see all the features described above are
 being available, except command-t. Because it requires a compilation.
 The compilation step is very simple. Follow me,</p>
-<div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> &lt;path-to&gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
-<span class="gp">$ </span>ruby extconf.rb
+<div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>&lt;path-to&gt;Dotfiles/vim-files/vim/bundle/command-t/ruby/command-t
+<span class="gp">$ </span>ruby<span class="w"> </span>extconf.rb
 <span class="gp">$ </span>make
 </pre></div>
 <p>The make will succeed only when you have gcc installed ,
@@ -465,8 +465,8 @@ head ache.</p>
 install complete vim from your package manager.</p>
 <p>If you are using Debian based system you can follow this command. Other
 platforms has also the same option using their package manager tool.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span>apt-cache search python <span class="p">|</span> grep vim
-<span class="gp">$</span>apt-cache search ruby <span class="p">|</span> grep vim
+<div class="highlight"><pre><span></span><span class="gp">$</span>apt-cache<span class="w"> </span>search<span class="w"> </span>python<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vim
+<span class="gp">$</span>apt-cache<span class="w"> </span>search<span class="w"> </span>ruby<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vim
 </pre></div>
 <p>From the list install any of the GUI based package.</p>
 </div>

@@ -253,7 +253,7 @@ implementation.</p>
 
 
 <span class="k">def</span> <span class="nf">start_tcp_client</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to sever and push lot of data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span> <span class="s2">&quot;Starting Client&quot;</span>
@@ -277,7 +277,7 @@ implementation.</p>
 
 
 <span class="k">def</span> <span class="nf">start_tcp_client_with_fix</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The TCP client with fix applied. So it will read complete data from</span>
 <span class="sd">    socket and avoid the errors like &#39;errno 104&#39; or &#39;errno 107&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -339,20 +339,20 @@ implementation.</p>
 <span class="cm">    tcp_server.c - Implements the TCP server in my production environment.</span>
 <span class="cm">*/</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;errno.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;errno.h&gt;</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sys/wait.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netdb.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;arpa/inet.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/wait.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
 
 
 <span class="cp">#define PORT &quot;8000&quot;</span>
@@ -361,135 +361,135 @@ implementation.</p>
 <span class="cp">#define SIZE 512</span>
 
 
-<span class="kt">void</span> <span class="o">*</span><span class="nf">get_in_addr</span><span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="n">sa</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">sa</span><span class="o">-&gt;</span><span class="n">sa_family</span> <span class="o">==</span> <span class="n">AF_INET</span><span class="p">){</span>
-        <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="nc">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">get_in_addr</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">sa</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">sa</span><span class="o">-&gt;</span><span class="n">sa_family</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="k">return</span> <span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span> <span class="nc">sockaddr_in6</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin6_addr</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="p">(((</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in6</span><span class="o">*</span><span class="p">)</span><span class="n">sa</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sin6_addr</span><span class="p">);</span>
 <span class="p">}</span>
 
 
-<span class="kt">int</span> <span class="nf">send_sock_msg</span><span class="p">(</span><span class="kt">int</span> <span class="n">sock_fd</span><span class="p">){</span>
-    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">receiver_addr</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">send_sock_msg</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sock_fd</span><span class="p">){</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">receiver_addr</span><span class="p">;</span>
 
-    <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">msghdr</span> <span class="n">msg</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">iovec</span> <span class="n">iov</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">msghdr</span><span class="w"> </span><span class="n">msg</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">iovec</span><span class="w"> </span><span class="n">iov</span><span class="p">;</span>
 
-    <span class="c1">//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span>
+<span class="w">    </span><span class="c1">//sock_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);</span>
 
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_LOOPBACK</span><span class="p">);</span>
-    <span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">8000</span><span class="p">);</span>
+<span class="w">    </span><span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span>
+<span class="w">    </span><span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htonl</span><span class="p">(</span><span class="n">INADDR_LOOPBACK</span><span class="p">);</span>
+<span class="w">    </span><span class="n">receiver_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="mi">8000</span><span class="p">);</span>
 
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_name</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">receiver_addr</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_namelen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">receiver_addr</span><span class="p">);</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iov</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iovlen</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_base</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_len</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_control</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_controllen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">msg</span><span class="p">.</span><span class="n">msg_flags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">receiver_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_namelen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">receiver_addr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">iov</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iovlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_iov</span><span class="o">-&gt;</span><span class="n">iov_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_controllen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msg</span><span class="p">.</span><span class="n">msg_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="n">sendmsg</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sendmsg</span><span class="p">(</span><span class="n">sock_fd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
 
-    <span class="kt">int</span> <span class="n">sd</span><span class="p">,</span> <span class="n">new_sd</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">yes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">rv</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">ttl</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">new_sd</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">yes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ttl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
 
-    <span class="k">struct</span> <span class="nc">sockaddr_in</span> <span class="n">addr</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">addrinfo</span> <span class="n">hints</span><span class="p">,</span> <span class="o">*</span><span class="n">serverinfo</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">sockaddr_storage</span> <span class="n">their_addr</span><span class="p">;</span> <span class="c1">// COnnectors address info.</span>
-    <span class="kt">socklen_t</span> <span class="n">sin_size</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">addr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">addrinfo</span><span class="w"> </span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">serverinfo</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_storage</span><span class="w"> </span><span class="n">their_addr</span><span class="p">;</span><span class="w"> </span><span class="c1">// COnnectors address info.</span>
+<span class="w">    </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">sin_size</span><span class="p">;</span>
 
-    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">hints</span><span class="p">));</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_family</span> <span class="o">=</span> <span class="n">AF_UNSPEC</span><span class="p">;</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span> <span class="o">=</span> <span class="n">SOCK_STREAM</span><span class="p">;</span>
-    <span class="n">hints</span><span class="p">.</span><span class="n">ai_flags</span> <span class="o">=</span> <span class="n">AI_PASSIVE</span><span class="p">;</span>
+<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">hints</span><span class="p">));</span>
+<span class="w">    </span><span class="n">hints</span><span class="p">.</span><span class="n">ai_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_UNSPEC</span><span class="p">;</span>
+<span class="w">    </span><span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">;</span>
+<span class="w">    </span><span class="n">hints</span><span class="p">.</span><span class="n">ai_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AI_PASSIVE</span><span class="p">;</span>
 
-    <span class="k">if</span><span class="p">((</span><span class="n">rv</span> <span class="o">=</span> <span class="n">getaddrinfo</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverinfo</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
-        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;getaddrinfo: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">gai_strerror</span><span class="p">(</span><span class="n">rv</span><span class="p">));</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getaddrinfo</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">PORT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serverinfo</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;getaddrinfo: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gai_strerror</span><span class="p">(</span><span class="n">rv</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="c1">// Loop through different results and pick up the first one.</span>
-    <span class="k">for</span><span class="p">(</span> <span class="n">p</span> <span class="o">=</span> <span class="n">serverinfo</span><span class="p">;</span> <span class="n">p</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_next</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// Loop through different results and pick up the first one.</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serverinfo</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_next</span><span class="p">){</span>
 
-        <span class="k">if</span> <span class="p">((</span><span class="n">sd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: socket&quot;</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: socket&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">O_NONBLOCK</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">F_SETFL</span><span class="p">,</span><span class="w"> </span><span class="n">O_NONBLOCK</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">yes</span><span class="p">,</span>
-                    <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;setsockopt&quot;</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">SOL_SOCKET</span><span class="p">,</span><span class="w"> </span><span class="n">SO_REUSEADDR</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">yes</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">            </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;setsockopt&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">)</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: bind&quot;</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">            </span><span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+<span class="w">            </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;server: bind&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
-        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;server: failed to bind </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">){</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;server: failed to bind </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">freeaddrinfo</span><span class="p">(</span><span class="n">serverinfo</span><span class="p">);</span> <span class="c1">// No need for it further.</span>
+<span class="w">    </span><span class="n">freeaddrinfo</span><span class="p">(</span><span class="n">serverinfo</span><span class="p">);</span><span class="w"> </span><span class="c1">// No need for it further.</span>
 
-    <span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">MAX_LISTEN</span><span class="p">)</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
-        <span class="n">perror</span><span class="p">(</span><span class="s">&quot;listen&quot;</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">listen</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_LISTEN</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;listen&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: waiting for connections...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: waiting for connections...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 
-    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">sin_size</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">their_addr</span><span class="p">;</span>
-        <span class="n">new_sd</span>  <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">sin_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">their_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="n">new_sd</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">accept</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="n">new_sd</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">){</span>
-            <span class="n">perror</span><span class="p">(</span><span class="s">&quot;accept ...&quot;</span><span class="p">);</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">new_sd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">            </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;accept ...&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="n">inet_ntop</span><span class="p">(</span><span class="n">their_addr</span><span class="p">.</span><span class="n">ss_family</span><span class="p">,</span>
-                <span class="n">get_in_addr</span><span class="p">((</span><span class="k">struct</span> <span class="nc">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">),</span>
-                <span class="n">s</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">s</span><span class="p">);</span>
+<span class="w">        </span><span class="n">inet_ntop</span><span class="p">(</span><span class="n">their_addr</span><span class="p">.</span><span class="n">ss_family</span><span class="p">,</span>
+<span class="w">                </span><span class="n">get_in_addr</span><span class="p">((</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">their_addr</span><span class="p">),</span>
+<span class="w">                </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
 
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: got connection from %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;server: got connection from %s </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">()){</span> <span class="c1">// This is child process.</span>
-            <span class="c1">// Child doesn&#39;t need the listner socket. I&#39;m not sure thought.</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
-            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="kt">FILE</span> <span class="o">*</span><span class="n">logfile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;server.log&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">()){</span><span class="w"> </span><span class="c1">// This is child process.</span>
+<span class="w">            </span><span class="c1">// Child doesn&#39;t need the listner socket. I&#39;m not sure thought.</span>
+<span class="w">            </span><span class="n">close</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;server.log&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;w&quot;</span><span class="p">);</span>
 
-            <span class="k">if</span><span class="p">(</span><span class="n">logfile</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
-                <span class="n">perror</span><span class="p">(</span><span class="s">&quot;logfile open error&quot;</span><span class="p">);</span>
-                <span class="k">return</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
-            <span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">logfile</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">){</span>
+<span class="w">                </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;logfile open error&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="p">(</span><span class="mi">-1</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
 
-            <span class="cm">/*</span>
+<span class="w">            </span><span class="cm">/*</span>
 <span class="cm">             * Change the new client socket non-blocking.</span>
 <span class="cm">             *</span>
 <span class="cm">             * This will simulte the server scenario by writing the send</span>
@@ -500,35 +500,35 @@ implementation.</p>
 <span class="cm">             * to avoid the connection reset by the server.</span>
 <span class="cm">             */</span>
 
-            <span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">new_sd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">O_NONBLOCK</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-                <span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
-                <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-            <span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="p">((</span><span class="n">fcntl</span><span class="p">(</span><span class="n">new_sd</span><span class="p">,</span><span class="w"> </span><span class="n">F_SETFL</span><span class="p">,</span><span class="w"> </span><span class="n">O_NONBLOCK</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">                </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;error:fnctl&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
 
-            <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-                <span class="kt">int</span> <span class="n">numbytes</span><span class="p">;</span>
+<span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">numbytes</span><span class="p">;</span>
 
-                <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">                </span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
 
-                <span class="k">if</span><span class="p">((</span><span class="n">numbytes</span> <span class="o">=</span> <span class="n">send_sock_msg</span><span class="p">(</span><span class="n">new_sd</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-                <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Kernel sending buffer is full.&quot;</span>\
-                       <span class="s">&quot;Closing the connection.: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
-                <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
-                <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
-                <span class="p">}</span>
+<span class="w">                </span><span class="k">if</span><span class="p">((</span><span class="n">numbytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">send_sock_msg</span><span class="p">(</span><span class="n">new_sd</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">                </span><span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Kernel sending buffer is full.&quot;</span>\
+<span class="w">                       </span><span class="s">&quot;Closing the connection.: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
+<span class="w">                </span><span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
+<span class="w">                </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
 
-                <span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="s">&quot;Server sending the msg no: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
-                        <span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
-                <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">                </span><span class="n">fprintf</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Server sending the msg no: %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">count</span><span class="p">,</span><span class="n">numbytes</span><span class="p">);</span>
+<span class="w">                </span><span class="n">count</span><span class="w"> </span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 
-        <span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span> <span class="c1">// Parent doesn&#39;t need child&#39;s socket.</span>
-    <span class="p">}</span>
+<span class="w">        </span><span class="n">close</span><span class="p">(</span><span class="n">new_sd</span><span class="p">);</span><span class="w"> </span><span class="c1">// Parent doesn&#39;t need child&#39;s socket.</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -539,8 +539,8 @@ implementation.</p>
 <span class="c1"># Client connections on another thread.</span>
 <span class="c1">#</span>
 
-$ gcc tcp_server.c
-$ ./a.out
+$<span class="w"> </span>gcc<span class="w"> </span>tcp_server.c
+$<span class="w"> </span>./a.out
 
 <span class="c1">#</span>
 <span class="c1"># On another shell environemnt run python client.</span>
@@ -552,45 +552,45 @@ $ ./a.out
 <span class="c1">#    2. Another implementation of the Python client which fixes the issue and</span>
 <span class="c1">#       read the socket data without causing socket error 104 and 107</span>
 
-$ python tcp_server.py  <span class="c1"># Simulate the tcp client with socket problem.</span>
+$<span class="w"> </span>python<span class="w"> </span>tcp_server.py<span class="w">  </span><span class="c1"># Simulate the tcp client with socket problem.</span>
 
 <span class="c1"># OUTPUT #</span>
 
-Starting Client
-sending <span class="m">1</span>
-Hello Worl
-sending <span class="m">2</span>
-Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">&quot;tcp_server.py&quot;</span>, line <span class="m">98</span>, <span class="k">in</span> &lt;module&gt;
-    start_tcp_client<span class="o">()</span>
-  File <span class="s2">&quot;tcp_server.py&quot;</span>, line <span class="m">31</span>, <span class="k">in</span> start_tcp_client
-    sock.send<span class="o">(</span><span class="s1">&#39;Hi i got the data&#39;</span><span class="o">)</span>
-socket.error: <span class="o">[</span>Errno <span class="m">104</span><span class="o">]</span> Connection reset by peer
+Starting<span class="w"> </span>Client
+sending<span class="w"> </span><span class="m">1</span>
+Hello<span class="w"> </span>Worl
+sending<span class="w"> </span><span class="m">2</span>
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;tcp_server.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">98</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>start_tcp_client<span class="o">()</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;tcp_server.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">31</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>start_tcp_client
+<span class="w">    </span>sock.send<span class="o">(</span><span class="s1">&#39;Hi i got the data&#39;</span><span class="o">)</span>
+socket.error:<span class="w"> </span><span class="o">[</span>Errno<span class="w"> </span><span class="m">104</span><span class="o">]</span><span class="w"> </span>Connection<span class="w"> </span>reset<span class="w"> </span>by<span class="w"> </span>peer
 
 
 <span class="c1">#    This will crash after while since the server closes the socket on its</span>
 <span class="c1">#    side due to the kernel sending buffer is full on the server side.</span>
 
-$ python tcp_server.py -c <span class="c1"># This client has the option to fix that issue.</span>
+$<span class="w"> </span>python<span class="w"> </span>tcp_server.py<span class="w"> </span>-c<span class="w"> </span><span class="c1"># This client has the option to fix that issue.</span>
 
 <span class="c1">#OUTPUT#</span>
 
-Starting the newly implemented client...
-sending <span class="m">1</span>
-Handled <span class="m">169</span> bytes
-sending <span class="m">2</span>
-Handled <span class="m">156</span> bytes
-sending <span class="m">3</span>
-Handled <span class="m">1079</span> bytes
-sending <span class="m">4</span>
-Handled <span class="m">208</span> bytes
-sending <span class="m">5</span>
-Handled <span class="m">364</span> bytes
-sending <span class="m">6</span>
-Handled <span class="m">286</span> bytes
+Starting<span class="w"> </span>the<span class="w"> </span>newly<span class="w"> </span>implemented<span class="w"> </span>client...
+sending<span class="w"> </span><span class="m">1</span>
+Handled<span class="w"> </span><span class="m">169</span><span class="w"> </span>bytes
+sending<span class="w"> </span><span class="m">2</span>
+Handled<span class="w"> </span><span class="m">156</span><span class="w"> </span>bytes
+sending<span class="w"> </span><span class="m">3</span>
+Handled<span class="w"> </span><span class="m">1079</span><span class="w"> </span>bytes
+sending<span class="w"> </span><span class="m">4</span>
+Handled<span class="w"> </span><span class="m">208</span><span class="w"> </span>bytes
+sending<span class="w"> </span><span class="m">5</span>
+Handled<span class="w"> </span><span class="m">364</span><span class="w"> </span>bytes
+sending<span class="w"> </span><span class="m">6</span>
+Handled<span class="w"> </span><span class="m">286</span><span class="w"> </span>bytes
 ....
 
-Goese on like this without any interrupt or network buffer overflow.
+Goese<span class="w"> </span>on<span class="w"> </span>like<span class="w"> </span>this<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>interrupt<span class="w"> </span>or<span class="w"> </span>network<span class="w"> </span>buffer<span class="w"> </span>overflow.
 
 <span class="c1">#    This will read the socket data in non-blocking mode and read entire</span>
 <span class="c1">#    data from the socket till it throws EAGAIN exception.</span>
@@ -602,7 +602,7 @@ Goese on like this without any interrupt or network buffer overflow.
 <span class="c1">#    To See what is happening while running this scripts run `tcpdump`</span>
 <span class="c1">#    caommand.</span>
 
-$ sudo tcpdump -i any port <span class="m">8000</span>
+$<span class="w"> </span>sudo<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>any<span class="w"> </span>port<span class="w"> </span><span class="m">8000</span>
 </pre></div>
 <p>You can get the above code from this <a class="reference external" href="https://github.com/haridas/non-blocking-tcp-server-sample">github repository</a>.</p>
 </div>
